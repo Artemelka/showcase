@@ -1,0 +1,32 @@
+.Table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    padding: 24px;
+
+    &__row {
+        border-bottom: 1px solid #eee;
+    }
+
+    &__row--header {
+        background-color: #ccc;
+        color: #282c34;
+    }
+
+    &__row--body:nth-child(odd) {
+        background-color: rgba(255,255,255,.2);
+    }
+
+    &__cell {
+        padding: 8px 24px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    &__cell:last-child {
+        text-align: right;
+    }
+}
+
+
+

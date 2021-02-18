@@ -1,0 +1,53 @@
+.Form {
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 80px;
+
+  &__field {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 30px;
+  }
+
+  &__label {
+    width: 200px;
+    text-align: left;
+  }
+
+  &__input {
+    width: 200px;
+  }
+
+  &__actions {
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 0;
+  }
+
+  &__button {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+
+    &-label {
+      margin-right: 20px;
+    }
+
+    &-input {
+      width: 200px;
+    }
+  }
+}

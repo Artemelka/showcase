@@ -1,0 +1,13 @@
+.Sidebar {
+  padding: 10px;
+
+  &__inner {
+    box-shadow: 0 0 6px rgba(0,0,0, .5);
+    color: var(--baseTextColor);
+    padding: 30px 15px 50px;
+  }
+
+  &__navigation {
+    margin-top: 30px;
+  }
+}

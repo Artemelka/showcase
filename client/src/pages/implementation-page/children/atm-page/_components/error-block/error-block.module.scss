@@ -1,0 +1,10 @@
+.Error-block {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__action {
+        margin-top: 36px;
+    }
+}

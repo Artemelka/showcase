@@ -1,0 +1,22 @@
+.App-header {
+  align-items: center;
+  box-shadow: 0 0 6px rgba(0,0,0, .7);
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1;
+
+  &__logo {
+    color: var(--baseTextColor);
+    font-size: 24px;
+  }
+
+  &__navigation {
+    flex-grow: 10;
+  }
+
+  &__options {
+    margin-left: auto;
+  }
+}
