@@ -3,21 +3,7 @@ import { API } from '../../../../../../../api';
 import { getResolvedTaskActionSaga } from '../../actions';
 import { replaceTasks } from '../../reducer';
 import { queueTasksSelector, queueSendingTasksSelector } from '../../selectors';
-import { TaskItem } from '../../types';
-
-function prepareTasks(allTasks: Array<TaskItem>, resolvedTasks: Array<TaskItem>): Array<TaskItem> {
-  const taskObj = allTasks.reduce((acc: { [key: string]: TaskItem}, task) => {
-    acc[task.id] = task;
-
-    return acc;
-  }, {});
-
-  resolvedTasks.forEach(item => {
-    taskObj[item.id] = item;
-  });
-
-  return Object.values(taskObj);
-}
+import { prepareTasks } from '../../_utils';
 
 export function* getResolvedTaskWorkerSaga() {
   const sendingTasks = yield select(queueSendingTasksSelector);
