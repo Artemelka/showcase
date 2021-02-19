@@ -12,7 +12,7 @@ export {
   incrementCounter,
   queueReducer,
   replaceTasks,
-  updateTask,
+  updateTasks,
 } from './reducer';
 export { checkQueueWatcherSaga, CHECK_QUEUE_WATCHER_SAGA_NAME } from './sagas/check-queue';
 export { getResolvedTaskWatcherSaga, GET_RESOLVED_TASK_WATCHER_SAGA_NAME } from './sagas/get-resolved-task';
@@ -30,6 +30,7 @@ export {
   queueProgressTasksSelector,
   queueRequestCountSelector,
   queueTasksSelector,
+  queueTasksArraySelector,
 } from './selectors';
 export { QUEUE_REDUCER_NAME } from './constants';
 
@@ -37,4 +38,5 @@ export type {
   AppStoreWithQueue,
   QueueState,
   TaskItem,
+  Tasks,
 } from './types';

@@ -1,8 +1,8 @@
-import { put, call, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { API } from '../../../../../../../api';
 import { checkQueueActionSaga, getResolvedTaskActionSaga } from '../../actions';
 import { queuePendingTasksSelector } from '../../selectors';
-import { updateTask, decrementCounter, incrementCounter } from '../../reducer';
+import { decrementCounter, incrementCounter, updateTasks } from '../../reducer';
 
 export function* sendTaskWorkerSaga() {
   const pendingTasks = yield select(queuePendingTasksSelector);
@@ -10,13 +10,13 @@ export function* sendTaskWorkerSaga() {
   if (pendingTasks.length) {
     const currentTask = { ...pendingTasks[0], status: 'progress' };
 
-    yield put(updateTask(currentTask));
+    yield put(updateTasks([currentTask]));
     yield put(incrementCounter());
     yield put(checkQueueActionSaga());
 
     try {
       const response = yield call(API.QUEUE_TASK.sendTask, currentTask);
-      yield put(updateTask(response));
+      yield put(updateTasks([response]));
       yield put(getResolvedTaskActionSaga());
 
     } catch (error) {
