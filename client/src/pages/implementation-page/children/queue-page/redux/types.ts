@@ -5,7 +5,7 @@ import { QUEUE_REDUCER_NAME } from './constants';
 export type TaskItem = {
   id: string;
   index: number;
-  status: 'create'| 'pending' | 'progress' | 'done' | 'error';
+  status: 'create'| 'pending' | 'progress' | 'sending' | 'done' | 'error';
   result?: number;
 }
 

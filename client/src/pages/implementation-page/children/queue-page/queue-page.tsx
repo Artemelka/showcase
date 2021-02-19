@@ -22,6 +22,8 @@ import {
   changeRequestCount,
   CHECK_QUEUE_WATCHER_SAGA_NAME,
   checkQueueWatcherSaga,
+  getResolvedTaskWatcherSaga,
+  GET_RESOLVED_TASK_WATCHER_SAGA_NAME,
   QUEUE_REDUCER_NAME,
   queueCreateTasksQuantitySelector,
   queueFilteredTasksSelector,
@@ -54,6 +56,9 @@ const asyncSagas: Array<AsyncSagaItem> = [
   }, {
     name: SEND_TASK_WATCHER_SAGA_NAME,
     saga: sendTaskWatcherSaga,
+  }, {
+    name: GET_RESOLVED_TASK_WATCHER_SAGA_NAME,
+    saga: getResolvedTaskWatcherSaga,
   }
 ];
 

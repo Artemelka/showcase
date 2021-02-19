@@ -28,6 +28,9 @@ const FILTER_OPTIONS: Array<DropdownItemParams> = [{
 }, {
   id: 'progressTasks',
   value: 'progress',
+}, {
+  id: 'sendingTask',
+  value: 'sending',
 }];
 
 type FormProps = {

@@ -9,10 +9,11 @@ const CLASS_NAME = 'Accordion';
 
 const THEME_COLOR_MAP = {
   create: 'base',
-  pending: 'secondary',
-  progress: 'primary',
-  error: 'error',
   done: 'success',
+  error: 'error',
+  pending: 'secondary',
+  progress: 'base',
+  sending: 'primary',
 };
 
 type AccordionProps = {
@@ -36,7 +37,7 @@ export const Accordion = memo(({
             isOpen={openId === `${index}`}
             onClick={handleClick}
             id={index}
-            panelTitle={`${index}`}
+            panelTitle={`Task ${index + 1} - status: ${status}`}
             // @ts-ignore
             themeColor={THEME_COLOR_MAP[status]}
           >

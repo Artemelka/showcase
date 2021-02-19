@@ -25,6 +25,11 @@ export const queueProgressTasksSelector = createSelector(
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'progress')
 );
 
+export const queueSendingTasksSelector = createSelector(
+  [queueTasksSelector],
+  (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'sending')
+);
+
 export const queueDoneTasksSelector = createSelector(
   [queueTasksSelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'done')

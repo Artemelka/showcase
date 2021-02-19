@@ -1,5 +1,6 @@
 export {
   checkQueueActionSaga,
+  getResolvedTaskActionSaga,
   queueSendTaskActionSaga,
 } from './actions';
 export {
@@ -14,10 +15,12 @@ export {
   updateTask,
 } from './reducer';
 export { checkQueueWatcherSaga, CHECK_QUEUE_WATCHER_SAGA_NAME } from './sagas/check-queue';
+export { getResolvedTaskWatcherSaga, GET_RESOLVED_TASK_WATCHER_SAGA_NAME } from './sagas/get-resolved-task';
 export { sendTaskWatcherSaga, SEND_TASK_WATCHER_SAGA_NAME } from './sagas/send-task';
 export {
   queueCreatedTasksSelector,
   queueCreateTasksQuantitySelector,
+  queueSendingTasksSelector,
   queueDoneTasksSelector,
   queueErrorTasksSelector,
   queueFilteredTasksSelector,
