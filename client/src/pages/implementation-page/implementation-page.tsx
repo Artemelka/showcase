@@ -26,23 +26,21 @@ export class ImplementationPageContainer extends Component<ImplementationPagePro
 
   render() {
     return (
-      <div style={{ maxHeight: '80%'}}>
-        <Layout
-          asideElement={<Sidebar/>}
-          isAsideSticky
-        >
-          <Switch>
-            {IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG.map(({ component, exact, path}) => (
-              <Route
-                component={component}
-                exact={exact}
-                key={`${path}`}
-                path={path}
-              />
-            ))}
-          </Switch>
-        </Layout>
-      </div>
+      <Layout
+        asideElement={<Sidebar/>}
+        isAsideSticky
+      >
+        <Switch>
+          {IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG.map(({ component, exact, path}) => (
+            <Route
+              component={component}
+              exact={exact}
+              key={`${path}`}
+              path={path}
+            />
+          ))}
+        </Switch>
+      </Layout>
     );
   }
 }
