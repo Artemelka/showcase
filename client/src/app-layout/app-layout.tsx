@@ -8,6 +8,7 @@ import { AppRouterProps } from '../pages/types';
 export const AppLayout = memo(() => {
   return (
     <Layout
+      disabledScroll
       headerElement={<AppHeader/>}
     >
       <Switch>

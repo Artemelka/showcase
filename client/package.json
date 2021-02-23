@@ -5,8 +5,8 @@
   "author": "Artemelka <artemelka.ru@gmail.com>",
   "homepage": "artemelka.ru",
   "dependencies": {
-    "@artemelka/react-components": "^0.7.0",
-    "@artemelka/redux-store-injector": "^1.0.2",
+    "@artemelka/react-components": "^0.7.2",
+    "@artemelka/redux-store-injector": "^1.0.3",
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.5.0",

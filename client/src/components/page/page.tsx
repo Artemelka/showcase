@@ -19,7 +19,9 @@ export const Page = memo(({
       <div className={cn(`${CLASS_NAME}__title`)}>
         <Text tagName="h1" align="center" fontWeight="bold">{title}</Text>
       </div>
-      {children}
+      <div className={cn(`${CLASS_NAME}__content`)}>
+        {children}
+      </div>
     </div>
   );
 });

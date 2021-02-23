@@ -1,21 +1,49 @@
-import React, { memo } from 'react';
-import classNames from 'classnames/bind';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  StoreInjectorConsumer,
+  AsyncReducerItem,
+  AsyncSagaItem
+} from '@artemelka/redux-store-injector';
 import { Page } from '../../../../components';
-import style from './todo-page.module.scss';
+import {
+  TODO_REDUCER_INJECT_CONFIG,
+  GET_LIST_SAGA_INJECT_CONFIG,
+  getListActionSaga,
+  Action,
+} from './redux';
+import { TodoListPage } from './_components';
 
-const cn = classNames.bind(style);
-const CLASS_NAME = 'Todo-page';
+const asyncReducers: Array<AsyncReducerItem> = [
+  TODO_REDUCER_INJECT_CONFIG,
+];
+const asyncSagas: Array<AsyncSagaItem> = [
+  GET_LIST_SAGA_INJECT_CONFIG,
+];
 
-type TodoPageProps = {};
+type MapDispatchToProps = {
+  getList: () => Action<string>;
+}
+type TodoPageProps = MapDispatchToProps & {};
 
-export const TodoPage = memo(({}: TodoPageProps) => {
-  return (
-    <Page title="Todo">
-      <div className={cn(CLASS_NAME)}>
-        <div className={cn(`${CLASS_NAME}__actions`)}>
-          actions
-        </div>
-      </div>
-    </Page>
-  );
-});
+export class TodoPageContainer extends Component<TodoPageProps>{
+  componentDidMount() {
+    this.props.getList();
+  }
+
+  render() {
+    return (
+      <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
+        <Page title="Todo">
+          <TodoListPage/>
+        </Page>
+      </StoreInjectorConsumer>
+    );
+  }
+}
+
+const mapDispatchToProps: MapDispatchToProps = {
+  getList: getListActionSaga,
+};
+
+export const TodoPage = connect(null, mapDispatchToProps)(TodoPageContainer);
