@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { DropdownItemParams, SelectChangeEvent } from '@artemelka/react-components';
-import { FilterSelect } from '../../../../../../components';
+import { FilterSelect } from '../../../../../../../../components';
 import {
   getListActionSaga,
   setLimit,
@@ -9,8 +9,8 @@ import {
   Action,
   AppStoreWithTodo,
   BaseAction,
-} from '../../redux';
-import { ROWS_OPTIONS } from '../../constants';
+} from '../../../../redux';
+import { ROWS_OPTIONS } from '../../../../constants';
 
 type MapStateToProps = {
   limit: Array<DropdownItemParams>;

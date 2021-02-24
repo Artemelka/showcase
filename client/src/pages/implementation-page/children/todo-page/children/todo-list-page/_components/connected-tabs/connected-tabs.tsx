@@ -6,19 +6,21 @@ import {
 } from '@artemelka/react-components';
 import {
   getListActionSaga,
+  resetPagination,
   setCategory,
   todoActiveCategorySelector,
   Action,
   AppStoreWithTodo,
   BaseAction,
-} from '../../redux';
-import { BUTTONS } from '../../constants';
+} from '../../../../redux';
+import { BUTTONS } from '../../../../constants';
 
 type MapStateToProps = {
   activeCategory: string;
 }
 type MapDispatchToProps = {
   getList: () => Action<string>;
+  resetPagination: () => Action<string>;
   setCategory: (category: string) => BaseAction<string>;
 }
 type ConnectedTabsProps = MapStateToProps & MapDispatchToProps & {};
@@ -26,6 +28,7 @@ type ConnectedTabsProps = MapStateToProps & MapDispatchToProps & {};
 export class ConnectedTabsContainer extends Component<ConnectedTabsProps> {
   handleClick = ({ id }: ButtonMouseEvent) => {
     this.props.setCategory(`${id}`);
+    this.props.resetPagination();
     this.props.getList();
   };
 
@@ -48,6 +51,7 @@ const mapStateToProps = (state: AppStoreWithTodo): MapStateToProps => ({
 });
 const mapDispatchToProps: MapDispatchToProps = {
   getList: getListActionSaga,
+  resetPagination,
   setCategory,
 };
 

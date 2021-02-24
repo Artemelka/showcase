@@ -5,22 +5,16 @@
   justify-content: space-between;
   align-items: stretch;
 
-  &__header {
-    height: 40px;
-  }
-
   &__content {
     height: 100%;
     position: relative;
   }
 
-  &__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
   &__footer {
-    height: 60px;
+    background-color: var(--backgroundColor);
+    bottom: 0;
+    padding: 20px 0;
+    position: sticky;
+    text-align: center;
   }
 }

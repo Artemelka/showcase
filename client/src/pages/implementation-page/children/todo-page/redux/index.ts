@@ -1,10 +1,12 @@
 export {
   changeFilter,
+  resetPagination,
   setCategory,
   setItems,
   setLimit,
   startLoader,
   stopLoader,
+  setPagination,
   TODO_REDUCER_INJECT_CONFIG,
 } from './reducer';
 export { GET_LIST_SAGA_INJECT_CONFIG } from './sagas/get-list';
@@ -15,7 +17,8 @@ export {
   todoIsLoadingSelector,
   todoListSelector,
   todoPaginationLimitSelector,
-  todoTotalSelector,
+  todoPaginationOffsetSelector,
+  todoPaginationTotalSelector,
 } from './selectors';
 export type {
   Action,
@@ -25,4 +28,5 @@ export type {
   FilterState,
   TodoItem,
   TodoItemStatus,
+  PaginationConfig,
 } from './types';

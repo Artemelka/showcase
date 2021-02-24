@@ -34,11 +34,6 @@ export const todoActiveCategorySelector = createSelector(
   (todoState): string => todoState.activeCategory
 );
 
-export const todoTotalSelector = createSelector(
-  [todoPaginationSelector],
-  (pagination): number => pagination.total
-);
-
 export const todoFilterSelector = createSelector(
   [todoStateSelector],
   (todoState): Array<FilterState> => todoState.filter
@@ -49,7 +44,17 @@ export const todoFilterStatusesSelector = createSelector(
   (filter): Array<TodoItemStatus | ''> => filter.map(item => item.value)
 );
 
+export const todoPaginationTotalSelector = createSelector(
+  [todoPaginationSelector],
+  (pagination): number => pagination.total
+);
+
 export const todoPaginationLimitSelector = createSelector(
   [todoPaginationSelector],
   (paginationConfig): Array<DropdownItemParams> => ROWS_OPTIONS.filter(option => option.value === `${paginationConfig.limit}`)
+);
+
+export const todoPaginationOffsetSelector = createSelector(
+  [todoPaginationSelector],
+  (paginationConfig): number => paginationConfig.offset
 );

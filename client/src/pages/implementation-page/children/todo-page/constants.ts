@@ -1,4 +1,10 @@
 import { ButtonGroupItem, DropdownItemParams } from '@artemelka/react-components';
+import { IMPLEMENTATION_CHILDREN_PATH } from '../../constants';
+
+export const TODO_CHILDREN_PATH = {
+  LIST: `${IMPLEMENTATION_CHILDREN_PATH.TODO}/`,
+  ITEM: `${IMPLEMENTATION_CHILDREN_PATH.TODO}/item`,
+}
 
 export const BUTTONS: Array<ButtonGroupItem> = [
   {

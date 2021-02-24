@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INITIAL_STATE, TODO_REDUCER_NAME } from './constants';
+import { DEFAULT_PAGINATION_CONFIG, INITIAL_STATE, TODO_REDUCER_NAME } from './constants';
 import { TodoState, TodoReducerCase, SetItemsAction } from './types';
 
 const todoReducerSlice = createSlice<TodoState, TodoReducerCase>({
@@ -8,6 +8,12 @@ const todoReducerSlice = createSlice<TodoState, TodoReducerCase>({
   reducers: {
     changeFilter: (state, { payload }) => {
       state.filter = payload;
+    },
+    resetPagination: (state) => {
+      state.paginationConfig = {
+        ...DEFAULT_PAGINATION_CONFIG,
+        limit: state.paginationConfig.limit,
+      };
     },
     setCategory: (state, { payload }) => {
       state.activeCategory = payload;
@@ -35,6 +41,7 @@ const todoReducerSlice = createSlice<TodoState, TodoReducerCase>({
 
 export const {
   changeFilter,
+  resetPagination,
   setCategory,
   setItems,
   setLimit,

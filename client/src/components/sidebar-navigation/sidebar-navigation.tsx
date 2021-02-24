@@ -18,6 +18,14 @@ export const SidebarNavigation = memo(({
   items,
   onClick,
 }: SidebarNavigationProps) => {
+  const checkActiveChildren = useCallback((children: Array<AppRouterProps>) => {
+    return Boolean(children.findIndex(child => child.path === activePath) + 1)
+  }, [activePath]);
+
+  const checkActive = useCallback(({ children = [], path }: AppRouterProps): boolean => {
+    return activePath === path || checkActiveChildren(children);
+  }, [activePath, checkActiveChildren]);
+
   const handleClick = useCallback(({ id }: ButtonMouseEvent) => {
     onClick(`${id}`);
   }, [onClick]);
@@ -25,16 +33,16 @@ export const SidebarNavigation = memo(({
   return (
     <nav className={cn(CLASS_NAME)}>
       <ul className={cn(`${CLASS_NAME}__list`)}>
-        {items.map(({ name, path }: AppRouterProps) => (
-          <li className={cn(`${CLASS_NAME}__item`)} key={path}>
+        {items.map((item: AppRouterProps) => (
+          <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
             <Button
               alignText="left"
-              isActive={activePath === path}
+              isActive={checkActive(item)}
               isFullWidth
-              id={path}
+              id={item.path}
               onClick={handleClick}
               themeColor="primary"
-              value={name.toLocaleUpperCase()}
+              value={item.name.toLocaleUpperCase()}
               variant="only-text"
             />
           </li>

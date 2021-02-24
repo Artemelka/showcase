@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectChangeEvent } from '@artemelka/react-components';
-import { FilterSelect } from '../../../../../../components';
+import { FilterSelect } from '../../../../../../../../components';
 import {
   changeFilter,
   getListActionSaga,
@@ -11,8 +11,8 @@ import {
   FilterState,
   ChangeFilterAction,
   TodoItemStatus,
-} from '../../redux';
-import { FILTER_OPTIONS } from '../../constants';
+} from '../../../../redux';
+import { FILTER_OPTIONS } from '../../../../constants';
 
 type MapStateToProps = {
   filter: Array<FilterState>;

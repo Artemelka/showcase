@@ -34,6 +34,7 @@ export type SetLimitAction = BaseAction<number>;
 
 export type TodoReducerCase = {
   changeFilter: (state: TodoState, action: ChangeFilterAction) => void;
+  resetPagination: (state: TodoState) => void;
   setCategory: (state: TodoState, action: SetCategoryAction) => void;
   setItems: (state: TodoState, action: SetItemsAction) => void;
   setLimit: (state: TodoState, action: SetLimitAction) => void;
