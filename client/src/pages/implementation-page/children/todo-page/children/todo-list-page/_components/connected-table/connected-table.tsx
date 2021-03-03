@@ -17,12 +17,12 @@ import {
   Action,
   PaginationConfig,
   getListActionSaga,
-} from '../../../../redux';
+} from '../../redux';
 import { TODO_CHILDREN_PATH } from '../../../../constants';
 import style from './connected-table.module.scss';
 
 const cn = classNames.bind(style);
-const CLASS_NAME = 'Table';
+const CLASS_NAME = 'Connected-table';
 
 type MapStateToProps = {
   isLoading: boolean;

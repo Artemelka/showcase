@@ -12,7 +12,7 @@ import {
   Action,
   AppStoreWithTodo,
   BaseAction,
-} from '../../../../redux';
+} from '../../redux';
 import { BUTTONS } from '../../../../constants';
 
 type MapStateToProps = {

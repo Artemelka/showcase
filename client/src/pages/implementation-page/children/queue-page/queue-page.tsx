@@ -82,7 +82,7 @@ type MapDispatchToProps = {
 }
 type QueuePageProps = MapStateToProps & MapDispatchToProps;
 
-export class QueuePageContainer extends Component<QueuePageProps>{
+export class QueuePage extends Component<QueuePageProps>{
   handleClear = () => {
     this.props.changeCounter(0);
     this.props.changeQuantity(0);
@@ -160,4 +160,4 @@ const mapDispatchToProps: MapDispatchToProps = {
   checkQueue: checkQueueActionSaga,
 }
 
-export const QueuePage = connect(mapStateToProps, mapDispatchToProps)(QueuePageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QueuePage);

@@ -31,10 +31,10 @@ const todoReducerSlice = createSlice<TodoState, TodoReducerCase>({
       state.paginationConfig = payload;
     },
     startLoader: state => {
-      state.startLoaderCount += 1;
+      state.isLoading = true;
     },
     stopLoader: state => {
-      state.startLoaderCount -= 1;
+      state.isLoading = false;
     },
   }
 });

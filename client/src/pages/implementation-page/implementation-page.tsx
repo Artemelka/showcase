@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { replace, Replace } from 'connected-react-router';
 import { Route, Switch } from 'react-router';
 import { Layout } from '@artemelka/react-components';
 import { locationPathNameSelector, AppStore } from '../../app';
+import { PageLoader } from '../../components';
 import { NotFoundPage } from '../not-found-page';
 import { Sidebar } from './_components';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
@@ -30,17 +31,19 @@ export class ImplementationPageContainer extends Component<ImplementationPagePro
         asideElement={<Sidebar/>}
         isAsideSticky
       >
-        <Switch>
-          {IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG.map(({ component, exact, path}) => (
-            <Route
-              component={component}
-              exact={exact}
-              key={`${path}`}
-              path={path}
-            />
-          ))}
-          <Route component={NotFoundPage}/>
-        </Switch>
+        <Suspense fallback={<PageLoader/>}>
+          <Switch>
+            {IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG.map(({ component, exact, path}) => (
+              <Route
+                component={component}
+                exact={exact}
+                key={`${path}`}
+                path={path}
+              />
+            ))}
+            <Route component={NotFoundPage}/>
+          </Switch>
+        </Suspense>
       </Layout>
     );
   }
@@ -53,4 +56,4 @@ const mapDispatchToProps: MapDispatchToProps = {
   redirect: replace,
 };
 
-export const ImplementationPage = connect(mapStateToProps, mapDispatchToProps)(ImplementationPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ImplementationPageContainer);

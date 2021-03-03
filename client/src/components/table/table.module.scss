@@ -1,12 +1,17 @@
 .Table {
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 40px;
+  position: relative;
 
   &__header {
     background-color: var(--backgroundColor);
     font-size: 0;
     padding: 10px 0;
-    position: sticky;
-    top: 70px;
-    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 
     &-category,
     &-title,
@@ -36,6 +41,11 @@
       width: 15%;
       text-align: right;
     }
+  }
+
+  &__content {
+    overflow-y: scroll;
+    max-height: 100%;
   }
 
   &__list {

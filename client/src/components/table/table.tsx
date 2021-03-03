@@ -35,13 +35,15 @@ export const Table = memo(({
         <Text>status</Text>
       </span>
       </div>
-      <ul className={cn(`${CLASS_NAME}__list`)}>
-        {items.map((item, index) => (
-          <li key={item.id} className={cn(`${CLASS_NAME}__item`)}>
-            <TableRow index={index + 1} item={item} onClick={onRowClick}/>
-          </li>
-        ))}
-      </ul>
+      <div className={cn(`${CLASS_NAME}__content`)}>
+        <ul className={cn(`${CLASS_NAME}__list`)}>
+          {items.map((item, index) => (
+            <li key={item.id} className={cn(`${CLASS_NAME}__item`)}>
+              <TableRow index={index + 1} item={item} onClick={onRowClick}/>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 });

@@ -20,7 +20,7 @@ const BUTTONS = [
   },
 ];
 
-export const ButtonsPage = memo(() => {
+const ButtonsPage = memo(() => {
   const [tabId, setTabId] = useState('1');
 
   const handleClick = useCallback((event: SyntheticEvent<HTMLButtonElement>) => {
@@ -57,3 +57,5 @@ export const ButtonsPage = memo(() => {
 
   );
 });
+
+export default ButtonsPage;

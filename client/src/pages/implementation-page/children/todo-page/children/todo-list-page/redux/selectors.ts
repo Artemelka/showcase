@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { DropdownItemParams } from '@artemelka/react-components';
-import { ROWS_OPTIONS } from '../constants';
+import { ROWS_OPTIONS } from '../../../constants';
 import { TODO_REDUCER_NAME, INITIAL_STATE } from './constants';
 import {
   AppStoreWithTodo,
@@ -21,7 +21,7 @@ export const todoListSelector = createSelector(
 
 export const todoIsLoadingSelector = createSelector(
   [todoStateSelector],
-  (todoState): boolean => todoState.startLoaderCount !== 0
+  (todoState): boolean => todoState.isLoading
 );
 
 export const todoPaginationSelector = createSelector(

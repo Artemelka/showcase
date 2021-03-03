@@ -9,7 +9,7 @@ import {
   Action,
   AppStoreWithTodo,
   BaseAction,
-} from '../../../../redux';
+} from '../../redux';
 import { ROWS_OPTIONS } from '../../../../constants';
 
 type MapStateToProps = {

@@ -1,6 +1,6 @@
 import { Action } from 'redux';
-import { TodoItem, TodoItemStatus } from '../../../../../api';
-import { AppStore, BaseAction } from '../../../../../app';
+import { TodoItem, TodoItemStatus } from '../../../../../../../api';
+import { AppStore, BaseAction } from '../../../../../../../app';
 import { TODO_REDUCER_NAME } from './constants';
 
 export type FilterState = {
@@ -16,7 +16,7 @@ export type PaginationConfig = {
 
 export type TodoState = {
   activeCategory: string;
-  startLoaderCount: number;
+  isLoading: boolean;
   items: Array<TodoItem>;
   filter: Array<FilterState>;
   paginationConfig: PaginationConfig;
@@ -44,11 +44,11 @@ export type TodoReducerCase = {
 };
 
 export type AppStoreWithTodo = AppStore & {[TODO_REDUCER_NAME]: TodoState};
-export type { BaseAction } from '../../../../../app';
+export type { BaseAction } from '../../../../../../../app';
 export type {
   GetCategoryParams,
   Response,
   TodoItem,
   TodoItemStatus,
-} from '../../../../../api';
+} from '../../../../../../../api';
 export type { Action } from 'redux';

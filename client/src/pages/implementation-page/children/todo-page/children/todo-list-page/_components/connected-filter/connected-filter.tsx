@@ -11,7 +11,7 @@ import {
   FilterState,
   ChangeFilterAction,
   TodoItemStatus,
-} from '../../../../redux';
+} from '../../redux';
 import { FILTER_OPTIONS } from '../../../../constants';
 
 type MapStateToProps = {

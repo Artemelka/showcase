@@ -1,0 +1,22 @@
+.Todo-item-page {
+  position: relative;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding-right: 20px;
+  }
+
+  &__id {
+    padding-left: 20px;
+  }
+
+  &__main {
+    margin-top: 30px;
+  }
+}

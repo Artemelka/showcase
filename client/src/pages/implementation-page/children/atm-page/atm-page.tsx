@@ -19,7 +19,7 @@ const ATM_STACK = {
 };
 const DEFAULT_ERROR_STATE = { isError: false, errorMessage: ''};
 
-export const AtmPage = memo(() => {
+const AtmPage = memo(() => {
   const [result, setResult] = useState<CashType>([]);
   const [error, setError] = useState(DEFAULT_ERROR_STATE);
   const [amount, setAmount] = useState('');
@@ -65,3 +65,5 @@ export const AtmPage = memo(() => {
 
   );
 });
+
+export default AtmPage;

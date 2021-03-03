@@ -12,6 +12,6 @@ export const INITIAL_STATE: TodoState = {
   activeCategory: 'all',
   filter: [],
   items: [],
-  startLoaderCount: 0,
+  isLoading: true,
   paginationConfig: DEFAULT_PAGINATION_CONFIG,
 };
