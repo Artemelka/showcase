@@ -29,7 +29,6 @@ type MapDispatchToProps = {
   getItem: () => Action<string>;
   goBack: GoBack,
 }
-
 type TodoItemPageProps = MapStateToProps & MapDispatchToProps;
 
 export class TodoItemPageContainer extends Component<TodoItemPageProps> {
@@ -41,15 +40,21 @@ export class TodoItemPageContainer extends Component<TodoItemPageProps> {
     this.props.goBack();
   }
 
+  handleTitleChange = (title: string) => {
+    console.log('=== new title ===', title);
+  }
+
   render() {
     return (
       <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
         <TodoItemPageView
           onGoBackClick={this.handleGoBackClick}
+          onTitleChange={this.handleTitleChange}
           title={this.props.item.title}
           isLoading={this.props.isLoading}
           status={this.props.item.status}
           id={this.props.item.id}
+          category={this.props.item.category}
         />
       </StoreInjectorConsumer>
     );
@@ -66,4 +71,9 @@ const mapDispatchToProps: MapDispatchToProps = {
   getItem: getTodoItemActionSaga
 };
 
-export const TodoItemPage = connect(mapStateToProps, mapDispatchToProps)(TodoItemPageContainer);
+const mergeProps = (stateProps: MapStateToProps, dispatchProps: MapDispatchToProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+});
+
+export const TodoItemPage = connect(mapStateToProps, mapDispatchToProps, mergeProps)(TodoItemPageContainer);

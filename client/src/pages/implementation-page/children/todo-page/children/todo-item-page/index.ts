@@ -7,4 +7,4 @@ export const TODO_ITEM_PAGE_ROUTE_CONFIG: AppRouterProps = {
   exact: true,
   path: TODO_CHILDREN_PATH.ITEM,
   name: 'Item',
-}
+};

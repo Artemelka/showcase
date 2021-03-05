@@ -1,0 +1,12 @@
+.Editor-buttons-group {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
