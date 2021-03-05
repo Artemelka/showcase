@@ -1,42 +1,47 @@
 import { createSelector } from 'reselect';
 import { DropdownItemParams } from '@artemelka/react-components';
 import { INITIAL_STATE, QUEUE_REDUCER_NAME } from './constants';
-import { AppStoreWithQueue, QueueState, TaskItem } from './types';
+import { AppStoreWithQueue, QueueState, TaskItem, Tasks } from './types';
 
 const queueSelector = (state: AppStoreWithQueue): QueueState => state[QUEUE_REDUCER_NAME] || INITIAL_STATE;
 
 export const queueTasksSelector = createSelector(
   [queueSelector],
-  (queueState): Array<TaskItem> => queueState.tasks
+  (queueState): Tasks => queueState.tasks
+);
+
+export const queueTasksArraySelector = createSelector(
+  [queueSelector],
+  (queueState): Array<TaskItem> => Object.values(queueState.tasks)
 );
 
 export const queueCreatedTasksSelector = createSelector(
-  [queueTasksSelector],
+  [queueTasksArraySelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'create')
 );
 
 export const queuePendingTasksSelector = createSelector(
-  [queueTasksSelector],
+  [queueTasksArraySelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'pending')
 );
 
 export const queueProgressTasksSelector = createSelector(
-  [queueTasksSelector],
+  [queueTasksArraySelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'progress')
 );
 
 export const queueSendingTasksSelector = createSelector(
-  [queueTasksSelector],
+  [queueTasksArraySelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'sending')
 );
 
 export const queueDoneTasksSelector = createSelector(
-  [queueTasksSelector],
+  [queueTasksArraySelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'done')
 );
 
 export const queueErrorTasksSelector = createSelector(
-  [queueTasksSelector],
+  [queueTasksArraySelector],
   (tasks): Array<TaskItem> => tasks.filter(({ status }) => status === 'error')
 );
 
@@ -61,7 +66,7 @@ export const queueFilterValuesSelector = createSelector(
 );
 
 export const queueFilteredTasksSelector = createSelector(
-  [queueTasksSelector, queueFilterValuesSelector],
+  [queueTasksArraySelector, queueFilterValuesSelector],
   (tasks, filter): Array<TaskItem> =>
     filter.value === 'all'
       ? tasks

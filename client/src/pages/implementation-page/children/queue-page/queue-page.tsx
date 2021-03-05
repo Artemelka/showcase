@@ -3,15 +3,15 @@ import classNames from 'classnames/bind';
 import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
-  StoreInjectorConsumer,
   AsyncReducerItem,
-  AsyncSagaItem
+  AsyncSagaItem,
+  StoreInjectorConsumer,
 } from '@artemelka/redux-store-injector';
 import {
   DropdownItemParams,
   InputChangeEvent,
   SelectChangeEvent,
-  Text
+  Text,
 } from '@artemelka/react-components';
 import { BaseAction } from '../../../../app/redux';
 import { Page } from '../../../../components';
@@ -22,25 +22,27 @@ import {
   changeFilter,
   changeRequestCount,
   CHECK_QUEUE_WATCHER_SAGA_NAME,
+  checkQueueActionSaga,
   checkQueueWatcherSaga,
-  getResolvedTaskWatcherSaga,
   GET_RESOLVED_TASK_WATCHER_SAGA_NAME,
+  getResolvedTaskWatcherSaga,
   QUEUE_REDUCER_NAME,
+  queueCreatedTasksSelector,
   queueCreateTasksQuantitySelector,
   queueFilteredTasksSelector,
   queueFilterValuesSelector,
   queueMaxRequestCountSelector,
-  queueTasksSelector,
   queueReducer,
-  replaceTasks,
+  queueSendTaskActionSaga,
+  queueTasksArraySelector,
   SEND_TASK_WATCHER_SAGA_NAME,
   sendTaskWatcherSaga,
-  queueSendTaskActionSaga,
-  checkQueueActionSaga,
   TaskItem,
+  Tasks,
+  updateTasks,
 } from './redux';
 import { Accordion, Form } from './_components';
-import { generateTaskItems } from './utils/generateTaskItems';
+import { generateTaskItems, setPendingStatus } from './utils';
 import style from './queue-page.module.scss';
 
 const cn = classNames.bind(style);
@@ -65,20 +67,20 @@ const asyncSagas: Array<AsyncSagaItem> = [
 
 type MapStateToProps = {
   allTasks: Array<TaskItem>;
+  createdTasks: Array<TaskItem>;
   createTaskQuantity: number;
   filteredTasks: Array<TaskItem>;
   filterValue: DropdownItemParams;
   maxRequestCount: number;
 }
 type MapDispatchToProps = {
-  addTasks: (payload: Array<TaskItem>) => BaseAction<Array<TaskItem>>;
-  changeQuantity: (payload: number) => BaseAction<number>;
-  changeFilter: (payload: DropdownItemParams) => BaseAction<DropdownItemParams>;
+  addTasks: (payload: Tasks) => BaseAction<Tasks>;
   changeCounter: (payload: number) => BaseAction<number>;
-  replaceTasks: (payload: Array<TaskItem>) => BaseAction<Array<TaskItem>>;
-  // runTasks: () => Action<string>;
-  sendTask: () => Action<string>;
+  changeFilter: (payload: DropdownItemParams) => BaseAction<DropdownItemParams>;
+  changeQuantity: (payload: number) => BaseAction<number>;
   checkQueue: () => Action<string>;
+  sendTask: () => Action<string>;
+  updateTasks: (payload: Array<TaskItem>) => BaseAction<Array<TaskItem>>;
 }
 type QueuePageProps = MapStateToProps & MapDispatchToProps;
 
@@ -108,13 +110,9 @@ export class QueuePage extends Component<QueuePageProps>{
   }
 
   handleRunTasks = () => {
-    const pendingList: Array<TaskItem> = this.props.allTasks.map((item) =>
-      item.status === 'create'
-        ? { ...item, status: 'pending' }
-        : item
-    );
+    const pendingList: Array<TaskItem> = setPendingStatus(this.props.createdTasks);
 
-    this.props.replaceTasks(pendingList);
+    this.props.updateTasks(pendingList);
     this.props.checkQueue();
   }
 
@@ -144,20 +142,21 @@ export class QueuePage extends Component<QueuePageProps>{
 }
 
 const mapStateToProps = (state: AppStoreWithQueue): MapStateToProps => ({
-  allTasks: queueTasksSelector(state),
+  allTasks: queueTasksArraySelector(state),
+  createdTasks: queueCreatedTasksSelector(state),
   createTaskQuantity: queueCreateTasksQuantitySelector(state),
   filteredTasks: queueFilteredTasksSelector(state),
-  maxRequestCount: queueMaxRequestCountSelector(state),
   filterValue: queueFilterValuesSelector(state),
+  maxRequestCount: queueMaxRequestCountSelector(state),
 });
 const mapDispatchToProps: MapDispatchToProps = {
   addTasks,
   changeCounter: changeRequestCount,
   changeFilter,
   changeQuantity: changeCreateTaskQuantity,
-  replaceTasks,
-  sendTask: queueSendTaskActionSaga,
   checkQueue: checkQueueActionSaga,
+  sendTask: queueSendTaskActionSaga,
+  updateTasks,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QueuePage);
