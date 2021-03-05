@@ -113,11 +113,12 @@ export const Form = memo(({
         <div className={cn(`${CLASS_NAME}__filter-input`)}>
           <FilterSelect
             id="taskFilter"
+            label="Filter status"
             name="task-filter"
             onChange={onFilterChange}
             options={FILTER_OPTIONS}
+            size="medium"
             values={filterValue}
-            label="Filter status"
           />
         </div>
       </div>

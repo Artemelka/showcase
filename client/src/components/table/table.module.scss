@@ -1,0 +1,64 @@
+.Table {
+  height: 100%;
+  box-sizing: border-box;
+  padding-top: 40px;
+  position: relative;
+
+  &__header {
+    background-color: var(--backgroundColor);
+    font-size: 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &-category,
+    &-title,
+    &-status {
+      box-sizing: border-box;
+      display: inline-block;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    &-category {
+      border-right: 1px solid #eee;
+      padding-left: 15px;
+      width: 20%;
+
+    }
+
+    &-title {
+      padding: 0 15px;
+      width: 65%;
+
+    }
+
+    &-status {
+      border-left: 1px solid #eee;
+      padding-right: 15px;
+      width: 15%;
+      text-align: right;
+    }
+  }
+
+  &__content {
+    overflow-y: scroll;
+    max-height: 100%;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    padding-bottom: 10px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}

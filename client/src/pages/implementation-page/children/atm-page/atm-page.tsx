@@ -4,7 +4,7 @@ import React, {
   useState
 } from 'react';
 import classNames from 'classnames/bind';
-import { Text } from '@artemelka/react-components';
+import { Page } from '../../../../components';
 import { ErrorBlock, Form, Table } from './_components';
 import { getAmountFromResult, getCash } from './utils';
 import { CashType } from './types';
@@ -19,7 +19,7 @@ const ATM_STACK = {
 };
 const DEFAULT_ERROR_STATE = { isError: false, errorMessage: ''};
 
-export const AtmPage = memo(() => {
+const AtmPage = memo(() => {
   const [result, setResult] = useState<CashType>([]);
   const [error, setError] = useState(DEFAULT_ERROR_STATE);
   const [amount, setAmount] = useState('');
@@ -53,17 +53,17 @@ export const AtmPage = memo(() => {
   }, [setErrorHelper, setResponse]);
 
   return (
-    <div className={cn(CLASS_NAME)}>
-        <Text tagName="h2" fontWeight="bold">
-          An example of an ATM operation code
-        </Text>
-        <div className={cn(`${CLASS_NAME}__content`)}>
-          {error.isError
-            ? <ErrorBlock onClick={handleClick} title={error.errorMessage}/>
-            : <Form onSubmit={handleSubmit}/>
-          }
-          <Table items={result} amount={amount}/>
-        </div>
-    </div>
+    <Page title="An example of an ATM operation code">
+      <div className={cn(CLASS_NAME)}>
+        {error.isError
+          ? <ErrorBlock onClick={handleClick} title={error.errorMessage}/>
+          : <Form onSubmit={handleSubmit}/>
+        }
+        <Table items={result} amount={amount}/>
+      </div>
+    </Page>
+
   );
 });
+
+export default AtmPage;

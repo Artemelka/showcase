@@ -1,0 +1,1 @@
+export { fastClassNames, fastClassNames3 } from './fast-class-names';

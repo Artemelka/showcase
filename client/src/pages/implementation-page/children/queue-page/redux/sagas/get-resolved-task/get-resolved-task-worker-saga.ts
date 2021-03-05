@@ -1,8 +1,9 @@
 import { call, delay, select, put } from 'redux-saga/effects';
 import { API } from '../../../../../../../api';
 import { getResolvedTaskActionSaga } from '../../actions';
-import { updateTasks } from '../../reducer';
-import { queueSendingTasksSelector } from '../../selectors';
+import { replaceTasks } from '../../reducer';
+import { queueTasksSelector, queueSendingTasksSelector } from '../../selectors';
+import { prepareTasks } from '../../_utils';
 
 export function* getResolvedTaskWorkerSaga() {
   const sendingTasks = yield select(queueSendingTasksSelector);
@@ -12,7 +13,10 @@ export function* getResolvedTaskWorkerSaga() {
       const response = yield call(API.QUEUE_TASK.getResolvedTask, sendingTasks);
 
       if (response.length) {
-        yield put(updateTasks(response));
+        const allTasks = yield select(queueTasksSelector);
+        const result = prepareTasks(allTasks, response);
+
+        yield put(replaceTasks(result));
       }
     } catch (error) {
       console.log('=== Error getResolvedTaskWorkerSaga ===', error);

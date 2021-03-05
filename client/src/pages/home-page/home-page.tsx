@@ -7,7 +7,7 @@ import style from './home-page.module.scss';
 const cn = classNames.bind(style);
 const CLASS_NAME = 'Home-page';
 
-export const HomePage = memo(() => {
+const HomePage = memo(() => {
   return (
     <div className={cn(CLASS_NAME)}>
       <Logo className={cn(`${CLASS_NAME}__logo`)}/>
@@ -20,3 +20,5 @@ export const HomePage = memo(() => {
     </div>
   );
 });
+
+export default HomePage;

@@ -1,0 +1,38 @@
+.Todo-list-page {
+  height: 100%;
+
+  &__actions {
+    align-items: flex-end;
+    display: flex;
+    font-size: 0;
+    justify-content: flex-start;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background-color: var(--backgroundColor);
+    padding: 10px 0;
+  }
+
+  &__tabs {
+    &-label {
+      text-align: center;
+    }
+  }
+
+  &__rows-select {
+    margin-left: auto;
+    width: 130px;
+  }
+
+  &__filter {
+    margin-left: 20px;
+    width: 180px;
+  }
+
+  &__table {
+    height: calc(100% - 120px);
+    margin-top: 50px;
+    position: relative;
+    z-index: 0;
+  }
+}

@@ -14,6 +14,7 @@ import {
   Text,
 } from '@artemelka/react-components';
 import { BaseAction } from '../../../../app/redux';
+import { Page } from '../../../../components';
 import {
   addTasks,
   AppStoreWithQueue,
@@ -83,7 +84,7 @@ type MapDispatchToProps = {
 }
 type QueuePageProps = MapStateToProps & MapDispatchToProps;
 
-export class QueuePageContainer extends Component<QueuePageProps>{
+export class QueuePage extends Component<QueuePageProps>{
   handleClear = () => {
     this.props.changeCounter(0);
     this.props.changeQuantity(0);
@@ -118,21 +119,23 @@ export class QueuePageContainer extends Component<QueuePageProps>{
   render() {
     return (
       <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
-        <div className={cn(CLASS_NAME)}>
-          <Form
-            onQuantityChange={this.handleQuantityChange}
-            onCountChange={this.handleCountChange}
-            createTaskQuantity={`${this.props.createTaskQuantity}`}
-            maxRequestCount={`${this.props.maxRequestCount}`}
-            onCreateTasks={this.handleCreateTasks}
-            onClearForm={this.handleClear}
-            onRunTasks={this.handleRunTasks}
-            onFilterChange={this.handleFilterChange}
-            filterValue={[this.props.filterValue]}
-          />
-          <Text align="center" fontWeight="bold" tagName="h3">Tasks</Text>
-          <Accordion items={this.props.filteredTasks} />
-        </div>
+        <Page title="Queue">
+          <div className={cn(CLASS_NAME)}>
+            <Form
+              onQuantityChange={this.handleQuantityChange}
+              onCountChange={this.handleCountChange}
+              createTaskQuantity={`${this.props.createTaskQuantity}`}
+              maxRequestCount={`${this.props.maxRequestCount}`}
+              onCreateTasks={this.handleCreateTasks}
+              onClearForm={this.handleClear}
+              onRunTasks={this.handleRunTasks}
+              onFilterChange={this.handleFilterChange}
+              filterValue={[this.props.filterValue]}
+            />
+            <Text align="center" fontWeight="bold" tagName="h3">Tasks</Text>
+            <Accordion items={this.props.filteredTasks} />
+          </div>
+        </Page>
       </StoreInjectorConsumer>
     );
   }
@@ -156,4 +159,4 @@ const mapDispatchToProps: MapDispatchToProps = {
   updateTasks,
 }
 
-export const QueuePage = connect(mapStateToProps, mapDispatchToProps)(QueuePageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(QueuePage);

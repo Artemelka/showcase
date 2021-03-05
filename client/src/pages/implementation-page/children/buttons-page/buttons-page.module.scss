@@ -1,0 +1,31 @@
+.Buttons-page {
+  text-align: center;
+
+  &__list {
+    display: inline-flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &-item {
+      padding: 10px;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    padding: 15px 30px;
+  }
+
+  &__content {
+    color: var(--baseTextColor);
+    margin: 30px 0;
+  }
+
+  &__gift {
+    color: burlywood;
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}

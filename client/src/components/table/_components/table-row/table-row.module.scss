@@ -1,0 +1,32 @@
+.Table-row {
+  width: 100%;
+  padding: 20px 15px;
+  text-align: left;
+  box-sizing: border-box;
+  font-size: 0;
+  cursor: pointer;
+
+  &__category,
+  &__title,
+  &__status {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__category {
+    width: 20%;
+    font-size: 14px;
+  }
+
+  &__title {
+    width: 65%;
+    font-size: 18px;
+    
+  }
+
+  &__status {
+    width: 15%;
+    text-align: right;
+    font-size: 12px;
+  }
+}

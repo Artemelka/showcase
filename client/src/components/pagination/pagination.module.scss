@@ -1,0 +1,27 @@
+.Pagination {
+  display: inline-flex;
+  font-size: 0;
+  align-items: center;
+
+  &__prev {
+    margin-right: 20px;
+  }
+
+  &__page-number {
+    width: 50px;
+  }
+
+  &__pref {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  &__total {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  &__next {
+    margin-left: 20px;
+  }
+}

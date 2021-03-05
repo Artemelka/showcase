@@ -1,10 +1,8 @@
 import { TaskItem } from '../../pages/implementation-page/children/queue-page/redux';
+import { getRandomNumber } from '../_utils';
 
 const getRandomTimeout = (): number => {
-  const mathRandom = Math.random();
-  const random = `${mathRandom}`.charAt(2);
-
-  return Number(`${random}000`);
+  return Number(`${getRandomNumber()}000`);
 };
 
 const getResponse = (item: TaskItem): TaskItem => {
@@ -49,7 +47,6 @@ export class QueueTaskApi {
   }
 
   postTask = (item: TaskItem) => {
-    console.log('Calling server API with...' + item.index);
     return new Promise((resolve) => {
       const response = setSendingStatus(item);
 
@@ -61,8 +58,6 @@ export class QueueTaskApi {
   }
 
   getResolvedTask = (tasks: Array<TaskItem>) => {
-    console.log('Called API getResolvedTask with...', tasks);
-
     const result = tasks.reduce((acc: Array<TaskItem>, task) => {
       const resolvedTasks = this.state.progressTask.filter(item => item.id === task.id);
 
@@ -74,12 +69,8 @@ export class QueueTaskApi {
       return acc;
     }, []);
 
-
-
     return new Promise((resolve) => {
-        //
-        resolve(result);
-        console.log('=== resolve ===', result);
+      setTimeout(() => resolve(result), 500);
     });
   }
 }

@@ -21,8 +21,14 @@ type AppNavigationProps = MapStateToProps & MapDispatchToProps & {
 };
 
 export class AppNavigationContainer extends Component<AppNavigationProps> {
-  checkActiveChildren = (children: Array<AppRouterProps>) => {
-    return Boolean(children.findIndex(child => child.path === this.props.pathname) + 1)
+  checkActiveChildren = (children: Array<AppRouterProps>): boolean => {
+    return Boolean(children.findIndex(child => {
+      if (child.children) {
+        return this.checkActiveChildren(child.children);
+      }
+
+      return child.path === this.props.pathname
+    }) + 1)
   };
 
   checkActive = ({ children = [], path }: AppRouterProps): boolean => {

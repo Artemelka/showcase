@@ -29,6 +29,7 @@ export class ThemeToggle extends PureComponent<ThemeToggleProps, State> {
         <Label
           htmlFor="theme-toggle"
           position="left"
+          size="small"
           themeColor="primary"
         >
           Dark theme
@@ -38,6 +39,7 @@ export class ThemeToggle extends PureComponent<ThemeToggleProps, State> {
           id="theme-toggle"
           name="theme-toggle"
           onChange={this.handleThemeChange}
+          size="small"
           themeColor="primary"
         />
       </>

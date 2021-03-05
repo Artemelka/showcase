@@ -11,7 +11,7 @@ import classNames from "classnames/bind";
 import style from './filter-select.module.scss';
 
 const cn = classNames.bind(style);
-const CLASS_NAME = 'Filter-select';
+const CLASS_NAME = 'Filter-filter-select';
 const ICON_CONFIG = {
   iconClose: <ArrowDropUp fontSize="inherit" />,
   iconOpen: <ArrowDropDown fontSize="inherit" />,
@@ -19,33 +19,42 @@ const ICON_CONFIG = {
 
 type FilterSelectProps = {
   id: string;
+  isMultiSelect?: boolean;
+  label: string;
   name: string;
   onChange: (selectEvent: SelectChangeEvent) => void;
   options: Array<DropdownItemParams>;
+  placeholder?: string;
+  size?: 'small' | 'medium' | 'big';
   values: Array<DropdownItemParams>;
-  label: string;
 }
 
 export const FilterSelect = memo(({
   id,
+  isMultiSelect,
+  label,
   name,
   onChange,
   options,
+  placeholder,
+  size = 'small',
   values,
-  label,
 }: FilterSelectProps) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__label`)}>
-        <Label htmlFor={id} >{label}</Label>
+        <Label htmlFor={id} size="small">{label}</Label>
       </div>
       <div className={cn(`${CLASS_NAME}__input`)}>
         <Select
           iconConfig={ICON_CONFIG}
           id={id}
+          isMultiSelect={isMultiSelect}
           name={name}
           onChange={onChange}
           options={options}
+          placeholder={placeholder}
+          size={size}
           themeColor="primary"
           values={values}
           variant="filled"

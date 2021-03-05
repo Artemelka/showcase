@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { replace, Replace } from 'connected-react-router';
 import { Route, Switch } from 'react-router';
 import { Layout } from '@artemelka/react-components';
-import { locationPathNameSelector } from '../../app';
+import { locationPathNameSelector, AppStore } from '../../app';
+import { PageLoader } from '../../components';
+import { NotFoundPage } from '../not-found-page';
 import { Sidebar } from './_components';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
 import { IMPLEMENTATION_PAGE_PATH } from './constants';
-import type { AppStore } from '../../app';
 
 type MapStateToProps = {
   pathname: string;
@@ -26,11 +27,11 @@ export class ImplementationPageContainer extends Component<ImplementationPagePro
 
   render() {
     return (
-      <div style={{ maxHeight: '80%'}}>
-        <Layout
-          asideElement={<Sidebar/>}
-          isAsideSticky
-        >
+      <Layout
+        asideElement={<Sidebar/>}
+        isAsideSticky
+      >
+        <Suspense fallback={<PageLoader/>}>
           <Switch>
             {IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG.map(({ component, exact, path}) => (
               <Route
@@ -40,9 +41,10 @@ export class ImplementationPageContainer extends Component<ImplementationPagePro
                 path={path}
               />
             ))}
+            <Route component={NotFoundPage}/>
           </Switch>
-        </Layout>
-      </div>
+        </Suspense>
+      </Layout>
     );
   }
 }
@@ -54,4 +56,4 @@ const mapDispatchToProps: MapDispatchToProps = {
   redirect: replace,
 };
 
-export const ImplementationPage = connect(mapStateToProps, mapDispatchToProps)(ImplementationPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ImplementationPageContainer);
