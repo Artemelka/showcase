@@ -21,7 +21,7 @@ export const SnakeItem = memo(({
 
   const isApple = useMemo(() => {
     return appleItem.x === x && appleItem.y === y;
-  }, [appleItem, x, y])
+  }, [appleItem, x, y]);
 
   return <Item isApple={isApple} isSnakeItem={isSnakeItem}/>
 });
