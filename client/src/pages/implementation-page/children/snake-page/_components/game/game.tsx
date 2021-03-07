@@ -1,57 +1,40 @@
 import React, { PureComponent } from 'react';
+import { SelectChangeEvent } from '@artemelka/react-components';
 import { fastClassNames3 } from '../../../../../../utils';
-import { DIRECTION_KEYS_CODE, DIRECTION } from '../../constants';
 import {
-  checkApplePosition,
-  checkStopGame,
+  CELL_QUANTITY,
+  DIRECTION_KEYS_CODE,
+  DIRECTION,
+} from '../../constants';
+import {
+  checkFail,
   getDefaultSnakeState,
-  getNextHead,
   getRandomApple,
 } from '../../utils';
 import { SnakeBodyItem, DirectionCode, State } from '../../types';
-import { SnakeItem } from '../snake-item';
+import { GameActions } from '../game-actions';
+import { GameScreen } from '../game-screen';
 import style from './game.module.scss';
 
 const cn = fastClassNames3(style);
 const CLASS_NAME = 'Game';
 
-type GameProps = {
-  cellQuantity: number;
-  gameSpeed: number;
-  isRefresh: boolean;
-  isStarted: boolean;
-  onStopGame: () => void;
-  onUpdateScore: () => void;
-};
+type GameProps = {};
 
 export class Game extends PureComponent<GameProps, State> {
-  intervalId: any;
+  intervalId: NodeJS.Timeout | undefined;
+
+  gameCells: Array<number>;
 
   constructor(props: GameProps) {
     super(props);
 
-    this.state = getDefaultSnakeState(props.cellQuantity);
+    this.state = getDefaultSnakeState();
+    this.gameCells = [...Array(CELL_QUANTITY)].map((_, index) => index);
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleDirectionChange);
-  }
-
-  componentDidUpdate(prevProps: Readonly<GameProps>) {
-    if (prevProps.isStarted !== this.props.isStarted) {
-      if (this.props.isStarted) {
-        this.intervalId = setInterval(this.snakeStep, this.props.gameSpeed);
-      } else {
-        this.stopGame();
-      }
-    }
-
-    const isRefresh = prevProps.isRefresh !== this.props.isRefresh;
-    const isNewCellQuantity = prevProps.cellQuantity !== this.props.cellQuantity;
-
-    if (isRefresh || isNewCellQuantity) {
-      this.refreshGame();
-    }
   }
 
   componentWillUnmount() {
@@ -59,70 +42,97 @@ export class Game extends PureComponent<GameProps, State> {
     this.stopGame();
   }
 
+  eatApple = (head: SnakeBodyItem) => {
+    this.updateScore();
+    this.setState({
+      appleItem: getRandomApple(this.state.snakeBody),
+      snakeBody: [head, ...this.state.snakeBody]
+    });
+  }
+
+  getFail = () => {
+    this.stopGame();
+    this.setState({ isFail: true });
+  }
+
   handleDirectionChange = ({ keyCode }: KeyboardEvent) => {
-    if (this.props.isStarted && DIRECTION_KEYS_CODE.includes(keyCode)) {
-        this.setState({ direction: DIRECTION[(keyCode as DirectionCode)] });
+    if (this.state.isStarted && DIRECTION_KEYS_CODE.includes(keyCode)) {
+      this.setState({ direction: DIRECTION[(keyCode as DirectionCode)] });
+    }
+  }
+
+  handleGameSpeedChange = ({ items }: SelectChangeEvent) => {
+    this.setState({ gameSpeed: items });
+  }
+
+  handleStartClick = () => {
+    if (this.state.isStarted) {
+      this.stopGame();
+    } else {
+      this.intervalId = setInterval(this.snakeStep, this.state.gameSpeed[0].extraData.delay);
+      this.setState({ isStarted: true });
     }
   }
 
   refreshGame = () => {
-    const defaultState = getDefaultSnakeState(this.props.cellQuantity);
+    const defaultState = getDefaultSnakeState();
 
     this.setState(defaultState);
   }
 
-  setStep = (head: SnakeBodyItem, body: Array<SnakeBodyItem>) => {
-    this.props.onUpdateScore();
-    this.setState({
-      appleItem: getRandomApple(body, this.props.cellQuantity),
-      snakeBody: [head, ...body]
-    });
-  }
-
   stopGame = () => {
-    clearInterval(this.intervalId);
-    this.props.onStopGame();
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+    this.setState({ isStarted: false });
   }
 
   snakeStep = () => {
-    const { appleItem, cells, direction, snakeBody: body } = this.state;
-    const head = getNextHead(body[0], direction);
+    const { appleItem, direction, snakeBody: body } = this.state;
+    const head = {
+      x: body[0].x + direction.x,
+      y: body[0].y + direction.y,
+    };
 
-    if (checkStopGame({ body, head, length: cells.length })) {
-      this.stopGame();
+    if (checkFail({ body, head, length: this.gameCells.length })) {
+      this.getFail();
       return;
     }
 
-    if (checkApplePosition(appleItem, head)) {
-      this.setStep(head, body)
+    if (appleItem.x === head.x && appleItem.y === head.y) {
+      this.eatApple(head)
       return;
     }
 
     this.setState({ snakeBody: [head, ...body.slice(0, -1)] });
   }
 
-  render() {
-    const { cells } = this.state;
+  updateScore = () => {
+    this.setState(({ score }) => ({ score: score + 1 }));
+  }
 
+  render() {
     return (
-      <table className={cn(CLASS_NAME)}>
-        <tbody className={cn(`${CLASS_NAME}__body`)}>
-        {cells.map(y => (
-          <tr key={`row${y}`} className={cn(`${CLASS_NAME}__row`)}>
-            {cells.map(x => (
-              <td key={`cell${x}`} className={cn(`${CLASS_NAME}__cell`)}>
-                <SnakeItem
-                  appleItem={this.state.appleItem}
-                  snakeBody={this.state.snakeBody}
-                  x={x}
-                  y={y}
-                />
-              </td>
-            ))}
-          </tr>
-        ))}
-        </tbody>
-      </table>
+      <div className={cn(CLASS_NAME)}>
+        <div className={cn(`${CLASS_NAME}__container`)}>
+          <GameActions
+            gameSpeed={this.state.gameSpeed}
+            isFail={this.state.isFail}
+            isStarted={this.state.isStarted}
+            onGameSpeedChange={this.handleGameSpeedChange}
+            onRefresh={this.refreshGame}
+            onStartClick={this.handleStartClick}
+            score={`${this.state.score}`}
+          />
+          <div className={cn(`${CLASS_NAME}__screen`)}>
+            <GameScreen
+              appleItem={this.state.appleItem}
+              cells={this.gameCells}
+              snakeBody={this.state.snakeBody}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 }

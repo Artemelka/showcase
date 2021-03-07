@@ -2,8 +2,7 @@ import { DropdownItemParams } from '@artemelka/react-components';
 import { DirectionCode, DirectionItem, SnakeBodyItem } from './types';
 
 export const SELECT_ID = 'gameSpeedSelect';
-export const INPUT_ID = 'gameCellsInput';
-export const CELL_QUANTITY = '40';
+export const CELL_QUANTITY = 40;
 export const DIRECTION_KEYS_CODE: Array<number> = [37, 38, 39, 40];
 
 export const SELECT_OPTIONS: Array<DropdownItemParams> = [
@@ -19,6 +18,10 @@ export const SELECT_OPTIONS: Array<DropdownItemParams> = [
     extraData: { delay: 150 },
     id: 'hard',
     value: 'hard',
+  }, {
+    extraData: { delay: 2500 },
+    id: 'test',
+    value: 'test',
   },
 ];
 

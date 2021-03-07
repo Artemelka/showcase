@@ -1,6 +1,14 @@
 .Game {
-  border: 1px solid var(--baseTextColor);
-  border-collapse: collapse;
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
 
-  &__body {}
+  &__container {
+    min-width: 682px;
+  }
+
+  &__screen {
+    margin-top: 30px;
+  }
 }
