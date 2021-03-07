@@ -1,0 +1,12 @@
+.Snake-item {
+  width: 15px;
+  height: 15px;
+
+  &--filled {
+    background-color: green;
+  }
+
+  &--apple {
+    background-color: red;
+  }
+}
