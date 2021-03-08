@@ -55,8 +55,10 @@ export class Game extends PureComponent<GameProps, State> {
     this.setState({ isFail: true });
   }
 
-  handleDirectionChange = ({ keyCode }: KeyboardEvent) => {
+  handleDirectionChange = (event: KeyboardEvent) => {
+    const { keyCode } = event;
     if (this.state.isStarted && DIRECTION_KEYS_CODE.includes(keyCode)) {
+      event.preventDefault();
       this.setState({ direction: DIRECTION[(keyCode as DirectionCode)] });
     }
   }

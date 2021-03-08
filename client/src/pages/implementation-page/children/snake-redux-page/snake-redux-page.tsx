@@ -1,13 +1,24 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
+import { AsyncReducerItem, AsyncSagaItem, StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import { Page } from '../../../../components';
 import { Game } from './_components';
+import {
+  GAME_REDUCER_INJECT_CONFIG,
+  GAME_START_INJECT_SAGA_CONFIG,
+  GAME_STEP_INJECT_SAGA_CONFIG,
+} from './redux';
 
-const SnakePage = memo(() => {
+const asyncReducers: Array<AsyncReducerItem> = [GAME_REDUCER_INJECT_CONFIG];
+const asyncSagas: Array<AsyncSagaItem> = [GAME_START_INJECT_SAGA_CONFIG, GAME_STEP_INJECT_SAGA_CONFIG];
+
+const SnakeReduxPage = memo(() => {
   return (
-    <Page title="Snake">
-      <Game/>
-    </Page>
+    <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
+      <Page title="Snake Redux">
+        <Game/>
+      </Page>
+    </StoreInjectorConsumer>
   );
 });
 
-export default SnakePage;
+export default SnakeReduxPage;

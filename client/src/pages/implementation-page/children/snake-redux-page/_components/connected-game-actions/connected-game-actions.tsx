@@ -1,4 +1,6 @@
-import React, { memo } from 'react';
+import React, {memo, useCallback} from 'react';
+import { Action } from 'redux';
+import { connect } from 'react-redux';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import {
@@ -9,7 +11,15 @@ import {
   SelectChangeEvent,
 } from '@artemelka/react-components';
 import { fastClassNames3 } from '../../../../../../utils';
-import {SELECT_ID, SELECT_OPTIONS} from '../../constants';
+import {
+  gameIsStartedSelector,
+  gameIsFailSelector,
+  refreshGame,
+  setGameSpeed,
+  gameSpeedSelector,
+} from '../../redux';
+import { SELECT_ID, SELECT_OPTIONS } from '../../constants';
+import { AppStoreWithGame, SetGameSpeedAction } from '../../types';
 import { ConnectedScoreScreen } from '../connected-score-screen';
 import style from './game-actions.module.scss';
 
@@ -20,12 +30,18 @@ const SELECT_ICON_CONFIG = {
   iconOpen: <ArrowDropDown fontSize="inherit" />,
 };
 
-type GameActionsProps = {
+type MapStateToProps = {
   gameSpeed: Array<DropdownItemParams>;
   isFail: boolean;
   isStarted: boolean;
-  onGameSpeedChange: (selectEvent: SelectChangeEvent) => void;
-  onRefresh: () => void;
+};
+
+type MapDispatchToProps = {
+  onGameSpeedChange: (gameSpeed: Array<DropdownItemParams>) => SetGameSpeedAction;
+  onRefresh: () => Action<string>;
+};
+
+type GameActionsProps = MapStateToProps & MapDispatchToProps & {
   onStartClick: () => void;
 };
 
@@ -37,6 +53,10 @@ export const GameActions = memo(({
   onRefresh,
   onStartClick,
 }: GameActionsProps) => {
+  const handleGameSpeedChange = useCallback(({ items }: SelectChangeEvent) => {
+    onGameSpeedChange(items);
+  }, [onGameSpeedChange]);
+
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__input`)}>
@@ -46,7 +66,7 @@ export const GameActions = memo(({
           iconConfig={SELECT_ICON_CONFIG}
           id={SELECT_ID}
           name={SELECT_ID}
-          onChange={onGameSpeedChange}
+          onChange={handleGameSpeedChange}
           options={SELECT_OPTIONS}
           size="small"
           themeColor="primary"
@@ -80,3 +100,16 @@ export const GameActions = memo(({
     </div>
   );
 });
+
+const mapStateToProps = (state: AppStoreWithGame): MapStateToProps => ({
+  gameSpeed: gameSpeedSelector(state),
+  isStarted: gameIsStartedSelector(state),
+  isFail: gameIsFailSelector(state),
+});
+
+const mapDispatchToProps: MapDispatchToProps = {
+  onGameSpeedChange: setGameSpeed,
+  onRefresh: refreshGame,
+};
+
+export const ConnectedGameActions = connect(mapStateToProps, mapDispatchToProps)(GameActions);

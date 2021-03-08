@@ -1,1 +1,1 @@
-export { GameActions } from './game-actions';
+export { ConnectedGameActions } from './connected-game-actions';
