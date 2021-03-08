@@ -46,50 +46,48 @@ export const GameActions = memo(({
   onGameSpeedChange,
   onRefresh,
   onStartClick,
-}: GameActionsProps) => {
-  return (
-    <div className={cn(CLASS_NAME)}>
-      <div className={cn(`${CLASS_NAME}__input`)}>
-        <Label htmlFor={SELECT_ID} size="small" position="left">Level:</Label>
-        <Select
-          disabled={isStarted}
-          iconConfig={SELECT_ICON_CONFIG}
-          id={SELECT_ID}
-          name={SELECT_ID}
-          onChange={onGameSpeedChange}
-          options={SELECT_OPTIONS}
+}: GameActionsProps) => (
+  <div className={cn(CLASS_NAME)}>
+    <div className={cn(`${CLASS_NAME}__input`)}>
+      <Label htmlFor={SELECT_ID} size="small" position="left">Level:</Label>
+      <Select
+        disabled={isStarted}
+        iconConfig={SELECT_ICON_CONFIG}
+        id={SELECT_ID}
+        name={SELECT_ID}
+        onChange={onGameSpeedChange}
+        options={SELECT_OPTIONS}
+        size="small"
+        themeColor="primary"
+        values={gameSpeed}
+        variant="filled"
+      />
+    </div>
+    <div className={cn(`${CLASS_NAME}__actions`)}>
+      <div className={cn(`${CLASS_NAME}__button`)}>
+        <Button
+          disabled={isFail}
+          onClick={onStartClick}
           size="small"
-          themeColor="primary"
-          values={gameSpeed}
-          variant="filled"
+          themeColor={isStarted ? 'error' : 'primary'}
+          value={isStarted ? 'stop' : 'start'}
         />
       </div>
-      <div className={cn(`${CLASS_NAME}__actions`)}>
-        <div className={cn(`${CLASS_NAME}__button`)}>
-          <Button
-            disabled={isFail}
-            onClick={onStartClick}
-            size="small"
-            themeColor={isStarted ? 'error' : 'primary'}
-            value={isStarted ? 'stop' : 'start'}
-          />
-        </div>
-        <div className={cn(`${CLASS_NAME}__button`)}>
-          <Button
-            disabled={isStarted}
-            onClick={onRefresh}
-            size="small"
-            themeColor="secondary"
-            value="Refresh"
-          />
-        </div>
-      </div>
-      <div className={cn(`${CLASS_NAME}__score`)}>
-        <ConnectedScoreScreen />
+      <div className={cn(`${CLASS_NAME}__button`)}>
+        <Button
+          disabled={isStarted}
+          onClick={onRefresh}
+          size="small"
+          themeColor="secondary"
+          value="Refresh"
+        />
       </div>
     </div>
-  );
-});
+    <div className={cn(`${CLASS_NAME}__score`)}>
+      <ConnectedScoreScreen />
+    </div>
+  </div>
+));
 
 const mapStateToProps = (state: AppStoreWithGame): MapStateToProps => ({
   gameSpeed: gameSpeedSelector(state),

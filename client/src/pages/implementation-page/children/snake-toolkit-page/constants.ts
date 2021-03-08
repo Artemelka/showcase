@@ -1,7 +1,7 @@
 import { DropdownItemParams } from '@artemelka/react-components';
 import { DirectionCode, DirectionItem, SnakeBodyItem } from './types';
 
-export const GAME_REDUCER_NAME = 'snakeReduxGame';
+export const GAME_REDUCER_NAME = 'snakeToolkitGame';
 export const SELECT_ID = 'gameSpeedSelect';
 export const CELL_QUANTITY = 100;
 export const DIRECTION_KEYS_CODE: Array<number> = [37, 38, 39, 40];

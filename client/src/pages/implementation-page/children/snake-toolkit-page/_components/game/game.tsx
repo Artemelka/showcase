@@ -41,7 +41,7 @@ type MapDispatchToProps = {
   setStartGame: () => Action<string>;
   setStopGame: () => Action<string>;
 }
-type GameProps = MapStateToProps & MapDispatchToProps;
+type GameProps = MapStateToProps & MapDispatchToProps & {};
 
 export class GameContainer extends PureComponent<GameProps> {
   componentDidMount() {
@@ -65,7 +65,7 @@ export class GameContainer extends PureComponent<GameProps> {
     this.props.setGameSpeed(items);
   }
 
-  handleRefreshGame = () => {
+  handleRefreshClick = () => {
     this.props.refreshGame();
   }
 
@@ -84,7 +84,7 @@ export class GameContainer extends PureComponent<GameProps> {
         <div className={cn(`${CLASS_NAME}__container`)}>
           <ConnectedGameActions
             onGameSpeedChange={this.handleGameSpeedChange}
-            onRefresh={this.handleRefreshGame}
+            onRefresh={this.handleRefreshClick}
             onStartClick={this.handleStartClick}
           />
           <div className={cn(`${CLASS_NAME}__screen`)}>
