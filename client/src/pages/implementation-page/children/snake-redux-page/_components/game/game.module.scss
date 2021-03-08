@@ -1,0 +1,14 @@
+.Game {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+
+  &__container {
+    min-width: 682px;
+  }
+
+  &__screen {
+    margin-top: 30px;
+  }
+}
