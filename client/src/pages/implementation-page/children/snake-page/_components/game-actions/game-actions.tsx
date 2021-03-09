@@ -3,6 +3,8 @@ import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import {
   Button,
+  Input,
+  InputChangeEvent,
   DropdownItemParams,
   Label,
   Select,
@@ -10,7 +12,7 @@ import {
   Text,
 } from '@artemelka/react-components';
 import { fastClassNames3 } from '../../../../../../utils';
-import {SELECT_ID, SELECT_OPTIONS} from '../../constants';
+import { INPUT_ID, SELECT_ID, SELECT_OPTIONS } from '../../constants';
 import style from './game-actions.module.scss';
 
 const cn = fastClassNames3(style);
@@ -21,9 +23,11 @@ const SELECT_ICON_CONFIG = {
 };
 
 type GameActionsProps = {
+  cells: string;
   gameSpeed: Array<DropdownItemParams>;
   isFail: boolean;
   isStarted: boolean;
+  onCellsChange: (inputEvent: InputChangeEvent) => void;
   onGameSpeedChange: (selectEvent: SelectChangeEvent) => void;
   onRefresh: () => void;
   onStartClick: () => void;
@@ -31,9 +35,11 @@ type GameActionsProps = {
 };
 
 export const GameActions = memo(({
+  cells,
   gameSpeed,
   isFail,
   isStarted,
+  onCellsChange,
   onGameSpeedChange,
   onRefresh,
   onStartClick,
@@ -53,6 +59,20 @@ export const GameActions = memo(({
           size="small"
           themeColor="primary"
           values={gameSpeed}
+          variant="filled"
+        />
+      </div>
+      <div className={cn(`${CLASS_NAME}__input`)}>
+        <Label htmlFor={INPUT_ID} size="small" position="left">Cells:</Label>
+        <Input
+          disabled={isStarted}
+          id={INPUT_ID}
+          name={INPUT_ID}
+          onChange={onCellsChange}
+          size="small"
+          themeColor="primary"
+          type="number"
+          value={cells}
           variant="filled"
         />
       </div>

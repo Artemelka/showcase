@@ -3,6 +3,7 @@ import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   DropdownItemParams,
+  InputChangeEvent,
   SelectChangeEvent
 } from '@artemelka/react-components';
 import { fastClassNames3 } from '../../../../../../utils';
@@ -15,6 +16,7 @@ import {
   SetGameSpeedAction,
 } from '../../types';
 import {
+  gameCellsSelector,
   gameDirectionSelector,
   gameIsStartedSelector,
   gameStartActionSaga,
@@ -32,12 +34,13 @@ const cn = fastClassNames3(style);
 const CLASS_NAME = 'Game';
 
 type MapStateToProps = {
+  cells: Array<number>;
   direction: DirectionItem;
   isStarted: boolean;
 };
 type MapDispatchToProps = {
   gameStart: () => Action<string>;
-  refreshGame: () => Action<string>;
+  refreshGame: (value?: number) => Action<string>;
   setDirection: (direction: DirectionItem) => SetDirectionAction;
   setGameSpeed: (gameSpeed: Array<DropdownItemParams>) => SetGameSpeedAction;
   setStartGame: () => Action<string>;
@@ -59,12 +62,15 @@ export class GameContainer extends PureComponent<GameProps> {
     const isArrowKey = DIRECTION_KEYS_CODE.includes(keyCode);
     const isMirrorDirection = this.props.direction.mirror === keyCode;
 
-    event.preventDefault();
-
     if (this.props.isStarted && isArrowKey && !isMirrorDirection) {
-      this.props.setDirection(DIRECTION[(keyCode as DirectionCode)])
+      event.preventDefault();
+      this.props.setDirection(DIRECTION[(keyCode as DirectionCode)]);
     }
   }
+
+  handleCellsChange = ({ value }: InputChangeEvent) => {
+    this.props.refreshGame(Number(value));
+  };
 
   handleGameSpeedChange = ({ items }: SelectChangeEvent) => {
     this.props.setGameSpeed(items);
@@ -88,12 +94,13 @@ export class GameContainer extends PureComponent<GameProps> {
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__container`)}>
           <ConnectedGameActions
+            onCellsChange={this.handleCellsChange}
             onGameSpeedChange={this.handleGameSpeedChange}
             onRefresh={this.handleRefreshGame}
             onStartClick={this.handleStartClick}
           />
           <div className={cn(`${CLASS_NAME}__screen`)}>
-            <GameScreen />
+            <GameScreen cells={this.props.cells} />
           </div>
         </div>
       </div>
@@ -102,6 +109,7 @@ export class GameContainer extends PureComponent<GameProps> {
 }
 
 const mapStateToProps = (state: AppStoreWithGame): MapStateToProps => ({
+  cells: gameCellsSelector(state),
   direction: gameDirectionSelector(state),
   isStarted: gameIsStartedSelector(state),
 });

@@ -1,11 +1,12 @@
 import { Action } from 'redux';
 import { DropdownItemParams } from '@artemelka/react-components';
 import {
-  SnakeBodyItem,
+  DirectionItem,
+  RefreshGameAction,
   SetAppleItemAction,
   SetDirectionAction,
-  DirectionItem,
   SetGameSpeedAction,
+  SnakeBodyItem,
   UpdateSnakeBodyAction,
 } from '../types';
 
@@ -20,7 +21,10 @@ export const gameStepActionSaga = (): Action<string> => ({
 });
 
 export const REFRESH_GAME = 'REFRESH_GAME';
-export const refreshGame = (): Action<string> => ({ type: REFRESH_GAME });
+export const refreshGame = (payload?: number): RefreshGameAction | Action<string> => ({
+  type: REFRESH_GAME,
+  payload,
+});
 
 export const SET_APPLE_ITEM = 'SET_APPLE_ITEM';
 export const setAppleItem = (payload: SnakeBodyItem): SetAppleItemAction => ({

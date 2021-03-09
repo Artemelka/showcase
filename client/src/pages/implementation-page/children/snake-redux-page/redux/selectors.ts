@@ -11,6 +11,11 @@ export const gameAppleItemSelector = createSelector(
   (state): SnakeBodyItem => state.appleItem
 );
 
+export const gameCellsSelector = createSelector(
+  [gameStateSelector],
+  (state): Array<number> => state.cells
+);
+
 export const gameScoreSelector = createSelector(
   [gameStateSelector],
   (state): string => `${state.score}`
