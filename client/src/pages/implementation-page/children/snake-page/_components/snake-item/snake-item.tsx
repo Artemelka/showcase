@@ -14,7 +14,7 @@ export const SnakeItem = memo(({
   isApple,
   isSnakeItem,
 }: SnakeItemProps) => (
-  <div
+  <td
     className={cn(CLASS_NAME, {
       [`${CLASS_NAME}--apple`]: isApple,
       [`${CLASS_NAME}--filled`]: isSnakeItem

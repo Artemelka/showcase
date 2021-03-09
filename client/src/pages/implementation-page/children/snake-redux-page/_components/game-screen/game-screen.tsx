@@ -1,36 +1,23 @@
 import React, { memo } from 'react';
 import { fastClassNames3 } from '../../../../../../utils';
-import { SnakeItem } from '../snake-item';
+import { CELL_QUANTITY } from '../../constants';
+import { ConnectedSnakeItem } from '../connected-snake-item';
 import style from './game-screen.module.scss';
-import {SnakeBodyItem} from "../../types";
 
 const cn = fastClassNames3(style);
 const CLASS_NAME = 'Game-screen';
+const CELLS = [...Array(CELL_QUANTITY)].map((_, index) => index);
 
-type GameScreenProps = {
-  appleItem: SnakeBodyItem;
-  cells: Array<number>;
-  snakeBody: Array<SnakeBodyItem>;
-};
+export const GameScreen = memo(() => {
 
-export const GameScreen = memo(({
-  appleItem,
-  cells,
-  snakeBody,
-}: GameScreenProps) => {
   return (
     <table className={cn(CLASS_NAME)}>
       <tbody className={cn(`${CLASS_NAME}__body`)}>
-      {cells.map(y => (
+      {CELLS.map(y => (
         <tr key={`row${y}`} className={cn(`${CLASS_NAME}__row`)}>
-          {cells.map(x => (
+          {CELLS.map(x => (
             <td key={`cell${x}`} className={cn(`${CLASS_NAME}__cell`)}>
-              <SnakeItem
-                appleItem={appleItem}
-                snakeBody={snakeBody}
-                x={x}
-                y={y}
-              />
+              <ConnectedSnakeItem x={x} y={y} />
             </td>
           ))}
         </tr>
