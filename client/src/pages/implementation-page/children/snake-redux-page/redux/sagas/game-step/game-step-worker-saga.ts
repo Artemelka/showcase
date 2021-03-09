@@ -19,6 +19,7 @@ export function* gameStepWorkerSaga() {
   const direction = yield select(gameDirectionSelector);
   const appleItem = yield select(gameAppleItemSelector);
   const snakeBody = yield select(gameSnakeBodySelector);
+  const cells = yield select(gameCellsSelector);
 
   const head = {
     x: snakeBody[0].x + direction.x,
@@ -28,7 +29,7 @@ export function* gameStepWorkerSaga() {
   let nextBody: Array<SnakeBodyItem> = [head, ...snakeBody.slice(0, -1)];
 
   try {
-    const isFail = checkFail({ body: snakeBody, head });
+    const isFail = checkFail({ body: snakeBody, head, length: cells.length });
 
     if (isFail) {
       throw new Error('game over');
@@ -36,7 +37,6 @@ export function* gameStepWorkerSaga() {
 
     if (appleItem.x === head.x && appleItem.y === head.y) {
       nextBody = [head, ...snakeBody];
-      const cells = yield select(gameCellsSelector);
       const nextApple = getRandomApple(nextBody, cells.length);
 
       yield put(updateScore());

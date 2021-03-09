@@ -36,9 +36,8 @@ export type DirectionItem = {
   y: number;
 }
 
-
-
 export type CheckStopGameParams = {
   body: Array<SnakeBodyItem>;
   head: SnakeBodyItem;
+  length: number;
 }
