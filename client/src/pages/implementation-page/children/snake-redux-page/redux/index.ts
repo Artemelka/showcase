@@ -2,6 +2,7 @@ export {
   GAME_REDUCER_INJECT_CONFIG
 } from './reducer';
 export {
+  gameCellsSelector,
   gameDirectionSelector,
   gameIsAppleItemSelector,
   gameIsFailSelector,

@@ -16,7 +16,7 @@ import { GameState } from '../types';
 const gameReducer = (state: GameState = getInitialState(), { type, payload }: any) => {
   switch (type) {
     case REFRESH_GAME:
-      return getInitialState();
+      return getInitialState(payload);
 
     case SET_APPLE_ITEM:
       return {

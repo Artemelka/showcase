@@ -4,6 +4,7 @@ import { GAME_REDUCER_NAME } from './constants';
 
 export type GameState = {
   appleItem: SnakeBodyItem;
+  cells: Array<number>;
   direction: DirectionItem;
   gameSpeed: Array<DropdownItemParams>;
   isFail: boolean;
@@ -12,6 +13,7 @@ export type GameState = {
   snakeBody: Array<SnakeBodyItem>;
 }
 
+export type RefreshGameAction = BaseAction<number>;
 export type SetAppleItemAction = BaseAction<SnakeBodyItem>;
 export type UpdateSnakeBodyAction = BaseAction<Array<SnakeBodyItem>>;
 export type SetDirectionAction = BaseAction<DirectionItem>;

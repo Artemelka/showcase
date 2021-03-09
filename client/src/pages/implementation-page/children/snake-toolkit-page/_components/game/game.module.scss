@@ -2,13 +2,13 @@
   align-items: flex-start;
   display: flex;
   justify-content: center;
-  padding: 15px 0;
+  margin-top: -30px;
 
   &__container {
     min-width: 682px;
   }
 
   &__screen {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 }

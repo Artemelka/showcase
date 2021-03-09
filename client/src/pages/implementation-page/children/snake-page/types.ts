@@ -2,6 +2,7 @@ import { DropdownItemParams } from '@artemelka/react-components';
 
 export type State = {
   appleItem: SnakeBodyItem;
+  cells: Array<number>;
   direction: DirectionItem;
   gameSpeed: Array<DropdownItemParams>;
   isFail: boolean;

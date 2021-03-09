@@ -2,6 +2,7 @@ import { DropdownItemParams } from '@artemelka/react-components';
 import { DirectionCode, DirectionItem, SnakeBodyItem } from './types';
 
 export const GAME_REDUCER_NAME = 'snakeReduxGame';
+export const INPUT_ID = 'cellsQuantity';
 export const SELECT_ID = 'gameSpeedSelect';
 export const CELL_QUANTITY = 100;
 export const DIRECTION_KEYS_CODE: Array<number> = [37, 38, 39, 40];
@@ -11,13 +12,6 @@ export const DEFAULT_SNAKE_BODY: Array<SnakeBodyItem> = [
   { x: 5, y: 6 },
   { x: 5, y: 7 },
 ];
-
-export const KEY_CODES: Record<'DOWN' | 'LEFT' | 'RIGHT' | 'UP', DirectionCode> = {
-  DOWN: 40,
-  LEFT: 37,
-  RIGHT: 39,
-  UP: 38
-};
 
 export const DIRECTION: Record<DirectionCode, DirectionItem> = {
   37: {

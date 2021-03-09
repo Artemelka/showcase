@@ -1,8 +1,9 @@
 import { select, put } from 'redux-saga/effects';
-import { checkFail, getRandomApple, gameOver } from '../../../utils';
+import { checkFail, getRandomApple } from '../../../utils';
 import { SnakeBodyItem } from '../../../types';
 import {
   gameAppleItemSelector,
+  gameCellsSelector,
   gameDirectionSelector,
   gameSnakeBodySelector,
 } from '../../selectors';
@@ -30,12 +31,13 @@ export function* gameStepWorkerSaga() {
     const isFail = checkFail({ body: snakeBody, head });
 
     if (isFail) {
-      gameOver();
+      throw new Error('game over');
     }
 
     if (appleItem.x === head.x && appleItem.y === head.y) {
       nextBody = [head, ...snakeBody];
-      const nextApple = getRandomApple(nextBody);
+      const cells = yield select(gameCellsSelector);
+      const nextApple = getRandomApple(nextBody, cells.length);
 
       yield put(updateScore());
       yield put(setAppleItem(nextApple));
