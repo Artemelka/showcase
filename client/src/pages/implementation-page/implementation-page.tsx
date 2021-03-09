@@ -1,11 +1,9 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { replace, Replace } from 'connected-react-router';
-import { Route, Switch } from 'react-router';
 import { Layout } from '@artemelka/react-components';
 import { locationPathNameSelector, AppStore } from '../../app';
-import { PageLoader } from '../../components';
-import { NotFoundPage } from '../not-found-page';
+import { AsyncRoutes } from '../../components';
 import { Sidebar } from './_components';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
 import { IMPLEMENTATION_PAGE_PATH } from './constants';
@@ -31,19 +29,7 @@ export class ImplementationPageContainer extends Component<ImplementationPagePro
         asideElement={<Sidebar/>}
         isAsideSticky
       >
-        <Suspense fallback={<PageLoader/>}>
-          <Switch>
-            {IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG.map(({ component, exact, path}) => (
-              <Route
-                component={component}
-                exact={exact}
-                key={`${path}`}
-                path={path}
-              />
-            ))}
-            <Route component={NotFoundPage}/>
-          </Switch>
-        </Suspense>
+        <AsyncRoutes routesConfig={IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG}/>
       </Layout>
     );
   }
