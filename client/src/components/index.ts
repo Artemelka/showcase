@@ -1,4 +1,5 @@
 export { AppNavigation } from './app-navigation';
+export { AsyncRoutes } from './async-routes';
 export { Page } from './page';
 export { FilterSelect } from './filter-select';
 export { PageLoader } from './page-loader';
