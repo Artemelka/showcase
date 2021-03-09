@@ -29,3 +29,8 @@ export type CheckStopGameParams = {
   head: SnakeBodyItem;
   length: number,
 }
+
+export type RowCells = {
+  x: number;
+  isSnakeItem: boolean;
+}

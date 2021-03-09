@@ -13,7 +13,7 @@ import {
 } from '../../utils';
 import { SnakeBodyItem, DirectionCode, State } from '../../types';
 import { GameActions } from '../game-actions';
-import { GameScreen } from '../game-screen';
+import { ScreenRow } from '../screen-row';
 import style from './game.module.scss';
 
 const cn = fastClassNames3(style);
@@ -130,13 +130,19 @@ export class Game extends PureComponent<GameProps, State> {
             onStartClick={this.handleStartClick}
             score={`${this.state.score}`}
           />
-          <div className={cn(`${CLASS_NAME}__screen`)}>
-            <GameScreen
-              appleItem={this.state.appleItem}
-              cells={this.gameCells}
-              snakeBody={this.state.snakeBody}
-            />
-          </div>
+          <table className={cn(`${CLASS_NAME}__table`)}>
+            <tbody className={cn(`${CLASS_NAME}__body`)}>
+            {this.gameCells.map(y => (
+              <ScreenRow
+                key={`row${y}`}
+                appleItem={this.state.appleItem}
+                cells={this.gameCells}
+                snakeBody={this.state.snakeBody}
+                y={y}
+              />
+            ))}
+            </tbody>
+          </table>
         </div>
       </div>
     );
