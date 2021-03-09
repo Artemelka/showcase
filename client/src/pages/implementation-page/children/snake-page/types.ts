@@ -16,12 +16,13 @@ export type SnakeBodyItem = {
   isHead?: boolean;
 };
 
+export type DirectionCode = 37 | 38 | 39 | 40;
+
 export type DirectionItem = {
+  mirror: DirectionCode;
   x: number;
   y: number;
 }
-
-export type DirectionCode = 37 | 38 | 39 | 40;
 
 export type CheckStopGameParams = {
   body: Array<SnakeBodyItem>;

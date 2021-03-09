@@ -57,8 +57,12 @@ export class Game extends PureComponent<GameProps, State> {
 
   handleDirectionChange = (event: KeyboardEvent) => {
     const { keyCode } = event;
-    if (this.state.isStarted && DIRECTION_KEYS_CODE.includes(keyCode)) {
-      event.preventDefault();
+    const isArrowKey = DIRECTION_KEYS_CODE.includes(keyCode);
+    const isMirrorDirection = this.state.direction.mirror === keyCode;
+
+    event.preventDefault();
+
+    if (this.state.isStarted && isArrowKey && !isMirrorDirection) {
       this.setState({ direction: DIRECTION[(keyCode as DirectionCode)] });
     }
   }

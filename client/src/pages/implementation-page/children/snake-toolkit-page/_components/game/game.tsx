@@ -15,6 +15,7 @@ import {
   SetGameSpeedAction,
 } from '../../types';
 import {
+  gameDirectionSelector,
   gameIsStartedSelector,
   gameStartActionSaga,
   refreshGame,
@@ -31,6 +32,7 @@ const cn = fastClassNames3(style);
 const CLASS_NAME = 'Game';
 
 type MapStateToProps = {
+  direction: DirectionItem;
   isStarted: boolean;
 };
 type MapDispatchToProps = {
@@ -54,9 +56,12 @@ export class GameContainer extends PureComponent<GameProps> {
 
   handleDirectionChange = (event: KeyboardEvent) => {
     const { keyCode } = event;
+    const isArrowKey = DIRECTION_KEYS_CODE.includes(keyCode);
+    const isMirrorDirection = this.props.direction.mirror === keyCode;
 
-    if (this.props.isStarted && DIRECTION_KEYS_CODE.includes(keyCode)) {
-      event.preventDefault();
+    event.preventDefault();
+
+    if (this.props.isStarted && isArrowKey && !isMirrorDirection) {
       this.props.setDirection(DIRECTION[(keyCode as DirectionCode)])
     }
   }
@@ -97,6 +102,7 @@ export class GameContainer extends PureComponent<GameProps> {
 }
 
 const mapStateToProps = (state: AppStoreWithGame): MapStateToProps => ({
+  direction: gameDirectionSelector(state),
   isStarted: gameIsStartedSelector(state),
 });
 
