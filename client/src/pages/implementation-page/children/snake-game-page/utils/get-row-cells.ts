@@ -1,4 +1,4 @@
-import { RowCells, SnakeBodyItem } from '../../../types';
+import { RowCells, SnakeBodyItem } from '../types';
 
 export function getRowCells(cells: Array<number>, snake: Array<SnakeBodyItem>, y: number): Array<RowCells> {
   const checkSnakeItemsInRow = snake.filter(item => item.y === y);
