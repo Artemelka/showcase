@@ -16,7 +16,7 @@ export const GameBox = memo(({ actionsElement, tableRowsElement }: GameBoxProps)
       <div className={cn(`${CLASS_NAME}__container`)}>
         {actionsElement}
         <table className={cn(`${CLASS_NAME}__table`)}>
-          <tbody className={cn(`${CLASS_NAME}__body`)}>
+          <tbody>
             {tableRowsElement}
           </tbody>
         </table>

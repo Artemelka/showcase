@@ -1,9 +1,6 @@
 import React, { memo } from 'react';
+import { Game } from './_components';
 
-const SnakeMobxPage = memo(() => {
-  return (
-    <div>mobx</div>
-  );
-});
+const SnakeMobxPage = memo(() => <Game />);
 
 export default SnakeMobxPage;

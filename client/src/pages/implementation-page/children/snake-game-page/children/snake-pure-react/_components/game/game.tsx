@@ -1,17 +1,13 @@
 import React, { PureComponent } from 'react';
 import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
-import {
-  DIRECTION_KEYS_CODE,
-  DIRECTION,
-} from '../../../../constants';
+import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
 import {
   checkFail,
   getInitialState,
   getRandomApple,
 } from '../../../../utils';
 import { SnakeBodyItem, DirectionCode, GameState } from '../../../../types';
-import { GameActions, GameBox } from '../../../../_components';
-import { ScreenRow } from '../screen-row';
+import { GameActions, GameBox, ScreenRow } from '../../../../_components';
 
 type GameProps = {};
 

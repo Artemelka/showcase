@@ -99,9 +99,7 @@ export class GameContainer extends PureComponent<GameProps> {
         tableRowsElement={this.props.cells.map(y => (
           <tr key={`row${y}`}>
             {this.props.cells.map(x => (
-              <td key={`cell${x}`}>
-                <ConnectedSnakeItem x={x} y={y} />
-              </td>
+              <ConnectedSnakeItem key={`cell${x}`} x={x} y={y} />
             ))}
           </tr>
         ))}

@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react';
-import { SnakeItem } from '../../../../_components';
-import { SnakeBodyItem } from '../../../../types';
+import { SnakeItem } from '../index';
+import { SnakeBodyItem } from '../../types';
 import { getRowCells } from '../../utils';
 
 type ScreenRowProps = {
