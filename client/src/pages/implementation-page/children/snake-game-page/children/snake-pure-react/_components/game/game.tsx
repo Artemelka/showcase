@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../../../../../utils';
 import {
   DIRECTION_KEYS_CODE,
   DIRECTION,
@@ -11,12 +10,8 @@ import {
   getRandomApple,
 } from '../../../../utils';
 import { SnakeBodyItem, DirectionCode, GameState } from '../../../../types';
-import { GameActions } from '../game-actions';
+import { GameActions, GameBox } from '../../../../_components';
 import { ScreenRow } from '../screen-row';
-import style from './game.module.scss';
-
-const cn = fastClassNames3(style);
-const CLASS_NAME = 'Game';
 
 type GameProps = {};
 
@@ -121,8 +116,8 @@ export class Game extends PureComponent<GameProps, GameState> {
 
   render() {
     return (
-      <div className={cn(CLASS_NAME)}>
-        <div className={cn(`${CLASS_NAME}__container`)}>
+      <GameBox
+        actionsElement={
           <GameActions
             cells={`${this.state.cells.length}`}
             gameSpeed={this.state.gameSpeed}
@@ -134,21 +129,17 @@ export class Game extends PureComponent<GameProps, GameState> {
             onStartClick={this.handleStartClick}
             score={`${this.state.score}`}
           />
-          <table className={cn(`${CLASS_NAME}__table`)}>
-            <tbody className={cn(`${CLASS_NAME}__body`)}>
-            {this.state.cells.map(y => (
-              <ScreenRow
-                key={`row${y}`}
-                appleItem={this.state.appleItem}
-                cells={this.state.cells}
-                snakeBody={this.state.snakeBody}
-                y={y}
-              />
-            ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        }
+        tableRowsElement={this.state.cells.map(y => (
+          <ScreenRow
+            key={`row${y}`}
+            appleItem={this.state.appleItem}
+            cells={this.state.cells}
+            snakeBody={this.state.snakeBody}
+            y={y}
+          />
+        ))}
+      />
     );
   }
 }

@@ -58,6 +58,17 @@ class SnakeHomePage extends Component<SnakeHomePageProps> {
             themeColor="primary"
           />
         </div>
+        <div className={cn(`${CLASS_NAME}__card`)}>
+          <Card
+            id={SNAKE_GAME_CHILDREN_PATH.MOBX}
+            onClick={this.handleButtonClick}
+            title="MobX"
+            buttonLabel={BUTTON_LABEL}
+            content={DESCRIPTION}
+            positionIndex="4"
+            themeColor="primary"
+          />
+        </div>
       </div>
     );
   }

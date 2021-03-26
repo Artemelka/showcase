@@ -6,7 +6,7 @@ import {
   InputChangeEvent,
   SelectChangeEvent
 } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../../../../../utils';
+import { GameBox } from '../../../../_components';
 import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
 import {
   AppStoreWithGameToolkit,
@@ -27,11 +27,7 @@ import {
   setStopGame,
 } from '../../redux';
 import { ConnectedGameActions } from '../connected-game-actions';
-import { GameScreen } from '../game-screen';
-import style from './game.module.scss';
-
-const cn = fastClassNames3(style);
-const CLASS_NAME = 'Game';
+import { ConnectedSnakeItem } from '../connected-snake-item';
 
 type MapStateToProps = {
   cells: Array<number>;
@@ -91,19 +87,25 @@ export class GameContainer extends PureComponent<GameProps> {
 
   render() {
     return (
-      <div className={cn(CLASS_NAME)}>
-        <div className={cn(`${CLASS_NAME}__container`)}>
+      <GameBox
+        actionsElement={
           <ConnectedGameActions
             onCellsChange={this.handleCellsChange}
             onGameSpeedChange={this.handleGameSpeedChange}
             onRefresh={this.handleRefreshClick}
             onStartClick={this.handleStartClick}
           />
-          <div className={cn(`${CLASS_NAME}__screen`)}>
-            <GameScreen cells={this.props.cells} />
-          </div>
-        </div>
-      </div>
+        }
+        tableRowsElement={this.props.cells.map(y => (
+          <tr key={`row${y}`}>
+            {this.props.cells.map(x => (
+              <td key={`cell${x}`}>
+                <ConnectedSnakeItem x={x} y={y} />
+              </td>
+            ))}
+          </tr>
+        ))}
+      />
     );
   }
 }

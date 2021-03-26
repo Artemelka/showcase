@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { SnakeItem } from '../snake-item';
+import { SnakeItem } from '../../../../_components';
 import { SnakeBodyItem } from '../../../../types';
 import { getRowCells } from '../../utils';
 

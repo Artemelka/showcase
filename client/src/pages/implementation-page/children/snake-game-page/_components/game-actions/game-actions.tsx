@@ -11,8 +11,8 @@ import {
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../../../../../utils';
-import { INPUT_ID, SELECT_ID, SELECT_OPTIONS } from '../../../../constants';
+import { fastClassNames3 } from '../../../../../../utils';
+import { INPUT_ID, SELECT_ID, SELECT_OPTIONS } from '../../constants';
 import style from './game-actions.module.scss';
 
 const cn = fastClassNames3(style);

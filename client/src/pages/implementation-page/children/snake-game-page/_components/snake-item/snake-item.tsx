@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { fastClassNames3 } from '../../../../../../../../utils';
+import { fastClassNames3 } from '../../../../../../utils';
 import style from './snake-item.module.scss';
 
 const cn = fastClassNames3(style);
