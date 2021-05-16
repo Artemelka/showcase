@@ -1,0 +1,24 @@
+.Chat-users-list {
+  padding: 20px;
+  width: 200px;
+  border-right: 1px solid var(--baseTextColor);
+  height: 100%;
+
+  &__header {
+    padding-bottom: 20px;
+  }
+
+  &__user-name {
+    padding-left: 10px;
+  }
+
+  &__list {
+    margin-top: 30px;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__list-item {
+    padding-bottom: 10px;
+  }
+}
