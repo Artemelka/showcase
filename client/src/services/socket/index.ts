@@ -5,6 +5,7 @@ export type {
   SocketMessage,
   SocketMessageListener,
   ListenersMap,
-  SocketInjectConfig,
+  SocketListeners,
   WebSocketRequest,
+  SocketHocProps,
 } from './types';

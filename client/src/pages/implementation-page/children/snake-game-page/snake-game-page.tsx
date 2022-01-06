@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import { Page, AsyncRoutes } from '../../../../components';
 import { SNAKE_GAME_CHILDREN_ROUTES } from './children';
 
-const SnakeGamePage = memo(() => {
+const SnakeGamePage = () => {
   return (
-    <Page title="SnakeGame">
+    <Page headTitle="SnakeGame" title="SnakeGame">
       <AsyncRoutes routesConfig={SNAKE_GAME_CHILDREN_ROUTES}/>
     </Page>
   );
-});
+};
 
-export default SnakeGamePage;
+export default memo(SnakeGamePage);

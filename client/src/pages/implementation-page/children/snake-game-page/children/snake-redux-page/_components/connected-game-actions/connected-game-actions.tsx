@@ -30,7 +30,7 @@ type GameActionsProps = MapStateToProps & {
   onStartClick: () => void;
 };
 
-export const GameActionsWrapper = memo(({
+export const GameActionsWrapper = ({
   cells,
   gameSpeed,
   isFail,
@@ -54,7 +54,7 @@ export const GameActionsWrapper = memo(({
       score={score}
     />
   );
-});
+};
 
 const mapStateToProps = (state: AppStoreWithGameRedux): MapStateToProps => ({
   cells: gameCellsSelector(state),
@@ -64,4 +64,4 @@ const mapStateToProps = (state: AppStoreWithGameRedux): MapStateToProps => ({
   score: gameScoreSelector(state),
 });
 
-export const ConnectedGameActions = connect(mapStateToProps)(GameActionsWrapper);
+export const ConnectedGameActions = connect(mapStateToProps)(memo(GameActionsWrapper));

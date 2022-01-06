@@ -6,6 +6,7 @@ import {
   StoreInjectorConsumer,
 } from '@artemelka/redux-store-injector';
 import { Layout } from '@artemelka/react-components';
+
 import { CHAT_PAGE_CHILDREN_PATH } from './constants';
 import { ChatUsersList } from './_components';
 import { CHAT_REDUCER_INJECT_CONFIG, CHAT_SEND_MESSAGE_INJECT_SAGA_CONFIG } from './redux';
@@ -14,7 +15,7 @@ import { CHAT_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
 const asyncReducers: Array<AsyncReducerItem> = [CHAT_REDUCER_INJECT_CONFIG];
 const asyncSagas: Array<AsyncSagaItem> = [CHAT_SEND_MESSAGE_INJECT_SAGA_CONFIG];
 
-const ChatPage = memo(() => {
+const ChatPage = () => {
   return (
     <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
       <Layout
@@ -30,6 +31,6 @@ const ChatPage = memo(() => {
       </Layout>
     </StoreInjectorConsumer>
   );
-});
+};
 
-export default ChatPage;
+export default memo(ChatPage);

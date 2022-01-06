@@ -10,7 +10,7 @@ type SnakeItemProps = {
   isSnakeItem: boolean;
 };
 
-export const SnakeItem = memo(({
+export const SnakeItemComponent = ({
   isApple,
   isSnakeItem,
 }: SnakeItemProps) => (
@@ -20,4 +20,6 @@ export const SnakeItem = memo(({
       [`${CLASS_NAME}--filled`]: isSnakeItem
     })}
   />
-));
+);
+
+export const SnakeItem = memo(SnakeItemComponent);

@@ -10,7 +10,7 @@ type GameBoxProps = {
   tableRowsElement: ReactNode;
 };
 
-export const GameBox = memo(({ actionsElement, tableRowsElement }: GameBoxProps) => {
+export const GameBoxComponent = ({ actionsElement, tableRowsElement }: GameBoxProps) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__container`)}>
@@ -23,4 +23,6 @@ export const GameBox = memo(({ actionsElement, tableRowsElement }: GameBoxProps)
       </div>
     </div>
   );
-});
+};
+
+export const GameBox = memo(GameBoxComponent);

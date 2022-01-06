@@ -29,7 +29,7 @@ type FilterSelectProps = {
   values: Array<DropdownItemParams>;
 }
 
-export const FilterSelect = memo(({
+export const FilterSelectComponent = ({
   id,
   isMultiSelect,
   label,
@@ -62,4 +62,6 @@ export const FilterSelect = memo(({
       </div>
     </div>
   );
-});
+};
+
+export const FilterSelect = memo(FilterSelectComponent);

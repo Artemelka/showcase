@@ -1,29 +1,29 @@
-import React, {memo, useEffect} from 'react';
-import { Provider } from 'react-redux';
+import React, { memo, useEffect } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
-import { StoreInjectorProvider } from '@artemelka/redux-store-injector';
 import { wsService } from '../services/socket';
-import { AppLayout } from '../app-layout';
-import { appHistory, appStore } from './redux';
+import { AppLayout, ReduxProvider } from './_components';
+import { history } from './router';
+
 import { bootstrapApp } from './_utils/bootstrap-app';
 
-export const App = memo(() => {
+export const AppComponent = () => {
   // console.log('=== MOCK ===',process.env.REACT_APP_MOCK);
   bootstrapApp();
 
   useEffect(() => {
     wsService.connect();
-    return () => { wsService.disconnect() };
+    return () => {
+      wsService.disconnect();
+    };
   }, []);
 
-
   return (
-    <Provider store={appStore}>
-      <StoreInjectorProvider store={appStore}>
-        <ConnectedRouter history={appHistory}>
-          <AppLayout/>
-        </ConnectedRouter>
-      </StoreInjectorProvider>
-    </Provider>
+    <ReduxProvider>
+      <ConnectedRouter history={history}>
+        <AppLayout/>
+      </ConnectedRouter>
+    </ReduxProvider>
   );
-});
+}
+
+export const App = memo(AppComponent);

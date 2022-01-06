@@ -20,7 +20,7 @@ type AccordionProps = {
   items: Array<TaskItem>;
 };
 
-export const Accordion = memo(({
+export const AccordionComponent = ({
   items
 }: AccordionProps) => {
   const [openId, setOpenId] = useState('');
@@ -50,4 +50,6 @@ export const Accordion = memo(({
       ))}
     </ul>
   );
-});
+};
+
+export const Accordion = memo(AccordionComponent);

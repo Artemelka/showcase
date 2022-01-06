@@ -4,8 +4,8 @@ import { Page } from '../../../../components';
 import { NotFoundPage } from '../../../not-found-page';
 import { TODO_CHILDREN_ROUTE_CONFIG } from './children';
 
-const TodoPage = memo(() => (
-  <Page title="Todo">
+const TodoPage = () => (
+  <Page headTitle="Todo" title="Todo">
     <Switch>
       {TODO_CHILDREN_ROUTE_CONFIG.map(({ component, exact, path }) => (
         <Route component={component} path={path} key={path} exact={exact}/>
@@ -13,6 +13,6 @@ const TodoPage = memo(() => (
       <Route component={NotFoundPage}/>
     </Switch>
   </Page>
-));
+);
 
-export default TodoPage;
+export default memo(TodoPage);

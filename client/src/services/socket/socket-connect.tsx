@@ -1,19 +1,32 @@
-import React, { ComponentType, FC, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { ComponentType, memo } from 'react';
 import { wsService } from './ws-client';
-import { SocketInjectConfig, SocketHocProps, SocketConnectCreatorParams } from './types';
+import { SocketListeners, WebSocketRequest, SocketHocProps } from './types';
 
-export const socketConnectCreator = ({ webSocket }: SocketConnectCreatorParams) =>
-  ({ listeners }: SocketInjectConfig) =>
-    (WrappedComponent: ComponentType<any> | FC<any>) =>
-      connect()(function SocketHoc({ dispatch }: SocketHocProps) {
-        useEffect(() => {
-          listeners.forEach(({ messageType, action}) => {
-            webSocket.on(messageType, action(dispatch));
-          });
-        }, [dispatch]);
+type SocketConnectCreatorParams = {
+  webSocket: typeof wsService;
+};
 
-        return <WrappedComponent webSocketRequest={webSocket.request} />;
-      });
+export const createSocketConnectHoc = ({ webSocket }: SocketConnectCreatorParams) =>
+  function(WrappedComponent: ComponentType<SocketHocProps>) {
+    return memo(function SocketHoc(props) {
+      const addSocketListeners = (listeners: SocketListeners) => {
+        listeners.forEach(({ messageType, action}) => {
+          webSocket.on(messageType, action);
+        });
+      };
 
-export const socketConnect = socketConnectCreator({ webSocket: wsService});
+      const handleSocketSend: WebSocketRequest = (message) => {
+        webSocket.request(message);
+      };
+
+      return (
+        <WrappedComponent
+          addSocketListeners={addSocketListeners}
+          webSocketRequest={handleSocketSend}
+          {...props}
+        />
+      );
+    });
+  }
+
+export const socketConnect = createSocketConnectHoc({ webSocket: wsService });

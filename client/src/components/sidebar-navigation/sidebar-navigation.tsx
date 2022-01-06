@@ -13,11 +13,11 @@ type SidebarNavigationProps = {
   onClick: (path: string) => void;
 };
 
-export const SidebarNavigation = memo(({
+export const SidebarNavigation = memo<SidebarNavigationProps>(function SidebarNavigation({
   activePath,
   items,
   onClick,
-}: SidebarNavigationProps) => {
+}) {
   const checkActiveChildren = useCallback((children: Array<AppRouterProps>) => {
     return Boolean(children.findIndex(child => child.path === activePath) + 1)
   }, [activePath]);

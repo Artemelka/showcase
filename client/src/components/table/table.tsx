@@ -18,7 +18,7 @@ type TableProps = {
   onRowClick?: (item: any) => void;
 };
 
-export const Table = memo(({
+export const TableComponent = ({
   items,
   onRowClick,
 }: TableProps) => {
@@ -46,4 +46,6 @@ export const Table = memo(({
       </div>
     </div>
   );
-});
+};
+
+export const Table = memo(TableComponent);

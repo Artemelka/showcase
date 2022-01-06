@@ -8,7 +8,7 @@ type AsyncRoutesProps = {
   routesConfig: Array<AppRouterProps>;
 };
 
-export const AsyncRoutes = memo(({ routesConfig }: AsyncRoutesProps) => {
+export const AsyncRoutes = memo(function AsyncRoutesComponent({ routesConfig }: AsyncRoutesProps) {
   return (
     <Suspense fallback={<PageLoader/>}>
       <Switch>

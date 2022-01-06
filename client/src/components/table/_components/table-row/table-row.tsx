@@ -18,7 +18,7 @@ type TableRowProps = {
   onClick?: (item: any) => void;
 };
 
-export const TableRow = memo(({
+export const TableRowComponent = ({
   item,
   onClick = () => false,
 }: TableRowProps) => {
@@ -39,4 +39,6 @@ export const TableRow = memo(({
       </span>
     </button>
   );
-});
+};
+
+export const TableRow = memo(TableRowComponent);

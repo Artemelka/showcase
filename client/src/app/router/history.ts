@@ -1,3 +1,3 @@
 import { createBrowserHistory, History } from 'history';
 
-export const appHistory: History = createBrowserHistory();
+export const history: History = createBrowserHistory();

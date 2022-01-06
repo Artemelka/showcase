@@ -1,16 +1,11 @@
-import React, {Component, SyntheticEvent} from 'react';
-import { connect } from 'react-redux';
+import React, { Component, SyntheticEvent } from 'react';
+import { connect, ResolveThunks } from 'react-redux';
 import { v4 as getId } from 'uuid';
 import { push } from 'connected-react-router';
 import { Redirect } from 'react-router';
 import { Button, Input, InputChangeEvent } from '@artemelka/react-components';
 import { fastClassNames3 } from '../../../../utils';
-import {
-  MESSAGE_TYPE,
-  socketConnect,
-  SocketInjectConfig,
-  WebSocketRequest,
-} from '../../../../services/socket';
+import { MESSAGE_TYPE, socketConnect, SocketHocProps } from '../../../../services/socket';
 import {
   AppStoreWithChat,
   ChatUser,
@@ -24,27 +19,17 @@ import style from './chat-login-form.module.scss';
 
 const cn = fastClassNames3(style);
 const CLASS_NAME = 'Chat-login-form';
-const SOCKET_INJECT_CONFIG: SocketInjectConfig = {
-  listeners: [
-    {
-      messageType: MESSAGE_TYPE.CHAT_SET_USER,
-      action: (dispatch) => ({ payload }) => {
-        const { user, usersList }: ChatSetUser = payload;
 
-        dispatch(setUsersList(usersList));
-        dispatch(setUser(user));
-        dispatch(push(`${CHAT_PAGE_CHILDREN_PATH.CONTENT}?id=${user.roomId}`));
-      }
-    },
-  ],
+const mapDispatchToProps = {
+  push,
+  setUsersList,
+  setUser,
 };
 
 type MapStateToProps = {
   user: ChatUser,
 };
-type ChatLoginFormProps = MapStateToProps & {
-  webSocketRequest: WebSocketRequest
-};
+type ChatLoginFormProps = MapStateToProps & ResolveThunks<typeof mapDispatchToProps> & SocketHocProps;
 type State = {
   userName: string;
   isRedirect: boolean;
@@ -53,6 +38,19 @@ type State = {
 export class ChatLoginForm extends Component<ChatLoginFormProps, State> {
   constructor(props: ChatLoginFormProps) {
     super(props);
+
+    this.props.addSocketListeners([
+      {
+        messageType: MESSAGE_TYPE.CHAT_SET_USER,
+        action: ({ payload }) => {
+          const { user, usersList }: ChatSetUser = payload;
+
+          this.props.setUsersList(usersList);
+          this.props.setUser(user);
+          this.props.push(`${CHAT_PAGE_CHILDREN_PATH.CONTENT}?id=${user.roomId}`);
+        }
+      }
+    ]);
 
     this.state = {
       userName: props.user.name,
@@ -115,6 +113,6 @@ const mapStateToProps = (state: AppStoreWithChat): MapStateToProps => ({
   user: userSelector(state),
 });
 
-export const ConnectedChatLoginForm = socketConnect(SOCKET_INJECT_CONFIG)(
-  connect(mapStateToProps)(ChatLoginForm)
+export const ConnectedChatLoginForm = socketConnect(
+  connect(mapStateToProps, mapDispatchToProps)(ChatLoginForm)
 );

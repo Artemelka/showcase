@@ -34,7 +34,7 @@ type GameActionsProps = {
   score: string;
 };
 
-export const GameActions = memo(({
+export const GameActionsComponent = ({
   cells,
   gameSpeed,
   isFail,
@@ -101,4 +101,6 @@ export const GameActions = memo(({
       </div>
     </div>
   );
-});
+};
+
+export const GameActions = memo(GameActionsComponent);

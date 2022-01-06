@@ -22,7 +22,7 @@ type FormPropsType = {
   onSubmit: (values: string) => void;
 };
 
-export const Form = memo(({ onSubmit }: FormPropsType) => {
+export const FormComponent = ({ onSubmit }: FormPropsType) => {
   const [value, setValue] = useState('');
   const [isError, setError] = useState(false);
 
@@ -68,4 +68,6 @@ export const Form = memo(({ onSubmit }: FormPropsType) => {
       <Button type="submit" value="Submit" themeColor="primary"/>
     </form>
   );
-});
+};
+
+export const Form = memo(FormComponent);

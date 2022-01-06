@@ -23,7 +23,7 @@ type TodoItemViewProps = {
   category: string;
 };
 
-export const TodoItemPageView = memo(({
+export const TodoItemPageViewComponent = ({
   onGoBackClick,
   onTitleChange,
   title,
@@ -83,4 +83,6 @@ export const TodoItemPageView = memo(({
       )}
     </section>
   );
-});
+};
+
+export const TodoItemPageView = memo(TodoItemPageViewComponent);

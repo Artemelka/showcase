@@ -11,7 +11,7 @@ type ErrorBlockPropsType = {
   title: string;
 }
 
-export const ErrorBlock = memo(({ onClick, title }: ErrorBlockPropsType) => {
+export const ErrorBlockComponent = ({ onClick, title }: ErrorBlockPropsType) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <Text tagName="p" fontWeight="bold">{title}</Text>
@@ -20,4 +20,6 @@ export const ErrorBlock = memo(({ onClick, title }: ErrorBlockPropsType) => {
       </div>
     </div>
   );
-});
+};
+
+export const ErrorBlock = memo(ErrorBlockComponent);

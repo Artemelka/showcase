@@ -13,7 +13,7 @@ import {
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { BaseAction } from '../../../../app/redux';
+import { BaseAction } from '../../../../app';
 import { Page } from '../../../../components';
 import {
   addTasks,
@@ -119,7 +119,7 @@ export class QueuePage extends Component<QueuePageProps>{
   render() {
     return (
       <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
-        <Page title="Queue">
+        <Page headTitle="Queue" title="Queue">
           <div className={cn(CLASS_NAME)}>
             <Form
               onQuantityChange={this.handleQuantityChange}

@@ -11,7 +11,7 @@ type ChatSendMessageFormProps = {
   onSubmit: (values: SendMessageFormValues) => void;
 };
 
-export const ChatSendMessageForm = memo(({
+export const ChatSendMessageFormComponent = ({
   onSubmit
 }: ChatSendMessageFormProps) => {
   const [message, setMessage] = useState('');
@@ -45,4 +45,6 @@ export const ChatSendMessageForm = memo(({
       </div>
     </form>
   );
-});
+};
+
+export const ChatSendMessageForm = memo(ChatSendMessageFormComponent);

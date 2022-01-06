@@ -10,7 +10,7 @@ type ScreenRowProps = {
   y: number;
 };
 
-export const ScreenRow = memo(({
+export const ScreenRowComponent = ({
   appleItem,
   cells,
   snakeBody,
@@ -30,4 +30,6 @@ export const ScreenRow = memo(({
       ))}
     </tr>
   );
-});
+};
+
+export const ScreenRow = memo(ScreenRowComponent);

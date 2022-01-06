@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, ResolveThunks } from 'react-redux';
 import { Redirect } from 'react-router';
 import {
   MESSAGE_TYPE,
   socketConnect,
-  SocketInjectConfig,
+  SocketHocProps,
   SocketMessage,
-  WebSocketRequest,
 } from '../../../../services/socket';
 import { fastClassNames3 } from '../../../../utils';
 import {
@@ -28,37 +27,21 @@ import style from './chat-content-page.module.scss';
 
 const cn = fastClassNames3(style);
 const CLASS_NAME = 'Chat-content';
-const SOCKET_INJECT_CONFIG: SocketInjectConfig = {
-  listeners: [
-    {
-      messageType: MESSAGE_TYPE.CHAT_NEW_MESSAGE,
-      action: (dispatch) => (socketMessage: SocketMessage<ChatMessage>) => {
-        dispatch(addMessage(socketMessage.payload))
-      }
-    }, {
-      messageType: MESSAGE_TYPE.CHAT_NEW_USER,
-      action: (dispatch) => ({ payload }: SocketMessage<ChatUser>) => {
-        dispatch(addInUserList(payload));
-      }
-    }, {
-      messageType: MESSAGE_TYPE.CHAT_USER_LEFT,
-      action: (dispatch) => ({ payload }: SocketMessage<ChatUserLeft>) => {
-        dispatch(setUsersList(payload.usersList))
-      }
-    }
-  ],
+
+const mapDispatchToProps = {
+  sendMessage: sendMessageActionSaga,
+  setUsersList,
+  addInUserList,
+  addMessage,
 };
 
 type MapStateToProps = {
   messages: Array<ChatMessage>;
   user: ChatUser,
-}
-type MapDispatchToProps = {
-  sendMessage: (message: string) => void;
-}
-type ChatContentProps = MapStateToProps & MapDispatchToProps & {
-  webSocketRequest: WebSocketRequest;
 };
+
+type ChatContentProps = MapStateToProps & ResolveThunks<typeof mapDispatchToProps> & SocketHocProps;
+
 type State = {
   isRedirect: boolean;
 }
@@ -67,10 +50,38 @@ export class ChatContentPageContainer extends Component<ChatContentProps, State>
   constructor(props: ChatContentProps) {
     super(props);
 
+    this.props.addSocketListeners([
+      {
+        messageType: MESSAGE_TYPE.CHAT_NEW_MESSAGE,
+        action: this.handleChatNewMessage,
+      },
+      {
+        messageType: MESSAGE_TYPE.CHAT_NEW_USER,
+        action: this.handleChatNewUser,
+      },
+      {
+        messageType: MESSAGE_TYPE.CHAT_USER_LEFT,
+        action: this.handleChatUserLeft,
+      }
+    ])
+
     this.state = {
       isRedirect: !(props.user.name && props.user.roomId),
     }
   }
+
+  handleChatNewMessage = ({ payload }: SocketMessage<ChatMessage>) => {
+    this.props.addMessage(payload)
+  };
+
+  handleChatNewUser = ({ payload }: SocketMessage<ChatUser>) => {
+    this.props.addInUserList(payload);
+  }
+
+  handleChatUserLeft = ({ payload }: SocketMessage<ChatUserLeft>) => {
+    this.props.setUsersList(payload.usersList);
+  }
+
   sendMessage = (values: SendMessageFormValues) => {
     const message: SocketMessage<ChatMessage> = {
       timestamp: Date.now(),
@@ -106,10 +117,6 @@ const mapStateToProps = (state: AppStoreWithChat): MapStateToProps => ({
   user: userSelector(state),
 });
 
-const mapDispatchToProps: MapDispatchToProps = {
-  sendMessage: sendMessageActionSaga,
-};
-
-export default socketConnect(SOCKET_INJECT_CONFIG)(
+export default socketConnect(
   connect(mapStateToProps, mapDispatchToProps)(ChatContentPageContainer)
 );

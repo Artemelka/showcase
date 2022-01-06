@@ -10,12 +10,12 @@ import {
 const asyncReducers: Array<AsyncReducerItem> = [GAME_REDUCER_INJECT_CONFIG];
 const asyncSagas: Array<AsyncSagaItem> = [GAME_START_INJECT_SAGA_CONFIG, GAME_STEP_INJECT_SAGA_CONFIG];
 
-const SnakeToolkitPage = memo(() => {
+const SnakeToolkitPage = () => {
   return (
     <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
       <Game/>
     </StoreInjectorConsumer>
   );
-});
+};
 
-export default SnakeToolkitPage;
+export default memo(SnakeToolkitPage);

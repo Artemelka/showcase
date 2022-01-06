@@ -8,9 +8,9 @@ import style from './chat-login-page.module.scss';
 const cn = fastClassNames3(style);
 const CLASS_NAME = 'Chat-login';
 
-const ChatLoginPage = memo(() => {
+const ChatLoginPage = () => {
   return (
-    <Page title="Chat">
+    <Page headTitle="Chat" title="Chat">
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__header`)}>
           <Text tagName="h2" align="center">
@@ -23,6 +23,6 @@ const ChatLoginPage = memo(() => {
       </div>
     </Page>
   );
-});
+};
 
-export default ChatLoginPage;
+export default memo(ChatLoginPage);

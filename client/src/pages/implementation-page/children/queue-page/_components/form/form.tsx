@@ -45,7 +45,7 @@ type FormProps = {
   filterValue: Array<DropdownItemParams>;
 };
 
-export const Form = memo(({
+export const FormComponent = ({
   createTaskQuantity,
   onCountChange,
   onQuantityChange,
@@ -124,4 +124,6 @@ export const Form = memo(({
       </div>
     </div>
   </form>
-));
+);
+
+export const Form = memo(FormComponent);

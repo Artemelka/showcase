@@ -18,7 +18,7 @@ type PaginationProps = {
   total: number;
 };
 
-export const Pagination = memo(({
+export const PaginationComponent = ({
   limit,
   offset,
   onChange,
@@ -79,4 +79,6 @@ export const Pagination = memo(({
       </div>
     </div>
   );
-});
+};
+
+export const Pagination = memo(PaginationComponent);

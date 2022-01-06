@@ -12,7 +12,7 @@ type ChatMessagesListProps = {
   userId: string;
 };
 
-export const ChatMessagesList = memo(({ messages, userId }: ChatMessagesListProps) => {
+export const ChatMessagesListComponent = ({ messages, userId }: ChatMessagesListProps) => {
   return (
     <ul className={cn(CLASS_NAME)}>
       {messages.map((message) => (
@@ -42,4 +42,6 @@ export const ChatMessagesList = memo(({ messages, userId }: ChatMessagesListProp
       ))}
     </ul>
   );
-});
+};
+
+export const ChatMessagesList = memo(ChatMessagesListComponent);

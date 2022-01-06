@@ -19,7 +19,7 @@ const ATM_STACK = {
 };
 const DEFAULT_ERROR_STATE = { isError: false, errorMessage: ''};
 
-const AtmPage = memo(() => {
+const AtmPage = () => {
   const [result, setResult] = useState<CashType>([]);
   const [error, setError] = useState(DEFAULT_ERROR_STATE);
   const [amount, setAmount] = useState('');
@@ -53,7 +53,10 @@ const AtmPage = memo(() => {
   }, [setErrorHelper, setResponse]);
 
   return (
-    <Page title="An example of an ATM operation code">
+    <Page
+      headTitle="ATM"
+      title="An example of an ATM operation code"
+    >
       <div className={cn(CLASS_NAME)}>
         {error.isError
           ? <ErrorBlock onClick={handleClick} title={error.errorMessage}/>
@@ -64,6 +67,6 @@ const AtmPage = memo(() => {
     </Page>
 
   );
-});
+};
 
-export default AtmPage;
+export default memo(AtmPage);

@@ -6,7 +6,7 @@ import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
 import { DirectionCode } from '../../../../types';
 import { gameStore } from '../../game-store';
 
-export const Game = observer(() => {
+export const Game = observer(function GameComponent() {
   const handleDirectionChange = useCallback((event: KeyboardEvent) => {
     const { keyCode } = event;
     const isArrowKey = DIRECTION_KEYS_CODE.includes(keyCode);
