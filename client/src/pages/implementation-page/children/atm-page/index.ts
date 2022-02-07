@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { IMPLEMENTATION_CHILDREN_PATH } from '../../constants';
-import { AppRouterProps } from '../../../types';
+import { AppRouteConfig } from '../../../types';
 
-export const ATM_PAGE_ROUTE_CONFIG: AppRouterProps = {
+export const ATM_PAGE_ROUTE_CONFIG: AppRouteConfig = {
   component: lazy(() => import('./atm-page')),
   exact: true,
   name: 'ATM',

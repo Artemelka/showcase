@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { StoreInjectorProvider, AppStore, createInjectorEnhancer } from '@artemelka/redux-store-injector';
 // import logger from 'redux-logger'; // tslint:disable-line:no-implicit-dependencies
-import { appRouterMiddleware } from '../../router';
-import { createReducer } from './create-reducer';
+import { appRouterMiddleware } from '../../../router';
+import { createReducer } from '../../create-reducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,7 +18,7 @@ const appStore = configureStore({
   middleware: [
     appRouterMiddleware,
     sagaMiddleware,
-    // process.env && process.env.MODE === 'development' ? logger : undefined,
+    // process.env && process.env.MODE === 'development' && logger : undefined,
   ],
 });
 

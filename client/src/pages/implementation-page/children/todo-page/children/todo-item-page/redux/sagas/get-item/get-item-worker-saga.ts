@@ -18,7 +18,7 @@ export function* getItemWorkerSaga() {
       yield put(replace(TODO_CHILDREN_PATH.LIST));
     }
   } catch (error) {
-    console.log('=== Error in getItemWorkerSaga ===', error);
+    console.error('=== Error in getItemWorkerSaga ===', error);
   } finally {
     yield put(setLoadingStop());
   }

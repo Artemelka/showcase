@@ -20,7 +20,7 @@ export function* sendTaskWorkerSaga() {
       yield put(getResolvedTaskActionSaga());
 
     } catch (error) {
-      console.log('=== Error sendTaskWorkerSaga ===');
+      console.error('=== Error sendTaskWorkerSaga ===');
     } finally {
       yield put(decrementCounter());
       yield put(checkQueueActionSaga());

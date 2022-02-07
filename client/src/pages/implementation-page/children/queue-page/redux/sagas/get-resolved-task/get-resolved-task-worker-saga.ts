@@ -19,7 +19,7 @@ export function* getResolvedTaskWorkerSaga() {
         yield put(replaceTasks(result));
       }
     } catch (error) {
-      console.log('=== Error getResolvedTaskWorkerSaga ===', error);
+      console.error('=== Error getResolvedTaskWorkerSaga ===', error);
     } finally {
       const actualSendingTasks = yield select(queueSendingTasksSelector);
 

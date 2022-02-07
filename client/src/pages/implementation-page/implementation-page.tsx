@@ -4,9 +4,9 @@ import { replace, Replace } from 'connected-react-router';
 import { Layout } from '@artemelka/react-components';
 import { locationPathNameSelector, AppStore } from '../../app';
 import { AsyncRoutes } from '../../components';
+import { PAGES_PATH } from '../constants';
 import { Sidebar } from './_components';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
-import { IMPLEMENTATION_PAGE_PATH } from './constants';
 
 type MapStateToProps = {
   pathname: string;
@@ -18,7 +18,7 @@ type ImplementationPageProps = MapStateToProps & MapDispatchToProps;
 
 export class ImplementationPageContainer extends Component<ImplementationPageProps> {
   componentDidMount() {
-    if (this.props.pathname === IMPLEMENTATION_PAGE_PATH) {
+    if (this.props.pathname === PAGES_PATH.IMPLEMENTATION) {
       this.props.redirect(`${IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG[0].path}`);
     }
   }

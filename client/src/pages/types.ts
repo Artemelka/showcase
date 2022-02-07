@@ -1,7 +1,6 @@
-import { RouteProps } from 'react-router';
+import { AppRouterProps } from '../app';
 
-export type AppRouterProps = Pick<RouteProps, 'component' | 'exact'> & {
-  path: string;
+export type AppRouteConfig = AppRouterProps & {
   name: string;
-  children?: Array<AppRouterProps>;
+  children?: Array<AppRouteConfig>;
 };

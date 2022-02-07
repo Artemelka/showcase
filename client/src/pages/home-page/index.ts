@@ -1,10 +1,10 @@
 import { lazy } from 'react';
 import { HOME_PAGE_PATH } from './constants';
-import { AppRouterProps } from '../types';
+import { AppRouteConfig } from '../types';
 
 export { HOME_PAGE_PATH } from './constants';
 
-export const HOME_PAGE_ROUTE_CONFIG: AppRouterProps = {
+export const HOME_PAGE_ROUTE_CONFIG: AppRouteConfig = {
   component: lazy(() => import('./home-page')),
   exact: true,
   name: 'home',

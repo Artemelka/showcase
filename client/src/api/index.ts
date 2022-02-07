@@ -1,5 +1,6 @@
 import { TODO } from './todo';
 import { QUEUE_TASK } from './queue-task';
+import { AUTH } from './auth';
 
 export type {
   GetCategoryParams,
@@ -11,4 +12,5 @@ export type {
 export const API = {
   TODO,
   QUEUE_TASK,
+  AUTH,
 };

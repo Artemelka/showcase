@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import classNames from 'classnames/bind';
-import { AppNavigation, ThemeToggle } from '../../../../../components';
-import { APP_PAGES_ROUTE_CONFIG } from '../../../../../pages';
+import { ThemeToggle } from '../../../../components';
+import { APP_PAGES_ROUTE_CONFIG } from '../../../../pages';
+import { AppNavigation } from './_components';
 import style from './app-header.module.scss';
 
 const cn = classNames.bind(style);

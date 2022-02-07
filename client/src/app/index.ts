@@ -1,6 +1,10 @@
 export { App } from './app';
 export {
+  AppRoute,
+  AppRouterSwitch,
+  AsyncRoutes,
+  locationPathNameSelector,
   routerLocationSelector,
-  locationPathNameSelector
 } from './router';
-export type { AppStore, BaseAction } from './types';
+export type { AppStore, BaseAction, UserRole } from './types';
+export type { AppRouterProps } from './router';

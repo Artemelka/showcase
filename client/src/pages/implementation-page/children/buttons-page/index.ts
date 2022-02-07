@@ -1,8 +1,8 @@
 import { lazy } from 'react';
-import { AppRouterProps } from '../../../types';
+import { AppRouteConfig } from '../../../types';
 import { IMPLEMENTATION_CHILDREN_PATH } from '../../constants';
 
-export const BUTTONS_PAGE_ROUTE_CONFIG: AppRouterProps = {
+export const BUTTONS_PAGE_ROUTE_CONFIG: AppRouteConfig = {
   component: lazy(() => import('./buttons-page')),
   path: IMPLEMENTATION_CHILDREN_PATH.BUTTONS,
   name: 'buttons'

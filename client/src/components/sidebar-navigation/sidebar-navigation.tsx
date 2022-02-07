@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import classNames from 'classnames/bind';
 import { Button, ButtonMouseEvent } from '@artemelka/react-components';
-import { AppRouterProps } from '../../pages/types';
+import { AppRouteConfig } from '../../pages/types';
 import style from './sidebar-navigation.module.scss';
 
 const cn = classNames.bind(style);
@@ -9,7 +9,7 @@ const CLASS_NAME = 'Sidebar-navigation';
 
 type SidebarNavigationProps = {
   activePath: string;
-  items: Array<AppRouterProps>;
+  items: Array<AppRouteConfig>;
   onClick: (path: string) => void;
 };
 
@@ -18,11 +18,11 @@ export const SidebarNavigation = memo<SidebarNavigationProps>(function SidebarNa
   items,
   onClick,
 }) {
-  const checkActiveChildren = useCallback((children: Array<AppRouterProps>) => {
+  const checkActiveChildren = useCallback((children: Array<AppRouteConfig>) => {
     return Boolean(children.findIndex(child => child.path === activePath) + 1)
   }, [activePath]);
 
-  const checkActive = useCallback(({ children = [], path }: AppRouterProps): boolean => {
+  const checkActive = useCallback(({ children = [], path }: AppRouteConfig): boolean => {
     return activePath === path || checkActiveChildren(children);
   }, [activePath, checkActiveChildren]);
 
@@ -33,7 +33,7 @@ export const SidebarNavigation = memo<SidebarNavigationProps>(function SidebarNa
   return (
     <nav className={cn(CLASS_NAME)}>
       <ul className={cn(`${CLASS_NAME}__list`)}>
-        {items.map((item: AppRouterProps) => (
+        {items.map((item: AppRouteConfig) => (
           <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
             <Button
               alignText="left"
