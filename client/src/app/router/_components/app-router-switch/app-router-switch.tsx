@@ -16,8 +16,8 @@ export const AppRouterSwitchComponent: FC<AppRouterSwitchProps> = ({
   return (
     <Switch>
       {children}
-      {withNotFoundPage && (<Route component={NotFoundPage}/>)}
       {pathToRedirect && <Redirect to={pathToRedirect}/>}
+      {withNotFoundPage && (<Route component={NotFoundPage}/>)}
     </Switch>
   );
 };

@@ -17,7 +17,7 @@ import {
   authInitActionSaga,
   authIsLoadingSelector,
   AppStoreWithAuth,
-} from './redux';
+} from '../../redux';
 
 const asyncReducers: Array<AsyncReducerItem> = [AUTH_REDUCER_INJECT_CONFIG];
 const asyncSagas: Array<AsyncSagaItem> = [AUTH_INIT_INJECT_SAGA_CONFIG];

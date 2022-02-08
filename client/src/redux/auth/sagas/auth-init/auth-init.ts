@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { call, fork, put, take } from 'redux-saga/effects';
-import { API } from '../../../../../../api';
+import { API } from '../../../../api';
 import {
   setStartAuthInit,
   setStopAuthInit,

@@ -5,7 +5,7 @@ import { push, Push } from 'connected-react-router';
 import { Anchor, AnchorMouseEvent } from '@artemelka/react-components';
 import { UserRole } from '../../../../../../api';
 import { locationPathNameSelector } from '../../../../../../app';
-import { authUserRoleSelector, AppStoreWithAuth } from '../../../../redux';
+import { authUserRoleSelector, AppStoreWithAuth } from '../../../../../../redux';
 import { AppRouteConfig } from '../../../../../../pages/types';
 import style from './app-navigation.module.scss';
 

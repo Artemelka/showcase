@@ -8,5 +8,5 @@ export {
   setAuthRole,
   setStartAuthInit,
   setStopAuthInit,
-} from './redux';
-export type { AppStoreWithAuth } from './redux';
+} from '../../redux';
+export type { AppStoreWithAuth } from '../../redux';
