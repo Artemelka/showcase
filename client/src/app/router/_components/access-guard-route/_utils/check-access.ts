@@ -1,4 +1,4 @@
-import { UserRole } from '../../../../types';
+import { UserRole } from '../../../../../api';
 
 const INITIAL_ACCESS_MAP: Record<UserRole, boolean> = {
   guest: false,

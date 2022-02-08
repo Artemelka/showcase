@@ -6,5 +6,5 @@ export {
   locationPathNameSelector,
   routerLocationSelector,
 } from './router';
-export type { AppStore, BaseAction, UserRole } from './types';
+export type { AppStore, BaseAction } from './types';
 export type { AppRouterProps } from './router';

@@ -6,3 +6,5 @@ export type {
   TodoItemStatus,
 } from './todo';
 export { QueueTaskApi } from './queue-task';
+export { AuthApi } from './auth';
+export type { Auth, UserRole } from './auth';

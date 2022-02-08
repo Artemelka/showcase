@@ -9,3 +9,4 @@ export {
   setStartAuthInit,
   setStopAuthInit,
 } from './redux';
+export type { AppStoreWithAuth } from './redux';

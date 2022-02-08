@@ -1,8 +1,9 @@
+import { AuthApi } from '../../_fake-server';
+
+const authApi = new AuthApi();
 
 export const AUTH = {
-  INIT: () => new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ isLogin: true, role: 'user' })
-    }, 2000);
-  })
+  INIT: authApi.init
 };
+
+export type { Auth, UserRole } from '../../_fake-server';

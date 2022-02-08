@@ -9,6 +9,8 @@ export type {
   TodoItemStatus,
 } from './todo';
 
+export type { Auth, UserRole } from './auth';
+
 export const API = {
   TODO,
   QUEUE_TASK,

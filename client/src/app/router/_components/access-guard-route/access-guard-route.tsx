@@ -1,22 +1,33 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router';
+import { authUserRoleSelector, AppStoreWithAuth } from '../../../app-layout';
 import { NotFoundPage } from '../../../../pages/not-found-page';
-import { UserRole } from '../../../types';
+import { UserRole } from '../../../../api';
 import { AppRouterProps } from '../../types';
 import { checkAccess } from './_utils';
 
-type AccessGuardRouteProps = Omit<AppRouterProps, 'name'> & {
+type MapStateToProps = {
+  userRole: UserRole;
+};
+
+type OwnProps = {
   accessTypes: Array<UserRole>;
 };
+
+type AccessGuardRouteProps = MapStateToProps &
+  Omit<AppRouterProps, 'name'> &
+  OwnProps;
 
 export const AccessGuardRouteComponent: FC<AccessGuardRouteProps> = ({
   accessTypes,
   component,
   exact,
   path,
+  userRole,
 }: AccessGuardRouteProps) => {
 
-  const hasAccess = checkAccess(accessTypes, 'guest');
+  const hasAccess = checkAccess(accessTypes, userRole);
 
   return (
     <Route
@@ -28,4 +39,8 @@ export const AccessGuardRouteComponent: FC<AccessGuardRouteProps> = ({
   );
 };
 
-export const AccessGuardRoute = memo(AccessGuardRouteComponent);
+const mapStateToProps = (state: AppStoreWithAuth): MapStateToProps => ({
+  userRole: authUserRoleSelector(state),
+});
+
+export const AccessGuardRoute = connect(mapStateToProps)(AccessGuardRouteComponent);

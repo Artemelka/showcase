@@ -1,10 +1,9 @@
-import { AppStore, BaseAction, UserRole } from '../../../types';
+import { UserRole, Auth } from '../../../../api';
+import { AppStore, BaseAction } from '../../../types';
 import { AUTH_REDUCER_NAME } from './constants';
 
-export type AuthState = {
+export type AuthState = Auth & {
   isLoading: boolean;
-  isLogin: boolean;
-  role: UserRole;
 };
 
 export type SetAuthInitAction = BaseAction<AuthState>;
