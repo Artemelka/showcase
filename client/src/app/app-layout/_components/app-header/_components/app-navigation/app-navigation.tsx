@@ -3,7 +3,9 @@ import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { Anchor, AnchorMouseEvent } from '@artemelka/react-components';
-import { locationPathNameSelector, AppStore } from '../../../../../../app';
+import { UserRole } from '../../../../../../api';
+import { locationPathNameSelector } from '../../../../../../app';
+import { authUserRoleSelector, AppStoreWithAuth } from '../../../../redux';
 import { AppRouteConfig } from '../../../../../../pages/types';
 import style from './app-navigation.module.scss';
 
@@ -12,6 +14,7 @@ const CLASS_NAME = 'App-navigation';
 
 type MapStateToProps = {
   pathname: string;
+  userRole: UserRole;
 }
 type MapDispatchToProps = {
   push: Push;
@@ -49,6 +52,8 @@ const findActiveIndex = (pathname: string, items: Array<AppRouteConfig>): number
 }
 
 export class AppNavigationContainer extends Component<AppNavigationProps, State> {
+  routes: Array<AppRouteConfig>;
+
   static getDerivedStateFromProps(nextProps: AppNavigationProps, prevState: State) {
     const nextIndex = findActiveIndex(nextProps.pathname, nextProps.items);
 
@@ -65,6 +70,10 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
     this.state = {
       activeIndex: findActiveIndex(props.pathname, props.items),
     }
+
+    this.routes = this.props.items.filter(route => {
+      return !route.accessTypes || route.accessTypes.includes(this.props.userRole);
+    });
   }
 
   handleClick = ({ href }: AnchorMouseEvent) => {
@@ -75,7 +84,7 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
     return (
       <nav className={cn(CLASS_NAME)}>
         <ul className={cn(`${CLASS_NAME}__list`)}>
-          {this.props.items.map((item, index) => (
+          {this.routes.map((item, index) => (
             <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
               <Anchor
                 active={this.state.activeIndex === index}
@@ -92,8 +101,9 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
   }
 }
 
-const mapStateToProps = (state: AppStore): MapStateToProps => ({
-  pathname: locationPathNameSelector(state)
+const mapStateToProps = (state: AppStoreWithAuth): MapStateToProps => ({
+  pathname: locationPathNameSelector(state),
+  userRole: authUserRoleSelector(state),
 });
 const mapDispatchToProps = {
   push

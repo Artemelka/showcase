@@ -16,7 +16,7 @@ function* authInitWorkerSaga() {
   try {
     const response = yield call(API.AUTH.INIT);
 
-    put(authInit(response))
+    yield put(authInit(response))
   } catch (error) {
     console.error('=== Error authInitWorkerSaga ===', error);
   } finally {
