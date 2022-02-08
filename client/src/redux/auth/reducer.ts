@@ -8,13 +8,10 @@ const authReducerSlice = createSlice<AuthState, AuthReducerCase>({
   reducers: {
     authInit: (state, { payload }) => {
       state.isLogin = payload.isLogin;
-      state.role = payload.role;
+      state.user = payload.user;
     },
     setAuthIsLogin: (state, { payload }) => {
       state.isLogin = payload;
-    },
-    setAuthRole: (state, { payload }) => {
-      state.role = payload;
     },
     setStartAuthInit: (state) => {
       state.isLoading = true
@@ -28,7 +25,6 @@ const authReducerSlice = createSlice<AuthState, AuthReducerCase>({
 export const {
   authInit,
   setAuthIsLogin,
-  setAuthRole,
   setStartAuthInit,
   setStopAuthInit,
 } = authReducerSlice.actions;

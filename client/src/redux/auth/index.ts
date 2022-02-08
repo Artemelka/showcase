@@ -2,12 +2,12 @@ export {
   AUTH_REDUCER_INJECT_CONFIG,
   authInit,
   setAuthIsLogin,
-  setAuthRole,
   setStartAuthInit,
   setStopAuthInit,
 } from './reducer';
 export {
   authIsLoadingSelector,
+  authUserSelector,
   authUserRoleSelector,
   isLoginSelector,
 } from './selectors';

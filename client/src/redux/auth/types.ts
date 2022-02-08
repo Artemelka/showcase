@@ -13,7 +13,6 @@ export type SetAuthRoleAction = BaseAction<UserRole>;
 export type AuthReducerCase = {
   authInit: (state: AuthState, action: SetAuthInitAction) => void;
   setAuthIsLogin: (state: AuthState, action: SetAuthIsLoginAction) => void;
-  setAuthRole: (state: AuthState, action: SetAuthRoleAction) => void;
   setStartAuthInit: (state: AuthState) => void;
   setStopAuthInit: (state: AuthState) => void;
 };

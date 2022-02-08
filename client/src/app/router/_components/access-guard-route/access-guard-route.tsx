@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
-import { authUserRoleSelector, AppStoreWithAuth } from '../../../app-layout';
+import { authUserRoleSelector, AppStoreWithAuth } from '../../../../redux';
 import { NotFoundPage } from '../../../../pages/not-found-page';
 import { UserRole } from '../../../../api';
 import { AppRouterProps } from '../../types';

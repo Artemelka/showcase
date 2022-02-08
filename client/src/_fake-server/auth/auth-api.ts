@@ -1,34 +1,68 @@
-import { Auth } from './types';
-
-const INITIAL_STATE: Auth = {
-  isLogin: false,
-  role: 'guest',
-};
-
-const USER = { isLogin: true, role: 'user' };
+import { Auth, AuthState, User } from './types';
+import { INITIAL_STATE, GUEST_RESPONSE } from './constants';
 
 interface IAuthApi {
-  init: () => Promise<Auth>;
+  init: (userId?: string) => Promise<Auth>;
+  logOut: () => Promise<Auth>;
+  logIn: (userId?: string) => Promise<Auth>;
 }
 
 export class AuthApi implements IAuthApi {
-  private state: Auth;
-  private setState: (nextState: Partial<Auth>) => void;
+  private state: AuthState;
+  private idCounter = 2
 
   constructor() {
     this.state = INITIAL_STATE;
+  };
 
-    this.setState = (nextState) => {
-      this.state = {
-        ...this.state,
-        ...nextState,
-      };
-    };
+  private setState = (nextState: Auth): void => {
+    this.state = [...this.state, nextState];
+  };
+
+  private createGuest = (): User => {
+    this.idCounter = this.idCounter + 1;
+
+    return ({
+      createdAt: Date.now(),
+      role: 'guest',
+      name: '',
+      login: '',
+      id: `${this.idCounter}`,
+    });
   }
 
-  public init = () => new Promise<Auth>((resolve) => {
+  public init = (userId = '') => {
+    const targetUser = this.state.find(auth => auth.user.id === userId);
+
+    if (targetUser) {
+      return Promise.resolve(targetUser);
+    }
+
+    const newGuest = {
+      isLogin: false,
+      user: this.createGuest(),
+    };
+
+    this.setState(newGuest);
+
+    return Promise.resolve(newGuest);
+
+  };
+
+  public logIn = (userId = '') => new Promise<Auth>((resolve, reject) => {
     setTimeout(() => {
-      resolve(INITIAL_STATE)
+      const targetUser = this.state.find(auth => auth.user.id === userId);
+
+      if (targetUser) {
+        resolve(targetUser);
+      }
+
+      reject({
+        errorCode: 403,
+        errorMessage: 'User not found'
+      });
     }, 2000);
-  })
+  });
+
+  public logOut = () => Promise.resolve(GUEST_RESPONSE);
 }

@@ -9,7 +9,7 @@ export type {
   TodoItemStatus,
 } from './todo';
 
-export type { Auth, UserRole } from './auth';
+export type { Auth, User, UserRole } from './auth';
 
 export const API = {
   TODO,

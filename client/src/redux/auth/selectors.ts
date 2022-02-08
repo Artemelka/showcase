@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { UserRole } from '../../api';
+import { User, UserRole } from '../../api';
 import { AUTH_REDUCER_NAME, INITIAL_STATE } from './constants';
 import { AppStoreWithAuth } from './types';
 
@@ -15,7 +15,12 @@ export const authIsLoadingSelector = createSelector(
   ({ isLoading }): boolean => isLoading
 );
 
+export const authUserSelector = createSelector(
+  [authSelector],
+  ({ user }): User => user
+);
+
 export const authUserRoleSelector = createSelector(
   [authSelector],
-  ({ role }): UserRole => role
+  ({ user }): UserRole => user.role
 );

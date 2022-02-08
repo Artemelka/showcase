@@ -4,10 +4,10 @@ export {
   authInit,
   authInitActionSaga,
   authIsLoadingSelector,
+  authUserSelector,
   authUserRoleSelector,
   isLoginSelector,
   setAuthIsLogin,
-  setAuthRole,
   setStartAuthInit,
   setStopAuthInit,
 } from './auth';
