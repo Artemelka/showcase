@@ -5,7 +5,6 @@ import { authUserRoleSelector, AppStoreWithAuth } from '../../../app-layout';
 import { NotFoundPage } from '../../../../pages/not-found-page';
 import { UserRole } from '../../../../api';
 import { AppRouterProps } from '../../types';
-import { checkAccess } from './_utils';
 
 type MapStateToProps = {
   userRole: UserRole;
@@ -27,7 +26,7 @@ export const AccessGuardRouteComponent: FC<AccessGuardRouteProps> = ({
   userRole,
 }: AccessGuardRouteProps) => {
 
-  const hasAccess = checkAccess(accessTypes, userRole);
+  const hasAccess = accessTypes.includes(userRole);
 
   return (
     <Route

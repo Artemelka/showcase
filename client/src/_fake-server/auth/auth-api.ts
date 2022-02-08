@@ -5,6 +5,8 @@ const INITIAL_STATE: Auth = {
   role: 'guest',
 };
 
+const USER = { isLogin: true, role: 'user' };
+
 interface IAuthApi {
   init: () => Promise<Auth>;
 }
@@ -26,7 +28,7 @@ export class AuthApi implements IAuthApi {
 
   public init = () => new Promise<Auth>((resolve) => {
     setTimeout(() => {
-      resolve({ isLogin: true, role: 'user' })
+      resolve(INITIAL_STATE)
     }, 2000);
   })
 }

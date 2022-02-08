@@ -1,1 +1,0 @@
-export { checkAccess } from './check-access';
