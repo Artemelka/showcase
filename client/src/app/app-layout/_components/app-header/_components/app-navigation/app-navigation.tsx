@@ -7,6 +7,10 @@ import { UserRole } from '../../../../../../api';
 import { locationPathNameSelector } from '../../../../../../app';
 import { authUserRoleSelector, AppStoreWithAuth } from '../../../../../../redux';
 import { AppRouteConfig } from '../../../../../../pages/types';
+import {
+  findActiveIndex,
+  getRoutes,
+} from './utils';
 import style from './app-navigation.module.scss';
 
 const cn = classNames.bind(style);
@@ -15,65 +19,43 @@ const CLASS_NAME = 'App-navigation';
 type MapStateToProps = {
   pathname: string;
   userRole: UserRole;
-}
+};
+
 type MapDispatchToProps = {
   push: Push;
 };
+
 type AppNavigationProps = MapStateToProps & MapDispatchToProps & {
   items: Array<AppRouteConfig>;
 };
+
 type State = {
   activeIndex: number;
-}
-
-const checkActiveChildren = (children: Array<AppRouteConfig>, pathname: string): boolean => {
-  return Boolean(children.findIndex(child => {
-    if (child.children) {
-      return checkActiveChildren(child.children, pathname);
-    }
-
-    return child.path === pathname
-  }) + 1)
+  routes: Array<AppRouteConfig>;
 };
 
-const findActiveIndex = (pathname: string, items: Array<AppRouteConfig>): number => {
-  return items.reduce((res, item, index) => {
-    if (pathname === item.path) {
-      return index;
-    }
-
-    if (item.children && checkActiveChildren(item.children, pathname)) {
-      return index;
-
-    }
-
-    return res;
-  }, 0);
-}
-
 export class AppNavigationContainer extends Component<AppNavigationProps, State> {
-  routes: Array<AppRouteConfig>;
-
   static getDerivedStateFromProps(nextProps: AppNavigationProps, prevState: State) {
     const nextIndex = findActiveIndex(nextProps.pathname, nextProps.items);
+    const routes = getRoutes(nextProps.items, nextProps.userRole);
 
     if (nextIndex !== prevState.activeIndex) {
-      return { activeIndex: nextIndex };
+      return {
+        activeIndex: nextIndex,
+        routes,
+      };
     }
 
-    return null;
+    return { routes };
   }
 
   constructor(props: AppNavigationProps) {
     super(props);
 
     this.state = {
-      activeIndex: findActiveIndex(props.pathname, props.items),
+      activeIndex: 0,
+      routes: [],
     }
-
-    this.routes = this.props.items.filter(route => {
-      return !route.accessTypes || route.accessTypes.includes(this.props.userRole);
-    });
   }
 
   handleClick = ({ href }: AnchorMouseEvent) => {
@@ -81,10 +63,11 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
   };
 
   render() {
+
     return (
       <nav className={cn(CLASS_NAME)}>
         <ul className={cn(`${CLASS_NAME}__list`)}>
-          {this.routes.map((item, index) => (
+          {this.state.routes.map((item, index) => (
             <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
               <Anchor
                 active={this.state.activeIndex === index}

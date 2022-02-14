@@ -13,6 +13,7 @@ const GUEST: User = {
 
 export const INITIAL_STATE: AuthState = {
   isLoading: true,
+  isLoginLoading: false,
   isLogin: false,
   user: GUEST,
 };

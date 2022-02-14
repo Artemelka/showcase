@@ -13,20 +13,32 @@ const authReducerSlice = createSlice<AuthState, AuthReducerCase>({
     setAuthIsLogin: (state, { payload }) => {
       state.isLogin = payload;
     },
+    setAuthUser: (state, { payload }) => {
+      state.user = payload;
+    },
     setStartAuthInit: (state) => {
       state.isLoading = true
+    },
+    setStartAuthLogin: (state) => {
+      state.isLoginLoading = true;
     },
     setStopAuthInit: (state) => {
       state.isLoading = false
     },
+    setStopAuthLogin: (state) => {
+      state.isLoginLoading = false;
+    }
   },
 });
 
 export const {
   authInit,
   setAuthIsLogin,
+  setAuthUser,
   setStartAuthInit,
+  setStartAuthLogin,
   setStopAuthInit,
+  setStopAuthLogin,
 } = authReducerSlice.actions;
 
 export const AUTH_REDUCER_INJECT_CONFIG = {

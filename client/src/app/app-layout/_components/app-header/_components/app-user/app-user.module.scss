@@ -1,0 +1,9 @@
+.App-user {
+  position: relative;
+
+  &__dropdown {
+    position: absolute;
+    right: 0;
+    top: 40px;
+  }
+}

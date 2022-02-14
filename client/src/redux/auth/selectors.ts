@@ -15,6 +15,11 @@ export const authIsLoadingSelector = createSelector(
   ({ isLoading }): boolean => isLoading
 );
 
+export const authLoginIsLoadingSelector = createSelector(
+  [authSelector],
+  ({ isLoginLoading }): boolean => isLoginLoading
+);
+
 export const authUserSelector = createSelector(
   [authSelector],
   ({ user }): User => user

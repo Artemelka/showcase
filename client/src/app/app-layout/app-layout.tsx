@@ -14,13 +14,19 @@ import { AppHeader } from './_components';
 import {
   AUTH_REDUCER_INJECT_CONFIG,
   AUTH_INIT_INJECT_SAGA_CONFIG,
+  AUTH_LOGIN_INJECT_SAGA_CONFIG,
+  AUTH_LOGOUT_INJECT_SAGA_CONFIG,
   authInitActionSaga,
   authIsLoadingSelector,
   AppStoreWithAuth,
 } from '../../redux';
 
 const asyncReducers: Array<AsyncReducerItem> = [AUTH_REDUCER_INJECT_CONFIG];
-const asyncSagas: Array<AsyncSagaItem> = [AUTH_INIT_INJECT_SAGA_CONFIG];
+const asyncSagas: Array<AsyncSagaItem> = [
+  AUTH_INIT_INJECT_SAGA_CONFIG,
+  AUTH_LOGIN_INJECT_SAGA_CONFIG,
+  AUTH_LOGOUT_INJECT_SAGA_CONFIG,
+];
 
 type MapDispatchToProps = {
   authInit: () => Action;
