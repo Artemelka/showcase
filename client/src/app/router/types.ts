@@ -3,6 +3,7 @@ import { UserRole } from '../../api';
 
 
 export type AppRouterProps = Pick<RouteProps, 'component' | 'exact'> & {
-  path: string;
+  accessRedirectPath?: string;
   accessTypes?: Array<UserRole>;
+  path: string;
 };

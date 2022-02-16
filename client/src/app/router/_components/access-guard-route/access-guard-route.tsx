@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React, {FC, useMemo} from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { authUserRoleSelector, AppStoreWithAuth } from '../../../../redux';
-import { NotFoundPage } from '../../../../pages/not-found-page';
 import { UserRole } from '../../../../api';
 import { AppRouterProps } from '../../types';
 
@@ -20,21 +19,24 @@ type AccessGuardRouteProps = MapStateToProps &
 
 export const AccessGuardRouteComponent: FC<AccessGuardRouteProps> = ({
   accessTypes,
+  accessRedirectPath = '/',
   component,
   exact,
   path,
   userRole,
 }: AccessGuardRouteProps) => {
 
-  const hasAccess = accessTypes.includes(userRole);
+  const hasAccess = useMemo(() => accessTypes.includes(userRole), [userRole]);
 
-  return (
+  return hasAccess ? (
     <Route
-      component={hasAccess ? component : NotFoundPage}
+      component={component}
       exact={exact}
       key={`${path}`}
       path={path}
     />
+  ) : (
+    <Redirect to={accessRedirectPath}/>
   );
 };
 

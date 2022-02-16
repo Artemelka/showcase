@@ -11,9 +11,10 @@ type AsyncRoutesProps = {
 export const AsyncRoutesComponent =  ({ routesConfig }: AsyncRoutesProps) => {
   return (
     <Suspense fallback={<PageLoader/>}>
-      <AppRouterSwitch>
-        {routesConfig.map(({ accessTypes, component, exact, path}) => (
+      <AppRouterSwitch withNotFoundPage >
+        {routesConfig.map(({ accessTypes, accessRedirectPath, component, exact, path}) => (
           <AppRoute
+            accessRedirectPath={accessRedirectPath}
             accessTypes={accessTypes}
             component={component}
             exact={exact}

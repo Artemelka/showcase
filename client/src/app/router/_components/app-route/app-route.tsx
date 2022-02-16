@@ -4,6 +4,7 @@ import { AppRouterProps } from '../../types';
 import { AccessGuardRoute } from '../access-guard-route';
 
 export const AppRouteComponent: FC<Omit<AppRouterProps, 'name'>> = ({
+  accessRedirectPath,
   accessTypes,
   component,
   exact,
@@ -11,6 +12,7 @@ export const AppRouteComponent: FC<Omit<AppRouterProps, 'name'>> = ({
 }) => {
   return accessTypes ? (
     <AccessGuardRoute
+      accessRedirectPath={accessRedirectPath}
       accessTypes={accessTypes}
       component={component}
       exact={exact}
