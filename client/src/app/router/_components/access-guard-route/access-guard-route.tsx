@@ -26,7 +26,7 @@ export const AccessGuardRouteComponent: FC<AccessGuardRouteProps> = ({
   userRole,
 }: AccessGuardRouteProps) => {
 
-  const hasAccess = useMemo(() => accessTypes.includes(userRole), [userRole]);
+  const hasAccess = useMemo(() => accessTypes.includes(userRole), [accessTypes, userRole]);
 
   return hasAccess ? (
     <Route
