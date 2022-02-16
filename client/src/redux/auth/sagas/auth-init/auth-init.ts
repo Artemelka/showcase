@@ -10,9 +10,9 @@ export function* authInitWorkerSaga() {
   yield put(setStartAuthInit());
 
   try {
-    const response = yield call(API.AUTH.INIT);
+    const { user } = yield call(API.AUTH.INIT);
 
-    yield put(authInit(response))
+    yield put(authInit(user))
   } catch (error) {
     console.error('=== Error authInitWorkerSaga ===', error);
   } finally {

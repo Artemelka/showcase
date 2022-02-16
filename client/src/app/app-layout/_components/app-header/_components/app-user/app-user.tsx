@@ -64,8 +64,8 @@ export class AppUserContainer extends Component<AppUserProps, State> {
     this.props.logout();
   }
 
-  handleButtonClick = (buttonEvent: ButtonMouseEvent) => {
-    buttonEvent.event.stopPropagation();
+  handleButtonClick = ({ event }: ButtonMouseEvent) => {
+    event.stopPropagation();
 
     if (this.props.isLogin) {
       this.setState(({ isOpen }) => ({ isOpen: !isOpen }));

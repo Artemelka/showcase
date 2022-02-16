@@ -10,9 +10,9 @@ export function* authLogoutWorkerSaga() {
   yield put(setStartAuthLogin());
 
   try {
-    const response = yield call(API.AUTH.LOGOUT);
+    const { user } = yield call(API.AUTH.LOGOUT);
 
-    yield put(authInit(response));
+    yield put(authInit(user));
   } catch (error) {
     console.error('=== Error in authLogoutWorkerSaga ===', error);
   } finally {

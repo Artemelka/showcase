@@ -2,14 +2,14 @@ import { Auth, AuthState, User } from './types';
 import { INITIAL_STATE, GUEST_RESPONSE } from './constants';
 
 interface IAuthApi {
-  init: (userId?: string) => Promise<Auth>;
+  init: (params: { userId?: string }) => Promise<Auth>;
   logOut: () => Promise<Auth>;
-  logIn: (userId?: string) => Promise<Auth>;
+  logIn: (params: { userId?: string }) => Promise<Auth>;
 }
 
 export class AuthApi implements IAuthApi {
   private state: AuthState;
-  private idCounter = 2
+  private idCounter = 2;
 
   constructor() {
     this.state = INITIAL_STATE;
@@ -31,7 +31,7 @@ export class AuthApi implements IAuthApi {
     });
   }
 
-  public init = (userId = '') => {
+  public init = ({ userId = '' }) => {
     const targetUser = this.state.find(auth => auth.user.id === userId);
 
     if (targetUser) {
@@ -49,7 +49,7 @@ export class AuthApi implements IAuthApi {
 
   };
 
-  public logIn = (userId = '') => new Promise<Auth>((resolve, reject) => {
+  public logIn = ({ userId = '' }) => new Promise<Auth>((resolve, reject) => {
     setTimeout(() => {
       const targetUser = this.state.find(auth => auth.user.id === userId);
 
