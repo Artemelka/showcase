@@ -1,5 +1,4 @@
-import React, {memo} from 'react';
-import classNames from 'classnames/bind';
+import React, { memo } from 'react';
 import {
   Button,
   Overlay,
@@ -7,10 +6,11 @@ import {
   Text,
 } from '@artemelka/react-components';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import { fastClassNames } from '../../../../../../../../utils';
 import { TitleEditor } from '../title-editor';
 import style from './todo-item-page.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Todo-item-page';
 
 type TodoItemViewProps = {
@@ -20,7 +20,6 @@ type TodoItemViewProps = {
   isLoading: boolean;
   status: string;
   id: string;
-  category: string;
 };
 
 export const TodoItemPageViewComponent = ({
@@ -30,7 +29,6 @@ export const TodoItemPageViewComponent = ({
   isLoading,
   status,
   id,
-  category,
 }: TodoItemViewProps) => {
   return (
     <section className={cn(CLASS_NAME)}>
@@ -74,7 +72,6 @@ export const TodoItemPageViewComponent = ({
           </Text>
         </div>
       </main>
-
 
       {isLoading && (
         <Overlay inContainer>

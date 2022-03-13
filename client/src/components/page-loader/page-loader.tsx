@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
-import classNames from 'classnames/bind';
 import { Overlay, WindowLoader } from '@artemelka/react-components';
+import { fastClassNames } from '../../utils';
 import styles from './page-loader.module.scss';
 
-const cn = classNames.bind(styles);
+const cn = fastClassNames(styles);
 const CLASS_NAME = 'Page-loader';
 
 export const PageLoader = memo(() => (

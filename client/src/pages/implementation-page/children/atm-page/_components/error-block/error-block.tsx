@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
-import classNames from 'classnames/bind';
 import { Button, Text } from '@artemelka/react-components';
+import { fastClassNames } from '../../../../../../utils';
 import style from './error-block.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Error-block';
 
 type ErrorBlockPropsType = {

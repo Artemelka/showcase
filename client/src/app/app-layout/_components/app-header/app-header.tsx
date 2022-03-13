@@ -1,11 +1,11 @@
 import React, { FC, memo } from 'react';
-import classNames from 'classnames/bind';
+import { fastClassNames } from '../../../../utils';
 import { ThemeToggle } from '../../../../components';
 import { APP_PAGES_ROUTE_CONFIG } from '../../../../pages';
 import { AppNavigation, AppUser } from './_components';
 import style from './app-header.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'App-header';
 
 export const AppHeaderComponent: FC = () => {

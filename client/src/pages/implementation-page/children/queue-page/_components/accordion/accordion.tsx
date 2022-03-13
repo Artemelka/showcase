@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useState } from 'react';
-import classNames from 'classnames/bind';
 import { CollapsePanel } from '@artemelka/react-components';
 import { TaskItem } from '../../redux';
+import { fastClassNames } from '../../../../../../utils';
 import style from './accordion.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Accordion';
 
 const THEME_COLOR_MAP = {

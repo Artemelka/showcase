@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { Text } from '@artemelka/react-components';
 import { locationPathNameSelector, AppStore } from '../../../../app';
 import { SidebarNavigation } from '../../../../components';
+import { fastClassNames } from '../../../../utils';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from '../../children';
 import style from './sidebar.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Sidebar';
 
 type MapStateToProps = {

@@ -1,10 +1,10 @@
-import React, { memo, PropsWithChildren } from 'react';
+import React, { FC, memo, PropsWithChildren } from 'react';
 import { Helmet } from 'react-helmet';
-import classNames from 'classnames/bind';
 import { Text } from '@artemelka/react-components';
+import { fastClassNames } from '../../utils';
 import style from './page.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Page';
 
 type PageProps = PropsWithChildren<{
@@ -12,11 +12,11 @@ type PageProps = PropsWithChildren<{
   title: string;
 }>;
 
-export const Page = memo<PageProps>(function PageComponent({
+export const PageComponent: FC<PageProps> = ({
   children,
   headTitle,
   title,
-}) {
+}) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <Helmet
@@ -32,4 +32,6 @@ export const Page = memo<PageProps>(function PageComponent({
       </div>
     </div>
   );
-});
+};
+
+export const Page = memo(PageComponent);

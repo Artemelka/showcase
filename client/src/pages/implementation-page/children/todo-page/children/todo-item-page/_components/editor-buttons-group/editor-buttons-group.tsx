@@ -1,14 +1,14 @@
 import React, {memo, useCallback} from 'react';
-import classNames from 'classnames/bind';
 import {
   Button,
   ButtonMouseEvent,
 } from '@artemelka/react-components';
 import Done from '@material-ui/icons/Done';
 import Clear from '@material-ui/icons/Clear';
+import { fastClassNames } from '../../../../../../../../utils';
 import style from './editor-buttons-group.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Editor-buttons-group';
 
 type EditorButtonsGroupProps = {

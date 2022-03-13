@@ -1,11 +1,11 @@
 import React, {
+  FC,
   memo,
   useCallback,
   useEffect,
   useRef,
   useState
 } from 'react';
-import classNames from 'classnames/bind';
 import {
   Button,
   Input,
@@ -13,10 +13,11 @@ import {
   Text,
 } from '@artemelka/react-components';
 import Create from '@material-ui/icons/Create';
+import { fastClassNames } from '../../../../../../../../utils';
 import { EditorButtonsGroup } from '../editor-buttons-group';
 import style from './title-editor.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Title-editor';
 
 type TitleRedactorProps = {
@@ -24,10 +25,10 @@ type TitleRedactorProps = {
   value: string;
 }
 
-export const TitleEditor = memo(({
+const TitleEditorComponent: FC<TitleRedactorProps> = ({
   onChange,
   value,
-}: TitleRedactorProps) => {
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState(value);
   const [isEditing, setIsEditing] = useState(false);
@@ -100,4 +101,6 @@ export const TitleEditor = memo(({
       </div>
     </div>
   );
-});
+};
+
+export const TitleEditor = memo(TitleEditorComponent);

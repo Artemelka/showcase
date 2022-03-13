@@ -1,10 +1,10 @@
-import React, { memo, useCallback } from 'react';
-import classNames from 'classnames/bind';
+import React, { FC, memo, useCallback } from 'react';
 import { Button, ButtonMouseEvent } from '@artemelka/react-components';
+import { fastClassNames } from '../../utils';
 import { AppRouteConfig } from '../../pages/types';
 import style from './sidebar-navigation.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Sidebar-navigation';
 
 type SidebarNavigationProps = {
@@ -13,11 +13,11 @@ type SidebarNavigationProps = {
   onClick: (path: string) => void;
 };
 
-export const SidebarNavigation = memo<SidebarNavigationProps>(function SidebarNavigation({
+const SidebarNavigationComponent: FC<SidebarNavigationProps> = ({
   activePath,
   items,
   onClick,
-}) {
+}) => {
   const checkActiveChildren = useCallback((children: Array<AppRouteConfig>) => {
     return Boolean(children.findIndex(child => child.path === activePath) + 1)
   }, [activePath]);
@@ -50,4 +50,6 @@ export const SidebarNavigation = memo<SidebarNavigationProps>(function SidebarNa
       </ul>
     </nav>
   );
-});
+};
+
+export const SidebarNavigation = memo(SidebarNavigationComponent);

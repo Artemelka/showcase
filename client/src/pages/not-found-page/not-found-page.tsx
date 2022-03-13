@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import classNames from 'classnames/bind';
 import { Text } from '@artemelka/react-components';
+import { fastClassNames } from '../../utils';
 import { GoHomeLink } from './_components';
 import style from './not-found-page.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Not-found-page';
 
 export const NotFoundPageComponent = () => (

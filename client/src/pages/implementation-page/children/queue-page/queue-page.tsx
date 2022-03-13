@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classNames from 'classnames/bind';
 import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -15,6 +14,7 @@ import {
 } from '@artemelka/react-components';
 import { BaseAction } from '../../../../app';
 import { Page } from '../../../../components';
+import { fastClassNames } from '../../../../utils';
 import {
   addTasks,
   AppStoreWithQueue,
@@ -45,7 +45,7 @@ import { Accordion, Form } from './_components';
 import { generateTaskItems, setPendingStatus } from './utils';
 import style from './queue-page.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Queue-page';
 
 const asyncReducers: Array<AsyncReducerItem> = [{

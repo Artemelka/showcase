@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { DropdownItemParams, Overlay, WindowLoader } from '@artemelka/react-components';
 import { Pagination, Table } from '../../../../../../../../components';
+import { fastClassNames } from '../../../../../../../../utils';
 import {
   AppStoreWithTodo,
   todoIsLoadingSelector,
@@ -21,7 +21,7 @@ import {
 import { TODO_CHILDREN_PATH } from '../../../../constants';
 import style from './connected-table.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Connected-table';
 
 type MapStateToProps = {

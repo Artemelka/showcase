@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import classNames from 'classnames/bind';
 import {
   Button,
   Input,
@@ -9,9 +8,10 @@ import {
   SelectChangeEvent,
 } from '@artemelka/react-components';
 import { FilterSelect } from '../../../../../../components';
+import { fastClassNames } from '../../../../../../utils';
 import style from './form.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Form';
 const FILTER_OPTIONS: Array<DropdownItemParams> = [{
   id: 'allTasks',

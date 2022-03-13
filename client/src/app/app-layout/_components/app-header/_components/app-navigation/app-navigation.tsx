@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { Anchor, AnchorMouseEvent } from '@artemelka/react-components';
@@ -7,13 +6,14 @@ import { UserRole } from '../../../../../../api';
 import { locationPathNameSelector } from '../../../../../../app';
 import { authUserRoleSelector, AppStoreWithAuth } from '../../../../../../redux';
 import { AppRouteConfig } from '../../../../../../pages/types';
+import { fastClassNames } from '../../../../../../utils';
 import {
   findActiveIndex,
   getRoutes,
 } from './utils';
 import style from './app-navigation.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'App-navigation';
 
 type MapStateToProps = {

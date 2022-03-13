@@ -54,7 +54,6 @@ export class TodoItemPageContainer extends Component<TodoItemPageProps> {
           isLoading={this.props.isLoading}
           status={this.props.item.status}
           id={this.props.item.id}
-          category={this.props.item.category}
         />
       </StoreInjectorConsumer>
     );

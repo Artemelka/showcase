@@ -7,10 +7,10 @@ import {
 } from '@artemelka/react-components';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
-import classNames from "classnames/bind";
+import { fastClassNames } from '../../utils';
 import style from './filter-select.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Filter-filter-select';
 const ICON_CONFIG = {
   iconClose: <ArrowDropUp fontSize="inherit" />,

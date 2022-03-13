@@ -3,14 +3,14 @@ import React, {
   useCallback,
   useState
 } from 'react';
-import classNames from 'classnames/bind';
 import { Page } from '../../../../components';
+import { fastClassNames } from '../../../../utils';
 import { ErrorBlock, Form, Table } from './_components';
 import { getAmountFromResult, getCash } from './utils';
 import { CashType } from './types';
 import style from './atm-page.module.scss';
 
-const cn = classNames.bind(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Atm-page';
 
 const ATM_STACK = {
