@@ -4,7 +4,7 @@ import { checkQueueActionSaga, getResolvedTaskActionSaga } from '../../actions';
 import { queuePendingTasksSelector } from '../../selectors';
 import { decrementCounter, incrementCounter, updateTasks } from '../../reducer';
 
-export function* sendTaskWorkerSaga() {
+export function* sendTaskSaga() {
   const pendingTasks = yield select(queuePendingTasksSelector);
 
   if (pendingTasks.length) {

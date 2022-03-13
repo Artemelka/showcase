@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   StoreInjectorConsumer,
@@ -6,9 +7,8 @@ import {
   AsyncSagaItem
 } from '@artemelka/redux-store-injector';
 import { Label } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import {
-  Action,
   getListActionSaga,
   TODO_REDUCER_INJECT_CONFIG,
   GET_LIST_SAGA_INJECT_CONFIG
@@ -19,7 +19,7 @@ import { ConnectedTable } from './_components/connected-table';
 import { ConnectedTabs } from './_components/connected-tabs';
 import style from './todo-list-page.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Todo-list-page';
 
 const asyncReducers: Array<AsyncReducerItem> = [

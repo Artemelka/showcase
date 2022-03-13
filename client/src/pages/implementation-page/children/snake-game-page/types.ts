@@ -1,5 +1,5 @@
 import { DropdownItemParams } from '@artemelka/react-components';
-import {AppStore, BaseAction} from '../../../../app';
+import {AppStore, BaseAction} from '@/app';
 import { GAME_PURE_REDUX_REDUCER_NAME, GAME_TOOLKIT_REDUCER_NAME } from './constants';
 
 export type GameState = {

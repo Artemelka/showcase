@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { Text } from '@artemelka/react-components';
-import { Page } from '../../../../components';
-import { fastClassNames3 } from '../../../../utils';
+import { Page } from '@/components';
+import { fastClassNames } from '@/utils';
 import { ConnectedChatLoginForm } from '../../_components';
 import style from './chat-login-page.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-login';
 
 const ChatLoginPage = () => {

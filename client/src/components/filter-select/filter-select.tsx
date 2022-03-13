@@ -7,7 +7,7 @@ import {
 } from '@artemelka/react-components';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
-import { fastClassNames } from '../../utils';
+import { fastClassNames } from '@/utils';
 import style from './filter-select.module.scss';
 
 const cn = fastClassNames(style);

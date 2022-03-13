@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   ButtonGroup,
   ButtonMouseEvent,
 } from '@artemelka/react-components';
+import { BaseAction } from '@/app';
 import {
   getListActionSaga,
   resetPagination,
   setCategory,
   todoActiveCategorySelector,
-  Action,
   AppStoreWithTodo,
-  BaseAction,
 } from '../../redux';
 import { BUTTONS } from '../../../../constants';
 

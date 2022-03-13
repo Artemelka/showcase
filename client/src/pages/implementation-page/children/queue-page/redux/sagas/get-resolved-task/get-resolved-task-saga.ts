@@ -5,7 +5,7 @@ import { replaceTasks } from '../../reducer';
 import { queueTasksSelector, queueSendingTasksSelector } from '../../selectors';
 import { prepareTasks } from '../../_utils';
 
-export function* getResolvedTaskWorkerSaga() {
+export function* getResolvedTaskSaga() {
   const sendingTasks = yield select(queueSendingTasksSelector);
 
   if (sendingTasks.length) {

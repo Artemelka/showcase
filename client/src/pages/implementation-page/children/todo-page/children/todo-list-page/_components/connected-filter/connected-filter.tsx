@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
+import { Action } from 'redux';
 import { connect } from 'react-redux';
 import { SelectChangeEvent } from '@artemelka/react-components';
-import { FilterSelect } from '../../../../../../../../components';
+import { TodoItemStatus } from '@/api';
+import { FilterSelect } from '@/components';
 import {
   changeFilter,
   getListActionSaga,
   todoFilterSelector,
-  Action,
   AppStoreWithTodo,
   FilterState,
   ChangeFilterAction,
-  TodoItemStatus,
 } from '../../redux';
 import { FILTER_OPTIONS } from '../../../../constants';
 

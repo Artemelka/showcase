@@ -21,12 +21,8 @@ export {
   todoPaginationTotalSelector,
 } from './selectors';
 export type {
-  Action,
   AppStoreWithTodo,
-  BaseAction,
   ChangeFilterAction,
   FilterState,
-  TodoItem,
-  TodoItemStatus,
   PaginationConfig,
 } from './types';

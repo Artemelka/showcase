@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import {
@@ -11,11 +11,11 @@ import {
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import { INPUT_ID, SELECT_ID, SELECT_OPTIONS } from '../../constants';
 import style from './game-actions.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Game-actions';
 const SELECT_ICON_CONFIG = {
   iconClose: <ArrowDropUp fontSize="inherit" />,
@@ -34,7 +34,7 @@ type GameActionsProps = {
   score: string;
 };
 
-export const GameActionsComponent = ({
+export const GameActionsComponent: FC<GameActionsProps> = ({
   cells,
   gameSpeed,
   isFail,
@@ -44,7 +44,7 @@ export const GameActionsComponent = ({
   onRefresh,
   onStartClick,
   score
-}: GameActionsProps) => {
+}) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__input`)}>

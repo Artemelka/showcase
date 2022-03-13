@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { replace, Replace } from 'connected-react-router';
 import { Layout } from '@artemelka/react-components';
 import { locationPathNameSelector, AppStore } from '../../app';
-import { AsyncRoutes } from '../../components';
+import { AsyncRoutes } from '@/components';
 import { PAGES_PATH } from '../constants';
 import { Sidebar } from './_components';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';

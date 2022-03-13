@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '../../../../../../../pages/types';
+import { AppRouteConfig } from '@/pages/types';
 
 const checkActiveChildren = (children: Array<AppRouteConfig>, pathname: string): boolean => {
   return Boolean(children.findIndex(child => {

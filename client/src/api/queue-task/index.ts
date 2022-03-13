@@ -1,4 +1,4 @@
-import { QueueTaskApi } from '../../_fake-server';
+import { QueueTaskApi } from '@/_fake-server';
 
 const queueTask = new QueueTaskApi();
 

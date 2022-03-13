@@ -1,4 +1,4 @@
-import { AppStore, BaseAction } from '../../../app';
+import { AppStore, BaseAction } from '@/app';
 import { CHAT_REDUCER_NAME } from './constants';
 
 type BaseMessage = {

@@ -13,7 +13,7 @@ import {
   Text,
 } from '@artemelka/react-components';
 import Create from '@material-ui/icons/Create';
-import { fastClassNames } from '../../../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import { EditorButtonsGroup } from '../editor-buttons-group';
 import style from './title-editor.module.scss';
 

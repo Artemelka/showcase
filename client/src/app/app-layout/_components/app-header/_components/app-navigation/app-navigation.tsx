@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { Anchor, AnchorMouseEvent } from '@artemelka/react-components';
-import { UserRole } from '../../../../../../api';
-import { locationPathNameSelector } from '../../../../../../app';
-import { authUserRoleSelector, AppStoreWithAuth } from '../../../../../../redux';
-import { AppRouteConfig } from '../../../../../../pages/types';
-import { fastClassNames } from '../../../../../../utils';
+import { AppRouteConfig } from '@/pages/types';
+import { authUserRoleSelector, AppStoreWithAuth } from '@/redux';
+import { fastClassNames } from '@/utils';
+import { locationPathNameSelector } from '@/app';
+import { UserRole } from '@/api';
 import {
   findActiveIndex,
   getRoutes,

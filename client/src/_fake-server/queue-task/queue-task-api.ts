@@ -1,4 +1,4 @@
-import { TaskItem } from '../../pages/implementation-page/children/queue-page/redux';
+import { TaskItem } from '@/pages/implementation-page/children/queue-page/redux';
 import { getRandomNumber } from '../_utils';
 
 const getRandomTimeout = (): number => {

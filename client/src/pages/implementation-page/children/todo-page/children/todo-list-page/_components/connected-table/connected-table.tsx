@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import { Action } from 'redux';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { DropdownItemParams, Overlay, WindowLoader } from '@artemelka/react-components';
-import { Pagination, Table } from '../../../../../../../../components';
-import { fastClassNames } from '../../../../../../../../utils';
+import { TodoItem } from '@/api';
+import { BaseAction } from '@/app';
+import { Pagination, Table } from '@/components';
+import { fastClassNames } from '@/utils';
 import {
   AppStoreWithTodo,
   todoIsLoadingSelector,
-  TodoItem,
   todoListSelector,
   todoPaginationLimitSelector,
   todoPaginationOffsetSelector,
   todoPaginationTotalSelector,
   setPagination,
-  BaseAction,
-  Action,
   PaginationConfig,
   getListActionSaga,
 } from '../../redux';

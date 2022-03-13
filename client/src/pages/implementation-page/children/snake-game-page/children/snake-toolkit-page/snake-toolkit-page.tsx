@@ -8,7 +8,10 @@ import {
 } from './redux';
 
 const asyncReducers: Array<AsyncReducerItem> = [GAME_REDUCER_INJECT_CONFIG];
-const asyncSagas: Array<AsyncSagaItem> = [GAME_START_INJECT_SAGA_CONFIG, GAME_STEP_INJECT_SAGA_CONFIG];
+const asyncSagas: Array<AsyncSagaItem> = [
+  GAME_START_INJECT_SAGA_CONFIG,
+  GAME_STEP_INJECT_SAGA_CONFIG,
+];
 
 const SnakeToolkitPage = () => {
   return (

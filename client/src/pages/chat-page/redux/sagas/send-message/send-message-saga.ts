@@ -1,11 +1,9 @@
 // import { put, call } from 'redux-saga/effects';
-// import { MESSAGE_TYPE, wsService, SocketMessage } from "../../../../../services/socket";
+// import { MESSAGE_TYPE, wsService, SocketMessage } from '@/services/socket";
 // import { addMessage } from '../../reducer';
 // import { SendMessageAction } from '../../types';
 
-
-
-export function* sendMessageWorkerSaga({ payload, dispatch }: any) {
+export function* sendMessageSaga({ payload, dispatch }: any) {
 
   try {
 

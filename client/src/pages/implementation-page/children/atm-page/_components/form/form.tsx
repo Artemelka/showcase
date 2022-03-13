@@ -10,7 +10,7 @@ import {
   InputChangeEvent,
   Label,
 } from '@artemelka/react-components';
-import { fastClassNames } from '../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import style from './form.module.scss';
 
 const cn = fastClassNames(style);

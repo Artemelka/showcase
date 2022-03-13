@@ -1,4 +1,4 @@
-import { User } from '../../api';
+import { User } from '@/api';
 import { AuthState } from './types';
 
 export const AUTH_REDUCER_NAME = 'auth';

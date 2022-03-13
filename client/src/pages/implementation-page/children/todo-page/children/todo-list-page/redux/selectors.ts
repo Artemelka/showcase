@@ -1,13 +1,12 @@
 import { createSelector } from 'reselect';
 import { DropdownItemParams } from '@artemelka/react-components';
+import { TodoItem, TodoItemStatus } from '@/api';
 import { ROWS_OPTIONS } from '../../../constants';
 import { TODO_REDUCER_NAME, INITIAL_STATE } from './constants';
 import {
   AppStoreWithTodo,
   TodoState,
-  TodoItem,
   FilterState,
-  TodoItemStatus,
   PaginationConfig,
 } from './types';
 

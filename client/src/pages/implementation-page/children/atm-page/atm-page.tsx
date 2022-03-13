@@ -3,8 +3,8 @@ import React, {
   useCallback,
   useState
 } from 'react';
-import { Page } from '../../../../components';
-import { fastClassNames } from '../../../../utils';
+import { Page } from '@/components';
+import { fastClassNames } from '@/utils';
 import { ErrorBlock, Form, Table } from './_components';
 import { getAmountFromResult, getCash } from './utils';
 import { CashType } from './types';

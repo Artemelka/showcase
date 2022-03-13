@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Button, Text } from '@artemelka/react-components';
-import { fastClassNames } from '../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import style from './error-block.module.scss';
 
 const cn = fastClassNames(style);

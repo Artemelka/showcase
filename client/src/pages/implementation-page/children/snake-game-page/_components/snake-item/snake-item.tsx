@@ -1,8 +1,8 @@
-import React, { memo } from 'react';
-import { fastClassNames3 } from '../../../../../../utils';
+import React, { FC, memo } from 'react';
+import { fastClassNames } from '@/utils';
 import style from './snake-item.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Snake-item';
 
 type SnakeItemProps = {
@@ -10,10 +10,10 @@ type SnakeItemProps = {
   isSnakeItem: boolean;
 };
 
-export const SnakeItemComponent = ({
+export const SnakeItemComponent: FC<SnakeItemProps> = ({
   isApple,
   isSnakeItem,
-}: SnakeItemProps) => (
+}) => (
   <td
     className={cn(CLASS_NAME, {
       [`${CLASS_NAME}--apple`]: isApple,

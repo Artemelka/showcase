@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '../../../../types';
+import { AppRouteConfig } from '@/pages';
 import { TODO_LIST_PAGE_ROUTE_CONFIG } from './todo-list-page';
 import { TODO_ITEM_PAGE_ROUTE_CONFIG } from './todo-item-page';
 

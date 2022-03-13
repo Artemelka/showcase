@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Label, Toggle, ToggleChangeEvent } from '@artemelka/react-components';
-import { getAppTheme, changeAppTheme } from '../../services/app-theme';
+import { getAppTheme, changeAppTheme } from '@/services/app-theme';
 
 type ThemeToggleProps = {};
 type State = {

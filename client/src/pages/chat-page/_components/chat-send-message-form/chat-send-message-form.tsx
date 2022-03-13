@@ -1,19 +1,19 @@
-import React, { memo, SyntheticEvent, useCallback, useState } from 'react';
-import { fastClassNames3 } from '../../../../utils';
+import React, { FC, memo, SyntheticEvent, useCallback, useState } from 'react';
+import { fastClassNames } from '@/utils';
 import { Button, Input, InputChangeEvent } from '@artemelka/react-components';
 import { SendMessageFormValues } from '../../types';
 import style from './chat-send-message-form.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-send-message-form';
 
 type ChatSendMessageFormProps = {
   onSubmit: (values: SendMessageFormValues) => void;
 };
 
-export const ChatSendMessageFormComponent = ({
+export const ChatSendMessageFormComponent: FC<ChatSendMessageFormProps> = ({
   onSubmit
-}: ChatSendMessageFormProps) => {
+}) => {
   const [message, setMessage] = useState('');
 
   const handleInputChange = useCallback(({ value }: InputChangeEvent) => {

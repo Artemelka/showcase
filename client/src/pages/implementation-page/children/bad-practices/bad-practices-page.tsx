@@ -1,5 +1,11 @@
-import React, { Component, PureComponent, memo, useCallback, useState } from 'react';
-import { Page } from '../../../../components';
+import React, {
+  Component,
+  memo,
+  PureComponent,
+  useCallback,
+  useState,
+} from 'react';
+import { Page } from '@/components';
 
 type Props = {
     value: string

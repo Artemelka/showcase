@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { User, UserRole } from '../../api';
+import { User, UserRole } from '@/api';
 import { AUTH_REDUCER_NAME, INITIAL_STATE } from './constants';
 import { AppStoreWithAuth } from './types';
 

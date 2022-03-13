@@ -1,4 +1,10 @@
 export {
+  authInitActionSaga,
+  authLoginActionSaga,
+  authLogoutActionSaga,
+} from './actions';
+
+export {
   AUTH_REDUCER_INJECT_CONFIG,
   authInit,
   setAuthIsLogin,
@@ -8,6 +14,7 @@ export {
   setStopAuthInit,
   setStopAuthLogin,
 } from './reducer';
+
 export {
   authIsLoadingSelector,
   authLoginIsLoadingSelector,
@@ -15,12 +22,11 @@ export {
   authUserSelector,
   isLoginSelector,
 } from './selectors';
+
 export {
   AUTH_INIT_INJECT_SAGA_CONFIG,
   AUTH_LOGIN_INJECT_SAGA_CONFIG,
   AUTH_LOGOUT_INJECT_SAGA_CONFIG,
-  authInitActionSaga,
-  authLoginActionSaga,
-  authLogoutActionSaga,
 } from './sagas';
+
 export type { AppStoreWithAuth } from './types';

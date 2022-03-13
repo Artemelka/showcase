@@ -7,7 +7,7 @@ import {
   SocketHocProps,
   SocketMessage,
 } from '../../../../services/socket';
-import { fastClassNames3 } from '../../../../utils';
+import { fastClassNames } from '@/utils';
 import {
   addInUserList,
   addMessage,
@@ -25,7 +25,7 @@ import { SendMessageFormValues } from '../../types';
 import { CHAT_PAGE_CHILDREN_PATH } from '../../constants'
 import style from './chat-content-page.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-content';
 
 const mapDispatchToProps = {

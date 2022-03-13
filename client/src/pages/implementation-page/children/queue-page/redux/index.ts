@@ -14,9 +14,9 @@ export {
   replaceTasks,
   updateTasks,
 } from './reducer';
-export { checkQueueWatcherSaga, CHECK_QUEUE_WATCHER_SAGA_NAME } from './sagas/check-queue';
-export { getResolvedTaskWatcherSaga, GET_RESOLVED_TASK_WATCHER_SAGA_NAME } from './sagas/get-resolved-task';
-export { sendTaskWatcherSaga, SEND_TASK_WATCHER_SAGA_NAME } from './sagas/send-task';
+export { CHECK_QUEUE_INJECT_SAGA_CONFIG } from './sagas/check-queue';
+export { GET_RESOLVED_TASK_INJECT_SAGA_CONFIG, } from './sagas/get-resolved-task';
+export { SEND_TASK_INJECT_SAGA_CONFIG } from './sagas/send-task';
 export {
   queueCreatedTasksSelector,
   queueCreateTasksQuantitySelector,

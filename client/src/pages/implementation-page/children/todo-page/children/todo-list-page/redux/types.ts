@@ -1,6 +1,5 @@
-import { Action } from 'redux';
-import { TodoItem, TodoItemStatus } from '../../../../../../../api';
-import { AppStore, BaseAction } from '../../../../../../../app';
+import { TodoItem, TodoItemStatus } from '@/api';
+import { AppStore, BaseAction } from '@/app';
 import { TODO_REDUCER_NAME } from './constants';
 
 export type FilterState = {
@@ -44,11 +43,3 @@ export type TodoReducerCase = {
 };
 
 export type AppStoreWithTodo = AppStore & {[TODO_REDUCER_NAME]: TodoState};
-export type { BaseAction } from '../../../../../../../app';
-export type {
-  GetCategoryParams,
-  Response,
-  TodoItem,
-  TodoItemStatus,
-} from '../../../../../../../api';
-export type { Action } from 'redux';

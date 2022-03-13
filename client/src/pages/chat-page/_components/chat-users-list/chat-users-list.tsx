@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Text } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../utils';
+import { fastClassNames } from '@/utils';
 import {
   ChatUser,
   AppStoreWithChat,
@@ -10,7 +10,7 @@ import {
 } from '../../redux';
 import style from './chat-users-list.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-users-list';
 
 type MapStateToProps = {
@@ -19,7 +19,7 @@ type MapStateToProps = {
 };
 type ChatUsersListProps = MapStateToProps & {};
 
-export const ChatUsersListComponent = memo(({ user, usersList }: ChatUsersListProps) => {
+export const ChatUsersListComponent: FC<ChatUsersListProps> = ({ user, usersList }) => {
   return (
     <aside className={cn(CLASS_NAME)}>
       <header className={cn(`${CLASS_NAME}__header`)}>
@@ -40,7 +40,7 @@ export const ChatUsersListComponent = memo(({ user, usersList }: ChatUsersListPr
       </ul>
     </aside>
   );
-});
+};
 
 const mapStateToProps = (store: AppStoreWithChat): MapStateToProps => ({
   user: userSelector(store),

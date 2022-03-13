@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
 import {
   Button,
   Input,
@@ -7,31 +7,33 @@ import {
   InputChangeEvent,
   SelectChangeEvent,
 } from '@artemelka/react-components';
-import { FilterSelect } from '../../../../../../components';
-import { fastClassNames } from '../../../../../../utils';
+import { FilterSelect } from '@/components';
+import { fastClassNames } from '@/utils';
 import style from './form.module.scss';
 
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Form';
-const FILTER_OPTIONS: Array<DropdownItemParams> = [{
-  id: 'allTasks',
-  value: 'all'
-}, {
-  id: 'createdTasks',
-  value: 'create',
-}, {
-  id: 'doneTasks',
-  value: 'done',
-}, {
-  id: 'errorTasks',
-  value: 'error',
-}, {
-  id: 'progressTasks',
-  value: 'progress',
-}, {
-  id: 'sendingTask',
-  value: 'sending',
-}];
+const FILTER_OPTIONS: Array<DropdownItemParams> = [
+  {
+    id: 'allTasks',
+    value: 'all'
+  }, {
+    id: 'createdTasks',
+    value: 'create',
+  }, {
+    id: 'doneTasks',
+    value: 'done',
+  }, {
+    id: 'errorTasks',
+    value: 'error',
+  }, {
+    id: 'progressTasks',
+    value: 'progress',
+  }, {
+    id: 'sendingTask',
+    value: 'sending',
+  }
+];
 
 type FormProps = {
   onCountChange: (inputEvent: InputChangeEvent) => void;
@@ -45,7 +47,7 @@ type FormProps = {
   filterValue: Array<DropdownItemParams>;
 };
 
-export const FormComponent = ({
+export const FormComponent: FC<FormProps> = ({
   createTaskQuantity,
   onCountChange,
   onQuantityChange,
@@ -55,7 +57,7 @@ export const FormComponent = ({
   onRunTasks,
   onFilterChange,
   filterValue,
-}: FormProps) => (
+}) => (
   <form className={cn(`${CLASS_NAME}`)}>
     <div className={cn(`${CLASS_NAME}__field`)}>
       <div className={cn(`${CLASS_NAME}__label`)}>

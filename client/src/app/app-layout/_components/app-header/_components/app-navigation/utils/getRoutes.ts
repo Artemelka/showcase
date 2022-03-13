@@ -1,5 +1,5 @@
-import { UserRole } from '../../../../../../../api';
-import { AppRouteConfig } from '../../../../../../../pages/types';
+import { UserRole } from '@/api';
+import { AppRouteConfig } from '@/pages/types';
 
 export const getRoutes = (items: Array<AppRouteConfig>, userRole: UserRole) => {
   return items.filter(route => {

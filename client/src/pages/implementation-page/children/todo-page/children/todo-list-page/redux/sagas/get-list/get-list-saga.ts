@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { API } from '../../../../../../../../../api';
+import { API, Response, GetCategoryParams } from '@/api';
 import {
   setItems,
   startLoader,
@@ -11,9 +11,8 @@ import {
   todoFilterStatusesSelector,
   todoPaginationSelector,
 } from '../../selectors';
-import { Response, GetCategoryParams } from '../../types';
 
-export function* getListWorkerSaga() {
+export function* getListSaga() {
   yield put(startLoader());
 
   const { limit: itemCount, offset: skip } = yield select(todoPaginationSelector);

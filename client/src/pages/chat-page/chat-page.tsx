@@ -6,7 +6,7 @@ import {
 } from '@artemelka/redux-store-injector';
 import { Layout } from '@artemelka/react-components';
 import { AppRoute, AppRouterSwitch } from '../../app';
-import { wsService } from '../../services/socket';
+import { wsService } from '@/services/socket';
 
 import { CHAT_PAGE_CHILDREN_PATH } from './constants';
 import { ChatUsersList } from './_components';

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Overlay, WindowLoader } from '@artemelka/react-components';
-import { fastClassNames } from '../../utils';
+import { fastClassNames } from '@/utils';
 import styles from './page-loader.module.scss';
 
 const cn = fastClassNames(styles);

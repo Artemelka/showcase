@@ -1,4 +1,4 @@
-import { Action } from './types';
+import { Action } from 'redux';
 
 export const GET_LIST_SAGA = 'GET_LIST';
 export const getListActionSaga = (): Action<string> => ({

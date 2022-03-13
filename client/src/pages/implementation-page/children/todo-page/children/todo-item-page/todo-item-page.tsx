@@ -7,6 +7,7 @@ import {
   AsyncReducerItem,
   AsyncSagaItem
 } from '@artemelka/redux-store-injector';
+import { TodoItem } from '@/api';
 import {
   AppStoreWithTodoItem,
   TODO_ITEM_REDUCER_INJECT_CONFIG,
@@ -14,7 +15,6 @@ import {
   getTodoItemActionSaga,
   todoItemSelector,
   todoItemIsLoadingSelector,
-  TodoItem,
 } from './redux';
 import { TodoItemPageView } from './_components';
 

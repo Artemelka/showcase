@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
+import { Action } from 'redux';
 import { connect } from 'react-redux';
 import { DropdownItemParams, SelectChangeEvent } from '@artemelka/react-components';
-import { FilterSelect } from '../../../../../../../../components';
+import { BaseAction } from '@/app';
+import { FilterSelect } from '@/components';
 import {
   getListActionSaga,
   setLimit,
   todoPaginationLimitSelector,
-  Action,
   AppStoreWithTodo,
-  BaseAction,
 } from '../../redux';
 import { ROWS_OPTIONS } from '../../../../constants';
 

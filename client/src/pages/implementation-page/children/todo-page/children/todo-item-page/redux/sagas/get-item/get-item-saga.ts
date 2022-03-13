@@ -5,7 +5,7 @@ import { API } from '../../../../../../../../../api';
 import { TODO_CHILDREN_PATH } from '../../../../../constants';
 import { setItem, setLoadingStart, setLoadingStop } from '../../reducer';
 
-export function* getItemWorkerSaga() {
+export function* getItemSaga() {
   yield put(setLoadingStart());
   const { query } = yield select(routerLocationSelector);
 

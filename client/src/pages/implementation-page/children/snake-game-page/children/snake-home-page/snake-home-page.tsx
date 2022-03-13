@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push, Push } from 'connected-react-router';
 import { ButtonMouseEvent, Card } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import { SNAKE_GAME_CHILDREN_PATH } from '../../constants';
 import style from './snake-home-page.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Snake-home-page';
 
 const BUTTON_LABEL = 'show';
@@ -15,7 +15,7 @@ const DESCRIPTION = 'Lorem Ipsum - это текст-рыба, часто исп
 type MapDispatchToProps = {
   push: Push
 }
-type SnakeHomePageProps = MapDispatchToProps & {};
+type SnakeHomePageProps = MapDispatchToProps;
 
 class SnakeHomePage extends Component<SnakeHomePageProps> {
   handleButtonClick = ({ id }: ButtonMouseEvent) => {

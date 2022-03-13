@@ -1,5 +1,5 @@
-import { User, Auth } from '../../api';
-import { AppStore, BaseAction } from '../../app';
+import { User, Auth } from '@/api';
+import { AppStore, BaseAction } from '@/app';
 import { AUTH_REDUCER_NAME } from './constants';
 
 export type AuthState = Auth & {

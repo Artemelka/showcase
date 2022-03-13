@@ -1,7 +1,7 @@
 import React, { FC, memo, PropsWithChildren } from 'react';
 import { Helmet } from 'react-helmet';
 import { Text } from '@artemelka/react-components';
-import { fastClassNames } from '../../utils';
+import { fastClassNames } from '@/utils';
 import style from './page.module.scss';
 
 const cn = fastClassNames(style);

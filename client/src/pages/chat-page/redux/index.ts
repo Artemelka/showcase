@@ -1,3 +1,4 @@
+export { sendMessageActionSaga } from './actions';
 export {
   messageSelector,
   userSelector,
@@ -10,9 +11,9 @@ export {
   setUser,
   setUsersList,
 } from './reducer';
-export { CHAT_SEND_MESSAGE_INJECT_SAGA_CONFIG } from './sagas/send-message';
-export { sendMessageActionSaga } from './actions';
-
+export {
+  CHAT_SEND_MESSAGE_INJECT_SAGA_CONFIG,
+} from './sagas/send-message';
 export type {
   AddMessageAction,
   AppStoreWithChat,

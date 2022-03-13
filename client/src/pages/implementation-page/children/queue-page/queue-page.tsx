@@ -12,20 +12,18 @@ import {
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { BaseAction } from '../../../../app';
-import { Page } from '../../../../components';
-import { fastClassNames } from '../../../../utils';
+import { BaseAction } from '@/app';
+import { Page } from '@/components';
+import { fastClassNames } from '@/utils';
 import {
   addTasks,
   AppStoreWithQueue,
   changeCreateTaskQuantity,
   changeFilter,
   changeRequestCount,
-  CHECK_QUEUE_WATCHER_SAGA_NAME,
+  CHECK_QUEUE_INJECT_SAGA_CONFIG,
   checkQueueActionSaga,
-  checkQueueWatcherSaga,
-  GET_RESOLVED_TASK_WATCHER_SAGA_NAME,
-  getResolvedTaskWatcherSaga,
+  GET_RESOLVED_TASK_INJECT_SAGA_CONFIG,
   QUEUE_REDUCER_NAME,
   queueCreatedTasksSelector,
   queueCreateTasksQuantitySelector,
@@ -35,8 +33,7 @@ import {
   queueReducer,
   queueSendTaskActionSaga,
   queueTasksArraySelector,
-  SEND_TASK_WATCHER_SAGA_NAME,
-  sendTaskWatcherSaga,
+  SEND_TASK_INJECT_SAGA_CONFIG,
   TaskItem,
   Tasks,
   updateTasks,
@@ -53,16 +50,9 @@ const asyncReducers: Array<AsyncReducerItem> = [{
   reducer: queueReducer,
 }];
 const asyncSagas: Array<AsyncSagaItem> = [
-    {
-    name: CHECK_QUEUE_WATCHER_SAGA_NAME,
-    saga: checkQueueWatcherSaga,
-  }, {
-    name: SEND_TASK_WATCHER_SAGA_NAME,
-    saga: sendTaskWatcherSaga,
-  }, {
-    name: GET_RESOLVED_TASK_WATCHER_SAGA_NAME,
-    saga: getResolvedTaskWatcherSaga,
-  }
+  CHECK_QUEUE_INJECT_SAGA_CONFIG,
+  SEND_TASK_INJECT_SAGA_CONFIG,
+  GET_RESOLVED_TASK_INJECT_SAGA_CONFIG,
 ];
 
 type MapStateToProps = {

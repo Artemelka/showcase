@@ -1,8 +1,8 @@
-import React, {memo, ReactNode} from 'react';
-import { fastClassNames3 } from '../../../../../../utils';
+import React, { FC, memo, ReactNode } from 'react';
+import { fastClassNames } from '@/utils';
 import style from './game-box.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Game';
 
 type GameBoxProps = {
@@ -10,7 +10,7 @@ type GameBoxProps = {
   tableRowsElement: ReactNode;
 };
 
-export const GameBoxComponent = ({ actionsElement, tableRowsElement }: GameBoxProps) => {
+export const GameBoxComponent: FC<GameBoxProps> = ({ actionsElement, tableRowsElement }) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__container`)}>

@@ -9,7 +9,7 @@
 // };
 
 import { ApiRequest } from '../utils';
-import { User } from '../../_fake-server';
+import { User } from '@/_fake-server';
 
 export const AUTH = {
   INIT: (params?: { userId: string }) => {

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { fastClassNames } from '../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import { CashType } from '../../types';
 import style from './table.module.scss';
 

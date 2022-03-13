@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
 import { AsyncReducerItem, AsyncSagaItem, StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import { Game } from './_components';
 import {
@@ -8,11 +8,18 @@ import {
 } from './redux';
 
 const asyncReducers: Array<AsyncReducerItem> = [GAME_REDUCER_INJECT_CONFIG];
-const asyncSagas: Array<AsyncSagaItem> = [GAME_START_INJECT_SAGA_CONFIG, GAME_STEP_INJECT_SAGA_CONFIG];
+const asyncSagas: Array<AsyncSagaItem> = [
+  GAME_START_INJECT_SAGA_CONFIG,
+  GAME_STEP_INJECT_SAGA_CONFIG
+];
 
-const SnakeReduxPage = () => {
+const SnakeReduxPage: FC = () => {
   return (
-    <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
+    <StoreInjectorConsumer
+      asyncReducers={asyncReducers}
+      asyncSagas={asyncSagas}
+      withEjectReducers
+    >
       <Game/>
     </StoreInjectorConsumer>
   );

@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, ButtonMouseEvent, DropdownList, DropdownItemParams } from "@artemelka/react-components";
-import { fastClassNames } from '../../../../../../utils';
+import {
+  Button,
+  ButtonMouseEvent,
+  DropdownList,
+  DropdownItemParams,
+} from "@artemelka/react-components";
+import { User } from '@/api';
 import {
   authLoginActionSaga,
   authLogoutActionSaga,
@@ -9,8 +14,8 @@ import {
   authLoginIsLoadingSelector,
   authUserSelector,
   isLoginSelector,
-} from '../../../../../../redux';
-import { User } from '../../../../../../api';
+} from '@/redux';
+import { fastClassNames } from '@/utils';
 import style from './app-user.module.scss';
 
 const cn = fastClassNames(style);

@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { FC, memo, useCallback, useState } from 'react';
 import { CollapsePanel } from '@artemelka/react-components';
+import { fastClassNames } from '@/utils';
 import { TaskItem } from '../../redux';
-import { fastClassNames } from '../../../../../../utils';
 import style from './accordion.module.scss';
 
 const cn = fastClassNames(style);
@@ -20,9 +20,9 @@ type AccordionProps = {
   items: Array<TaskItem>;
 };
 
-export const AccordionComponent = ({
+export const AccordionComponent: FC<AccordionProps> = ({
   items
-}: AccordionProps) => {
+}) => {
   const [openId, setOpenId] = useState('');
 
   const handleClick = useCallback((id?: string | number) => {

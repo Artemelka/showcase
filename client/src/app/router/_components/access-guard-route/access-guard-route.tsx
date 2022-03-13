@@ -1,9 +1,9 @@
 import React, {FC, useMemo} from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
-import { authUserRoleSelector, AppStoreWithAuth } from '../../../../redux';
-import { UserRole } from '../../../../api';
-import { AppRouterProps } from '../../types';
+import { AppRouterProps } from '@/app';
+import { authUserRoleSelector, AppStoreWithAuth } from '@/redux';
+import { UserRole } from '@/api';
 
 type MapStateToProps = {
   userRole: UserRole;

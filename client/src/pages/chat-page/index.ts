@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { AppRouteConfig } from '../types';
+import { AppRouteConfig } from '@/pages';
 import { CHAT_PAGE_PATH } from './constants';
 import { CHAT_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
 

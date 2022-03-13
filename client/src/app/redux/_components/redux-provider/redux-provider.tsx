@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { StoreInjectorProvider, AppStore, createInjectorEnhancer } from '@artemelka/redux-store-injector';
 // import logger from 'redux-logger'; // tslint:disable-line:no-implicit-dependencies
-import { appRouterMiddleware } from '../../../router';
+import { appRouterMiddleware } from '@/app/router';
 import { createReducer } from '../../create-reducer';
 
 const sagaMiddleware = createSagaMiddleware();

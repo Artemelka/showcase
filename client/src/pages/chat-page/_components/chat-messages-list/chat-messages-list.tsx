@@ -1,10 +1,10 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import { Text } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../../../utils';
+import { fastClassNames } from '@/utils';
 import { ChatMessage } from '../../redux';
 import style from './chat-messages-list.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-messages-list';
 
 type ChatMessagesListProps = {

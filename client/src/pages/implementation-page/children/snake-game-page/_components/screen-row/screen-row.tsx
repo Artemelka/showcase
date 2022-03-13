@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import { SnakeItem } from '../index';
 import { SnakeBodyItem } from '../../types';
 import { getRowCells } from '../../utils';
@@ -10,12 +10,12 @@ type ScreenRowProps = {
   y: number;
 };
 
-export const ScreenRowComponent = ({
+export const ScreenRowComponent: FC<ScreenRowProps> = ({
   appleItem,
   cells,
   snakeBody,
   y,
-}: ScreenRowProps) => {
+}) => {
   const rowCells = useMemo(() => getRowCells(cells, snakeBody, y), [cells, snakeBody, y]);
   const isAppleInRow = useMemo(() => appleItem.y === y, [appleItem, y]);
 

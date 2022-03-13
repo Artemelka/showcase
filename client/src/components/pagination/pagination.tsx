@@ -5,10 +5,10 @@ import {
   InputChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { fastClassNames3 } from '../../utils';
+import { fastClassNames } from '@/utils';
 import style from './pagination.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Pagination';
 
 type PaginationProps = {

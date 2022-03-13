@@ -4,7 +4,8 @@ import { GAME_TOOLKIT_REDUCER_NAME } from '../../../constants';
 import { getInitialState } from '../../../utils';
 import { AppStoreWithGameToolkit, DirectionItem, GameState, SnakeBodyItem } from '../../../types';
 
-const gameStateSelector = (state: AppStoreWithGameToolkit): GameState => state[GAME_TOOLKIT_REDUCER_NAME] || getInitialState() ;
+const gameStateSelector = (state: AppStoreWithGameToolkit): GameState =>
+  state[GAME_TOOLKIT_REDUCER_NAME] || getInitialState() ;
 
 export const gameAppleItemSelector = createSelector(
   [gameStateSelector],

@@ -5,7 +5,7 @@ import {
 } from '../../selectors';
 import { queueSendTaskActionSaga } from '../../actions';
 
-export function* checkQueueWorkerSaga() {
+export function* checkQueueSaga() {
   const requestCount = yield select(queueRequestCountSelector);
   const maxRequestCount = yield select(queueMaxRequestCountSelector);
 

@@ -1,15 +1,16 @@
 import React, {
+  FC,
   memo,
   SyntheticEvent,
   useCallback,
   useMemo,
   useState
 } from 'react';
-import { Page } from '../../../../components';
-import { fastClassNames3 } from '../../../../utils';
+import { Page } from '@/components';
+import { fastClassNames } from '@/utils';
 import style from './buttons-page.module.scss';
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Buttons-page';
 
 const BUTTONS = [...new Array(4)].map((_, id) => ({
@@ -30,7 +31,7 @@ type ButtonProps = {
   value: string;
 };
 
-const ButtonComponent = ({ disabled, id, onClick, value }: ButtonProps) => {
+const ButtonComponent: FC<ButtonProps> = ({ disabled, id, onClick, value }) => {
   const handleClick = (event: SyntheticEvent<HTMLButtonElement>) => {
     onClick({ event, id });
   };
@@ -50,7 +51,7 @@ const ButtonComponent = ({ disabled, id, onClick, value }: ButtonProps) => {
 
 const MemoButtonComponent = memo(ButtonComponent);
 
-const ButtonsPage = () => {
+const ButtonsPage: FC = () => {
   const [tabId, setTabId] = useState('1');
 
   const handleClick = useCallback(({ event }: ClickEvent) => {

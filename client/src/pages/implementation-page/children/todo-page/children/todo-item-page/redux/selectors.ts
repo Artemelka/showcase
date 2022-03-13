@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
+import { TodoItem } from '@/api';
 import { INITIAL_STATE, TODO_ITEM_REDUCER_NAME } from './constants';
-import { AppStoreWithTodoItem, TodoItemState, TodoItem } from './types';
+import { AppStoreWithTodoItem, TodoItemState } from './types';
 
 const TodoItemStateSelector = (state: AppStoreWithTodoItem): TodoItemState =>
   state[TODO_ITEM_REDUCER_NAME] || INITIAL_STATE;

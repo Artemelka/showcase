@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '../../types';
+import { AppRouteConfig } from '@/pages';
 import { ATM_PAGE_ROUTE_CONFIG } from './atm-page';
 import { BAD_PRACTICES_PAGE_ROUTE_CONFIG } from './bad-practices';
 import { BUTTONS_PAGE_ROUTE_CONFIG } from './buttons-page';

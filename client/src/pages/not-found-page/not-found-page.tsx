@@ -1,13 +1,13 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
 import { Text } from '@artemelka/react-components';
-import { fastClassNames } from '../../utils';
+import { fastClassNames } from '@/utils';
 import { GoHomeLink } from './_components';
 import style from './not-found-page.module.scss';
 
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Not-found-page';
 
-export const NotFoundPageComponent = () => (
+export const NotFoundPageComponent: FC = () => (
   <div className={cn(CLASS_NAME)}>
     <p className={cn(`${CLASS_NAME}__code`)}>404</p>
     <div className={cn(`${CLASS_NAME}__title`)}>

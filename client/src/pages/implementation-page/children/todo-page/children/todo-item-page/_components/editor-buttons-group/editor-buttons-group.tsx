@@ -1,11 +1,11 @@
-import React, {memo, useCallback} from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import {
   Button,
   ButtonMouseEvent,
 } from '@artemelka/react-components';
 import Done from '@material-ui/icons/Done';
 import Clear from '@material-ui/icons/Clear';
-import { fastClassNames } from '../../../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import style from './editor-buttons-group.module.scss';
 
 const cn = fastClassNames(style);
@@ -16,10 +16,10 @@ type EditorButtonsGroupProps = {
   onClick: (id: string) => void;
 };
 
-export const EditorButtonsGroup = memo(({
+const EditorButtonsGroupComponent: FC<EditorButtonsGroupProps> = ({
   isDisabledDone,
-  onClick
-}: EditorButtonsGroupProps) => {
+  onClick,
+}) => {
   const handleClick = useCallback(({ id }: ButtonMouseEvent) => {
     onClick(`${id}`);
   }, [onClick]);
@@ -45,4 +45,6 @@ export const EditorButtonsGroup = memo(({
       </div>
     </div>
   );
-});
+};
+
+export const EditorButtonsGroup = memo(EditorButtonsGroupComponent);

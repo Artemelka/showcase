@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
-import { fastClassNames } from '../../../../utils';
-import { ThemeToggle } from '../../../../components';
-import { APP_PAGES_ROUTE_CONFIG } from '../../../../pages';
+import { APP_PAGES_ROUTE_CONFIG } from '@/pages';
+import { fastClassNames } from '@/utils';
+import { ThemeToggle } from '@/components';
 import { AppNavigation, AppUser } from './_components';
 import style from './app-header.module.scss';
 

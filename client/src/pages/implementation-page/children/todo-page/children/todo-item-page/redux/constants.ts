@@ -1,4 +1,5 @@
-import { TodoItemState, TodoItem } from './types';
+import { TodoItem } from '@/api';
+import { TodoItemState } from './types';
 
 export const TODO_ITEM_REDUCER_NAME = 'todoItem';
 

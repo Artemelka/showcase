@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC, memo } from 'react';
 import {
   Button,
   Overlay,
@@ -6,7 +6,7 @@ import {
   Text,
 } from '@artemelka/react-components';
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import { fastClassNames } from '../../../../../../../../utils';
+import { fastClassNames } from '@/utils';
 import { TitleEditor } from '../title-editor';
 import style from './todo-item-page.module.scss';
 
@@ -22,14 +22,14 @@ type TodoItemViewProps = {
   id: string;
 };
 
-export const TodoItemPageViewComponent = ({
+export const TodoItemPageViewComponent: FC<TodoItemViewProps> = ({
   onGoBackClick,
   onTitleChange,
   title,
   isLoading,
   status,
   id,
-}: TodoItemViewProps) => {
+}) => {
   return (
     <section className={cn(CLASS_NAME)}>
       <header className={cn(`${CLASS_NAME}__header`)}>

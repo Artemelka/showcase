@@ -13,13 +13,13 @@ import {
   updateScore,
   updateSnakeBody,
   setAppleItem,
-} from '../../reducer';
+} from '../../actions';
 
-export function* gameStepWorkerSaga() {
+export function* gameStepSaga() {
   const direction = yield select(gameDirectionSelector);
   const appleItem = yield select(gameAppleItemSelector);
   const snakeBody = yield select(gameSnakeBodySelector);
-  const cells = yield  select(gameCellsSelector);
+  const cells = yield select(gameCellsSelector);
 
   const head = {
     x: snakeBody[0].x + direction.x,

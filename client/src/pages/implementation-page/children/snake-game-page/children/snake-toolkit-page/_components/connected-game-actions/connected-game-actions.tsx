@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import {
   DropdownItemParams,
@@ -30,7 +30,7 @@ type GameActionsProps = MapStateToProps & {
   onStartClick: () => void;
 };
 
-export const GameActionsWrapper = ({
+export const GameActionsWrapper: FC<GameActionsProps> = ({
   cells,
   gameSpeed,
   isFail,
@@ -40,7 +40,7 @@ export const GameActionsWrapper = ({
   onRefresh,
   onStartClick,
   score,
-}: GameActionsProps) => (
+}) => (
   <GameActions
     cells={`${cells.length}`}
     gameSpeed={gameSpeed}
@@ -62,4 +62,4 @@ const mapStateToProps = (state: AppStoreWithGameToolkit): MapStateToProps => ({
   score: gameScoreSelector(state),
 });
 
-export const ConnectedGameActions = connect(mapStateToProps)(memo(GameActionsWrapper));
+export const ConnectedGameActions = connect(mapStateToProps)(GameActionsWrapper);

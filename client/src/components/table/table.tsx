@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import { fastClassNames3 } from '../../utils';
+import { fastClassNames } from '@/utils';
 import { TableRow } from './_components';
 import style from './table.module.scss';
 import {Text} from "@artemelka/react-components";
 
-const cn = fastClassNames3(style);
+const cn = fastClassNames(style);
 const CLASS_NAME = 'Table';
 
 type TableItem = {
