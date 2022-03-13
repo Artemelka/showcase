@@ -1,26 +1,27 @@
-// import { AuthApi } from '../../_fake-server';
+// import { AuthApi } from '@/_fake-server';
+import { ApiRequest } from '../utils';
+import { User } from '@/_fake-server';
 
 // const authApi = new AuthApi();
 
-// export const AUTH = {
+// const FAKE_AUTH = {
 //   INIT: authApi.init,
 //   LOGOUT: authApi.logOut,
 //   LOGIN: authApi.logIn,
 // };
 
-import { ApiRequest } from '../utils';
-import { User } from '@/_fake-server';
-
-export const AUTH = {
+const TRUE_AUTH = {
   INIT: (params?: { userId: string }) => {
-    return ApiRequest.post<User>('http://localhost:8080/api/v1/auth', { body: params || {} });
+    return ApiRequest.post<User>('v1/auth', { body: params || {} });
   },
   LOGOUT: () => {
-    return ApiRequest.get('http://localhost:8080/api/v1/auth/logout');
+    return ApiRequest.get('v1/auth/logout');
   },
   LOGIN: (params: { userId: string }) => {
-    return ApiRequest.post<User>('http://localhost:8080/api/v1/auth/login', { body: params });
+    return ApiRequest.post<User>('v1/auth/login', { body: params });
   },
 };
 
-export type { Auth, User, UserRole } from '../../_fake-server';
+export const AUTH = TRUE_AUTH;
+
+export type { Auth, User, UserRole } from '@/_fake-server';

@@ -1,16 +1,10 @@
 import { getQueryString } from './getQueryString';
-import { request } from './request';
+import { request, METHOD } from './request';
 import {
-  RequestMethod,
   RequestGetParams,
   RequestPostParams,
   ApiResponse,
 } from './types';
-
-const METHOD: Record<RequestMethod, RequestMethod> = {
-  GET: 'GET',
-  POST: 'POST',
-}
 
 class Request {
   get = <D>(url: string, params?: RequestGetParams): Promise<ApiResponse<D>> => {

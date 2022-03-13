@@ -10,7 +10,12 @@ export function* authLoginWorkerSaga() {
   yield put(setStartAuthLogin());
 
   try {
-    const { user } = yield call(API.AUTH.LOGIN, { userId: '1' });
+    const { isError, errorMessage, user } = yield call(API.AUTH.LOGIN, { userId: '1' });
+
+    if (isError) {
+      console.log('=== response ===', errorMessage);
+      throw Error(errorMessage);
+    }
 
     yield put(authInit(user));
   } catch (error) {
