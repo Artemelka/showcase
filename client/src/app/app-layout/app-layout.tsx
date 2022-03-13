@@ -7,9 +7,9 @@ import {
   AsyncSagaItem
 } from '@artemelka/redux-store-injector';
 import { Layout } from '@artemelka/react-components';
-import { PageLoader } from '../../components';
-import { AppRouteConfig } from '../../pages/types';
-import { AsyncRoutes } from '../router/_components';
+import { PageLoader } from '@/components';
+import { AppRouteConfig } from '@/pages/types';
+import { AsyncRoutes } from '@/app/router/_components';
 import { AppHeader } from './_components';
 import {
   AUTH_REDUCER_INJECT_CONFIG,

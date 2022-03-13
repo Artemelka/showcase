@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { Anchor, Text } from '@artemelka/react-components';
-import { Page } from '../../components';
-import { fastClassNames } from '../../utils';
-import { ReactComponent as Logo } from '../../logo.svg';
+import { Page } from '@/components';
+import { fastClassNames } from '@/utils';
+import { ReactComponent as Logo } from '@/logo.svg';
 import style from './home-page.module.scss';
 
 const cn = fastClassNames(style);
