@@ -1,5 +1,5 @@
 import { DropdownItemParams } from '@artemelka/react-components';
-import {AppStore, BaseAction} from '@/app';
+import { BaseAction } from '@/app';
 import { GAME_PURE_REDUX_REDUCER_NAME, GAME_TOOLKIT_REDUCER_NAME } from './constants';
 
 export type GameState = {
@@ -32,8 +32,8 @@ export type GameReducerCase = {
   updateSnakeBody: (state: GameState, action: UpdateSnakeBodyAction) => void;
 }
 
-export type AppStoreWithGameRedux = AppStore & { [GAME_PURE_REDUX_REDUCER_NAME]: GameState };
-export type AppStoreWithGameToolkit = AppStore & { [GAME_TOOLKIT_REDUCER_NAME]: GameState };
+export type GameReduxStore = { [GAME_PURE_REDUX_REDUCER_NAME]: GameState };
+export type GameToolkitStore = { [GAME_TOOLKIT_REDUCER_NAME]: GameState };
 
 export type SnakeBodyItem = {
   x: number;

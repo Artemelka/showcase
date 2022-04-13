@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import { INITIAL_STATE, CHAT_REDUCER_NAME } from './constants';
-import { AppStoreWithChat, ChatMessage, ChatUser } from './types';
+import { ChatStore, ChatMessage, ChatUser } from './types';
 
-const chatSelector = (store: AppStoreWithChat) => store[CHAT_REDUCER_NAME] || INITIAL_STATE;
+const chatSelector = (store: ChatStore) => store[CHAT_REDUCER_NAME] || INITIAL_STATE;
 
 export const messageSelector = createSelector(
   [chatSelector],

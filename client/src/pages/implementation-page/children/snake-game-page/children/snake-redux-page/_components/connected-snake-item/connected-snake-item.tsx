@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { AppStore } from '@/app';
 import { SnakeItem } from '../../../../_components';
 import { gameIsAppleItemSelector, gameIsSnakeItemSelector } from '../../redux';
-import { AppStoreWithGameRedux } from '../../../../types';
 
 type MapStateToProps = {
   isApple: boolean;
@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const ConnectedSnakeItem = connect(
-  (state: AppStoreWithGameRedux, ownProps: Props): MapStateToProps => ({
+  (state: AppStore, ownProps: Props): MapStateToProps => ({
     isApple: gameIsAppleItemSelector(state, ownProps),
     isSnakeItem: gameIsSnakeItemSelector(state, ownProps),
   })

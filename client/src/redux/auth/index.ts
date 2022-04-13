@@ -29,4 +29,4 @@ export {
   AUTH_LOGOUT_INJECT_SAGA_CONFIG,
 } from './sagas';
 
-export type { AppStoreWithAuth } from './types';
+export type { AuthStore } from './types';

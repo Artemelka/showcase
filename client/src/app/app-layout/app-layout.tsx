@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   StoreInjectorConsumer,
@@ -7,10 +6,10 @@ import {
   AsyncSagaItem
 } from '@artemelka/redux-store-injector';
 import { Layout } from '@artemelka/react-components';
-import { AppRouteConfig } from '@/pages/types';
-import { AsyncRoutes } from '@/app/router/_components';
+import { AppStore } from '@/app';
+import { AsyncRoutes } from '@/app/router';
 import { PageLoader } from '@/components';
-import { AppHeader } from './_components';
+import { AppRouteConfig } from '@/pages/types';
 import {
   AUTH_REDUCER_INJECT_CONFIG,
   AUTH_INIT_INJECT_SAGA_CONFIG,
@@ -18,8 +17,8 @@ import {
   AUTH_LOGOUT_INJECT_SAGA_CONFIG,
   authInitActionSaga,
   authIsLoadingSelector,
-  AppStoreWithAuth,
-} from '../../redux';
+} from '@/redux';
+import { AppHeader } from './_components';
 
 const asyncReducers: Array<AsyncReducerItem> = [AUTH_REDUCER_INJECT_CONFIG];
 const asyncSagas: Array<AsyncSagaItem> = [
@@ -28,15 +27,15 @@ const asyncSagas: Array<AsyncSagaItem> = [
   AUTH_LOGOUT_INJECT_SAGA_CONFIG,
 ];
 
-type MapDispatchToProps = {
-  authInit: () => Action;
+const mapDispatchToProps = {
+  authInit: authInitActionSaga
 };
 
-type MapStateToProps = {
-  isLoading: boolean;
-}
+const mapStateToProps = (state: AppStore) => ({
+  isLoading: authIsLoadingSelector(state)
+});
 
-type AppLayoutProps = MapStateToProps & MapDispatchToProps & {
+type AppLayoutProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & {
   routesConfig: Array<AppRouteConfig>;
 };
 
@@ -63,13 +62,5 @@ export class AppLayoutComponent extends Component<AppLayoutProps> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithAuth): MapStateToProps => ({
-  isLoading: authIsLoadingSelector(state)
-});
-
-const mapDispatchToProps: MapDispatchToProps = {
-  authInit: authInitActionSaga
-};
 
 export const AppLayout = connect(mapStateToProps, mapDispatchToProps)(AppLayoutComponent);

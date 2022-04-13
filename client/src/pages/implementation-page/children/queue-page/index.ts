@@ -2,6 +2,8 @@ import { lazy } from 'react';
 import { IMPLEMENTATION_CHILDREN_PATH } from '../../constants';
 import { AppRouteConfig } from '../../../types';
 
+export type { QueueStore } from './redux';
+
 export const QUEUE_PAGE_ROUTE_CONFIG: AppRouteConfig = {
   component: lazy(() => import('./queue-page')),
   exact: true,

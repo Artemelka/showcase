@@ -19,4 +19,4 @@ export {
   setStopAuthInit,
   setStopAuthLogin,
 } from './auth';
-export type { AppStoreWithAuth } from './auth';
+export type { AuthStore } from './auth';

@@ -1,13 +1,13 @@
 import React, { Component, SyntheticEvent } from 'react';
-import { connect, ResolveThunks } from 'react-redux';
+import { connect } from 'react-redux';
 import { v4 as getId } from 'uuid';
 import { push } from 'connected-react-router';
 import { Redirect } from 'react-router';
 import { Button, Input, InputChangeEvent } from '@artemelka/react-components';
-import { fastClassNames } from '@/utils';
+import { AppStore } from '@/app';
 import { MESSAGE_TYPE, socketConnect, SocketHocProps } from '@/services/socket';
+import { fastClassNames } from '@/utils';
 import {
-  AppStoreWithChat,
   ChatUser,
   ChatSetUser,
   setUser,
@@ -26,10 +26,11 @@ const mapDispatchToProps = {
   setUser,
 };
 
-type MapStateToProps = {
-  user: ChatUser,
-};
-type ChatLoginFormProps = MapStateToProps & ResolveThunks<typeof mapDispatchToProps> & SocketHocProps;
+const mapStateToProps = (state: AppStore) => ({
+  user: userSelector(state),
+});
+
+type ChatLoginFormProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & SocketHocProps;
 type State = {
   userName: string;
   isRedirect: boolean;
@@ -108,10 +109,6 @@ export class ChatLoginForm extends Component<ChatLoginFormProps, State> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithChat): MapStateToProps => ({
-  user: userSelector(state),
-});
 
 export const ConnectedChatLoginForm = socketConnect(
   connect(mapStateToProps, mapDispatchToProps)(ChatLoginForm)

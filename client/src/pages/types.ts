@@ -1,4 +1,4 @@
-import { AppRouterProps } from '../app';
+import { AppRouterProps } from '@/app/router';
 
 export type AppRouteConfig = AppRouterProps & {
   name: string;

@@ -6,6 +6,10 @@ import { QUEUE_PAGE_ROUTE_CONFIG } from './queue-page';
 import { SNAKE_GAME_PAGE_ROUTE_CONFIG } from './snake-game-page';
 import { TODO_PAGE_ROUTE_CONFIG } from './todo-page';
 
+export type { QueueStore } from './queue-page';
+export type { GameReduxStore, GameToolkitStore } from './snake-game-page';
+export type { TodoItemStore, TodoStore } from './todo-page';
+
 export const IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG: Array<AppRouteConfig> = [
   ATM_PAGE_ROUTE_CONFIG,
   BAD_PRACTICES_PAGE_ROUTE_CONFIG,

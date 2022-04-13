@@ -1,7 +1,7 @@
 import { put, call, select } from 'redux-saga/effects';
 import { replace } from 'connected-react-router';
-import { routerLocationSelector } from '../../../../../../../../../app';
-import { API } from '../../../../../../../../../api';
+import { routerLocationSelector } from '@/app/router';
+import { API } from '@/api';
 import { TODO_CHILDREN_PATH } from '../../../../../constants';
 import { setItem, setLoadingStart, setLoadingStop } from '../../reducer';
 

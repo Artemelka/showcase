@@ -4,13 +4,13 @@ import { TodoItem, TodoItemStatus } from '@/api';
 import { ROWS_OPTIONS } from '../../../constants';
 import { TODO_REDUCER_NAME, INITIAL_STATE } from './constants';
 import {
-  AppStoreWithTodo,
+  TodoStore,
   TodoState,
   FilterState,
   PaginationConfig,
 } from './types';
 
-const todoStateSelector = (state: AppStoreWithTodo): TodoState =>
+const todoStateSelector = (state: TodoStore): TodoState =>
   state[TODO_REDUCER_NAME] || INITIAL_STATE;
 
 export const todoListSelector = createSelector(

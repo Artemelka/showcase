@@ -1,5 +1,5 @@
 import { DropdownItemParams } from '@artemelka/react-components';
-import { AppStore, BaseAction } from '@/app';
+import { BaseAction } from '@/app';
 import { QUEUE_REDUCER_NAME } from './constants';
 
 export type TaskItem = {
@@ -30,4 +30,4 @@ export type QueueReducerCase = {
   updateTasks: (state: QueueState, payload: BaseAction<Array<TaskItem>>) => void;
 };
 
-export type AppStoreWithQueue = AppStore & { [QUEUE_REDUCER_NAME]: QueueState };
+export type QueueStore = { [QUEUE_REDUCER_NAME]: QueueState };

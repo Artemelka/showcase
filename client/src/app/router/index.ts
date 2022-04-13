@@ -8,4 +8,4 @@ export {
 } from './_components';
 export * from './selectors';
 export { appRouterMiddleware } from './middleware';
-export type { AppRouterProps } from './types';
+export type { AppRouterProps, RouterStore } from './types';

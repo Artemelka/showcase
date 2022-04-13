@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import { User, UserRole } from '@/api';
 import { AUTH_REDUCER_NAME, INITIAL_STATE } from './constants';
-import { AppStoreWithAuth } from './types';
+import { AuthStore } from './types';
 
-const authSelector = (state: AppStoreWithAuth) => state[AUTH_REDUCER_NAME] || INITIAL_STATE;
+const authSelector = (state: AuthStore) => state[AUTH_REDUCER_NAME] || INITIAL_STATE;
 
 export const isLoginSelector = createSelector(
   [authSelector],

@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
 import { DropdownItemParams } from '@artemelka/react-components';
 import { INITIAL_STATE, QUEUE_REDUCER_NAME } from './constants';
-import { AppStoreWithQueue, QueueState, TaskItem, Tasks } from './types';
+import { QueueStore, QueueState, TaskItem, Tasks } from './types';
 
-const queueSelector = (state: AppStoreWithQueue): QueueState => state[QUEUE_REDUCER_NAME] || INITIAL_STATE;
+const queueSelector = (state: QueueStore): QueueState => state[QUEUE_REDUCER_NAME] || INITIAL_STATE;
 
 export const queueTasksSelector = createSelector(
   [queueSelector],

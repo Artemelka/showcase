@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   StoreInjectorConsumer,
@@ -29,10 +28,11 @@ const asyncSagas: Array<AsyncSagaItem> = [
   GET_LIST_SAGA_INJECT_CONFIG,
 ];
 
-type MapDispatchToProps = {
-  getList: () => Action<string>;
-}
-type TodoListPageProps = MapDispatchToProps;
+const mapDispatchToProps = {
+  getList: getListActionSaga,
+};
+
+type TodoListPageProps = typeof mapDispatchToProps;
 
 export class TodoListPageContainer extends Component<TodoListPageProps> {
   componentDidMount() {
@@ -65,9 +65,5 @@ export class TodoListPageContainer extends Component<TodoListPageProps> {
     );
   }
 }
-
-const mapDispatchToProps: MapDispatchToProps = {
-  getList: getListActionSaga,
-};
 
 export const TodoListPage = connect(null, mapDispatchToProps)(TodoListPageContainer);

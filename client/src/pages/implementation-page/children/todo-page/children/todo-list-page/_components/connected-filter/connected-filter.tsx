@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
 import { SelectChangeEvent } from '@artemelka/react-components';
+import { AppStore } from '@/app';
 import { TodoItemStatus } from '@/api';
 import { FilterSelect } from '@/components';
 import {
   changeFilter,
   getListActionSaga,
   todoFilterSelector,
-  AppStoreWithTodo,
-  FilterState,
-  ChangeFilterAction,
 } from '../../redux';
 import { FILTER_OPTIONS } from '../../../../constants';
 
-type MapStateToProps = {
-  filter: Array<FilterState>;
-}
-type MapDispatchToProps = {
-  changeFilter: (item: Array<FilterState>) => ChangeFilterAction;
-  getList: () => Action<string>;
-}
-type ConnectedFilterProps = MapStateToProps & MapDispatchToProps & {};
+const mapStateToProps = (state: AppStore) => ({
+  filter: todoFilterSelector(state),
+});
+const mapDispatchToProps = {
+  changeFilter,
+  getList: getListActionSaga,
+};
+
+type ConnectedFilterProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class ConnectedFilterContainer extends Component<ConnectedFilterProps> {
   handleFilterChange = ({ items }: SelectChangeEvent) => {
@@ -49,13 +47,5 @@ export class ConnectedFilterContainer extends Component<ConnectedFilterProps> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithTodo): MapStateToProps => ({
-  filter: todoFilterSelector(state),
-});
-const mapDispatchToProps: MapDispatchToProps = {
-  changeFilter,
-  getList: getListActionSaga,
-};
 
 export const ConnectedFilter = connect(mapStateToProps, mapDispatchToProps)(ConnectedFilterContainer);

@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   ButtonGroup,
   ButtonMouseEvent,
 } from '@artemelka/react-components';
-import { BaseAction } from '@/app';
+import { AppStore } from '@/app';
 import {
   getListActionSaga,
   resetPagination,
   setCategory,
   todoActiveCategorySelector,
-  AppStoreWithTodo,
 } from '../../redux';
 import { BUTTONS } from '../../../../constants';
 
-type MapStateToProps = {
-  activeCategory: string;
-}
-type MapDispatchToProps = {
-  getList: () => Action<string>;
-  resetPagination: () => Action<string>;
-  setCategory: (category: string) => BaseAction<string>;
-}
-type ConnectedTabsProps = MapStateToProps & MapDispatchToProps & {};
+const mapStateToProps = (state: AppStore) => ({
+  activeCategory: todoActiveCategorySelector(state),
+});
+
+const mapDispatchToProps = {
+  getList: getListActionSaga,
+  resetPagination,
+  setCategory,
+};
+
+type ConnectedTabsProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class ConnectedTabsContainer extends Component<ConnectedTabsProps> {
   handleClick = ({ id }: ButtonMouseEvent) => {
@@ -45,14 +45,5 @@ export class ConnectedTabsContainer extends Component<ConnectedTabsProps> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithTodo): MapStateToProps => ({
-  activeCategory: todoActiveCategorySelector(state),
-});
-const mapDispatchToProps: MapDispatchToProps = {
-  getList: getListActionSaga,
-  resetPagination,
-  setCategory,
-};
 
 export const ConnectedTabs = connect(mapStateToProps, mapDispatchToProps)(ConnectedTabsContainer);

@@ -1,4 +1,4 @@
-import { AppStore, BaseAction } from '@/app';
+import { BaseAction } from '@/app';
 import { CHAT_REDUCER_NAME } from './constants';
 
 type BaseMessage = {
@@ -45,4 +45,4 @@ export type ChatReducerCase = {
   addInUserList: (state: ChatState, payload: SetUserAction) => void;
 };
 
-export type AppStoreWithChat = AppStore & { [CHAT_REDUCER_NAME]: ChatState };
+export type ChatStore = { [CHAT_REDUCER_NAME]: ChatState };

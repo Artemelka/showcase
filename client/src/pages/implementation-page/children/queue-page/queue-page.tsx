@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
 import {
   AsyncReducerItem,
@@ -7,17 +6,15 @@ import {
   StoreInjectorConsumer,
 } from '@artemelka/redux-store-injector';
 import {
-  DropdownItemParams,
   InputChangeEvent,
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { BaseAction } from '@/app';
+import { AppStore } from '@/app';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
 import {
   addTasks,
-  AppStoreWithQueue,
   changeCreateTaskQuantity,
   changeFilter,
   changeRequestCount,
@@ -35,7 +32,6 @@ import {
   queueTasksArraySelector,
   SEND_TASK_INJECT_SAGA_CONFIG,
   TaskItem,
-  Tasks,
   updateTasks,
 } from './redux';
 import { Accordion, Form } from './_components';
@@ -55,24 +51,26 @@ const asyncSagas: Array<AsyncSagaItem> = [
   GET_RESOLVED_TASK_INJECT_SAGA_CONFIG,
 ];
 
-type MapStateToProps = {
-  allTasks: Array<TaskItem>;
-  createdTasks: Array<TaskItem>;
-  createTaskQuantity: number;
-  filteredTasks: Array<TaskItem>;
-  filterValue: DropdownItemParams;
-  maxRequestCount: number;
+const mapStateToProps = (state: AppStore) => ({
+  allTasks: queueTasksArraySelector(state),
+  createdTasks: queueCreatedTasksSelector(state),
+  createTaskQuantity: queueCreateTasksQuantitySelector(state),
+  filteredTasks: queueFilteredTasksSelector(state),
+  filterValue: queueFilterValuesSelector(state),
+  maxRequestCount: queueMaxRequestCountSelector(state),
+});
+
+const mapDispatchToProps = {
+  addTasks,
+  changeCounter: changeRequestCount,
+  changeFilter,
+  changeQuantity: changeCreateTaskQuantity,
+  checkQueue: checkQueueActionSaga,
+  sendTask: queueSendTaskActionSaga,
+  updateTasks,
 }
-type MapDispatchToProps = {
-  addTasks: (payload: Tasks) => BaseAction<Tasks>;
-  changeCounter: (payload: number) => BaseAction<number>;
-  changeFilter: (payload: DropdownItemParams) => BaseAction<DropdownItemParams>;
-  changeQuantity: (payload: number) => BaseAction<number>;
-  checkQueue: () => Action<string>;
-  sendTask: () => Action<string>;
-  updateTasks: (payload: Array<TaskItem>) => BaseAction<Array<TaskItem>>;
-}
-type QueuePageProps = MapStateToProps & MapDispatchToProps;
+
+type QueuePageProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class QueuePage extends Component<QueuePageProps>{
   handleClear = () => {
@@ -129,24 +127,6 @@ export class QueuePage extends Component<QueuePageProps>{
       </StoreInjectorConsumer>
     );
   }
-}
-
-const mapStateToProps = (state: AppStoreWithQueue): MapStateToProps => ({
-  allTasks: queueTasksArraySelector(state),
-  createdTasks: queueCreatedTasksSelector(state),
-  createTaskQuantity: queueCreateTasksQuantitySelector(state),
-  filteredTasks: queueFilteredTasksSelector(state),
-  filterValue: queueFilterValuesSelector(state),
-  maxRequestCount: queueMaxRequestCountSelector(state),
-});
-const mapDispatchToProps: MapDispatchToProps = {
-  addTasks,
-  changeCounter: changeRequestCount,
-  changeFilter,
-  changeQuantity: changeCreateTaskQuantity,
-  checkQueue: checkQueueActionSaga,
-  sendTask: queueSendTaskActionSaga,
-  updateTasks,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QueuePage);

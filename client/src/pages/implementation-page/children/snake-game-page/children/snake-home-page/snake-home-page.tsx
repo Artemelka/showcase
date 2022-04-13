@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push, Push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { ButtonMouseEvent, Card } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
 import { SNAKE_GAME_CHILDREN_PATH } from '../../constants';
@@ -12,10 +12,11 @@ const CLASS_NAME = 'Snake-home-page';
 const BUTTON_LABEL = 'show';
 const DESCRIPTION = 'Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является станд...'
 
-type MapDispatchToProps = {
-  push: Push
-}
-type SnakeHomePageProps = MapDispatchToProps;
+const mapDispatchToProps = {
+  push
+};
+
+type SnakeHomePageProps = typeof mapDispatchToProps;
 
 class SnakeHomePage extends Component<SnakeHomePageProps> {
   handleButtonClick = ({ id }: ButtonMouseEvent) => {
@@ -72,10 +73,6 @@ class SnakeHomePage extends Component<SnakeHomePageProps> {
       </div>
     );
   }
-}
-
-const mapDispatchToProps: MapDispatchToProps = {
-  push
 }
 
 export default connect(null, mapDispatchToProps)(SnakeHomePage);

@@ -1,23 +1,20 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Text } from '@artemelka/react-components';
+import { AppStore } from '@/app';
 import { fastClassNames } from '@/utils';
-import {
-  ChatUser,
-  AppStoreWithChat,
-  usersListSelector,
-  userSelector,
-} from '../../redux';
+import { usersListSelector, userSelector } from '../../redux';
 import style from './chat-users-list.module.scss';
 
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-users-list';
 
-type MapStateToProps = {
-  user: ChatUser;
-  usersList: Array<ChatUser>;
-};
-type ChatUsersListProps = MapStateToProps & {};
+const mapStateToProps = (store: AppStore) => ({
+  user: userSelector(store),
+  usersList: usersListSelector(store),
+});
+
+type ChatUsersListProps = ReturnType<typeof mapStateToProps>;
 
 export const ChatUsersListComponent: FC<ChatUsersListProps> = ({ user, usersList }) => {
   return (
@@ -41,10 +38,5 @@ export const ChatUsersListComponent: FC<ChatUsersListProps> = ({ user, usersList
     </aside>
   );
 };
-
-const mapStateToProps = (store: AppStoreWithChat): MapStateToProps => ({
-  user: userSelector(store),
-  usersList: usersListSelector(store),
-});
 
 export const ChatUsersList = connect(mapStateToProps)(ChatUsersListComponent);

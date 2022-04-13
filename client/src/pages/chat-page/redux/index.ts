@@ -16,7 +16,7 @@ export {
 } from './sagas/send-message';
 export type {
   AddMessageAction,
-  AppStoreWithChat,
+  ChatStore,
   ChatMessage,
   SetUserAction,
   ChatUser,

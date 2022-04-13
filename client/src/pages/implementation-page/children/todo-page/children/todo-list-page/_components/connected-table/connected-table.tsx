@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
-import { push, Push } from 'connected-react-router';
-import { DropdownItemParams, Overlay, WindowLoader } from '@artemelka/react-components';
+import { push } from 'connected-react-router';
+import { Overlay, WindowLoader } from '@artemelka/react-components';
+import { AppStore } from '@/app';
 import { TodoItem } from '@/api';
-import { BaseAction } from '@/app';
 import { Pagination, Table } from '@/components';
 import { fastClassNames } from '@/utils';
 import {
-  AppStoreWithTodo,
   todoIsLoadingSelector,
   todoListSelector,
   todoPaginationLimitSelector,
   todoPaginationOffsetSelector,
   todoPaginationTotalSelector,
   setPagination,
-  PaginationConfig,
   getListActionSaga,
 } from '../../redux';
 import { TODO_CHILDREN_PATH } from '../../../../constants';
@@ -24,20 +21,21 @@ import style from './connected-table.module.scss';
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Connected-table';
 
-type MapStateToProps = {
-  isLoading: boolean;
-  limit: Array<DropdownItemParams>;
-  list: Array<TodoItem>;
-  total: number;
-  offset: number;
-}
-type MapDispatchToProps = {
-  push: Push;
-  setPagination: (config: PaginationConfig) => BaseAction<PaginationConfig>;
-  getList: () => Action<string>;
-}
+const mapStateToProps = (state: AppStore) => ({
+  isLoading: todoIsLoadingSelector(state),
+  limit: todoPaginationLimitSelector(state),
+  list: todoListSelector(state),
+  total: todoPaginationTotalSelector(state),
+  offset: todoPaginationOffsetSelector(state),
+});
 
-type ConnectedTableProps = MapStateToProps & MapDispatchToProps;
+const mapDispatchToProps = {
+  push,
+  setPagination,
+  getList: getListActionSaga,
+};
+
+type ConnectedTableProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class ConnectedTableComponent extends Component<ConnectedTableProps> {
   handlePaginationChange = (offset: number) => {
@@ -85,18 +83,5 @@ export class ConnectedTableComponent extends Component<ConnectedTableProps> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithTodo): MapStateToProps => ({
-  isLoading: todoIsLoadingSelector(state),
-  limit: todoPaginationLimitSelector(state),
-  list: todoListSelector(state),
-  total: todoPaginationTotalSelector(state),
-  offset: todoPaginationOffsetSelector(state),
-});
-const mapDispatchToProps: MapDispatchToProps = {
-  push,
-  setPagination,
-  getList: getListActionSaga,
-};
 
 export const ConnectedTable = connect(mapStateToProps, mapDispatchToProps)(ConnectedTableComponent);

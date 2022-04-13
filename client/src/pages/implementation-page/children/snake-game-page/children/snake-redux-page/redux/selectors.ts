@@ -2,9 +2,9 @@ import { createSelector } from 'reselect';
 import { DropdownItemParams } from '@artemelka/react-components';
 import { GAME_PURE_REDUX_REDUCER_NAME } from '../../../constants';
 import { getInitialState } from '../../../utils';
-import { AppStoreWithGameRedux, DirectionItem, GameState, SnakeBodyItem } from '../../../types';
+import { GameReduxStore, DirectionItem, GameState, SnakeBodyItem } from '../../../types';
 
-const gameStateSelector = (state: AppStoreWithGameRedux): GameState =>
+const gameStateSelector = (state: GameReduxStore): GameState =>
   state[GAME_PURE_REDUX_REDUCER_NAME] || getInitialState();
 
 export const gameAppleItemSelector = createSelector(
@@ -52,13 +52,13 @@ export const gameDelaySelector = createSelector(
   (gameSpeed): number => gameSpeed[0].extraData.delay
 );
 
-export const gameIsAppleItemSelector = (state: AppStoreWithGameRedux, { x, y }: SnakeBodyItem): boolean => {
+export const gameIsAppleItemSelector = (state: GameReduxStore, { x, y }: SnakeBodyItem): boolean => {
   const appleItem = gameAppleItemSelector(state);
 
   return appleItem.x === x && appleItem.y === y;
 }
 
-export const gameIsSnakeItemSelector = (state: AppStoreWithGameRedux, { x, y }: SnakeBodyItem): boolean => {
+export const gameIsSnakeItemSelector = (state: GameReduxStore, { x, y }: SnakeBodyItem): boolean => {
   const snakeBody = gameSnakeBodySelector(state);
 
   return snakeBody.some(bodyItem => x === bodyItem.x && y === bodyItem.y);

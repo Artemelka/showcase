@@ -1,25 +1,24 @@
 import React, {Component} from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
-import { DropdownItemParams, SelectChangeEvent } from '@artemelka/react-components';
-import { BaseAction } from '@/app';
+import { SelectChangeEvent } from '@artemelka/react-components';
+import { AppStore } from '@/app';
 import { FilterSelect } from '@/components';
 import {
   getListActionSaga,
   setLimit,
   todoPaginationLimitSelector,
-  AppStoreWithTodo,
 } from '../../redux';
 import { ROWS_OPTIONS } from '../../../../constants';
 
-type MapStateToProps = {
-  limit: Array<DropdownItemParams>;
-}
-type MapDispatchToProps = {
-  getList: () => Action<string>;
-  setLimit: (limit: number) => BaseAction<number>;
-}
-type ConnectedRowSelectProps = MapStateToProps & MapDispatchToProps & {};
+const mapStateToProps = (state: AppStore) => ({
+  limit: todoPaginationLimitSelector(state),
+});
+const mapDispatchToProps = {
+  getList: getListActionSaga,
+  setLimit,
+};
+
+type ConnectedRowSelectProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class ConnectedRowSelectContainer extends Component<ConnectedRowSelectProps> {
   handleRowCountChange = ({ items }: SelectChangeEvent) => {
@@ -41,13 +40,5 @@ export class ConnectedRowSelectContainer extends Component<ConnectedRowSelectPro
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithTodo): MapStateToProps => ({
-  limit: todoPaginationLimitSelector(state),
-});
-const mapDispatchToProps: MapDispatchToProps = {
-  getList: getListActionSaga,
-  setLimit,
-};
 
 export const ConnectedRowSelect = connect(mapStateToProps, mapDispatchToProps)(ConnectedRowSelectContainer);

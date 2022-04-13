@@ -3,6 +3,14 @@ import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
 import { IMPLEMENTATION_PAGE_PATH, IMPLEMENTATION_CHILDREN_PATH } from './constants';
 import { AppRouteConfig } from '../types';
 
+export type {
+  QueueStore,
+  GameReduxStore,
+  GameToolkitStore,
+  TodoItemStore,
+  TodoStore,
+} from './children';
+
 export const IMPLEMENTATION_PAGE_ROUTE_CONFIG: AppRouteConfig = {
   children: IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG,
   component: lazy(() => import('./implementation-page')),

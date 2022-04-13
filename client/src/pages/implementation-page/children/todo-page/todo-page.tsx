@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { AppRoute, AppRouterSwitch } from '@/app';
+import { AppRoute, AppRouterSwitch } from '@/app/router';
 import { Page } from '@/components';
 import { TODO_CHILDREN_ROUTE_CONFIG } from './children';
 

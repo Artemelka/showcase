@@ -6,11 +6,10 @@ import {
   DropdownList,
   DropdownItemParams,
 } from "@artemelka/react-components";
-import { User } from '@/api';
+import { AppStore } from '@/app';
 import {
   authLoginActionSaga,
   authLogoutActionSaga,
-  AppStoreWithAuth,
   authLoginIsLoadingSelector,
   authUserSelector,
   isLoginSelector,
@@ -27,18 +26,18 @@ const ITEMS: Array<DropdownItemParams> = [
   },
 ];
 
-type MapStateToProps = {
-  isLoginLoading: boolean;
-  isLogin: boolean;
-  user: User;
+const mapStateToProps = (state: AppStore) => ({
+  isLoginLoading: authLoginIsLoadingSelector(state),
+  isLogin: isLoginSelector(state),
+  user: authUserSelector(state),
+});
+
+const mapDispatchToProps = {
+  login: authLoginActionSaga,
+  logout: authLogoutActionSaga,
 };
 
-type MapDispatchToProps = {
-  login: () => void,
-  logout: () => void,
-};
-
-type AppUserProps = MapStateToProps & MapDispatchToProps;
+type AppUserProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 type State = {
   isOpen: boolean;
@@ -101,16 +100,5 @@ export class AppUserContainer extends Component<AppUserProps, State> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithAuth): MapStateToProps => ({
-  isLoginLoading: authLoginIsLoadingSelector(state),
-  isLogin: isLoginSelector(state),
-  user: authUserSelector(state),
-});
-
-const mapDispatchToProps: MapDispatchToProps = {
-  login: authLoginActionSaga,
-  logout: authLogoutActionSaga,
-};
 
 export const AppUser = connect(mapStateToProps, mapDispatchToProps)(AppUserContainer);

@@ -5,7 +5,7 @@ import {
   StoreInjectorConsumer,
 } from '@artemelka/redux-store-injector';
 import { Layout } from '@artemelka/react-components';
-import { AppRoute, AppRouterSwitch } from '../../app';
+import { AppRoute, AppRouterSwitch } from '@/app/router';
 import { wsService } from '@/services/socket';
 
 import { CHAT_PAGE_CHILDREN_PATH } from './constants';

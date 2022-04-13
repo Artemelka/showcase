@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { API } from '../../../../../../../api';
+import { API } from '@/api';
 import { checkQueueActionSaga, getResolvedTaskActionSaga } from '../../actions';
 import { queuePendingTasksSelector } from '../../selectors';
 import { decrementCounter, incrementCounter, updateTasks } from '../../reducer';

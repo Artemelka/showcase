@@ -1,5 +1,5 @@
 import { TodoItem, TodoItemStatus } from '@/api';
-import { AppStore, BaseAction } from '@/app';
+import { BaseAction } from '@/app';
 import { TODO_REDUCER_NAME } from './constants';
 
 export type FilterState = {
@@ -42,4 +42,4 @@ export type TodoReducerCase = {
   stopLoader: (state: TodoState) => void;
 };
 
-export type AppStoreWithTodo = AppStore & {[TODO_REDUCER_NAME]: TodoState};
+export type TodoStore = { [TODO_REDUCER_NAME]: TodoState };

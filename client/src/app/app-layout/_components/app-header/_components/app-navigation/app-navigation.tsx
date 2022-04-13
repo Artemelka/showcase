@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push, Push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { Anchor, AnchorMouseEvent } from '@artemelka/react-components';
+import { AppStore } from '@/app';
+import { locationPathNameSelector } from '@/app/router';
 import { AppRouteConfig } from '@/pages/types';
-import { authUserRoleSelector, AppStoreWithAuth } from '@/redux';
+import { authUserRoleSelector } from '@/redux';
 import { fastClassNames } from '@/utils';
-import { locationPathNameSelector } from '@/app';
-import { UserRole } from '@/api';
 import {
   findActiveIndex,
   getRoutes,
@@ -16,16 +16,16 @@ import style from './app-navigation.module.scss';
 const cn = fastClassNames(style);
 const CLASS_NAME = 'App-navigation';
 
-type MapStateToProps = {
-  pathname: string;
-  userRole: UserRole;
+const mapDispatchToProps = {
+  push
 };
 
-type MapDispatchToProps = {
-  push: Push;
-};
+const mapStateToProps = (state: AppStore) => ({
+  pathname: locationPathNameSelector(state),
+  userRole: authUserRoleSelector(state),
+});
 
-type AppNavigationProps = MapStateToProps & MapDispatchToProps & {
+type AppNavigationProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & {
   items: Array<AppRouteConfig>;
 };
 
@@ -83,13 +83,5 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithAuth): MapStateToProps => ({
-  pathname: locationPathNameSelector(state),
-  userRole: authUserRoleSelector(state),
-});
-const mapDispatchToProps = {
-  push
-};
 
 export const AppNavigation = connect(mapStateToProps, mapDispatchToProps)(AppNavigationContainer);

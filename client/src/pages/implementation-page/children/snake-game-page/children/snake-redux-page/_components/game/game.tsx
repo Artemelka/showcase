@@ -1,20 +1,10 @@
 import React, { PureComponent } from 'react';
-import { Action } from 'redux';
 import { connect } from 'react-redux';
-import {
-  DropdownItemParams,
-  InputChangeEvent,
-  SelectChangeEvent
-} from '@artemelka/react-components';
+import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
+import { AppStore } from '@/app';
 import { GameBox } from '../../../../_components';
 import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
-import {
-  AppStoreWithGameRedux,
-  DirectionCode,
-  DirectionItem,
-  SetDirectionAction,
-  SetGameSpeedAction,
-} from '../../../../types';
+import { DirectionCode } from '../../../../types';
 import {
   gameCellsSelector,
   gameDirectionSelector,
@@ -29,20 +19,22 @@ import {
 import { ConnectedGameActions } from '../connected-game-actions';
 import { ConnectedSnakeItem } from '../connected-snake-item';
 
-type MapStateToProps = {
-  cells: Array<number>;
-  direction: DirectionItem;
-  isStarted: boolean;
+const mapStateToProps = (state: AppStore) => ({
+  cells: gameCellsSelector(state),
+  direction: gameDirectionSelector(state),
+  isStarted: gameIsStartedSelector(state),
+});
+
+const mapDispatchToProps = {
+  gameStart: gameStartActionSaga,
+  refreshGame,
+  setDirection,
+  setGameSpeed,
+  setStartGame,
+  setStopGame,
 };
-type MapDispatchToProps = {
-  gameStart: () => Action<string>;
-  refreshGame: (value?: number) => Action<string>;
-  setDirection: (direction: DirectionItem) => SetDirectionAction;
-  setGameSpeed: (gameSpeed: Array<DropdownItemParams>) => SetGameSpeedAction;
-  setStartGame: () => Action<string>;
-  setStopGame: () => Action<string>;
-}
-type GameProps = MapStateToProps & MapDispatchToProps;
+
+type GameProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class GameContainer extends PureComponent<GameProps> {
   componentDidMount() {
@@ -107,20 +99,5 @@ export class GameContainer extends PureComponent<GameProps> {
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithGameRedux): MapStateToProps => ({
-  cells: gameCellsSelector(state),
-  direction: gameDirectionSelector(state),
-  isStarted: gameIsStartedSelector(state),
-});
-
-const mapDispatchToProps: MapDispatchToProps = {
-  gameStart: gameStartActionSaga,
-  refreshGame,
-  setDirection,
-  setGameSpeed,
-  setStartGame,
-  setStopGame,
-};
 
 export const Game = connect(mapStateToProps, mapDispatchToProps)(GameContainer);

@@ -35,7 +35,7 @@ export {
 export { QUEUE_REDUCER_NAME } from './constants';
 
 export type {
-  AppStoreWithQueue,
+  QueueStore,
   QueueState,
   TaskItem,
   Tasks,

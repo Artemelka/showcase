@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { TodoItem } from '@/api';
-import { AppStore, BaseAction } from '@/app';
+import { BaseAction } from '@/app';
 import { TODO_ITEM_REDUCER_NAME } from './constants';
 
 export type TodoItemState = {
@@ -16,4 +16,4 @@ export type TodoItemReducerCase = {
   setLoadingStop: (state: TodoItemState, action: Action<string>) => void;
 };
 
-export type AppStoreWithTodoItem = AppStore & { [TODO_ITEM_REDUCER_NAME]: TodoItemState };
+export type TodoItemStore = { [TODO_ITEM_REDUCER_NAME]: TodoItemState };

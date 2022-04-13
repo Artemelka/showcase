@@ -1,6 +1,6 @@
 import React, { memo, Suspense } from 'react';
 import { PageLoader } from '@/components';
-import { AppRouterProps } from '@/app';
+import { AppRouterProps } from '@/app/router';
 import { AppRoute } from '../app-route';
 import { AppRouterSwitch } from '../app-router-switch';
 

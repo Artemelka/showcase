@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { connect, ResolveThunks } from 'react-redux';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import { AppStore } from '@/app';
 import {
   MESSAGE_TYPE,
   socketConnect,
   SocketHocProps,
   SocketMessage,
-} from '../../../../services/socket';
+} from '@/services/socket';
 import { fastClassNames } from '@/utils';
 import {
   addInUserList,
   addMessage,
   setUsersList,
-  AppStoreWithChat,
   ChatMessage,
   ChatUser,
   ChatUserLeft,
@@ -35,12 +35,12 @@ const mapDispatchToProps = {
   addMessage,
 };
 
-type MapStateToProps = {
-  messages: Array<ChatMessage>;
-  user: ChatUser,
-};
+const mapStateToProps = (state: AppStore) => ({
+  messages: messageSelector(state),
+  user: userSelector(state),
+});
 
-type ChatContentProps = MapStateToProps & ResolveThunks<typeof mapDispatchToProps> & SocketHocProps;
+type ChatContentProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & SocketHocProps;
 
 type State = {
   isRedirect: boolean;
@@ -111,11 +111,6 @@ export class ChatContentPageContainer extends Component<ChatContentProps, State>
     );
   }
 }
-
-const mapStateToProps = (state: AppStoreWithChat): MapStateToProps => ({
-  messages: messageSelector(state),
-  user: userSelector(state),
-});
 
 export default socketConnect(
   connect(mapStateToProps, mapDispatchToProps)(ChatContentPageContainer)

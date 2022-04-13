@@ -1,5 +1,5 @@
 import { User, Auth } from '@/api';
-import { AppStore, BaseAction } from '@/app';
+import { BaseAction } from '@/app';
 import { AUTH_REDUCER_NAME } from './constants';
 
 export type AuthState = Auth & {
@@ -21,4 +21,4 @@ export type AuthReducerCase = {
   setAuthUser: (state: AuthState, action: SetAuthUserAction) => void;
 };
 
-export type AppStoreWithAuth = AppStore & {[AUTH_REDUCER_NAME]: AuthState}
+export type AuthStore = { [AUTH_REDUCER_NAME]: AuthState };
