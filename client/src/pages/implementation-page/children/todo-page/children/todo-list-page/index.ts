@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '../../../../../types';
+import { AppRouteConfig } from '@/pages';
 import { TODO_CHILDREN_PATH } from '../../constants';
 import { TodoListPage } from './todo-list-page';
 

@@ -1,6 +1,5 @@
 import React, { memo, useState, useCallback } from 'react';
 import {
-  Clock,
   CLOCK_TIME_ZONES,
   Text,
   DropdownItemParams,
