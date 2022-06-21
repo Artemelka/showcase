@@ -10,17 +10,17 @@ const checkActiveChildren = (children: Array<AppRouteConfig>, pathname: string):
   }) + 1)
 };
 
-export const findActiveIndex = (pathname: string, items: Array<AppRouteConfig>): number => {
+export const findActiveRoute = (pathname: string, items: Array<AppRouteConfig>): string => {
   return items.reduce((res, item, index) => {
     if (pathname === item.path) {
-      return index;
+      return item.path;
     }
 
     if (item.children && checkActiveChildren(item.children, pathname)) {
-      return index;
+      return item.path;
 
     }
 
     return res;
-  }, 0);
+  }, '');
 }

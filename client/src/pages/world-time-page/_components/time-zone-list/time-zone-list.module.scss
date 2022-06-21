@@ -1,0 +1,22 @@
+.time-zone-list {
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__content {
+    margin-top: 30px;
+  }
+
+  &__zone-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__zone-item {
+    padding: 5px 0;
+  }
+}

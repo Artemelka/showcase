@@ -8,7 +8,7 @@ import { AppRouteConfig } from '@/pages/types';
 import { authUserRoleSelector } from '@/redux';
 import { fastClassNames } from '@/utils';
 import {
-  findActiveIndex,
+  findActiveRoute,
   getRoutes,
 } from './utils';
 import style from './app-navigation.module.scss';
@@ -30,18 +30,18 @@ type AppNavigationProps = ReturnType<typeof mapStateToProps> & typeof mapDispatc
 };
 
 type State = {
-  activeIndex: number;
+  activeRoute: string;
   routes: Array<AppRouteConfig>;
 };
 
 export class AppNavigationContainer extends Component<AppNavigationProps, State> {
   static getDerivedStateFromProps(nextProps: AppNavigationProps, prevState: State) {
-    const nextIndex = findActiveIndex(nextProps.pathname, nextProps.items);
+    const nextRoute = findActiveRoute(nextProps.pathname, nextProps.items);
     const routes = getRoutes(nextProps.items, nextProps.userRole);
 
-    if (nextIndex !== prevState.activeIndex) {
+    if (nextRoute !== prevState.activeRoute) {
       return {
-        activeIndex: nextIndex,
+        activeRoute: nextRoute,
         routes,
       };
     }
@@ -53,7 +53,7 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
     super(props);
 
     this.state = {
-      activeIndex: 0,
+      activeRoute: '',
       routes: [],
     }
   }
@@ -70,7 +70,7 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
           {this.state.routes.map((item, index) => (
             <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
               <Anchor
-                active={this.state.activeIndex === index}
+                active={this.state.activeRoute === item.path}
                 href={item.path}
                 onClick={this.handleClick}
               >
