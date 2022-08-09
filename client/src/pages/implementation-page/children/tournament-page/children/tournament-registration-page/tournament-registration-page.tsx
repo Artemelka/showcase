@@ -1,8 +1,17 @@
-import React, { memo } from 'react';
+import React, {memo, useCallback} from 'react';
+import { Text } from '@artemelka/react-components';
+import { RegistrationForm } from './_components';
 
 export const TournamentRegistrationPageComponent = () => {
+  const handleFormSubmit = useCallback((playerName: string) => {
+    console.log('=== playerName ===', playerName);
+  }, []);
+
   return (
-    <div>registration</div>
+    <div>
+      <Text align="center" tagName="h2">Tournament registration</Text>
+      <RegistrationForm onSubmit={handleFormSubmit} />
+    </div>
   );
 };
 
