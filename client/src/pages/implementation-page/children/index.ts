@@ -7,6 +7,7 @@ import { SNAKE_GAME_PAGE_ROUTE_CONFIG } from './snake-game-page';
 import { TODO_PAGE_ROUTE_CONFIG } from './todo-page';
 import { TOURNAMENT_PAGE_ROUTE_CONFIG } from './tournament-page';
 import { TYRES_PAGE_ROUTE_CONFIG } from './tyres-page';
+import { SEMKI_PAGE_ROUTE_CONFIG } from './semki';
 
 export type { QueueStore } from './queue-page';
 export type { GameReduxStore, GameToolkitStore } from './snake-game-page';
@@ -21,4 +22,5 @@ export const IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG: Array<AppRouteConfig> = 
   TODO_PAGE_ROUTE_CONFIG,
   TOURNAMENT_PAGE_ROUTE_CONFIG,
   TYRES_PAGE_ROUTE_CONFIG,
+  SEMKI_PAGE_ROUTE_CONFIG,
 ];

@@ -1,0 +1,23 @@
+$columnSize: 30px;
+
+.Semki-game {
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__col {
+    width: $columnSize;
+    height: $columnSize;
+    border: 1px solid var(--baseTextColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -1px;
+    margin-left: -1px;
+  }
+
+
+}

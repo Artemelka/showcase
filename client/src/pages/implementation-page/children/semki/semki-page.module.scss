@@ -1,0 +1,17 @@
+.Semki-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__container {
+    //width: 300px;
+    //height: 300px;
+  }
+
+  &__actions {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
