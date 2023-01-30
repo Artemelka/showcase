@@ -11,7 +11,7 @@ const checkActiveChildren = (children: Array<AppRouteConfig>, pathname: string):
 };
 
 export const findActiveRoute = (pathname: string, items: Array<AppRouteConfig>): string => {
-  return items.reduce((res, item, index) => {
+  return items.reduce((res, item) => {
     if (pathname === item.path) {
       return item.path;
     }

@@ -61,7 +61,9 @@ export class AppUserContainer extends Component<AppUserProps, State> {
   }
 
   handleCloseDropdown = () => {
-    this.setState({ isOpen: false });
+    if (this.state.isOpen) {
+      this.setState({ isOpen: false });
+    }
   }
 
   handleListClick = () => {

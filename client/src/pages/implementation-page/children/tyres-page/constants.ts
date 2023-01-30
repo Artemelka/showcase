@@ -41,19 +41,6 @@ export const ASPECT_RATIOS = [
 
 // ====================================== //
 
-// const front = '255/40 = 102'
-// const back = '275/35 = 96'
-//
-// const HIFLY =       '203 + 216 = 419'
-// const GRIPMAX =     '220 + 242 = 462'
-//
-// const TOYO =        '424 + 436 = 860'
-// const HANKOOK =     '400 + 470 = 870'
-//
-// const MICHELIN =    '502 + 676 = 1178';
-
-// ====================================== //
-
 // const front3 = '255/40 = 102'
 // const back3 = '285/35 = 100'
 //
@@ -61,11 +48,3 @@ export const ASPECT_RATIOS = [
 // const GRIPMAX = '220'
 // const HANKOOK = '400'
 // const TOYO = '424'
-//
-//
-// const front2 = '245/35 = 86'
-// const back2 = '275/30 = 83'
-//
-// const HIFLY =        '185 + 229 = 414'
-// const GRIPMAX =      '207 + 256 = 463'
-// const KUMHO =        '312 + 374 = 686';
