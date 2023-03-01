@@ -20,7 +20,7 @@ export {
   authLoginIsLoadingSelector,
   authUserRoleSelector,
   authUserSelector,
-  isLoginSelector,
+  authIsLoginSelector,
 } from './selectors';
 
 export {

@@ -12,7 +12,7 @@ import {
   authLogoutActionSaga,
   authLoginIsLoadingSelector,
   authUserSelector,
-  isLoginSelector,
+  authIsLoginSelector,
 } from '@/redux';
 import { fastClassNames } from '@/utils';
 import style from './app-user.module.scss';
@@ -28,7 +28,7 @@ const ITEMS: Array<DropdownItemParams> = [
 
 const mapStateToProps = (state: AppStore) => ({
   isLoginLoading: authLoginIsLoadingSelector(state),
-  isLogin: isLoginSelector(state),
+  isLogin: authIsLoginSelector(state),
   user: authUserSelector(state),
 });
 

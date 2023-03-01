@@ -5,7 +5,7 @@ import { AuthStore } from './types';
 
 const authSelector = (state: AuthStore) => state[AUTH_REDUCER_NAME] || INITIAL_STATE;
 
-export const isLoginSelector = createSelector(
+export const authIsLoginSelector = createSelector(
   [authSelector],
   ({ isLogin }): boolean => isLogin
 );

@@ -11,7 +11,7 @@ export {
   authLogoutActionSaga,
   authUserRoleSelector,
   authUserSelector,
-  isLoginSelector,
+  authIsLoginSelector,
   setAuthIsLogin,
   setAuthUser,
   setStartAuthInit,
