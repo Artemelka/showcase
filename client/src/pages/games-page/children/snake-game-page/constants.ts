@@ -1,13 +1,13 @@
 import { DropdownItemParams } from '@artemelka/react-components';
-import { IMPLEMENTATION_CHILDREN_PATH } from '../../constants';
+import { GAMES_CHILDREN_PATH } from '../../constants';
 import { DirectionCode, DirectionItem, SnakeBodyItem } from './types';
 
 export const SNAKE_GAME_CHILDREN_PATH = {
-  HOME: `${IMPLEMENTATION_CHILDREN_PATH.SNAKE_GAME}`,
-  REACT: `${IMPLEMENTATION_CHILDREN_PATH.SNAKE_GAME}/pure-react`,
-  REDUX: `${IMPLEMENTATION_CHILDREN_PATH.SNAKE_GAME}/pure-redux`,
-  TOOLKIT: `${IMPLEMENTATION_CHILDREN_PATH.SNAKE_GAME}/redux-with-toolkit`,
-  MOBX: `${IMPLEMENTATION_CHILDREN_PATH.SNAKE_GAME}/mobx`,
+  HOME: `${GAMES_CHILDREN_PATH.SNAKE_GAME}`,
+  REACT: `${GAMES_CHILDREN_PATH.SNAKE_GAME}/pure-react`,
+  REDUX: `${GAMES_CHILDREN_PATH.SNAKE_GAME}/pure-redux`,
+  TOOLKIT: `${GAMES_CHILDREN_PATH.SNAKE_GAME}/redux-with-toolkit`,
+  MOBX: `${GAMES_CHILDREN_PATH.SNAKE_GAME}/mobx`,
 }
 
 export const GAME_PURE_REDUX_REDUCER_NAME = 'snakeReduxGame';

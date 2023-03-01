@@ -5,8 +5,8 @@ import { Text } from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import { locationPathNameSelector } from '@/app/router';
 import { SidebarNavigation } from '@/components';
+import { AppRouteConfig } from '@/pages';
 import { fastClassNames } from '@/utils';
-import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from '../../children';
 import style from './sidebar.module.scss';
 
 const cn = fastClassNames(style);
@@ -20,7 +20,11 @@ const mapDispatchToProps = {
   push
 };
 
-type SidebarProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type Props = {
+  navigationItems: Array<AppRouteConfig>;
+};
+
+type SidebarProps = Props & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export class SidebarContainer extends Component<SidebarProps> {
   handleClick = (path: string ) => {
@@ -37,7 +41,7 @@ export class SidebarContainer extends Component<SidebarProps> {
           <div className={cn(`${CLASS_NAME}__navigation`)}>
             <SidebarNavigation
               activePath={this.props.pathname}
-              items={IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG}
+              items={this.props.navigationItems}
               onClick={this.handleClick}
             />
           </div>
