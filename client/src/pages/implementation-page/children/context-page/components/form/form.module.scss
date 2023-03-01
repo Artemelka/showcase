@@ -1,0 +1,15 @@
+.Form {
+  padding: 20px;
+
+  &__input {
+    margin-top: 20px;
+  }
+
+  &__error {
+    color: red;
+  }
+
+  &__action {
+    margin-top: 40px;
+  }
+}

@@ -1,0 +1,14 @@
+.Context-page {
+
+  &__container {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__form {
+    padding: 0 20px;
+    width: 40%;
+  }
+}
