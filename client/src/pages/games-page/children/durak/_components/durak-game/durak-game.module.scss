@@ -1,0 +1,35 @@
+.Durak-game {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-top: -10px;
+
+  &__table {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  &__table-left {
+    width: 70%;
+  }
+  &__table-field {
+    padding: 20px;
+  }
+  &__table-right {
+    width: 30%;
+  }
+
+  &__table-bank {
+    padding: 20px 0;
+  }
+
+  &__table-actions {
+    margin-top: 20px;
+    padding: 20px;
+  }
+}

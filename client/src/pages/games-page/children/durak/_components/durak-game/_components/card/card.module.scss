@@ -1,0 +1,27 @@
+.Card {
+ border: none;
+ margin: 0;
+ padding: 0;
+ background-color: transparent;
+ width: 150px;
+ transition: transform .3s;
+ cursor: pointer;
+
+ &:hover {
+  transform: translateY(-15px);
+ }
+
+ &--disable {
+  cursor: initial;
+
+  &:hover {
+   transform: none;
+  }
+ }
+
+ &__img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+ }
+}

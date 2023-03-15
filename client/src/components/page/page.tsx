@@ -9,7 +9,7 @@ const CLASS_NAME = 'Page';
 
 type PageProps = PropsWithChildren<{
   headTitle?: string;
-  title: string;
+  title?: string;
 }>;
 
 export const PageComponent: FC<PageProps> = ({
@@ -24,9 +24,11 @@ export const PageComponent: FC<PageProps> = ({
         title={headTitle}
         titleTemplate="%s - Artemelka react showcase"
       />
-      <div className={cn(`${CLASS_NAME}__title`)}>
-        <Text tagName="h1" align="center" fontWeight="bold">{title}</Text>
-      </div>
+      {title && (
+        <div className={cn(`${CLASS_NAME}__title`)}>
+          <Text tagName="h1" align="center" fontWeight="bold">{title}</Text>
+        </div>
+      )}
       <div className={cn(`${CLASS_NAME}__content`)}>
         {children}
       </div>

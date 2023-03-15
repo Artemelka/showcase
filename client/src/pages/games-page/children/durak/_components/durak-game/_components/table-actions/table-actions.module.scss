@@ -1,0 +1,9 @@
+.Table-actions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  &__button {
+    padding: 10px;
+  }
+}
