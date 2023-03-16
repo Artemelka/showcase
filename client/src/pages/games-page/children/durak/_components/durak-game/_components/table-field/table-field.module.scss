@@ -1,3 +1,19 @@
 .Table-field {
+  padding-right: 20px;
 
+  &__bank {
+    position: relative;
+
+    &--enemy {
+      margin-bottom: -80px;
+    }
+
+    &--player {
+      margin-top: -80px;
+    }
+
+    &--active {
+      z-index: 1;
+    }
+  }
 }

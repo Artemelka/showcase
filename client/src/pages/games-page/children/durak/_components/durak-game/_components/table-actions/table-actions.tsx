@@ -1,28 +1,31 @@
-import React, {memo, useCallback} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { isPlayerStepSelector } from '../../redux';
+import { DurakGameStore } from '../../types';
 import { Button } from '@artemelka/react-components';
-import { fastClassNames } from '@/utils';
-import styles from './table-actions.module.scss';
 
-const cn = fastClassNames(styles);
-const CLASS_NAME = 'Table-actions';
-
-type TableActionsProps = {};
-
-export const TableActionsComponent = ({}: TableActionsProps) => {
-  const handleGetClick = useCallback(() => {}, []);
-
-  const handleEndClick = useCallback(() => {}, []);
-
-  return (
-    <div className={cn(CLASS_NAME)}>
-      <div className={cn(`${CLASS_NAME}__button`)}>
-        <Button onClick={handleGetClick} themeColor="error" value="GET"/>
-      </div>
-      <div className={cn(`${CLASS_NAME}__button`)}>
-        <Button onClick={handleEndClick} themeColor="success" value="END"/>
-      </div>
-    </div>
-  );
+type StateProps = {
+  isPlayerStep: boolean;
 };
 
-export const TableActions = memo(TableActionsComponent);
+export class TableActionsComponent extends Component<StateProps> {
+  handleGetClick = () => {};
+
+  render() {
+    return (
+      <Button
+        onClick={this.handleGetClick}
+        themeColor="error"
+        value="GET"
+        isFullWidth
+        disabled={!this.props.isPlayerStep}
+      />
+    );
+  }
+}
+
+const mapStateToProps = (state: DurakGameStore): StateProps => ({
+  isPlayerStep: isPlayerStepSelector(state),
+});
+
+export const TableActions = connect(mapStateToProps)(TableActionsComponent);

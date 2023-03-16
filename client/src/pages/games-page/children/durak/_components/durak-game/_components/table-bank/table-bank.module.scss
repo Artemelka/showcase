@@ -4,18 +4,7 @@
   justify-content: space-between;
   align-items: center;
 
-  &__trump {
-    margin-bottom: 20px;
-    font-size: 200px;
-
-    &--clubs,
-    &--spades {
-      color: #000000;
-    }
-
-    &--diamonds,
-    &--hearts {
-      color: darkred;
-    }
+  &__counter {
+    margin-top: 16px;
   }
 }

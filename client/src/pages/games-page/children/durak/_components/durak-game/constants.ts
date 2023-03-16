@@ -40,7 +40,7 @@ import SpadesAce from '../../../../../../assets/durak/cards/spades/14.png';
 
 import Skin from '../../../../../../assets/durak/cards/skin.png';
 
-import { Suit, Rank, CardParams } from './types';
+import { Suit, Rank } from './types';
 
 export const CARD_IMG_MAP: Record<Suit, Record<Rank, any>> = {
   clubs: {
@@ -90,16 +90,3 @@ export const CARD_IMG_MAP: Record<Suit, Record<Rank, any>> = {
 };
 
 export const CARD_IMG_SKIN = Skin;
-
-const SUITS: Array<Suit> = ['diamonds', 'hearts', 'clubs', 'spades'];
-
-const RANKS: Array<Rank> = ['6', '7', '8', '9', '10', '11', '12', '13', '14'];
-
-export const DECK: Array<CardParams> = SUITS.map((suit, suitIndex) => {
-  return RANKS.map((rank, rankIndex) => ({
-    id: `${suitIndex}${rankIndex}`,
-    img: `${suit}/${rank}`,
-    rank,
-    suit,
-  }));
-}).flat();

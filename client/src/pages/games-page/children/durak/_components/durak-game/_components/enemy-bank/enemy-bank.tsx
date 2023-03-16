@@ -1,17 +1,35 @@
-import React, { memo } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { enemyBankSelector, isPlayerStepSelector } from '../../redux';
+import { DurakGameStore, CardParams } from '../../types';
 import { CardBank } from '../card-bank';
-import { DECK } from '../../constants';
 
-type EnemyBankProps = {};
-
-export const EnemyBankComponent = ({}: EnemyBankProps) => {
-  return (
-    <CardBank
-      cards={DECK.filter((_, i) => i > 5 && i < 12)}
-      isDisabledCard
-      isHiddenCard
-    />
-  );
+type StateProps = {
+  cards: Array<CardParams>;
+  isPlayerStep: boolean;
 };
 
-export const EnemyBank = memo(EnemyBankComponent);
+export class EnemyBankComponent extends Component<StateProps, any> {
+  componentDidUpdate() {
+    if (!this.props.isPlayerStep) {
+      console.log('=== step ===');
+    }
+  }
+
+  render() {
+    return (
+      <CardBank
+        cards={this.props.cards}
+        isDisabledCard
+        isHiddenCard
+      />
+    );
+  }
+};
+
+const mapStateToProps = (state: DurakGameStore): StateProps => ({
+  cards: enemyBankSelector(state),
+  isPlayerStep: isPlayerStepSelector(state),
+});
+
+export const EnemyBank = connect(mapStateToProps)(EnemyBankComponent);

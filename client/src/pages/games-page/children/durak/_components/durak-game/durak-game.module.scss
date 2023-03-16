@@ -16,20 +16,14 @@
 
   &__table-left {
     width: 70%;
-  }
-  &__table-field {
     padding: 20px;
   }
+
   &__table-right {
-    width: 30%;
-  }
-
-  &__table-bank {
-    padding: 20px 0;
-  }
-
-  &__table-actions {
-    margin-top: 20px;
-    padding: 20px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
   }
 }

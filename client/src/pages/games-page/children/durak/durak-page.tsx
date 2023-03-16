@@ -1,18 +1,17 @@
 import React, { memo } from 'react';
+import { AsyncReducerItem, StoreInjectorConsumer } from '@artemelka/redux-store-injector';
 import { Page } from '@/components';
-import { fastClassNames } from '@/utils';
 import { DurakGame } from './_components';
-import styles from './durak-page.module.scss';
+import { DURAK_GAME_REDUCER_INJECT_CONFIG } from './_components/durak-game/redux';
 
-const cn = fastClassNames(styles);
-const CLASS_NAME = 'Durak-page';
+const asyncReducers: Array<AsyncReducerItem> = [DURAK_GAME_REDUCER_INJECT_CONFIG];
 
 export const DurakPageComponent = () => {
   return (
     <Page headTitle="DURAK">
-      <div className={cn(CLASS_NAME)}>
+      <StoreInjectorConsumer asyncReducers={asyncReducers} withEjectReducers>
         <DurakGame/>
-      </div>
+      </StoreInjectorConsumer>
     </Page>
   );
 };

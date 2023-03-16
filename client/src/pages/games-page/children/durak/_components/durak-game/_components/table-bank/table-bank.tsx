@@ -1,35 +1,35 @@
-import React, { memo } from 'react';
-import { fastClassNames } from '@/utils';
-import { Suit } from '../../types';
+import React, { FC } from 'react';
+import { connect } from 'react-redux';
+import { fastClassNames, NOOP } from '@/utils';
+import { deckBankSelector, trumpCardSelector } from '../../redux';
+import { DurakGameStore, CardParams } from '../../types';
+import { Card } from '../card';
 import styles from './table-bank.module.scss';
 
 const cn = fastClassNames(styles);
 const CLASS_NAME = 'Table-bank';
 
-const SUIT_MAP: Record<Suit, string> = {
-  diamonds: '&#9830;',
-  hearts: '&#9829;',
-  clubs: '&#9827;',
-  spades: '&#9824;',
+type StateProps = {
+  deck: Array<CardParams>;
+  trumpCard: CardParams;
 };
 
-type TableBankProps = {};
-
-export const TableBankComponent = ({}: TableBankProps) => {
-  const trump = 'clubs';
-  const bankCounter = 24;
+export const TableBankComponent: FC<StateProps> = ({ deck, trumpCard }) => {
+  const bankCounter = deck.length;
 
   return (
     <div className={cn(CLASS_NAME)}>
-      <div
-        className={cn(`${CLASS_NAME}__trump`, {
-          [`${CLASS_NAME}__trump--${trump}`]: true
-        })}
-        dangerouslySetInnerHTML={{ __html: SUIT_MAP[trump] }}
-      />
-      Bank: {bankCounter}
+      <Card card={trumpCard} onClick={NOOP} disabled />
+      <div className={cn(`${CLASS_NAME}__counter`)}>
+        Bank: {bankCounter}
+      </div>
     </div>
   );
 };
 
-export const TableBank = memo(TableBankComponent);
+const mapStateToProps = (state: DurakGameStore): StateProps => ({
+  deck: deckBankSelector(state),
+  trumpCard: trumpCardSelector(state),
+});
+
+export const TableBank = connect(mapStateToProps)(TableBankComponent);

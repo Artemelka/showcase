@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React, { FC, memo, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { fastClassNames } from '@/utils';
 import {
   EnemyBank,
@@ -7,34 +8,32 @@ import {
   TableActions,
   TableField,
 } from './_components';
+import { startGame } from './redux';
+import { getStartGameData } from './utils';
 import styles from './durak-game.module.scss';
 
 const cn = fastClassNames(styles);
 const CLASS_NAME = 'Durak-game';
 
-type DurakGameProps = {};
+export const DurakGameComponent: FC = () => {
+  const dispatch = useDispatch();
 
-export const DurakGameComponent = ({}: DurakGameProps) => {
+  useEffect(() => {
+    dispatch(startGame(getStartGameData()))
+  }, [dispatch]);
+
   return (
     <div className={cn(CLASS_NAME)}>
       <EnemyBank/>
-
       <div className={cn(`${CLASS_NAME}__table`)}>
         <div className={cn(`${CLASS_NAME}__table-left`)}>
-          <div className={cn(`${CLASS_NAME}__table-field`)}>
-            <TableField/>
-          </div>
+          <TableField/>
         </div>
         <div className={cn(`${CLASS_NAME}__table-right`)}>
-          <div className={cn(`${CLASS_NAME}__table-bank`)}>
-            <TableBank/>
-          </div>
-          <div className={cn(`${CLASS_NAME}__table-actions`)}>
-            <TableActions/>
-          </div>
+          <TableBank/>
+          <TableActions/>
         </div>
       </div>
-
       <PlayerBank/>
     </div>
   );

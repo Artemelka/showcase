@@ -21,7 +21,7 @@ export const CardComponent = ({ card, disabled = false, isHidden = false, onClic
     if (!disabled) {
       onClick(card.id)
     }
-  }, [card, onClick]);
+  }, [card, disabled, onClick]);
 
   const imgPath = isHidden ? CARD_IMG_SKIN : CARD_IMG_MAP[card.suit][card.rank];
   const cardAlt = isHidden ? DEFAULT_ALT : `${card.suit}-${card.rank}`;
