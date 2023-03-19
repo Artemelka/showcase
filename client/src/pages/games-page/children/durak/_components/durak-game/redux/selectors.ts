@@ -39,3 +39,15 @@ export const isPlayerStepSelector = createSelector(
   [durakGameSelector],
   (state) => state.isPlayerStep,
 );
+
+export const isPlayerAttackSelector = createSelector(
+  [playerPlaceSelector, enemyPlaceSelector],
+  (playerPlace, enemyPlace) =>
+    !Boolean(enemyPlace.length) || enemyPlace.length === playerPlace.length
+);
+
+export const isEnemyAttackSelector = createSelector(
+  [playerPlaceSelector, enemyPlaceSelector],
+  (playerPlace, enemyPlace) =>
+    !Boolean(playerPlace.length) || playerPlace.length === enemyPlace.length
+);

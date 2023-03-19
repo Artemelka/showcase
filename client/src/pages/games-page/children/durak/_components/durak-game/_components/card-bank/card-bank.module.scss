@@ -4,7 +4,9 @@
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  max-width: 100%;
+  flex-wrap: wrap;
 
   &__item {
     padding: 0 10px;

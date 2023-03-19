@@ -1,15 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { isPlayerStepSelector } from '../../redux';
-import { DurakGameStore } from '../../types';
 import { Button } from '@artemelka/react-components';
+import { BaseAction } from "@/app";
+import {
+  clearPlaces,
+  enemyPlaceSelector,
+  isPlayerStepSelector,
+  playerBankSelector,
+  playerPlaceSelector,
+  setPlayerBank,
+  toggleStep,
+} from '../../redux';
+import { CardParams, DurakGameStore } from '../../types';
 
-type StateProps = {
-  isPlayerStep: boolean;
+type Actions = {
+  clearPlaces: () => void;
+  setPlayerBank: (cards: Array<CardParams>) => BaseAction<Array<CardParams>>;
+  toggleStep: () => void;
 };
 
-export class TableActionsComponent extends Component<StateProps> {
-  handleGetClick = () => {};
+type StateProps = {
+  cards: Array<CardParams>;
+  enemyPlace: Array<CardParams>;
+  isPlayerStep: boolean;
+  playerPlace: Array<CardParams>;
+};
+
+type Props = StateProps & Actions;
+
+export class TableActionsComponent extends Component<Props> {
+  handleGetClick = () => {
+    const { cards, enemyPlace, playerPlace } = this.props;
+    const nextCards = [...cards, ...enemyPlace, ...playerPlace];
+
+    this.props.setPlayerBank(nextCards);
+    this.props.clearPlaces();
+    this.props.toggleStep();
+  };
 
   render() {
     return (
@@ -26,6 +53,15 @@ export class TableActionsComponent extends Component<StateProps> {
 
 const mapStateToProps = (state: DurakGameStore): StateProps => ({
   isPlayerStep: isPlayerStepSelector(state),
+  enemyPlace: enemyPlaceSelector(state),
+  cards: playerBankSelector(state),
+  playerPlace: playerPlaceSelector(state),
 });
 
-export const TableActions = connect(mapStateToProps)(TableActionsComponent);
+const mapDispatchToProps: Actions = {
+  clearPlaces,
+  setPlayerBank,
+  toggleStep,
+};
+
+export const TableActions = connect(mapStateToProps, mapDispatchToProps)(TableActionsComponent);
