@@ -41,11 +41,21 @@ export class PlayerBankComponent extends Component<Props> {
   }
 
   getAvailableCards = () => {
-    const { cards, enemyPlace, trumpCard } = this.props;
+    const { cards, enemyPlace, playerPlace, trumpCard, isPlayerAttack } = this.props;
     const attackCard = enemyPlace[enemyPlace.length - 1];
 
     if (!attackCard) {
       return cards;
+    }
+
+    if (isPlayerAttack) {
+      const usedCards = [...enemyPlace, ...playerPlace];
+
+      return cards.filter(card => {
+        return usedCards.some(usedCard => {
+          return card.rank === usedCard.rank;
+        })
+      })
     }
 
     return cards.filter(card => {
@@ -57,18 +67,14 @@ export class PlayerBankComponent extends Component<Props> {
   }
 
   handleCardClick = (id: string) => {
-    const { cards, isPlayerAttack } = this.props;
-    const { nextPlayerCards, currentCard } = prepareCardsForStep(cards, id);
-
-    if (isPlayerAttack) {
-      this.makeStep(currentCard, nextPlayerCards);
-      return;
-    }
+    const { cards } = this.props;
 
     const availableCards = this.getAvailableCards();
     const isValidCard = availableCards.filter(card => card.id === id).length;
 
     if (isValidCard) {
+      const { nextPlayerCards, currentCard } = prepareCardsForStep(cards, id);
+
       this.makeStep(currentCard, nextPlayerCards);
       return;
     }

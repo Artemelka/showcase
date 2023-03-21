@@ -4,7 +4,6 @@ import { CardParams } from '../types';
 
 type Values = {
   currentCard?: CardParams;
-  nextCards: Array<CardParams>;
 }
 
 export function findCurrentCard(cards: Array<CardParams>, currentCard: CardParams, trumpCard: CardParams): Values {
@@ -15,7 +14,6 @@ export function findCurrentCard(cards: Array<CardParams>, currentCard: CardParam
 
     return {
       currentCard: nextCard,
-      nextCards: cards.filter(card => card.id !== nextCard.id),
     };
   }
 
@@ -26,11 +24,8 @@ export function findCurrentCard(cards: Array<CardParams>, currentCard: CardParam
 
     return {
       currentCard: nextCard,
-      nextCards: cards.filter(card => card.id !== nextCard.id),
     }
   }
 
-  return {
-    nextCards: [],
-  };
+  return {};
 }

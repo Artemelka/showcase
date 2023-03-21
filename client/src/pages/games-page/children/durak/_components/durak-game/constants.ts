@@ -90,3 +90,5 @@ export const CARD_IMG_MAP: Record<Suit, Record<Rank, any>> = {
 };
 
 export const CARD_IMG_SKIN = Skin;
+
+export const MAX_CARD_COUNTER = 6;

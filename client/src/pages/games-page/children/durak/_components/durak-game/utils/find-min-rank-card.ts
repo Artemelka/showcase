@@ -9,5 +9,5 @@ export function findMinRankCard(cards: Array<CardParams>): CardParams {
     }
 
     return acc;
-  }, {} as CardParams);
+  }, cards[0]);
 }
