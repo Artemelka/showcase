@@ -40,6 +40,11 @@ export const isPlayerStepSelector = createSelector(
   (state) => state.isPlayerStep,
 );
 
+export const isNeedUpdateCardsSelector = createSelector(
+  [durakGameSelector],
+  (state) => state.isNeedUpdateCards
+);
+
 export const isPlayerAttackSelector = createSelector(
   [playerPlaceSelector, enemyPlaceSelector],
   (playerPlace, enemyPlace) =>

@@ -8,6 +8,7 @@ export const INITIAL_STATE: DurakState = {
   enemyBank: [],
   deck: [],
   trumpCard: getGameDeck()[0],
+  isNeedUpdateCards: false,
   isPlayerStep: false,
   tablePlayerPlace: [],
   tableEnemyPlace: [],

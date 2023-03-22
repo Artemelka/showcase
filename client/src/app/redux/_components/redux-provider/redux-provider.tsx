@@ -18,7 +18,7 @@ const appStore = configureStore({
   middleware: [
     appRouterMiddleware,
     sagaMiddleware,
-    // process.env && process.env.MODE === 'development' && logger : undefined,
+    // process.env && process.env.MODE === 'development' && logger,
   ],
 });
 

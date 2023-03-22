@@ -31,6 +31,12 @@ const gameReducerSlice = createSlice<DurakState, DurakGameReducerCase>({
     setTrumpCard: (state, { payload }) => {
       state.trumpCard = payload;
     },
+    setIsNeedUpdateCards: (state) => {
+      state.isNeedUpdateCards = true;
+    },
+    restoreIsNeedUpdateCards: (state) => {
+      state.isNeedUpdateCards = false;
+    },
 
     addEnemyPlace: (state, { payload }) => {
       state.tableEnemyPlace.push(payload);
@@ -50,17 +56,19 @@ const gameReducerSlice = createSlice<DurakState, DurakGameReducerCase>({
 });
 
 export const {
-  setDeckBank,
-  setEnemyBank,
-  setPlayerBank,
-  setTrumpCard,
-  toggleStep,
-  startGame,
   addEnemyBank,
   addEnemyPlace,
   addPlayerBank,
   addPlayerPlace,
   clearPlaces,
+  restoreIsNeedUpdateCards,
+  setDeckBank,
+  setEnemyBank,
+  setIsNeedUpdateCards,
+  setPlayerBank,
+  setTrumpCard,
+  startGame,
+  toggleStep,
 } = gameReducerSlice.actions;
 
 export const DURAK_GAME_REDUCER_INJECT_CONFIG = {

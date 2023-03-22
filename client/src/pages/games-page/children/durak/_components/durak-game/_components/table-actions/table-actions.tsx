@@ -4,19 +4,15 @@ import { Button } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
 import { BaseAction } from "@/app";
 import {
-  clearPlaces,
   enemyPlaceSelector,
+  isPlayerAttackSelector,
   isPlayerStepSelector,
   playerBankSelector,
   playerPlaceSelector,
+  setIsNeedUpdateCards,
   setPlayerBank,
   toggleStep,
-  isPlayerAttackSelector,
-  setDeckBank,
-  deckBankSelector,
 } from '../../redux';
-import { MAX_CARD_COUNTER } from '../../constants';
-import { getCardsFromDeck } from '../../utils';
 import { CardParams, DurakGameStore } from '../../types';
 import styles from './table-actions.module.scss';
 
@@ -24,15 +20,13 @@ const cn = fastClassNames(styles);
 const CLASS_NAME = 'Table-actions';
 
 type Actions = {
-  clearPlaces: () => void;
-  setDeckBank: (cards: Array<CardParams>) => BaseAction<Array<CardParams>>;
+  setIsNeedUpdateCards: () => void;
   setPlayerBank: (cards: Array<CardParams>) => BaseAction<Array<CardParams>>;
   toggleStep: () => void;
 };
 
 type StateProps = {
   cards: Array<CardParams>;
-  deck: Array<CardParams>;
   enemyPlace: Array<CardParams>;
   isPlayerStep: boolean;
   isPlayerAttack: boolean;
@@ -47,22 +41,11 @@ export class TableActionsComponent extends Component<Props> {
     const nextCards = [...cards, ...enemyPlace, ...playerPlace];
 
     this.props.setPlayerBank(nextCards);
-    this.props.clearPlaces();
-    this.props.toggleStep();
+    this.props.setIsNeedUpdateCards();
   };
 
   handleEndClick = () => {
-    // const { cards, deck } = this.props;
-    //
-    // if (deck.length && cards.length < MAX_CARD_COUNTER) {
-    //   const { nextDeck, nextCards } = getCardsFromDeck(cards, deck);
-    //
-    //   this.props.setDeckBank(nextDeck);
-    //   this.props.setPlayerBank(nextCards);
-    // }
-
-    this.props.clearPlaces();
-    this.props.toggleStep();
+    this.props.setIsNeedUpdateCards();
   }
 
   render() {
@@ -92,7 +75,6 @@ export class TableActionsComponent extends Component<Props> {
 
 const mapStateToProps = (state: DurakGameStore): StateProps => ({
   cards: playerBankSelector(state),
-  deck: deckBankSelector(state),
   enemyPlace: enemyPlaceSelector(state),
   isPlayerAttack: isPlayerAttackSelector(state),
   isPlayerStep: isPlayerStepSelector(state),
@@ -100,8 +82,7 @@ const mapStateToProps = (state: DurakGameStore): StateProps => ({
 });
 
 const mapDispatchToProps: Actions = {
-  clearPlaces,
-  setDeckBank,
+  setIsNeedUpdateCards,
   setPlayerBank,
   toggleStep,
 };

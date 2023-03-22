@@ -19,6 +19,7 @@ export type DurakState = {
   enemyBank: Cards;
   deck: Cards;
   trumpCard: CardParams;
+  isNeedUpdateCards: boolean;
   isPlayerStep: boolean;
   tableEnemyPlace: Cards;
   tablePlayerPlace: Cards;
@@ -35,6 +36,8 @@ export type DurakGameReducerCase = {
   setPlayerBank: (state: DurakState, action: SetCardsAction) => void,
 
   setDeckBank: (state: DurakState, action: SetCardsAction) => void,
+  setIsNeedUpdateCards: (state: DurakState) => void,
+  restoreIsNeedUpdateCards: (state: DurakState) => void,
 
   addEnemyPlace: (state: DurakState, action: BaseAction<CardParams>) => void;
   addPlayerPlace: (state: DurakState, action: BaseAction<CardParams>) => void;
