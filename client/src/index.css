@@ -19,6 +19,7 @@ body[theme='dark'] {
   height: 100vh;
   max-width: 100%;
   background-color: var(--backgroundColor);
+  color: var(--baseTextColor);
 }
 .App__page {
   height: 100vh;

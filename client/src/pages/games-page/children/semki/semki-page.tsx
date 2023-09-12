@@ -29,4 +29,4 @@ export const SemkiPage = () => {
   );
 };
 
-export default  memo(SemkiPage);
+export default memo(SemkiPage);

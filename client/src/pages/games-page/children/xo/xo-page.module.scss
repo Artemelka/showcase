@@ -1,0 +1,29 @@
+.Xo-page {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  &__container {
+    border: 1px solid var(--baseTextColor);
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+  }
+
+  &__cell {
+    height: 100px;
+    list-style-type: none;
+    width: 100px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 300px;
+  }
+}

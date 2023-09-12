@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { AppRouteConfig } from '../../../types';
+import { AppRouteConfig } from '@/pages';
 import { GAMES_CHILDREN_PATH } from '../../constants';
 import { SNAKE_GAME_CHILDREN_ROUTES } from './children';
 
