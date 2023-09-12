@@ -23,6 +23,7 @@ export type DurakState = {
   isPlayerStep: boolean;
   tableEnemyPlace: Cards;
   tablePlayerPlace: Cards;
+  isGetCard: boolean;
 }
 
 export type SetCardsAction = BaseAction<Cards>;

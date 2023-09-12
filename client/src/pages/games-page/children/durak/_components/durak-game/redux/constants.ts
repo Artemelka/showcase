@@ -4,12 +4,13 @@ import { DurakState } from '../types';
 export const DURAK_REDUCER_NAME = 'durak-game';
 
 export const INITIAL_STATE: DurakState = {
-  playerBank: [],
-  enemyBank: [],
   deck: [],
-  trumpCard: getGameDeck()[0],
+  enemyBank: [],
+  isGetCard: false,
   isNeedUpdateCards: false,
   isPlayerStep: false,
-  tablePlayerPlace: [],
+  playerBank: [],
   tableEnemyPlace: [],
+  tablePlayerPlace: [],
+  trumpCard: getGameDeck()[0],
 }
