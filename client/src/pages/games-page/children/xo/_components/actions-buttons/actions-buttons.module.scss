@@ -1,0 +1,25 @@
+.Action-button {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding-top: 30px;
+  text-align: center;
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__reload {
+    background: none;
+    border: 1px solid var(--baseTextColor);
+    box-sizing: border-box;
+    color: var(--baseTextColor);
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    padding: 20px 50px;
+    width: 300px;
+  }
+}

@@ -1,105 +1,67 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
-import { CellButton } from './_components';
+import { CellButton, ActionsButtons } from './_components';
+import { INITIAL_STATE, INITIAL_SYMBOLS, SYMBOLS } from './constant';
+import { getEndGameMessage, getIsUserStep, getUpdatedState, minimax } from './_utils';
 import styles from './xo-page.module.scss';
 
 const cn = fastClassNames(styles);
 const CLASS_NAME = 'Xo-page';
 
-const SYMBOLS = ['X', '0'];
-const COLUMN_INDEX = [0, 1, 2];
-const DIAG = [
-  [0, 1, 2],
-  [2, 1, 0],
-];
-const INITIAL_STATE = [
-  ['', '', ''],
-  ['', '', ''],
-  ['', '', ''],
-];
-const INITIAL_SYMBOLS = { ai: '', user: '' };
-
-
-function checkRows(rows: Array<Array<string>>, symbol: string): boolean {
-  return rows.some(row => row.every(item => Boolean(item) && item === symbol))
-}
-
-function getDiagonals(state: Array<Array<string>>): Array<Array<string>> {
-  return DIAG.map(diag =>
-    diag.map((cellIndex, rowIndex) => state[rowIndex][cellIndex])
-  );
-}
-
-function getColumn(state: Array<Array<string>>): Array<Array<string>> {
-  return COLUMN_INDEX.map(columnIndex => state.map(row => row[columnIndex]));
-}
-
-function checkWinner(state: Array<Array<string>>, symbol: string): boolean {
-  const columns = getColumn(state);
-  const diagonals = getDiagonals(state);
-
-  const inRow = checkRows(state, symbol);
-  const inColumn = checkRows(columns, symbol);
-  const inDiag = checkRows(diagonals, symbol);
-
-  return inRow || inColumn || inDiag;
-}
-
-type UpdatedStateConfig = {symbol: string, rowIndex: number, cellIndex: number};
-
-function getUpdatedState(
-  prevState: Array<Array<string>>,
-  { cellIndex, rowIndex, symbol }: UpdatedStateConfig
-) {
-  const tempState = prevState.map((row) => [...row]);
-
-  tempState[rowIndex][cellIndex] = symbol;
-
-  return tempState;
-}
-
 export const XoPageComponent = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const [symbols, setSymbols] = useState(INITIAL_SYMBOLS);
-  const [isUserStep, setIsUserStep] = useState(true);
+  const [isUserStep, setIsUserStep] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isGameInit, setIsGameInit] = useState(false);
 
-
-
-  const clearGame = useCallback(() => {
-    setState(INITIAL_STATE);
-    setIsUserStep(true);
-    setSymbols(INITIAL_SYMBOLS);
+  const setWinner = useCallback((message: string) => {
+    setMessage(message);
   }, []);
 
+  const aiStep = useCallback(() => {
+    const { cellIndex } = minimax(state, symbols, symbols.ai);
+
+    if (isNaN(cellIndex)) {
+      throw Error('cellIndex is undefined');
+    }
+
+    const config = {
+      cellIndex,
+      symbol: symbols.ai,
+    }
+
+    setState((prevState) => getUpdatedState(prevState, config));
+    setIsUserStep(true);
+  }, [state, symbols]);
+
   useEffect(() => {
-    if (checkWinner(state, symbols.user)) {
-      alert(`WINNER: ${symbols.user}`);
-      clearGame();
+    if (!isGameInit) {
       return;
     }
 
-    if (checkWinner(state, symbols.ai)) {
-      alert(`WINNER: ${symbols.ai}`);
-      clearGame();
-      return;
+    const message = getEndGameMessage(state, symbols);
+
+    if (message) {
+        setWinner(message);
+        return;
     }
 
     if (!isUserStep) {
-      const config = {
-        rowIndex: Number(prompt('enter row')),
-        cellIndex: Number(prompt('enter cell')),
-        symbol: symbols.ai,
-      }
-
-      setState((prevState) => getUpdatedState(prevState, config));
-      setIsUserStep(true);
+      aiStep();
     }
-  }, [clearGame, isUserStep, state, symbols]);
+  }, [aiStep, isGameInit, isUserStep, setWinner, state, symbols]);
 
-  const handleClick = useCallback((rowIndex: number, cellIndex: number) => {
+  const clearGame = useCallback(() => {
+    setIsGameInit(false);
+    setState(INITIAL_STATE);
+    setSymbols(INITIAL_SYMBOLS);
+    setMessage('');
+  }, []);
+
+  const handleClick = useCallback((cellIndex: number) => {
     const config = {
-      rowIndex,
       cellIndex,
       symbol: symbols.user,
     }
@@ -108,45 +70,47 @@ export const XoPageComponent = () => {
     setIsUserStep(false);
   }, [symbols]);
 
-  const handleSymbolClick = useCallback((_ri, _ci, symbol: string) => {
+  const handleSymbolClick = useCallback((_, symbol: string) => {
     setSymbols({
       ai: SYMBOLS.filter(item => item !== symbol)[0],
       user: symbol
     });
+    setIsUserStep(getIsUserStep());
+    setIsGameInit(true);
   }, []);
 
   return (
-    <Page headTitle="XO" title="xo game">
+    <Page headTitle="Tic tac toe" title="Tic tac toe game">
       <div className={cn(CLASS_NAME)}>
-        <ul className={cn(`${CLASS_NAME}__container`)}>
-          {state.map((row, rowIndex) => (
-            row.map((value, cellIndex) => (
-              <li className={cn(`${CLASS_NAME}__cell`)} key={`${rowIndex}${cellIndex}`}>
+        {Boolean(message) && (
+          <div
+            className={cn(`${CLASS_NAME}__container`, {
+              [`${CLASS_NAME}__container--winner`]: true,
+            })}
+          >
+            <h2>{message}</h2>
+          </div>
+        )}
+        {!Boolean(message) && Boolean(symbols.user) ? (
+          <ul className={cn(`${CLASS_NAME}__container`)}>
+            {state.map((value, cellIndex) => (
+              <li className={cn(`${CLASS_NAME}__cell`)} key={`${cellIndex}`}>
                 <CellButton
-                  rowIndex={rowIndex}
                   cellIndex={cellIndex}
                   onClick={handleClick}
                   value={value}
-                  disabled={Boolean(value) || !Boolean(symbols.user)}
-                />
-              </li>
-            ))
-          ))}
-        </ul>
-        {!Boolean(symbols.user) && (
-          <div className={cn(`${CLASS_NAME}__actions`)}>
-            {SYMBOLS.map((symbol, index) => (
-              <li className={cn(`${CLASS_NAME}__cell`)} key={`${index}`}>
-                <CellButton
-                  rowIndex={index}
-                  cellIndex={index}
-                  onClick={handleSymbolClick}
-                  value={symbol}
-                  disabled={Boolean(symbols.user)}
+                  disabled={Boolean(value) || !Boolean(symbols.user) || !isUserStep}
                 />
               </li>
             ))}
-          </div>
+          </ul>
+        ) : (
+          <ActionsButtons
+            message={message}
+            onClear={clearGame}
+            onSymbolClick={handleSymbolClick}
+            disabled={Boolean(symbols.user)}
+          />
         )}
       </div>
     </Page>

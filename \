@@ -1,0 +1,23 @@
+add xo game page
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is ahead of 'origin/main' by 6 commits.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   client/src/index.css
+#	modified:   client/src/pages/games-page/children/index.ts
+#	modified:   client/src/pages/games-page/children/semki/semki-page.tsx
+#	modified:   client/src/pages/games-page/children/snake-game-page/index.ts
+#	new file:   client/src/pages/games-page/children/xo/_components/cell-button/cell-button.module.scss
+#	new file:   client/src/pages/games-page/children/xo/_components/cell-button/cell-button.tsx
+#	new file:   client/src/pages/games-page/children/xo/_components/cell-button/index.ts
+#	new file:   client/src/pages/games-page/children/xo/_components/index.ts
+#	new file:   client/src/pages/games-page/children/xo/index.ts
+#	new file:   client/src/pages/games-page/children/xo/xo-page.module.scss
+#	new file:   client/src/pages/games-page/children/xo/xo-page.tsx
+#	modified:   client/src/pages/games-page/constants.ts
+#	modified:   client/src/pages/games-page/index.ts
+#

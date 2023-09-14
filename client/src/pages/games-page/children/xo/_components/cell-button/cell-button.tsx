@@ -6,17 +6,16 @@ const cn = fastClassNames(styles);
 const CLASS_NAME = 'cell-button';
 
 type CellButtonProps = {
-  rowIndex: number;
   cellIndex: number;
-  onClick: (cellIndex: number, rowIndex: number, value: string) => void;
+  onClick: (cellIndex: number, value: string) => void;
   value: string;
   disabled: boolean;
 };
 
-export const CellButtonComponent = ({ cellIndex, disabled, rowIndex, onClick, value }: CellButtonProps) => {
+export const CellButtonComponent = ({ cellIndex, disabled, onClick, value }: CellButtonProps) => {
   const handleClick = useCallback(() => {
-    onClick(rowIndex, cellIndex, value);
-  }, [cellIndex, rowIndex, onClick, value]);
+    onClick(cellIndex, value);
+  }, [cellIndex, onClick, value]);
 
   return (
     <button
