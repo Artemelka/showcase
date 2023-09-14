@@ -1,9 +1,8 @@
-import { INITIAL_SYMBOLS } from '../constant';
-import { Move } from '../types';
+import { Move, Symbols } from '../types';
 
 type GetBestMoveParams = {
   moves: Array<Move>,
-  symbols: typeof INITIAL_SYMBOLS,
+  symbols: Symbols,
   targetSymbol: string,
 };
 

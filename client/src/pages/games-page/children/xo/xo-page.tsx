@@ -2,8 +2,14 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
 import { CellButton, ActionsButtons } from './_components';
-import { INITIAL_STATE, INITIAL_SYMBOLS, SYMBOLS } from './constant';
-import { getEndGameMessage, getIsUserStep, getUpdatedState, minimax } from './_utils';
+import { INITIAL_STATE, INITIAL_SYMBOLS } from './constant';
+import {
+  getEndGameMessage,
+  getIsUserStep,
+  getSymbols,
+  getUpdatedState,
+  minimax,
+} from './_utils';
 import styles from './xo-page.module.scss';
 
 const cn = fastClassNames(styles);
@@ -71,10 +77,9 @@ export const XoPageComponent = () => {
   }, [symbols]);
 
   const handleSymbolClick = useCallback((_, symbol: string) => {
-    setSymbols({
-      ai: SYMBOLS.filter(item => item !== symbol)[0],
-      user: symbol
-    });
+    const nextSymbols = getSymbols(symbol);
+
+    setSymbols(nextSymbols);
     setIsUserStep(getIsUserStep());
     setIsGameInit(true);
   }, []);

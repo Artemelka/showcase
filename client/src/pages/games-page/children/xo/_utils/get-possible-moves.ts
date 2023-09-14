@@ -1,12 +1,11 @@
-import { INITIAL_SYMBOLS } from '../constant';
-import { Move } from '../types';
+import { Move, Symbols } from '../types';
 import { getUpdatedState } from './get-updated-state';
 import { minimax } from './minimax';
 
 type GetPossibleMovesParams = {
   emptyCells: Array<number>,
   state: Array<string>,
-  symbols: typeof INITIAL_SYMBOLS,
+  symbols: Symbols,
   targetSymbol: string,
 };
 

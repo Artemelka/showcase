@@ -1,11 +1,10 @@
-import { INITIAL_SYMBOLS } from '../constant';
-import { Move } from '../types';
+import { Move, Symbols } from '../types';
 import { checkWinner } from './check-winner';
 import { getEmptyCells } from './get-empty-cells';
 import { getPossibleMoves } from './get-possible-moves';
 import { getBestMove } from './get-best-move';
 
-export function minimax(state: Array<string>, symbols: typeof INITIAL_SYMBOLS, targetSymbol: string): Move {
+export function minimax(state: Array<string>, symbols: Symbols, targetSymbol: string): Move {
   if (checkWinner(state, symbols.user)) {
     return { cellIndex: NaN, score: -10 };
   }
