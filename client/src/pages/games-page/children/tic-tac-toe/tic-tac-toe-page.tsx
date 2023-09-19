@@ -2,12 +2,13 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
 import { CellButton, ActionsButtons } from './_components';
-import { INITIAL_STATE, INITIAL_SYMBOLS } from './constant';
+import { INITIAL_STATE, INITIAL_SYMBOLS, INITIAL_WINNER } from './constant';
 import {
   getEndGameMessage,
   getIsUserStep,
   getSymbols,
   getUpdatedState,
+  getWinnerCells,
   minimax,
 } from './_utils';
 import styles from './tic-tac-toe-page.module.scss';
@@ -15,16 +16,16 @@ import styles from './tic-tac-toe-page.module.scss';
 const cn = fastClassNames(styles);
 const CLASS_NAME = 'Tic-tac-toe-page';
 
+type Winner = {
+  message: string;
+  winnerCells: Array<number>;
+}
+
 export const TicTacToePageComponent = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const [symbols, setSymbols] = useState(INITIAL_SYMBOLS);
   const [isUserStep, setIsUserStep] = useState(false);
-  const [message, setMessage] = useState('');
-  const [isGameInit, setIsGameInit] = useState(false);
-
-  const setWinner = useCallback((message: string) => {
-    setMessage(message);
-  }, []);
+  const [{ message, winnerCells }, setWinner] = useState<Winner>(INITIAL_WINNER);
 
   const aiStep = useCallback(() => {
     const { cellIndex } = minimax(state, symbols, symbols.ai);
@@ -43,27 +44,29 @@ export const TicTacToePageComponent = () => {
   }, [state, symbols]);
 
   useEffect(() => {
-    if (!isGameInit) {
+    if (!symbols.user) {
       return;
     }
 
     const message = getEndGameMessage(state, symbols);
 
     if (message) {
-        setWinner(message);
-        return;
+      const winnerSymbol = isUserStep ? symbols.ai : symbols.user;
+      const cells = getWinnerCells(state, winnerSymbol);
+
+      setWinner({ message, winnerCells: cells });
+      return;
     }
 
     if (!isUserStep) {
       aiStep();
     }
-  }, [aiStep, isGameInit, isUserStep, setWinner, state, symbols]);
+  }, [aiStep, isUserStep, setWinner, state, symbols]);
 
   const clearGame = useCallback(() => {
-    setIsGameInit(false);
     setState(INITIAL_STATE);
     setSymbols(INITIAL_SYMBOLS);
-    setMessage('');
+    setWinner(INITIAL_WINNER)
   }, []);
 
   const handleClick = useCallback((cellIndex: number) => {
@@ -81,26 +84,21 @@ export const TicTacToePageComponent = () => {
 
     setSymbols(nextSymbols);
     setIsUserStep(getIsUserStep());
-    setIsGameInit(true);
   }, []);
 
   return (
     <Page headTitle="Tic tac toe" title="Tic tac toe game">
       <div className={cn(CLASS_NAME)}>
-        {Boolean(message) && (
-          <div
-            className={cn(`${CLASS_NAME}__container`, {
-              [`${CLASS_NAME}__container--winner`]: true,
-            })}
-          >
-            <h2>{message}</h2>
-          </div>
-        )}
-        {!Boolean(message) && Boolean(symbols.user) ? (
+        <div className={cn(`${CLASS_NAME}__message`)}>
+          {message}
+        </div>
+
+        {Boolean(symbols.user) && (
           <ul className={cn(`${CLASS_NAME}__container`)}>
             {state.map((value, cellIndex) => (
               <li className={cn(`${CLASS_NAME}__cell`)} key={`${cellIndex}`}>
                 <CellButton
+                  isWinner={winnerCells.includes(cellIndex)}
                   cellIndex={cellIndex}
                   onClick={handleClick}
                   value={value}
@@ -109,14 +107,16 @@ export const TicTacToePageComponent = () => {
               </li>
             ))}
           </ul>
-        ) : (
-          <ActionsButtons
-            message={message}
-            onClear={clearGame}
-            onSymbolClick={handleSymbolClick}
-            disabled={Boolean(symbols.user)}
-          />
         )}
+
+        <ActionsButtons
+          isNewGameButton={Boolean(winnerCells.length) || message === 'No winners!'}
+          onClear={clearGame}
+          onSymbolClick={handleSymbolClick}
+          disabled={Boolean(symbols.user)}
+          userSymbol={symbols.user}
+        />
+
       </div>
     </Page>
   );

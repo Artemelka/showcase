@@ -8,26 +8,37 @@ const cn = fastClassNames(styles);
 const CLASS_NAME = 'Action-button';
 
 type ActionsButtonProps = {
-  message?: string;
-  onSymbolClick: (cellIndex: number, value: string) => void;
-  onClear: () => void;
   disabled: boolean;
+  isNewGameButton?: boolean;
+  onClear: () => void;
+  onSymbolClick: (cellIndex: number, value: string) => void;
+  userSymbol: string;
 };
 
 export const ActionsButtonComponent = ({
-  message,
-  onSymbolClick,
-  onClear,
   disabled,
+  isNewGameButton,
+  onClear,
+  onSymbolClick,
+  userSymbol,
 }: ActionsButtonProps) => {
   return (
     <div className={cn(CLASS_NAME)}>
-      {!Boolean(message) ? (
+      {isNewGameButton ? (
+        <button
+          className={cn(`${CLASS_NAME}__reload`)}
+          onClick={onClear}
+          type="button"
+        >
+          New game
+        </button>
+      ) : (
         <>
           <h3>Choose symbol</h3>
           <div className={cn(`${CLASS_NAME}__actions`)}>
             {SYMBOLS.map((symbol, index) => (
               <CellButton
+                isWinner={userSymbol === symbol}
                 key={`${index}`}
                 cellIndex={index}
                 onClick={onSymbolClick}
@@ -37,14 +48,6 @@ export const ActionsButtonComponent = ({
             ))}
           </div>
         </>
-      ) : (
-        <button
-          className={cn(`${CLASS_NAME}__reload`)}
-          onClick={onClear}
-          type="button"
-        >
-          New game
-        </button>
       )}
     </div>
   );

@@ -20,3 +20,8 @@ export const DIAGONALS = [
 export const INITIAL_STATE = ['', '', '', '', '', '', '', '', ''];
 
 export const INITIAL_SYMBOLS = { ai: '', user: '' };
+
+export const INITIAL_WINNER = {
+  message: '',
+  winnerCells: [],
+};

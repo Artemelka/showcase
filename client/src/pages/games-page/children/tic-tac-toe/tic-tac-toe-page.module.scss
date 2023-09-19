@@ -25,5 +25,10 @@
     width: 100px;
   }
 
-
+  &__message {
+    text-align: center;
+    min-height: 28px;
+    margin: 20px 0;
+    font-size: 24px;
+  }
 }
