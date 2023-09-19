@@ -21,7 +21,7 @@ type Props = {
 
 type GamesPageProps = Props & MapStateToProps & MapDispatchToProps;
 
-export class RoutesPageComponent extends Component<GamesPageProps> {
+export class RoutesPageComponent extends Component<GamesPageProps, never> {
   componentDidMount() {
     const { pathname, targetPath, routesConfig } = this.props;
 
@@ -31,11 +31,16 @@ export class RoutesPageComponent extends Component<GamesPageProps> {
   }
 
   render() {
-    const { routesConfig } = this.props;
+    const { routesConfig, targetPath } = this.props;
 
     return (
       <Layout
-        asideElement={<Sidebar navigationItems={routesConfig}/>}
+        asideElement={
+          <Sidebar
+            title={targetPath.replace('/', '')}
+            navigationItems={routesConfig}
+          />
+        }
         isAsideSticky
       >
         <AsyncRoutes routesConfig={routesConfig}/>

@@ -39,7 +39,7 @@ type AppLayoutProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToP
   routesConfig: Array<AppRouteConfig>;
 };
 
-export class AppLayoutComponent extends Component<AppLayoutProps> {
+export class AppLayoutComponent extends Component<AppLayoutProps, never> {
   componentDidMount() {
     this.props.authInit();
   }

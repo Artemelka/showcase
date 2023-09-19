@@ -22,12 +22,13 @@ const mapDispatchToProps = {
 
 type Props = {
   navigationItems: Array<AppRouteConfig>;
+  title: string;
 };
 
 type SidebarProps = Props & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
-export class SidebarContainer extends Component<SidebarProps> {
-  handleClick = (path: string ) => {
+export class SidebarContainer extends Component<SidebarProps, never> {
+  handleClick = (path: string) => {
     this.props.push(path);
   };
 
@@ -36,7 +37,7 @@ export class SidebarContainer extends Component<SidebarProps> {
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__inner`)}>
           <Text tagName="h5" align="center" fontWeight="semi-bold">
-            Implementation menu
+            {this.props.title} menu
           </Text>
           <div className={cn(`${CLASS_NAME}__navigation`)}>
             <SidebarNavigation
