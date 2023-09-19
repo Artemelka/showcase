@@ -10,12 +10,12 @@ import {
   getUpdatedState,
   minimax,
 } from './_utils';
-import styles from './xo-page.module.scss';
+import styles from './tic-tac-toe-page.module.scss';
 
 const cn = fastClassNames(styles);
-const CLASS_NAME = 'Xo-page';
+const CLASS_NAME = 'Tic-tac-toe-page';
 
-export const XoPageComponent = () => {
+export const TicTacToePageComponent = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const [symbols, setSymbols] = useState(INITIAL_SYMBOLS);
   const [isUserStep, setIsUserStep] = useState(false);
@@ -122,4 +122,4 @@ export const XoPageComponent = () => {
   );
 };
 
-export default memo(XoPageComponent);
+export default memo(TicTacToePageComponent);
