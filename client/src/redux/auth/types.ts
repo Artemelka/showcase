@@ -1,3 +1,4 @@
+import { CaseReducer } from '@reduxjs/toolkit';
 import { User, Auth } from '@/api';
 import { BaseAction } from '@/app';
 import { AUTH_REDUCER_NAME } from './constants';
@@ -12,13 +13,13 @@ export type SetAuthIsLoginAction = BaseAction<boolean>;
 export type SetAuthUserAction = BaseAction<User>;
 
 export type AuthReducerCase = {
-  authInit: (state: AuthState, action: SetAuthInitAction) => void;
-  setAuthIsLogin: (state: AuthState, action: SetAuthIsLoginAction) => void;
-  setStartAuthInit: (state: AuthState) => void;
-  setStartAuthLogin: (state: AuthState) => void;
-  setStopAuthInit: (state: AuthState) => void;
-  setStopAuthLogin: (state: AuthState) => void;
-  setAuthUser: (state: AuthState, action: SetAuthUserAction) => void;
+  authInit: CaseReducer<AuthState, SetAuthInitAction>;
+  setAuthIsLogin: CaseReducer<AuthState, SetAuthIsLoginAction>;
+  setStartAuthInit: CaseReducer<AuthState>;
+  setStartAuthLogin: CaseReducer<AuthState>;
+  setStopAuthInit: CaseReducer<AuthState>;
+  setStopAuthLogin: CaseReducer<AuthState>;
+  setAuthUser: CaseReducer<AuthState, SetAuthUserAction>;
 };
 
 export type AuthStore = { [AUTH_REDUCER_NAME]: AuthState };

@@ -33,8 +33,8 @@ export const FormFcComponent = () => {
           />
           {errors[name] && (
             <span className={cn(`${CLASS_NAME}__error`)}>
-                {errors[name]}
-              </span>
+              {errors[name]}
+            </span>
           )}
         </div>
       )))}

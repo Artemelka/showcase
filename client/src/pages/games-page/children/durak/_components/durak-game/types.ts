@@ -1,3 +1,4 @@
+import { CaseReducer } from '@reduxjs/toolkit';
 import { BaseAction } from '@/app';
 import { DURAK_REDUCER_NAME } from './redux/constants';
 
@@ -30,24 +31,24 @@ export type SetCardsAction = BaseAction<Cards>;
 export type StartGameAction = BaseAction<DurakState>;
 
 export type DurakGameReducerCase = {
-  addEnemyBank: (state: DurakState, action: SetCardsAction) => void,
-  setEnemyBank: (state: DurakState, action: SetCardsAction) => void,
+  addEnemyBank: CaseReducer<DurakState, SetCardsAction>;
+  setEnemyBank: CaseReducer<DurakState, SetCardsAction>;
 
-  addPlayerBank: (state: DurakState, action: SetCardsAction) => void,
-  setPlayerBank: (state: DurakState, action: SetCardsAction) => void,
+  addPlayerBank: CaseReducer<DurakState, SetCardsAction>;
+  setPlayerBank: CaseReducer<DurakState, SetCardsAction>;
 
-  setDeckBank: (state: DurakState, action: SetCardsAction) => void,
-  setIsNeedUpdateCards: (state: DurakState) => void,
-  restoreIsNeedUpdateCards: (state: DurakState) => void,
+  setDeckBank: CaseReducer<DurakState, SetCardsAction>;
+  setIsNeedUpdateCards: CaseReducer<DurakState>;
+  restoreIsNeedUpdateCards: CaseReducer<DurakState>;
 
-  addEnemyPlace: (state: DurakState, action: BaseAction<CardParams>) => void;
-  addPlayerPlace: (state: DurakState, action: BaseAction<CardParams>) => void;
+  addEnemyPlace: CaseReducer<DurakState, BaseAction<CardParams>>;
+  addPlayerPlace: CaseReducer<DurakState, BaseAction<CardParams>>;
 
-  clearPlaces: (state: DurakState) => void;
+  clearPlaces: CaseReducer<DurakState>;
 
-  setTrumpCard: (state: DurakState, action: BaseAction<CardParams>) => void,
-  toggleStep: (state: DurakState) => void,
-  startGame: (state: DurakState, action: StartGameAction) => void,
+  setTrumpCard: CaseReducer<DurakState, BaseAction<CardParams>>;
+  toggleStep: CaseReducer<DurakState>;
+  startGame: CaseReducer<DurakState, StartGameAction>;
 }
 
 export type DurakGameStore = { [DURAK_REDUCER_NAME]: DurakState };

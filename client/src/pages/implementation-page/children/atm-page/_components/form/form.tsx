@@ -61,8 +61,8 @@ export const FormComponent = ({ onSubmit }: FormPropsType) => {
         />
         {isError && (
           <span className={cn(`${CLASS_NAME}__error`)}>
-          Enter correct amount
-        </span>
+            Enter correct amount
+          </span>
         )}
       </div>
       <Button type="submit" value="Submit" themeColor="primary"/>

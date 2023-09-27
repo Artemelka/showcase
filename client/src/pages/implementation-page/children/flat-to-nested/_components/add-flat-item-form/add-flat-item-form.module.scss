@@ -1,0 +1,25 @@
+.add-flat-item-form {
+  margin-top: 20px;
+
+  &__input {
+    padding: 10px 0;
+    width: 200px;
+
+    &--error {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__error {
+    font-size: 12px;
+    padding: 8px;
+    color: red;
+  }
+
+  &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,29 @@
+.flat-to-nested-page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &__col {
+    flex-grow: 1;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__heading {
+    padding-bottom: 20px;
+  }
+
+  &__result {
+    margin-top: 30px;
+    padding: 0 10px;
+    flex-basis: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
