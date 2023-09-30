@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BaseAction } from "@/app";
+import { CardParams } from '@/pages/games-page/types';
 import {
   addEnemyPlace,
   enemyBankSelector,
@@ -14,7 +15,7 @@ import {
   setIsNeedUpdateCards,
 } from '../../redux';
 import { findCurrentCard, getNextCards } from '../../utils';
-import { DurakGameStore, CardParams } from '../../types';
+import { DurakGameStore } from '../../types';
 import { CardBank } from '../card-bank';
 
 type Actions = {

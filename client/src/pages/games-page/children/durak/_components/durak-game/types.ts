@@ -1,17 +1,7 @@
 import { CaseReducer } from '@reduxjs/toolkit';
 import { BaseAction } from '@/app';
+import { CardParams } from '@/pages/games-page/types';
 import { DURAK_REDUCER_NAME } from './redux/constants';
-
-export type Suit = 'diamonds' | 'hearts' | 'clubs' | 'spades';
-
-export type Rank = 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
-
-export type CardParams = {
-  id: string;
-  img: string;
-  rank: Rank;
-  suit: Suit;
-};
 
 type Cards = Array<CardParams>;
 

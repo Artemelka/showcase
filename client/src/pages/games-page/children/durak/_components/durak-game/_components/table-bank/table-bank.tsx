@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fastClassNames, NOOP } from '@/utils';
+import { CardParams } from '@/pages/games-page/types';
 import {
   clearPlaces,
   deckBankSelector,
@@ -18,7 +19,7 @@ import {
   trumpCardSelector,
 } from '../../redux';
 import { getCardsFromDeck } from '../../utils';
-import { DurakGameStore, CardParams } from '../../types';
+import { DurakGameStore } from '../../types';
 import { Card } from '../card';
 import styles from './table-bank.module.scss';
 import {BaseAction} from "@/app";

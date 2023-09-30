@@ -1,6 +1,6 @@
+import { CardParams } from '@/pages/games-page/types';
 import { findAvailableCards } from './find-available-cards';
 import { findMinRankCard } from './find-min-rank-card';
-import { CardParams } from '../types';
 
 type Values = {
   currentCard?: CardParams;

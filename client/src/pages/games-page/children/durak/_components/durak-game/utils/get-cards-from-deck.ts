@@ -1,5 +1,5 @@
+import { CardParams } from '@/pages/games-page/types';
 import { MAX_CARD_COUNTER } from '../constants';
-import { CardParams } from '../types';
 
 type Params = {
   deck: Array<CardParams>;

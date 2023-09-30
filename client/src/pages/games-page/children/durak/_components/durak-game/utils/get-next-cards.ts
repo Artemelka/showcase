@@ -1,5 +1,5 @@
+import { CardParams } from '@/pages/games-page/types';
 import { findMinRankCard } from './find-min-rank-card';
-import { CardParams } from '../types';
 
 type CardMap = {
   cardsWithoutTrumps: Array<CardParams>;

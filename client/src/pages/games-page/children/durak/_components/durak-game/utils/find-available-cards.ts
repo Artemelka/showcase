@@ -1,4 +1,4 @@
-import { CardParams } from '../types';
+import { CardParams } from '@/pages/games-page/types';
 
 export function findAvailableCards(cards: Array<CardParams>, currentCard: CardParams): Array<CardParams> {
   const minRank = currentCard.rank;

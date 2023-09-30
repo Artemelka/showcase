@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { fastClassNames } from '@/utils';
-import { CARD_IMG_MAP, CARD_IMG_SKIN } from '../../constants';
-import { CardParams } from '../../types';
+import { CardParams } from '@/pages/games-page/types';
+import { CARD_IMG_SKIN } from '@/pages/games-page/_constants/cards';
 import styles from './card.module.scss';
 
 const cn = fastClassNames(styles);
@@ -23,13 +23,13 @@ export const CardComponent = ({ card, disabled = false, isHidden = false, onClic
     }
   }, [card, disabled, onClick]);
 
-  const imgPath = isHidden ? CARD_IMG_SKIN : CARD_IMG_MAP[card.suit][card.rank];
+  const imgPath = isHidden ? CARD_IMG_SKIN : card.img;
   const cardAlt = isHidden ? DEFAULT_ALT : `${card.suit}-${card.rank}`;
 
   return (
     <button
       className={cn(CLASS_NAME, {
-        [`${CLASS_NAME}--disable`]: disabled,
+        [`${CLASS_NAME}--disable`]: Boolean(disabled),
       })}
       onClick={handleClick}
       type="button"

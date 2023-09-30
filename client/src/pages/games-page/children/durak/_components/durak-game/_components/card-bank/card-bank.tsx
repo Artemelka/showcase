@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import { fastClassNames, DEFAULT_HANDLER } from '@/utils';
-import { CardParams } from '../../types';
+import { CardParams } from '@/pages/games-page/types';
 import { Card } from '../card';
 import styles from './card-bank.module.scss';
 

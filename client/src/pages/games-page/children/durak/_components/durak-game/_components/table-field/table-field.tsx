@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { fastClassNames } from "@/utils";
+import { fastClassNames } from '@/utils';
+import { CardParams } from '@/pages/games-page/types';
 import {
   enemyPlaceSelector,
   playerPlaceSelector,
   isPlayerStepSelector,
 } from '../../redux';
-import { DurakGameStore, CardParams } from '../../types';
+import { DurakGameStore } from '../../types';
 import { CardBank } from '../card-bank';
 import styles from './table-field.module.scss';
 

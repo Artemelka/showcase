@@ -1,4 +1,4 @@
-import { CardParams, Suit } from '../types';
+import { CardParams, Suit } from '@/pages/games-page/types';
 import { findMinTrumpRank } from './find-min-trump-rank';
 
 export function checkIsPlayerStep(

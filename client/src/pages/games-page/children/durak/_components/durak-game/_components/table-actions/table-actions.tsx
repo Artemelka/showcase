@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
 import { BaseAction } from "@/app";
+import { CardParams } from '@/pages/games-page/types';
 import {
   enemyPlaceSelector,
   isPlayerAttackSelector,
@@ -13,7 +14,7 @@ import {
   setPlayerBank,
   toggleStep,
 } from '../../redux';
-import { CardParams, DurakGameStore } from '../../types';
+import { DurakGameStore } from '../../types';
 import styles from './table-actions.module.scss';
 
 const cn = fastClassNames(styles);

@@ -1,4 +1,4 @@
-import { CardParams } from '../types';
+import { CardParams } from '@/pages/games-page/types';
 
 type Values = {
   nextPlayerCards: Array<CardParams>;

@@ -1,4 +1,4 @@
-import { CardParams, Suit } from '../types';
+import { CardParams, Suit } from '@/pages/games-page/types';
 
 const INITIAL_RANK = 15;
 
