@@ -15,7 +15,7 @@ export function getNextIndex({ level, state, symbols, targetSymbol }: Params): n
     return easyBot(state, symbols);
   }
 
-  const { cellIndex } = minimax(state, symbols, targetSymbol);
+  const { cellIndex } = minimax({ state, symbols, targetSymbol });
 
   return cellIndex;
 }

@@ -10,10 +10,14 @@ type GetPossibleMovesParams = {
 };
 
 export function getPossibleMoves({ emptyCells, state, symbols, targetSymbol }: GetPossibleMovesParams): Array<Move> {
-  const res = emptyCells.reduce((res: Array<Move>, cellIndex) => {
+  return emptyCells.reduce((res: Array<Move>, cellIndex) => {
     const nextSymbol = targetSymbol === symbols.user ? symbols.ai : symbols.user;
     const nextState = getUpdatedState(state, { cellIndex, symbol: targetSymbol });
-    const { score } = minimax(nextState, symbols, nextSymbol);
+    const { score } = minimax({
+      state: nextState,
+      symbols,
+      targetSymbol: nextSymbol,
+    });
 
     res.push({
       cellIndex,
@@ -22,6 +26,4 @@ export function getPossibleMoves({ emptyCells, state, symbols, targetSymbol }: G
 
     return res;
   }, []);
-
-  return res;
 }

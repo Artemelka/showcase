@@ -3,12 +3,12 @@ import {
   DIAGONALS,
   ROWS
 } from '../constant';
-import { checkRows } from './check-rows';
+import { getWinnerRows } from './get-winner-rows';
 
 export function checkWinner(state: Array<string>, symbol: string): boolean {
-  const inColumn = checkRows(state, COLUMNS, symbol);
-  const inRow = checkRows(state, ROWS, symbol);
-  const inDiagonal = checkRows(state, DIAGONALS, symbol);
+  const inColumn = getWinnerRows({ state, rows: COLUMNS, symbol });
+  const inRow = getWinnerRows({ state, rows: ROWS, symbol });
+  const inDiagonal = getWinnerRows({ state, rows: DIAGONALS, symbol });
 
-  return inRow || inColumn || inDiagonal;
+  return Boolean(inRow.length || inColumn.length || inDiagonal.length);
 }

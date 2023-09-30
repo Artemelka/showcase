@@ -4,7 +4,13 @@ import { getEmptyCells } from './get-empty-cells';
 import { getPossibleMoves } from './get-possible-moves';
 import { getBestMove } from './get-best-move';
 
-export function minimax(state: Array<string>, symbols: Symbols, targetSymbol: string): Move {
+type Params = {
+  state: Array<string>;
+  symbols: Symbols;
+  targetSymbol: string;
+};
+
+export function minimax({ state, symbols, targetSymbol }: Params): Move {
   if (checkWinner(state, symbols.user)) {
     return { cellIndex: NaN, score: -10 };
   }
