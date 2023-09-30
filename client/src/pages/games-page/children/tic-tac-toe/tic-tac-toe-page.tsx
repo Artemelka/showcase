@@ -1,15 +1,25 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { Page } from '@/components';
+import {
+  DropdownItemParams,
+  SelectChangeEvent,
+} from '@artemelka/react-components';
+import { Page, FilterSelect } from '@/components';
 import { fastClassNames } from '@/utils';
 import { CellButton, ActionsButtons } from './_components';
-import { INITIAL_STATE, INITIAL_SYMBOLS, INITIAL_WINNER } from './constant';
+import {
+  GAME_LEVEL_OPTIONS,
+  INITIAL_LEVEL,
+  INITIAL_STATE,
+  INITIAL_SYMBOLS,
+  INITIAL_WINNER,
+} from './constant';
 import {
   getEndGameMessage,
   getIsUserStep,
   getSymbols,
   getUpdatedState,
   getWinnerCells,
-  minimax,
+  getNextIndex,
 } from './_utils';
 import styles from './tic-tac-toe-page.module.scss';
 
@@ -24,11 +34,17 @@ type Winner = {
 export const TicTacToePageComponent = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const [symbols, setSymbols] = useState(INITIAL_SYMBOLS);
+  const [level, setLevel] = useState<Array<DropdownItemParams>>(INITIAL_LEVEL);
   const [isUserStep, setIsUserStep] = useState(false);
   const [{ message, winnerCells }, setWinner] = useState<Winner>(INITIAL_WINNER);
 
   const aiStep = useCallback(() => {
-    const { cellIndex } = minimax(state, symbols, symbols.ai);
+    const cellIndex = getNextIndex({
+      level: level[0].value,
+      state,
+      symbols,
+      targetSymbol: symbols.ai,
+    });
 
     if (isNaN(cellIndex)) {
       throw Error('cellIndex is undefined');
@@ -41,7 +57,7 @@ export const TicTacToePageComponent = () => {
 
     setState((prevState) => getUpdatedState(prevState, config));
     setIsUserStep(true);
-  }, [state, symbols]);
+  }, [level, state, symbols]);
 
   useEffect(() => {
     if (!symbols.user) {
@@ -66,7 +82,8 @@ export const TicTacToePageComponent = () => {
   const clearGame = useCallback(() => {
     setState(INITIAL_STATE);
     setSymbols(INITIAL_SYMBOLS);
-    setWinner(INITIAL_WINNER)
+    setWinner(INITIAL_WINNER);
+    setLevel(INITIAL_LEVEL);
   }, []);
 
   const handleClick = useCallback((cellIndex: number) => {
@@ -86,6 +103,10 @@ export const TicTacToePageComponent = () => {
     setIsUserStep(getIsUserStep());
   }, []);
 
+  const handleLevel = useCallback((selectEvent: SelectChangeEvent) => {
+    setLevel(selectEvent.items);
+  }, []);
+
   return (
     <Page headTitle="Tic tac toe" title="Tic tac toe game">
       <div className={cn(CLASS_NAME)}>
@@ -93,7 +114,7 @@ export const TicTacToePageComponent = () => {
           {message}
         </div>
 
-        {Boolean(symbols.user) && (
+        {Boolean(symbols.user) ? (
           <ul className={cn(`${CLASS_NAME}__container`)}>
             {state.map((value, cellIndex) => (
               <li className={cn(`${CLASS_NAME}__cell`)} key={`${cellIndex}`}>
@@ -107,16 +128,26 @@ export const TicTacToePageComponent = () => {
               </li>
             ))}
           </ul>
+        ) : (
+          <FilterSelect
+            onChange={handleLevel}
+            name="level"
+            values={level}
+            options={GAME_LEVEL_OPTIONS}
+            id="level"
+            label="Choose level"
+          />
         )}
 
-        <ActionsButtons
-          isNewGameButton={Boolean(winnerCells.length) || message === 'No winners!'}
-          onClear={clearGame}
-          onSymbolClick={handleSymbolClick}
-          disabled={Boolean(symbols.user)}
-          userSymbol={symbols.user}
-        />
-
+        {Boolean(level.length) && (
+          <ActionsButtons
+            isNewGameButton={Boolean(winnerCells.length) || message === 'No winners!'}
+            onClear={clearGame}
+            onSymbolClick={handleSymbolClick}
+            disabled={Boolean(symbols.user)}
+            userSymbol={symbols.user}
+          />
+        )}
       </div>
     </Page>
   );

@@ -25,3 +25,10 @@ export const INITIAL_WINNER = {
   message: '',
   winnerCells: [],
 };
+
+export const GAME_LEVEL_OPTIONS = [
+  { id: 'easy', value: 'easy'},
+  { id: 'hard', value: 'hard'},
+];
+
+export const INITIAL_LEVEL = [];
