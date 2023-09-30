@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Button } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
 import { CellButton } from '../cell-button';
 import { SYMBOLS } from '../../constant';
@@ -25,13 +26,14 @@ export const ActionsButtonComponent = ({
   return (
     <div className={cn(CLASS_NAME)}>
       {isNewGameButton ? (
-        <button
-          className={cn(`${CLASS_NAME}__reload`)}
-          onClick={onClear}
-          type="button"
-        >
-          New game
-        </button>
+        <div className={cn(`${CLASS_NAME}__reload`)}>
+          <Button
+            onClick={onClear}
+            value="New game"
+            size="big"
+            themeColor="error"
+          />
+        </div>
       ) : (
         <>
           <h3>Choose symbol</h3>

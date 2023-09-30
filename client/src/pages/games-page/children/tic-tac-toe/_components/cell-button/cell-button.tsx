@@ -23,7 +23,7 @@ export const CellButtonComponent = ({ isWinner, cellIndex, disabled, onClick, va
       className={cn(CLASS_NAME, {
         [`${CLASS_NAME}--winner`]: isWinner
       })}
-      disabled={disabled}
+      disabled={disabled || isWinner}
       onClick={handleClick}
       type="button"
     >

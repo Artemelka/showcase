@@ -123,7 +123,7 @@ export const TicTacToePageComponent = () => {
                   cellIndex={cellIndex}
                   onClick={handleClick}
                   value={value}
-                  disabled={Boolean(value) || !Boolean(symbols.user) || !isUserStep}
+                  disabled={Boolean(value) || !Boolean(symbols.user) || !isUserStep || Boolean(message)}
                 />
               </li>
             ))}
@@ -136,6 +136,7 @@ export const TicTacToePageComponent = () => {
             options={GAME_LEVEL_OPTIONS}
             id="level"
             label="Choose level"
+            size="big"
           />
         )}
 

@@ -6,12 +6,29 @@
   color: var(--baseTextColor);
   cursor: pointer;
   display: flex;
-  font-size: 80px;
+  font-size: 70px;
   height: 100%;
   justify-content: center;
   width: 100%;
 
+  &:hover {
+    background-color: rgba(0,0,0, 0.3);
+  }
+
+  &:disabled {
+    cursor: default;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
   &--winner {
-    background-color: darkred;
+    color: darkred;
+    background-color: rgba(0,0,0, 0.3);
+
+    &:disabled:hover {
+      background-color: rgba(0,0,0, 0.3);
+    }
   }
 }
