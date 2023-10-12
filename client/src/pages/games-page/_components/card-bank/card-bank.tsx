@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import { fastClassNames, DEFAULT_HANDLER } from '@/utils';
 import { CardParams } from '@/pages/games-page/types';
-import { Card } from '../card';
+import { Card } from '@/pages/games-page/_components/card';
 import styles from './card-bank.module.scss';
 
 const cn = fastClassNames(styles);
