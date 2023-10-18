@@ -1,6 +1,10 @@
 import { TodoItem } from '../types';
 
-export function getLimitedItems(items: Array<TodoItem>, limit: number, offset: number) {
+export function getLimitedItems(
+  items: Array<TodoItem>,
+  limit: number,
+  offset: number,
+) {
   let count = 0;
 
   return items.reduce((res: Array<TodoItem>, item, index) => {
@@ -10,5 +14,5 @@ export function getLimitedItems(items: Array<TodoItem>, limit: number, offset: n
     }
 
     return res;
-  },[]);
+  }, []);
 }

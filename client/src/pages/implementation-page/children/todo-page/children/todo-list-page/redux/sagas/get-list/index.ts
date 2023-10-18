@@ -14,4 +14,4 @@ function* getListWatcherSaga() {
 export const GET_LIST_SAGA_INJECT_CONFIG = {
   name: GET_LIST_WATCHER_SAGA_NAME,
   saga: getListWatcherSaga,
-}
+};

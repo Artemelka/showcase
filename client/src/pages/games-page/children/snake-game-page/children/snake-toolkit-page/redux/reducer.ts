@@ -40,12 +40,12 @@ const gameReducerSlice = createSlice<GameState, GameReducerCase>({
       state.isStarted = false;
     },
     updateScore: (state) => {
-      state.score = state.score + 1;
+      state.score += 1;
     },
     updateSnakeBody: (state, { payload }) => {
-      state.snakeBody = payload
+      state.snakeBody = payload;
     },
-  }
+  },
 });
 
 export const {

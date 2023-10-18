@@ -1,4 +1,4 @@
-import { Action } from 'redux';
+import type { Action } from 'redux';
 
 export const AUTH_INIT_ACTION_SAGA = 'AUTH_INIT_ACTION_SAGA';
 export const authInitActionSaga = (): Action<string> => ({

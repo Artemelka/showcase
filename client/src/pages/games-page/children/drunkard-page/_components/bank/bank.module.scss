@@ -1,0 +1,33 @@
+.Bank {
+  align-items: center;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  &__item {
+    margin: 0;
+    padding: 0;
+
+    @for $i from 36 through 1 {
+      &--#{$i} {
+        position: absolute;
+        right: #{$i}px;
+        top: 0;
+      }
+    }
+
+    &--static {
+      position: static;
+    }
+  }
+
+  &__counter {
+    font-weight: bold;
+    margin-right: 30px;
+  }
+}

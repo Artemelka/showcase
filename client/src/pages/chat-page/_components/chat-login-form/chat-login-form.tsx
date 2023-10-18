@@ -12,7 +12,7 @@ import {
   ChatSetUser,
   setUser,
   setUsersList,
-  userSelector
+  userSelector,
 } from '../../redux';
 import { CHAT_PAGE_CHILDREN_PATH } from '../../constants';
 import style from './chat-login-form.module.scss';
@@ -30,11 +30,13 @@ const mapStateToProps = (state: AppStore) => ({
   user: userSelector(state),
 });
 
-type ChatLoginFormProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & SocketHocProps;
+type ChatLoginFormProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps &
+  SocketHocProps;
 type State = {
   userName: string;
   isRedirect: boolean;
-}
+};
 
 export class ChatLoginForm extends Component<ChatLoginFormProps, State> {
   constructor(props: ChatLoginFormProps) {
@@ -48,9 +50,11 @@ export class ChatLoginForm extends Component<ChatLoginFormProps, State> {
 
           this.props.setUsersList(usersList);
           this.props.setUser(user);
-          this.props.push(`${CHAT_PAGE_CHILDREN_PATH.CONTENT}?id=${user.roomId}`);
-        }
-      }
+          this.props.push(
+            `${CHAT_PAGE_CHILDREN_PATH.CONTENT}?id=${user.roomId}`,
+          );
+        },
+      },
     ]);
 
     this.state = {
@@ -82,34 +86,34 @@ export class ChatLoginForm extends Component<ChatLoginFormProps, State> {
   render() {
     const { userName, isRedirect } = this.state;
 
-    return (
-      isRedirect
-        ? <Redirect to={`${CHAT_PAGE_CHILDREN_PATH.CONTENT}/?id=${this.props.user.roomId}`} />
-        : (
-          <form className={cn(`${CLASS_NAME}`)} onSubmit={this.handleButtonClick}>
-            <div className={cn(`${CLASS_NAME}__input`)}>
-              <Input
-                name="chat-login-name"
-                value={userName}
-                themeColor="primary"
-                variant="filled"
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <div className={cn(`${CLASS_NAME}__button`)}>
-              <Button
-                value="login"
-                themeColor="primary"
-                type="submit"
-                disabled={userName === ''}
-              />
-            </div>
-          </form>
-        )
+    return isRedirect ? (
+      <Redirect
+        to={`${CHAT_PAGE_CHILDREN_PATH.CONTENT}/?id=${this.props.user.roomId}`}
+      />
+    ) : (
+      <form className={cn(`${CLASS_NAME}`)} onSubmit={this.handleButtonClick}>
+        <div className={cn(`${CLASS_NAME}__input`)}>
+          <Input
+            name="chat-login-name"
+            onChange={this.handleInputChange}
+            themeColor="primary"
+            value={userName}
+            variant="filled"
+          />
+        </div>
+        <div className={cn(`${CLASS_NAME}__button`)}>
+          <Button
+            disabled={userName === ''}
+            themeColor="primary"
+            type="submit"
+            value="login"
+          />
+        </div>
+      </form>
     );
   }
 }
 
 export const ConnectedChatLoginForm = socketConnect(
-  connect(mapStateToProps, mapDispatchToProps)(ChatLoginForm)
+  connect(mapStateToProps, mapDispatchToProps)(ChatLoginForm),
 );

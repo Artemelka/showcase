@@ -20,8 +20,11 @@ export const FORM_ITEMS: Array<FormItem> = [
   },
 ];
 
-export const INITIAL_INPUTS_STATE: InputsState = FORM_ITEMS.reduce((res, { name }) => {
-  return { ...res, [name]: '' };
-}, {} as InputsState);
+export const INITIAL_INPUTS_STATE: InputsState = FORM_ITEMS.reduce(
+  (res, { name }) => {
+    return { ...res, [name]: '' };
+  },
+  {} as InputsState,
+);
 
 export const INITIAL_ERRORS_STATE = {};

@@ -6,7 +6,7 @@ describe('fast-class-names', () => {
     'test-selector__element': 'test-selector__element-key',
     'test-selector__element-2': 'test-selector__element-2-key',
     'test-selector--modifier': 'test-selector--modifier-key',
-  }
+  };
   const cn = fastClassNames(STYLES);
 
   test('should return selector key', () => {
@@ -46,4 +46,4 @@ describe('fast-class-names', () => {
 
     expect(result).toBe('test-selector test-selector__element');
   });
-})
+});

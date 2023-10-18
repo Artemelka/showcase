@@ -1,5 +1,3 @@
-export { routerReducer } from './reducer';
-export { ROUTER_REDUCER_KEY } from './constants';
 export {
   AppRoute,
   AppRouterProvider,
@@ -8,4 +6,4 @@ export {
 } from './_components';
 export * from './selectors';
 export { appRouterMiddleware } from './middleware';
-export type { AppRouterProps, RouterStore } from './types';
+export type { AppRouterProps, RouterStore, AppRouteConfig } from './types';

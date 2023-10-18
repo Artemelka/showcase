@@ -1,15 +1,21 @@
 import React, { memo } from 'react';
+import { AppRoute, AppRouterSwitch } from '@/app/router';
 import { Page } from '@/components';
-import { fastClassNames } from '@/utils';
-import styles from './drunkard-page.module.scss';
-
-const cn = fastClassNames(styles);
-const CLASS_NAME = 'Drunkard-page';
+import { DRUNKARD_CHILDREN_ROUTES } from './children';
 
 export const DrunkardPage = () => {
   return (
     <Page headTitle="Drunkard" title="Drunkard">
-      Drunkard
+      <AppRouterSwitch>
+        {DRUNKARD_CHILDREN_ROUTES.map(({ component, exact, path }) => (
+          <AppRoute
+            key={path}
+            component={component}
+            exact={exact}
+            path={path}
+          />
+        ))}
+      </AppRouterSwitch>
     </Page>
   );
 };

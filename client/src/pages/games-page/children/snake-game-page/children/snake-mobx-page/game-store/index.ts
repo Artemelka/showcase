@@ -5,22 +5,29 @@ import {
   CELL_QUANTITY,
   DEFAULT_SNAKE_BODY,
   DIRECTION,
-  SELECT_OPTIONS
+  SELECT_OPTIONS,
 } from '../../../constants';
 import { DirectionItem, SnakeBodyItem } from '../../../types';
 
 class SnakeGameStore {
   appleItem = getRandomApple(DEFAULT_SNAKE_BODY, CELL_QUANTITY);
+
   cells = [...Array(CELL_QUANTITY)].map((_, index) => index);
+
   direction = DIRECTION[38];
+
   gameSpeed = [SELECT_OPTIONS[1]];
+
   isFail = false;
+
   isStarted = false;
+
   score = 0;
+
   snakeBody = DEFAULT_SNAKE_BODY;
 
   constructor() {
-    makeAutoObservable(this)
+    makeAutoObservable(this);
   }
 
   setDirection(direction: DirectionItem) {
@@ -48,7 +55,11 @@ class SnakeGameStore {
     };
 
     let nextBody: Array<SnakeBodyItem> = [head, ...this.snakeBody.slice(0, -1)];
-    const isFail = checkFail({ body: this.snakeBody, head, length: this.cells.length });
+    const isFail = checkFail({
+      body: this.snakeBody,
+      head,
+      length: this.cells.length,
+    });
 
     if (isFail) {
       this.isStarted = false;

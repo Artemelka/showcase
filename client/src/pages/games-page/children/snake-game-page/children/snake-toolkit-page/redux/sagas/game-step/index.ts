@@ -1,4 +1,4 @@
-import { fork, take } from 'redux-saga/effects'
+import { fork, take } from 'redux-saga/effects';
 import { GAME_STEP_ACTION_SAGA } from '../../actions';
 import { gameStepSaga } from './game-step-saga';
 
@@ -14,4 +14,4 @@ function* gameStepWatcherSaga() {
 export const GAME_STEP_INJECT_SAGA_CONFIG = {
   name: GAME_TOOLKIT_STEP_WATCHER_SAGA_NAME,
   saga: gameStepWatcherSaga,
-}
+};

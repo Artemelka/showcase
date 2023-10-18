@@ -1,3 +1,4 @@
+import { appLogger } from '@/services/app-logger';
 import {
   MESSAGE_TYPE,
   PingMessagePayload,
@@ -7,23 +8,39 @@ import {
 } from './types';
 
 type WsClientParams = {
+  logger: typeof appLogger;
   url: string;
-}
+};
 
 export class WsClient {
   constructor(params: WsClientParams) {
     this.url = params.url;
+    this.logger = params.logger;
   }
 
   private connectCounter = 0;
+
   private reconnectTimeout = 1000 * 20;
+
   private pingIntervalId: NodeJS.Timeout | null = null;
-  private lastTimestamp: number = 0;
+
+  private lastTimestamp = 0;
+
   private listenersMap: ListenersMap = {};
+
   private readonly PING_PONG_INTERVAL = 1000 * 60;
+
   private reconnectTimeoutId: NodeJS.Timeout | null = null;
+
   private socket: WebSocket | null = null;
+
   public readonly url: string;
+
+  public readonly logger: typeof console;
+
+  private createMessage = (message: string) => {
+    return `=== WebSocket ${message} ===`;
+  };
 
   private increaseTimeout = () => {
     switch (this.connectCounter) {
@@ -33,9 +50,9 @@ export class WsClient {
       case 200:
         this.connectCounter = 1000 * 300;
         break;
-      default: return;
+      default:
     }
-  }
+  };
 
   private reconnect = (): void => {
     if (this.reconnectTimeoutId) {
@@ -48,24 +65,24 @@ export class WsClient {
 
     this.increaseTimeout();
     this.reconnectTimeoutId = setTimeout(() => {
-      this.connect()
+      this.connect();
     }, this.reconnectTimeout);
-  }
+  };
 
   private handleError = (errorEvent: Event): void => {
-    console.error('=== WebSocket error ===', errorEvent);
     this.reconnect();
-  }
+    this.logger.error(this.createMessage('error'), errorEvent);
+  };
 
   private handleClose = (closeEvent: CloseEvent): void => {
-    console.warn('=== WebSocket close ===', closeEvent.code);
     this.reconnect();
-  }
+    this.logger.warn(this.createMessage('close'), closeEvent.code);
+  };
 
   private send = <M>(message: SocketMessage<M>): void => {
     this.socket?.send(JSON.stringify(message));
-    console.log('=== send ===', message);
-  }
+    // console.log('=== send ===', message);
+  };
 
   private pingRequest = (): void => {
     this.lastTimestamp = Date.now();
@@ -75,40 +92,45 @@ export class WsClient {
       type: MESSAGE_TYPE.PING_REQUEST,
       payload: { timestamp: this.lastTimestamp },
     });
-  }
+  };
 
   private startPingPong = (): void => {
     this.pingIntervalId = setTimeout(this.pingRequest, this.PING_PONG_INTERVAL);
-  }
+  };
 
   private onPong = (nextTimestamp: number): void => {
     const delay = nextTimestamp - this.lastTimestamp;
-    console.log(`=== delay: ${delay} ms ===`);
+    this.logger.log(this.createMessage(`delay: ${delay}`));
     this.startPingPong();
-  }
+  };
 
   private handleOpen = (): void => {
-    this.on(MESSAGE_TYPE.PING_RESPONSE, ({ payload }: SocketMessage<PingMessagePayload>) => {
-      this.onPong(payload.timestamp)
-    });
+    this.on(
+      MESSAGE_TYPE.PING_RESPONSE,
+      ({ payload }: SocketMessage<PingMessagePayload>) => {
+        this.onPong(payload.timestamp);
+      },
+    );
     this.startPingPong();
     this.connectCounter = 0;
-  }
+  };
 
   private handleMessage = (messageEvent: MessageEvent): void => {
     const message = JSON.parse(messageEvent.data);
 
     this.emitter(message);
-    console.log('=== received ===', message);
-  }
+    // console.log('=== received ===', message);
+  };
 
   private emitter = (message: SocketMessage<any>): void => {
     const listeners = this.listenersMap[message.type];
 
     if (listeners) {
-      listeners.forEach(action => { action(message) });
+      listeners.forEach((action) => {
+        action(message);
+      });
     }
-  }
+  };
 
   public connect = (): void => {
     try {
@@ -116,8 +138,8 @@ export class WsClient {
       this.socket = new WebSocket(this.url);
       this.socket.binaryType = 'arraybuffer';
     } catch (error) {
-      console.log('=== WebSocket connection error ===', error);
       this.reconnect();
+      this.logger.error(this.createMessage('connection error'), error);
     }
 
     if (this.socket) {
@@ -126,7 +148,7 @@ export class WsClient {
       this.socket.onopen = this.handleOpen;
       this.socket.onmessage = this.handleMessage;
     }
-  }
+  };
 
   public disconnect = (): void => {
     if (this.pingIntervalId) {
@@ -139,17 +161,25 @@ export class WsClient {
     this.connectCounter = 0;
     this.lastTimestamp = 0;
     this.socket = null;
-  }
+  };
 
-  public on = (messageType: MESSAGE_TYPE, listener: SocketMessageListener): void => {
+  public on = (
+    messageType: MESSAGE_TYPE,
+    listener: SocketMessageListener,
+  ): void => {
     const typeListeners = this.listenersMap[messageType];
 
-    this.listenersMap[messageType] = typeListeners ? [...typeListeners, listener] : [listener];
+    this.listenersMap[messageType] = typeListeners
+      ? [...typeListeners, listener]
+      : [listener];
   };
 
   public request = <M>(message: SocketMessage<M>): void => {
     this.send<M>(message);
-  }
+  };
 }
 
-export const wsService = new WsClient({ url: 'ws://localhost:4000' });
+export const wsService = new WsClient({
+  logger: appLogger,
+  url: 'ws://localhost:4000',
+});

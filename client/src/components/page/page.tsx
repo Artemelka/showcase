@@ -26,12 +26,12 @@ export const PageComponent: FC<PageProps> = ({
       />
       {title && (
         <div className={cn(`${CLASS_NAME}__title`)}>
-          <Text tagName="h1" align="center" fontWeight="bold">{title}</Text>
+          <Text align="center" fontWeight="bold" tagName="h1">
+            {title}
+          </Text>
         </div>
       )}
-      <div className={cn(`${CLASS_NAME}__content`)}>
-        {children}
-      </div>
+      <div className={cn(`${CLASS_NAME}__content`)}>{children}</div>
     </div>
   );
 };

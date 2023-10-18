@@ -16,10 +16,15 @@ type CardProps = {
   isHidden?: boolean;
 };
 
-export const CardComponent = ({ card, disabled = false, isHidden = false, onClick }: CardProps) => {
+export const CardComponent = ({
+  card,
+  disabled = false,
+  isHidden = false,
+  onClick,
+}: CardProps) => {
   const handleClick = useCallback(() => {
     if (!disabled) {
-      onClick(card.id)
+      onClick(card.id);
     }
   }, [card, disabled, onClick]);
 

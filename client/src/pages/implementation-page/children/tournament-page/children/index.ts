@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import { TOURNAMENT_REGISTRATION_ROUTE_CONFIG } from './tournament-registration-page';
 import { TOURNAMENT_GRID_ROUTE_CONFIG } from './tournament-grid-page';
 import { TOURNAMENT_LIST_ROUTE_CONFIG } from './tournament-list';

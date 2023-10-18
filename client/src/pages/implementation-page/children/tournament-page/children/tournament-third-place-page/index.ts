@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import { TOURNAMENT_CHILDREN_PATH } from '../../constants';
 import { TournamentThirdPlacePage } from './tournament-third-place-page';
 

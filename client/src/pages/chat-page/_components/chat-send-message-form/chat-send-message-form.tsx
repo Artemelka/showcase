@@ -1,6 +1,6 @@
 import React, { FC, memo, SyntheticEvent, useCallback, useState } from 'react';
-import { fastClassNames } from '@/utils';
 import { Button, Input, InputChangeEvent } from '@artemelka/react-components';
+import { fastClassNames } from '@/utils';
 import { SendMessageFormValues } from '../../types';
 import style from './chat-send-message-form.module.scss';
 
@@ -12,7 +12,7 @@ type ChatSendMessageFormProps = {
 };
 
 export const ChatSendMessageFormComponent: FC<ChatSendMessageFormProps> = ({
-  onSubmit
+  onSubmit,
 }) => {
   const [message, setMessage] = useState('');
 
@@ -20,11 +20,14 @@ export const ChatSendMessageFormComponent: FC<ChatSendMessageFormProps> = ({
     setMessage(value);
   }, []);
 
-  const handleSubmit = useCallback((event: SyntheticEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onSubmit({ message });
-    setMessage('');
-  }, [message, onSubmit]);
+  const handleSubmit = useCallback(
+    (event: SyntheticEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      onSubmit({ message });
+      setMessage('');
+    },
+    [message, onSubmit],
+  );
 
   return (
     <form className={cn(`${CLASS_NAME}`)} onSubmit={handleSubmit}>
@@ -32,16 +35,12 @@ export const ChatSendMessageFormComponent: FC<ChatSendMessageFormProps> = ({
         <Input
           name="message"
           onChange={handleInputChange}
-          value={message}
           themeColor="primary"
+          value={message}
         />
       </div>
       <div className={cn(`${CLASS_NAME}__button`)}>
-        <Button
-          type="submit"
-          value="send"
-          themeColor="primary"
-        />
+        <Button themeColor="primary" type="submit" value="send" />
       </div>
     </form>
   );

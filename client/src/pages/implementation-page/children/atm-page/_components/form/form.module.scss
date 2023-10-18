@@ -1,25 +1,25 @@
 .Form {
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 300px;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
 
-    &__input {
-        padding-bottom: 24px;
-    }
+  &__input {
+    padding-bottom: 24px;
+  }
 
-    &__warning {
-        color: yellow;
-        display: block;
-        font-size: 12px;
-    }
+  &__warning {
+    color: yellow;
+    display: block;
+    font-size: 12px;
+  }
 
-    &__error {
-        color: red;
-        display: block;
-        font-size: 12px;
-        line-height: 12px;
-        margin-top: 8px;
-    }
+  &__error {
+    color: red;
+    display: block;
+    font-size: 12px;
+    line-height: 12px;
+    margin-top: 8px;
+  }
 }

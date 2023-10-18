@@ -9,13 +9,10 @@ const CLASS_NAME = 'Context-page';
 
 export const ContextPage = () => {
   return (
-    <Page
-      headTitle="Context"
-      title="Context implementation"
-    >
+    <Page headTitle="Context" title="Context implementation">
       <ContextProvider>
         <div className={cn(CLASS_NAME)}>
-          <Title/>
+          <Title />
           <div className={cn(`${CLASS_NAME}__container`)}>
             <div className={cn(`${CLASS_NAME}__form`)}>
               <Form />

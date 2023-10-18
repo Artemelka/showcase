@@ -1,19 +1,18 @@
 import { call, put } from 'redux-saga/effects';
 import { API } from '@/api';
-import {
-  authInit,
-  setStartAuthLogin,
-  setStopAuthLogin,
-} from '../../reducer';
+import { appLogger } from '@/services/app-logger';
+import { authInit, setStartAuthLogin, setStopAuthLogin } from '../../reducer';
 
 export function* authLoginWorkerSaga() {
   yield put(setStartAuthLogin());
 
   try {
-    const { isError, errorMessage, user } = yield call(API.AUTH.LOGIN, { userId: '1' });
+    const { isError, errorMessage, user } = yield call(API.AUTH.LOGIN, {
+      userId: '1',
+    });
 
     if (isError) {
-      console.log('=== response ===', errorMessage);
+      appLogger.log('=== response ===', errorMessage);
       throw Error(errorMessage);
     }
 

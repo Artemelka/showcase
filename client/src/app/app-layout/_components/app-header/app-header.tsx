@@ -11,17 +11,15 @@ const CLASS_NAME = 'App-header';
 export const AppHeaderComponent: FC = () => {
   return (
     <div className={cn(CLASS_NAME)}>
-      <div className={cn(`${CLASS_NAME}__logo`)}>
-        Artemelka
-      </div>
+      <div className={cn(`${CLASS_NAME}__logo`)}>Artemelka</div>
       <div className={cn(`${CLASS_NAME}__navigation`)}>
         <AppNavigation items={APP_PAGES_ROUTE_CONFIG} />
       </div>
       <div className={cn(`${CLASS_NAME}__options`)}>
-        <ThemeToggle/>
+        <ThemeToggle />
       </div>
       <div className={cn(`${CLASS_NAME}__user`)}>
-        <AppUser/>
+        <AppUser />
       </div>
     </div>
   );

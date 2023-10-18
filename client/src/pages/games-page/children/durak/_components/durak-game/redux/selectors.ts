@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { DURAK_REDUCER_NAME, INITIAL_STATE } from './constants';
 import { DurakGameStore } from '../types';
+import { DURAK_REDUCER_NAME, INITIAL_STATE } from './constants';
 
 const durakGameSelector = (state: DurakGameStore) =>
   state[DURAK_REDUCER_NAME] || INITIAL_STATE;
@@ -42,17 +42,17 @@ export const isPlayerStepSelector = createSelector(
 
 export const isNeedUpdateCardsSelector = createSelector(
   [durakGameSelector],
-  (state) => state.isNeedUpdateCards
+  (state) => state.isNeedUpdateCards,
 );
 
 export const isPlayerAttackSelector = createSelector(
   [playerPlaceSelector, enemyPlaceSelector],
   (playerPlace, enemyPlace) =>
-    !Boolean(enemyPlace.length) || enemyPlace.length === playerPlace.length
+    !enemyPlace.length || enemyPlace.length === playerPlace.length,
 );
 
 export const isEnemyAttackSelector = createSelector(
   [playerPlaceSelector, enemyPlaceSelector],
   (playerPlace, enemyPlace) =>
-    !Boolean(playerPlace.length) || playerPlace.length === enemyPlace.length
+    !playerPlace.length || playerPlace.length === enemyPlace.length,
 );

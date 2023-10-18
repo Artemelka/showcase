@@ -4,29 +4,31 @@ import { goBack } from 'connected-react-router';
 import {
   StoreInjectorConsumer,
   AsyncReducerItem,
-  AsyncSagaItem
+  AsyncSagaItem,
 } from '@artemelka/redux-store-injector';
-import { AppStore } from '@/app';
 import {
   TODO_ITEM_REDUCER_INJECT_CONFIG,
   GET_TODO_ITEM_SAGA_CONFIG,
   getTodoItemActionSaga,
   todoItemSelector,
   todoItemIsLoadingSelector,
+  TodoItemStore,
 } from './redux';
 import { TodoItemPageView } from './_components';
 
-const asyncReducers: Array<AsyncReducerItem> = [TODO_ITEM_REDUCER_INJECT_CONFIG];
+const asyncReducers: Array<AsyncReducerItem> = [
+  TODO_ITEM_REDUCER_INJECT_CONFIG,
+];
 const asyncSagas: Array<AsyncSagaItem> = [GET_TODO_ITEM_SAGA_CONFIG];
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: TodoItemStore) => ({
   item: todoItemSelector(state),
   isLoading: todoItemIsLoadingSelector(state),
 });
 
 const mapDispatchToProps = {
   goBack,
-  getItem: getTodoItemActionSaga
+  getItem: getTodoItemActionSaga,
 };
 
 type MapStateToProps = ReturnType<typeof mapStateToProps>;
@@ -35,38 +37,49 @@ type MapDispatchToProps = typeof mapDispatchToProps;
 
 type TodoItemPageProps = MapStateToProps & MapDispatchToProps;
 
-export class TodoItemPageContainer extends Component<TodoItemPageProps> {
+export class TodoItemPageContainer extends Component<TodoItemPageProps, never> {
   componentDidMount() {
     this.props.getItem();
   }
 
   handleGoBackClick = () => {
     this.props.goBack();
-  }
+  };
 
-  handleTitleChange = (title: string) => {
-    console.log('=== new title ===', title);
-  }
+  handleTitleChange = () => {
+    // console.log('=== new title ===', title);
+  };
 
   render() {
     return (
-      <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
+      <StoreInjectorConsumer
+        asyncReducers={asyncReducers}
+        asyncSagas={asyncSagas}
+        withEjectReducers
+      >
         <TodoItemPageView
+          id={this.props.item.id}
+          isLoading={this.props.isLoading}
           onGoBackClick={this.handleGoBackClick}
           onTitleChange={this.handleTitleChange}
-          title={this.props.item.title}
-          isLoading={this.props.isLoading}
           status={this.props.item.status}
-          id={this.props.item.id}
+          title={this.props.item.title}
         />
       </StoreInjectorConsumer>
     );
   }
 }
 
-const mergeProps = (stateProps: MapStateToProps, dispatchProps: MapDispatchToProps) => ({
+const mergeProps = (
+  stateProps: MapStateToProps,
+  dispatchProps: MapDispatchToProps,
+) => ({
   ...stateProps,
   ...dispatchProps,
 });
 
-export const TodoItemPage = connect(mapStateToProps, mapDispatchToProps, mergeProps)(TodoItemPageContainer);
+export const TodoItemPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  mergeProps,
+)(TodoItemPageContainer);

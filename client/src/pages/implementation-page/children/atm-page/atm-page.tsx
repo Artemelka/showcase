@@ -1,8 +1,4 @@
-import React, {
-  memo,
-  useCallback,
-  useState
-} from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
 import { ErrorBlock, Form, Table } from './_components';
@@ -17,7 +13,7 @@ const ATM_STACK = {
   denomination: [10, 50, 100, 500, 1000, 5000],
   availability: [4, 2, 6, 3, 9, 2],
 };
-const DEFAULT_ERROR_STATE = { isError: false, errorMessage: ''};
+const DEFAULT_ERROR_STATE = { isError: false, errorMessage: '' };
 
 const AtmPage = () => {
   const [result, setResult] = useState<CashType>([]);
@@ -41,31 +37,36 @@ const AtmPage = () => {
     setAmount(`${sum}`);
   }, []);
 
-  const handleSubmit = useCallback((value: string) => {
-    const response = getCash(+value, ATM_STACK.denomination, ATM_STACK.availability);
+  const handleSubmit = useCallback(
+    (value: string) => {
+      const response = getCash(
+        +value,
+        ATM_STACK.denomination,
+        ATM_STACK.availability,
+      );
 
-    if (response.length === 0) {
-      setErrorHelper('Enter amount less');
-      return;
-    }
+      if (response.length === 0) {
+        setErrorHelper('Enter amount less');
 
-    setResponse(response)
-  }, [setErrorHelper, setResponse]);
+        return;
+      }
+
+      setResponse(response);
+    },
+    [setErrorHelper, setResponse],
+  );
 
   return (
-    <Page
-      headTitle="ATM"
-      title="An example of an ATM operation code"
-    >
+    <Page headTitle="ATM" title="An example of an ATM operation code">
       <div className={cn(CLASS_NAME)}>
-        {error.isError
-          ? <ErrorBlock onClick={handleClick} title={error.errorMessage}/>
-          : <Form onSubmit={handleSubmit}/>
-        }
-        <Table items={result} amount={amount}/>
+        {error.isError ? (
+          <ErrorBlock onClick={handleClick} title={error.errorMessage} />
+        ) : (
+          <Form onSubmit={handleSubmit} />
+        )}
+        <Table amount={amount} items={result} />
       </div>
     </Page>
-
   );
 };
 

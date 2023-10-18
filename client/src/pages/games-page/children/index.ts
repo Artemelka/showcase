@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import { DURAK_PAGE_ROUTE_CONFIG } from './durak';
 import { SEMKI_PAGE_ROUTE_CONFIG } from './semki';
 import { SNAKE_GAME_PAGE_ROUTE_CONFIG } from './snake-game-page';

@@ -4,9 +4,13 @@ import { findMinRankCard } from './find-min-rank-card';
 
 type Values = {
   currentCard?: CardParams;
-}
+};
 
-export function findCurrentCard(cards: Array<CardParams>, currentCard: CardParams, trumpCard: CardParams): Values {
+export function findCurrentCard(
+  cards: Array<CardParams>,
+  currentCard: CardParams,
+  trumpCard: CardParams,
+): Values {
   const availableCards = findAvailableCards(cards, currentCard);
 
   if (availableCards.length) {
@@ -24,7 +28,7 @@ export function findCurrentCard(cards: Array<CardParams>, currentCard: CardParam
 
     return {
       currentCard: nextCard,
-    }
+    };
   }
 
   return {};

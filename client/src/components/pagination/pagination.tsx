@@ -25,7 +25,7 @@ export const PaginationComponent = ({
   total,
 }: PaginationProps) => {
   const pagesCount = Math.ceil(total / limit);
-  const pageNumber = Math.ceil(offset/limit) + 1;
+  const pageNumber = Math.ceil(offset / limit) + 1;
 
   const handlePrevChange = useCallback(() => {
     onChange(offset - limit);
@@ -35,11 +35,14 @@ export const PaginationComponent = ({
     onChange(offset + limit);
   }, [limit, offset, onChange]);
 
-  const handleInputChange = useCallback(({ value }: InputChangeEvent) => {
-    const numValue = Number(value);
+  const handleInputChange = useCallback(
+    ({ value }: InputChangeEvent) => {
+      const numValue = Number(value);
 
-    onChange(limit * (numValue - 1));
-  }, [limit, onChange]);
+      onChange(limit * (numValue - 1));
+    },
+    [limit, onChange],
+  );
 
   return (
     <div className={cn(CLASS_NAME)}>
@@ -58,8 +61,8 @@ export const PaginationComponent = ({
           onChange={handleInputChange}
           size="small"
           themeColor="primary"
-          value={`${pageNumber}`}
           type="number"
+          value={`${pageNumber}`}
         />
       </div>
       <div className={cn(`${CLASS_NAME}__pref`)}>
@@ -70,8 +73,8 @@ export const PaginationComponent = ({
       </div>
       <div className={cn(`${CLASS_NAME}__next`)}>
         <Button
-          onClick={handleNextChange}
           disabled={pageNumber === pagesCount}
+          onClick={handleNextChange}
           size="small"
           themeColor="primary"
           value="next"

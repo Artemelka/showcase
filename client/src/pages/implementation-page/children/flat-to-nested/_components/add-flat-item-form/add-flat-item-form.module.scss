@@ -11,14 +11,14 @@
   }
 
   &__error {
+    color: red;
     font-size: 12px;
     padding: 8px;
-    color: red;
   }
 
   &__submit {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
     margin-top: 20px;
   }

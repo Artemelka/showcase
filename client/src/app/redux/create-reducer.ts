@@ -1,8 +1,12 @@
 import { combineReducers, Reducer } from '@reduxjs/toolkit';
-import { routerReducer } from '../router';
-import { APP_STORE_KEYS } from '../constants';
+import { connectRouter } from 'connected-react-router';
+import { history } from '../router/history';
+import { ROUTER_REDUCER_KEY } from '../router/constants';
 
-export const createReducer = (asyncReducers?: Record<string, Reducer>): Reducer => combineReducers({
-  [APP_STORE_KEYS.ROUTER]: routerReducer,
-  ...(asyncReducers ? asyncReducers : {})
-});
+export const createReducer = (
+  asyncReducers?: Record<string, Reducer>,
+): Reducer =>
+  combineReducers({
+    [ROUTER_REDUCER_KEY]: connectRouter(history),
+    ...(asyncReducers || {}),
+  });

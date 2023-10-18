@@ -1,8 +1,4 @@
-import {
-  COLUMNS,
-  DIAGONALS,
-  ROWS
-} from '../constant';
+import { COLUMNS, DIAGONALS, ROWS } from '../constant';
 import { getWinnerRows } from './get-winner-rows';
 
 export function checkWinner(state: Array<string>, symbol: string): boolean {

@@ -1,8 +1,6 @@
-import { ChatState } from './types';
-
 export const CHAT_REDUCER_NAME = 'chat';
 
-export const INITIAL_STATE: ChatState = {
+export const INITIAL_STATE = {
   messages: [],
   user: {
     name: '',
@@ -10,4 +8,4 @@ export const INITIAL_STATE: ChatState = {
     userId: '',
   },
   usersList: [],
-}
+};

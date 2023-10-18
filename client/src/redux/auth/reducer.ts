@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AUTH_REDUCER_NAME, INITIAL_STATE } from './constants'
+import { AUTH_REDUCER_NAME, INITIAL_STATE } from './constants';
 import { AuthState, AuthReducerCase } from './types';
 
 const authReducerSlice = createSlice<AuthState, AuthReducerCase>({
@@ -17,17 +17,17 @@ const authReducerSlice = createSlice<AuthState, AuthReducerCase>({
       state.user = payload;
     },
     setStartAuthInit: (state) => {
-      state.isLoading = true
+      state.isLoading = true;
     },
     setStartAuthLogin: (state) => {
       state.isLoginLoading = true;
     },
     setStopAuthInit: (state) => {
-      state.isLoading = false
+      state.isLoading = false;
     },
     setStopAuthLogin: (state) => {
       state.isLoginLoading = false;
-    }
+    },
   },
 });
 

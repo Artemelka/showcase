@@ -28,11 +28,12 @@
     "react-redux": "^7.2.2",
     "react-router": "^5.2.0",
     "react-scripts": "4.0.3",
+    "redux": "4.2.1",
     "redux-batched-actions": "^0.5.0",
     "redux-saga": "^1.1.3",
     "reselect": "^4.0.0",
     "sass": "^1.56.0",
-    "typescript": "^3.2.1",
+    "typescript": "3.9.10",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -40,6 +41,8 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router": "^5.1.11",
     "@types/uuid": "^8.3.0",
+    "@wildberries/eslint-config": "2.1.12",
+    "@wildberries/stylelint-config": "2.1.6",
     "customize-cra": "^1.0.0",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "3.0.3",
@@ -47,16 +50,17 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
+    "start-mock": "REACT_APP_MOCK=true react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "check": "prettier . --check",
-    "fix": "prettier . -w"
+    "fix": "prettier . -w",
+    "lint": "npx eslint . --ext .ts,.tsx --fix --max-warnings=0 --cache --cache-location .eslintinfo && npx stylelint 'src/**/*.(scss|css)' --fix --cache --cache-location .stylelintinfo"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "prettier"
+      "react-app/jest"
     ]
   },
   "browserslist": {

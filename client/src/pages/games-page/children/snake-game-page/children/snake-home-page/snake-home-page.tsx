@@ -10,64 +10,65 @@ const cn = fastClassNames(style);
 const CLASS_NAME = 'Snake-home-page';
 
 const BUTTON_LABEL = 'show';
-const DESCRIPTION = 'Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является станд...'
+const DESCRIPTION =
+  'Lorem Ipsum - это текст-рыба, часто используемый в печати и вэб-дизайне. Lorem Ipsum является станд...';
 
 const mapDispatchToProps = {
-  push
+  push,
 };
 
 type SnakeHomePageProps = typeof mapDispatchToProps;
 
 class SnakeHomePage extends Component<SnakeHomePageProps> {
   handleButtonClick = ({ id }: ButtonMouseEvent) => {
-    this.props.push(`${id}`)
-  }
+    this.props.push(`${id}`);
+  };
 
   render() {
     return (
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__card`)}>
           <Card
+            buttonLabel={BUTTON_LABEL}
+            content={DESCRIPTION}
             id={SNAKE_GAME_CHILDREN_PATH.REACT}
             onClick={this.handleButtonClick}
-            title="Pure React"
-            buttonLabel={BUTTON_LABEL}
-            content={DESCRIPTION}
             positionIndex="1"
             themeColor="primary"
+            title="Pure React"
           />
         </div>
         <div className={cn(`${CLASS_NAME}__card`)}>
           <Card
+            buttonLabel={BUTTON_LABEL}
+            content={DESCRIPTION}
             id={SNAKE_GAME_CHILDREN_PATH.REDUX}
             onClick={this.handleButtonClick}
-            title="Pure Redux"
-            buttonLabel={BUTTON_LABEL}
-            content={DESCRIPTION}
             positionIndex="2"
             themeColor="primary"
+            title="Pure Redux"
           />
         </div>
         <div className={cn(`${CLASS_NAME}__card`)}>
           <Card
+            buttonLabel={BUTTON_LABEL}
+            content={DESCRIPTION}
             id={SNAKE_GAME_CHILDREN_PATH.TOOLKIT}
             onClick={this.handleButtonClick}
-            title="With toolkit"
-            buttonLabel={BUTTON_LABEL}
-            content={DESCRIPTION}
             positionIndex="3"
             themeColor="primary"
+            title="With toolkit"
           />
         </div>
         <div className={cn(`${CLASS_NAME}__card`)}>
           <Card
-            id={SNAKE_GAME_CHILDREN_PATH.MOBX}
-            onClick={this.handleButtonClick}
-            title="MobX"
             buttonLabel={BUTTON_LABEL}
             content={DESCRIPTION}
+            id={SNAKE_GAME_CHILDREN_PATH.MOBX}
+            onClick={this.handleButtonClick}
             positionIndex="4"
             themeColor="primary"
+            title="MobX"
           />
         </div>
       </div>

@@ -2,13 +2,15 @@
 // import { MESSAGE_TYPE, wsService, SocketMessage } from '@/services/socket";
 // import { addMessage } from '../../reducer';
 // import { SendMessageAction } from '../../types';
+import { appLogger } from '@/services/app-logger';
 
+/* eslint-disable */
 export function* sendMessageSaga({ payload, dispatch }: any) {
-
   try {
-
-    yield setTimeout(() => {}, 0);
+    yield setTimeout(() => {
+      return null;
+    }, 0);
   } catch (error) {
-    console.log('=== Error in sendMessageWorkerSaga ===', error);
+    appLogger.log('=== Error in sendMessageWorkerSaga ===', error);
   }
 }

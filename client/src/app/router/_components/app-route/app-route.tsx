@@ -12,20 +12,15 @@ export const AppRouteComponent: FC<Omit<AppRouterProps, 'name'>> = ({
 }) => {
   return accessTypes ? (
     <AccessGuardRoute
+      key={`${path}`}
       accessRedirectPath={accessRedirectPath}
       accessTypes={accessTypes}
       component={component}
       exact={exact}
-      key={`${path}`}
       path={path}
     />
   ) : (
-    <Route
-      component={component}
-      exact={exact}
-      key={`${path}`}
-      path={path}
-    />
+    <Route key={`${path}`} component={component} exact={exact} path={path} />
   );
 };
 

@@ -9,7 +9,7 @@ const CLASS_NAME = 'Table';
 type TablePropsType = {
   amount: string;
   items: CashType;
-}
+};
 
 export const TableComponent = ({ amount, items }: TablePropsType) => {
   return (
@@ -22,7 +22,10 @@ export const TableComponent = ({ amount, items }: TablePropsType) => {
       </thead>
       <tbody className={cn(`${CLASS_NAME}__body`)}>
         {items.map(([nominal, count]) => (
-          <tr className={cn(`${CLASS_NAME}__row ${CLASS_NAME}__row--body`)} key={nominal + count}>
+          <tr
+            key={nominal + count}
+            className={cn(`${CLASS_NAME}__row ${CLASS_NAME}__row--body`)}
+          >
             <td className={cn(`${CLASS_NAME}__cell`)}>{`${count} RUR`}</td>
             <td className={cn(`${CLASS_NAME}__cell`)}>{`${nominal} pcs`}</td>
           </tr>

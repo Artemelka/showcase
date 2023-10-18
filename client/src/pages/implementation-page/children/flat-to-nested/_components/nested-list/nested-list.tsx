@@ -16,12 +16,11 @@ export const NestedListComponent = ({ list }: NestedListProps) => {
     <ul className={cn(CLASS_NAME)}>
       <li className={cn(`${CLASS_NAME}__item`)}>
         <Text>{list.name}</Text>
-        {list.children.map(item => (
-          <NestedList list={item}/>
+        {list.children.map((item) => (
+          <NestedList list={item} />
         ))}
       </li>
     </ul>
-
   );
 };
 

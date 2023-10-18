@@ -18,4 +18,4 @@ export const CLUBS_IMG_MAP = {
   12: ClubsQueen,
   13: ClubsKing,
   14: ClubsAce,
-}
+};

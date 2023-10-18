@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
+import {
+  InputChangeEvent,
+  SelectChangeEvent,
+} from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import { GameActions } from '../../../../_components';
 import {
@@ -39,17 +42,18 @@ export const GameActionsWrapper: FC<GameActionsProps> = ({
 }) => {
   return (
     <GameActions
-      isStarted={isStarted}
-      isFail={isFail}
       cells={`${cells.length}`}
       gameSpeed={gameSpeed}
+      isFail={isFail}
+      isStarted={isStarted}
       onCellsChange={onCellsChange}
-      onRefresh={onRefresh}
       onGameSpeedChange={onGameSpeedChange}
+      onRefresh={onRefresh}
       onStartClick={onStartClick}
       score={score}
     />
   );
 };
 
-export const ConnectedGameActions = connect(mapStateToProps)(GameActionsWrapper);
+export const ConnectedGameActions =
+  connect(mapStateToProps)(GameActionsWrapper);

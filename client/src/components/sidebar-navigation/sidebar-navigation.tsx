@@ -18,28 +18,39 @@ const SidebarNavigationComponent: FC<SidebarNavigationProps> = ({
   items,
   onClick,
 }) => {
-  const checkActiveChildren = useCallback((children: Array<AppRouteConfig>) => {
-    return Boolean(children.findIndex(child => child.path === activePath) + 1)
-  }, [activePath]);
+  const checkActiveChildren = useCallback(
+    (children: Array<AppRouteConfig>) => {
+      return Boolean(
+        children.findIndex((child) => child.path === activePath) + 1,
+      );
+    },
+    [activePath],
+  );
 
-  const checkActive = useCallback(({ children = [], path }: AppRouteConfig): boolean => {
-    return activePath === path || checkActiveChildren(children);
-  }, [activePath, checkActiveChildren]);
+  const checkActive = useCallback(
+    ({ children = [], path }: AppRouteConfig): boolean => {
+      return activePath === path || checkActiveChildren(children);
+    },
+    [activePath, checkActiveChildren],
+  );
 
-  const handleClick = useCallback(({ id }: ButtonMouseEvent) => {
-    onClick(`${id}`);
-  }, [onClick]);
+  const handleClick = useCallback(
+    ({ id }: ButtonMouseEvent) => {
+      onClick(`${id}`);
+    },
+    [onClick],
+  );
 
   return (
     <nav className={cn(CLASS_NAME)}>
       <ul className={cn(`${CLASS_NAME}__list`)}>
         {items.map((item: AppRouteConfig) => (
-          <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
+          <li key={item.path} className={cn(`${CLASS_NAME}__item`)}>
             <Button
               alignText="left"
+              id={item.path}
               isActive={checkActive(item)}
               isFullWidth
-              id={item.path}
               onClick={handleClick}
               themeColor="primary"
               value={item.name.toLocaleUpperCase()}

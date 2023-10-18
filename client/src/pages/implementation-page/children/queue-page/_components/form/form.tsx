@@ -16,23 +16,28 @@ const CLASS_NAME = 'Form';
 const FILTER_OPTIONS: Array<DropdownItemParams> = [
   {
     id: 'allTasks',
-    value: 'all'
-  }, {
+    value: 'all',
+  },
+  {
     id: 'createdTasks',
     value: 'create',
-  }, {
+  },
+  {
     id: 'doneTasks',
     value: 'done',
-  }, {
+  },
+  {
     id: 'errorTasks',
     value: 'error',
-  }, {
+  },
+  {
     id: 'progressTasks',
     value: 'progress',
-  }, {
+  },
+  {
     id: 'sendingTask',
     value: 'sending',
-  }
+  },
 ];
 
 type FormProps = {
@@ -61,7 +66,9 @@ export const FormComponent: FC<FormProps> = ({
   <form className={cn(`${CLASS_NAME}`)}>
     <div className={cn(`${CLASS_NAME}__field`)}>
       <div className={cn(`${CLASS_NAME}__label`)}>
-        <Label htmlFor="createTaskQuantity" position="left">Task quantity</Label>
+        <Label htmlFor="createTaskQuantity" position="left">
+          Task quantity
+        </Label>
       </div>
       <div className={cn(`${CLASS_NAME}__input`)}>
         <Input
@@ -76,14 +83,16 @@ export const FormComponent: FC<FormProps> = ({
     </div>
     <div className={cn(`${CLASS_NAME}__field`)}>
       <div className={cn(`${CLASS_NAME}__label`)}>
-        <Label htmlFor="maxRequestCount" position="left">Request quantity</Label>
+        <Label htmlFor="maxRequestCount" position="left">
+          Request quantity
+        </Label>
       </div>
       <div className={cn(`${CLASS_NAME}__input`)}>
         <Input
           id="maxRequestCount"
           name="maxRequestCount"
           onChange={onCountChange}
-          themeColor='primary'
+          themeColor="primary"
           type="number"
           value={maxRequestCount}
         />
@@ -92,24 +101,16 @@ export const FormComponent: FC<FormProps> = ({
     <div className={cn(`${CLASS_NAME}__actions`)}>
       <div className={cn(`${CLASS_NAME}__button`)}>
         <Button
-          value="Create tasks"
           onClick={onCreateTasks}
           themeColor="primary"
+          value="Create tasks"
         />
       </div>
       <div className={cn(`${CLASS_NAME}__button`)}>
-        <Button
-          value="Clear form"
-          onClick={onClearForm}
-          themeColor="error"
-        />
+        <Button onClick={onClearForm} themeColor="error" value="Clear form" />
       </div>
       <div className={cn(`${CLASS_NAME}__button`)}>
-        <Button
-          value="Run task"
-          onClick={onRunTasks}
-          themeColor="primary"
-        />
+        <Button onClick={onRunTasks} themeColor="primary" value="Run task" />
       </div>
       <div className={cn(`${CLASS_NAME}__filter`)}>
         <div className={cn(`${CLASS_NAME}__filter-input`)}>

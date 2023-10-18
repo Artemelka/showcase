@@ -22,7 +22,7 @@ export const ADMIN: User = {
   name: 'Artemelka-admin',
   login: 'admin@artemelka.ru',
   id: '2',
-}
+};
 
 export const GUEST_RESPONSE: Auth = {
   isLogin: false,
@@ -39,7 +39,4 @@ export const ADMIN_RESPONSE: Auth = {
   user: ADMIN,
 };
 
-export const INITIAL_STATE: AuthState = [
-  USER_RESPONSE,
-  ADMIN_RESPONSE,
-];
+export const INITIAL_STATE: AuthState = [USER_RESPONSE, ADMIN_RESPONSE];

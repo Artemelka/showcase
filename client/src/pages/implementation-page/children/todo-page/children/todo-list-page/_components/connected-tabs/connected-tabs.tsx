@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  ButtonGroup,
-  ButtonMouseEvent,
-} from '@artemelka/react-components';
+import { ButtonGroup, ButtonMouseEvent } from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import {
   getListActionSaga,
@@ -23,7 +20,8 @@ const mapDispatchToProps = {
   setCategory,
 };
 
-type ConnectedTabsProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type ConnectedTabsProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
 export class ConnectedTabsContainer extends Component<ConnectedTabsProps> {
   handleClick = ({ id }: ButtonMouseEvent) => {
@@ -35,15 +33,18 @@ export class ConnectedTabsContainer extends Component<ConnectedTabsProps> {
   render() {
     return (
       <ButtonGroup
+        activeId={this.props.activeCategory}
         buttons={BUTTONS}
         onClick={this.handleClick}
         size="small"
         themeColor="primary"
         variant="only-text"
-        activeId={this.props.activeCategory}
       />
     );
   }
 }
 
-export const ConnectedTabs = connect(mapStateToProps, mapDispatchToProps)(ConnectedTabsContainer);
+export const ConnectedTabs = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ConnectedTabsContainer);

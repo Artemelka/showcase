@@ -6,11 +6,12 @@ type SocketConnectCreatorParams = {
   webSocket: typeof wsService;
 };
 
-export const createSocketConnectHoc = ({ webSocket }: SocketConnectCreatorParams) =>
-  function(WrappedComponent: ComponentType<SocketHocProps>) {
+export const createSocketConnectHoc =
+  ({ webSocket }: SocketConnectCreatorParams) =>
+  (WrappedComponent: ComponentType<SocketHocProps>) => {
     return memo(function SocketHoc(props) {
       const addSocketListeners = (listeners: SocketListeners) => {
-        listeners.forEach(({ messageType, action}) => {
+        listeners.forEach(({ messageType, action }) => {
           webSocket.on(messageType, action);
         });
       };
@@ -23,10 +24,11 @@ export const createSocketConnectHoc = ({ webSocket }: SocketConnectCreatorParams
         <WrappedComponent
           addSocketListeners={addSocketListeners}
           webSocketRequest={handleSocketSend}
+          /* eslint-disable react/jsx-props-no-spreading */
           {...props}
         />
       );
     });
-  }
+  };
 
 export const socketConnect = createSocketConnectHoc({ webSocket: wsService });

@@ -13,15 +13,15 @@ export const TyresPage = () => {
   const [keyIndex, setKeyIndex] = useState(0);
 
   const handleAddClick = useCallback(() => {
-    setCount((prevState) => ++prevState);
+    setCount((prevState) => prevState + 1);
   }, []);
 
   const handleRemoveClick = useCallback(() => {
-    setCount((prevState) => --prevState);
+    setCount((prevState) => prevState - 1);
   }, []);
 
   const handleRemoveAllClick = useCallback(() => {
-    setKeyIndex(prevState => ++prevState);
+    setKeyIndex((prevState) => prevState + 1);
     setCount(1);
   }, []);
 
@@ -29,12 +29,31 @@ export const TyresPage = () => {
     <Page headTitle="Tyres" title="Tyres calculator">
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__actions`)}>
-          <Button disabled={count === 9} onClick={handleAddClick} value="Add" themeColor="success" />
-          <Button disabled={count === 1} onClick={handleRemoveClick} value="Remove" themeColor="error" />
-          <Button disabled={count === 1} onClick={handleRemoveAllClick} value="Remove all" themeColor="error" variant="filled" />
+          <Button
+            disabled={count === 9}
+            onClick={handleAddClick}
+            themeColor="success"
+            value="Add"
+          />
+          <Button
+            disabled={count === 1}
+            onClick={handleRemoveClick}
+            themeColor="error"
+            value="Remove"
+          />
+          <Button
+            disabled={count === 1}
+            onClick={handleRemoveAllClick}
+            themeColor="error"
+            value="Remove all"
+            variant="filled"
+          />
         </div>
-        {[...new Array(count)].map((_, index) => (
-          <div className={cn(`${CLASS_NAME}__item`)} key={`${keyIndex}_${index}`}>
+        {[...new Array(count)].map((_num, index) => (
+          <div
+            key={`${keyIndex}_${index}`}
+            className={cn(`${CLASS_NAME}__item`)}
+          >
             <TyresCalculator index={index} />
           </div>
         ))}
@@ -43,4 +62,4 @@ export const TyresPage = () => {
   );
 };
 
-export default  memo(TyresPage);
+export default memo(TyresPage);

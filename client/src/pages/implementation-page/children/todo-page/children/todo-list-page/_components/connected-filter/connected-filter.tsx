@@ -19,13 +19,14 @@ const mapDispatchToProps = {
   getList: getListActionSaga,
 };
 
-type ConnectedFilterProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type ConnectedFilterProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
 export class ConnectedFilterContainer extends Component<ConnectedFilterProps> {
   handleFilterChange = ({ items }: SelectChangeEvent) => {
-    const prepareItems= items.map(({ id, value }) => ({
+    const prepareItems = items.map(({ id, value }) => ({
       id: `${id}`,
-      value: (value as TodoItemStatus)
+      value: value as TodoItemStatus,
     }));
 
     this.props.changeFilter(prepareItems);
@@ -48,4 +49,7 @@ export class ConnectedFilterContainer extends Component<ConnectedFilterProps> {
   }
 }
 
-export const ConnectedFilter = connect(mapStateToProps, mapDispatchToProps)(ConnectedFilterContainer);
+export const ConnectedFilter = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ConnectedFilterContainer);

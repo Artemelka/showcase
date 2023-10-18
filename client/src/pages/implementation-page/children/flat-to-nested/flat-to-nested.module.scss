@@ -1,16 +1,16 @@
 .flat-to-nested-page {
-  display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 
   &__col {
-    flex-grow: 1;
-    padding: 0 10px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    padding: 0 10px;
   }
 
   &__heading {
@@ -18,12 +18,12 @@
   }
 
   &__result {
+    align-items: center;
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 30px;
     padding: 0 10px;
-    flex-basis: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
   }
 }

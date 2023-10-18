@@ -8,20 +8,22 @@ type AsyncRoutesProps = {
   routesConfig: Array<AppRouterProps>;
 };
 
-export const AsyncRoutesComponent =  ({ routesConfig }: AsyncRoutesProps) => {
+export const AsyncRoutesComponent = ({ routesConfig }: AsyncRoutesProps) => {
   return (
-    <Suspense fallback={<PageLoader/>}>
-      <AppRouterSwitch withNotFoundPage >
-        {routesConfig.map(({ accessTypes, accessRedirectPath, component, exact, path}) => (
-          <AppRoute
-            accessRedirectPath={accessRedirectPath}
-            accessTypes={accessTypes}
-            component={component}
-            exact={exact}
-            key={`${path}`}
-            path={path}
-          />
-        ))}
+    <Suspense fallback={<PageLoader />}>
+      <AppRouterSwitch withNotFoundPage>
+        {routesConfig.map(
+          ({ accessTypes, accessRedirectPath, component, exact, path }) => (
+            <AppRoute
+              key={`${path}`}
+              accessRedirectPath={accessRedirectPath}
+              accessTypes={accessTypes}
+              component={component}
+              exact={exact}
+              path={path}
+            />
+          ),
+        )}
       </AppRouterSwitch>
     </Suspense>
   );

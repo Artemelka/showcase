@@ -44,7 +44,6 @@ export function* gameStepSaga() {
     }
 
     yield put(updateSnakeBody(nextBody));
-
   } catch (error) {
     yield put(setStopGame());
     yield put(setIsFail());

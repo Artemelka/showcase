@@ -1,7 +1,6 @@
 import { CaseReducer } from '@reduxjs/toolkit';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import { CardParams } from '@/pages/games-page/types';
-import { DURAK_REDUCER_NAME } from './redux/constants';
 
 type Cards = Array<CardParams>;
 
@@ -15,7 +14,7 @@ export type DurakState = {
   tableEnemyPlace: Cards;
   tablePlayerPlace: Cards;
   isGetCard: boolean;
-}
+};
 
 export type SetCardsAction = BaseAction<Cards>;
 export type StartGameAction = BaseAction<DurakState>;
@@ -39,6 +38,6 @@ export type DurakGameReducerCase = {
   setTrumpCard: CaseReducer<DurakState, BaseAction<CardParams>>;
   toggleStep: CaseReducer<DurakState>;
   startGame: CaseReducer<DurakState, StartGameAction>;
-}
+};
 
-export type DurakGameStore = { [DURAK_REDUCER_NAME]: DurakState };
+export type DurakGameStore = { 'durak-game': DurakState };

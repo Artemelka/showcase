@@ -19,7 +19,7 @@ export function* gameStepSaga() {
   const direction = yield select(gameDirectionSelector);
   const appleItem = yield select(gameAppleItemSelector);
   const snakeBody = yield select(gameSnakeBodySelector);
-  const cells = yield  select(gameCellsSelector);
+  const cells = yield select(gameCellsSelector);
 
   const head = {
     x: snakeBody[0].x + direction.x,
@@ -44,7 +44,6 @@ export function* gameStepSaga() {
     }
 
     yield put(updateSnakeBody(nextBody));
-
   } catch (error) {
     yield put(setStopGame());
     yield put(setIsFail());

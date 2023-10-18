@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '../../types';
+import type { AppRouteConfig } from '@/types';
 import { CHAT_CONTENT_PAGE_CONFIG } from './chat-content-page';
 import { CHAT_LOGIN_PAGE_CONFIG } from './chat-login-page';
 

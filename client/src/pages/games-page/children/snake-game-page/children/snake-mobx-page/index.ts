@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { AppRouteConfig } from '../../../../../types';
+import type { AppRouteConfig } from '@/types';
 import { SNAKE_GAME_CHILDREN_PATH } from '../../constants';
 
 export const SNAKE_MOBX_PAGE_ROUTE_CONFIG: AppRouteConfig = {

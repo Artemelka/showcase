@@ -74,4 +74,4 @@ export const {
 export const DURAK_GAME_REDUCER_INJECT_CONFIG = {
   name: DURAK_REDUCER_NAME,
   reducer: gameReducerSlice.reducer,
-}
+};

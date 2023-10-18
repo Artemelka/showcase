@@ -21,18 +21,29 @@ type AddFlatItemFormProps = {
   values: typeof INITIAL_VALUES;
 };
 
-export const AddFlatItemFormComponent = ({ errors, onChange, onSubmit, values }: AddFlatItemFormProps) => {
-  const handleInputChange = useCallback(({ value, name }: InputChangeEvent) => {
-    onChange({ [name]: value });
-  }, [onChange]);
+export const AddFlatItemFormComponent = ({
+  errors,
+  onChange,
+  onSubmit,
+  values,
+}: AddFlatItemFormProps) => {
+  const handleInputChange = useCallback(
+    ({ value, name }: InputChangeEvent) => {
+      onChange({ [name]: value });
+    },
+    [onChange],
+  );
 
-  const handleSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
 
-    const values = getFormValuesFromEvent(event);
+      const formValues = getFormValuesFromEvent(event);
 
-    onSubmit(values);
-  }, [onSubmit])
+      onSubmit(formValues);
+    },
+    [onSubmit],
+  );
 
   const isIdError = Boolean(errors[FLAT_ITEM_ID]);
   const isNameError = Boolean(errors[FLAT_ITEM_NAME]);
@@ -50,9 +61,9 @@ export const AddFlatItemFormComponent = ({ errors, onChange, onSubmit, values }:
           isError={isIdError}
           name={FLAT_ITEM_ID}
           onChange={handleInputChange}
+          placeholder="item id"
           type="number"
           value={values[FLAT_ITEM_ID]}
-          placeholder='item id'
         />
         {isIdError && (
           <span className={cn(`${CLASS_NAME}__error`)}>
@@ -69,8 +80,8 @@ export const AddFlatItemFormComponent = ({ errors, onChange, onSubmit, values }:
           isError={isNameError}
           name={FLAT_ITEM_NAME}
           onChange={handleInputChange}
-          value={values[FLAT_ITEM_NAME]}
           placeholder="item name"
+          value={values[FLAT_ITEM_NAME]}
         />
         {isNameError && (
           <span className={cn(`${CLASS_NAME}__error`)}>
@@ -87,9 +98,9 @@ export const AddFlatItemFormComponent = ({ errors, onChange, onSubmit, values }:
           isError={isParentIdError}
           name={FLAT_ITEM_PARENT}
           onChange={handleInputChange}
+          placeholder="item parent id"
           type="number"
           value={values[FLAT_ITEM_PARENT]}
-          placeholder="item parent id"
         />
         {isParentIdError && (
           <span className={cn(`${CLASS_NAME}__error`)}>

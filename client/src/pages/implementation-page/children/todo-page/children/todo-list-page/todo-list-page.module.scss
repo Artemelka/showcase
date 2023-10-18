@@ -3,14 +3,14 @@
 
   &__actions {
     align-items: flex-end;
+    background-color: var(--backgroundColor);
     display: flex;
     font-size: 0;
     justify-content: flex-start;
-    position: sticky;
-    z-index: 1;
-    top: 0;
-    background-color: var(--backgroundColor);
     padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 
   &__tabs {

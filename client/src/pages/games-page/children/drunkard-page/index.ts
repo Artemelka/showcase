@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import { GAMES_CHILDREN_PATH } from '../../constants';
 
 export const DRUNKARD_PAGE_ROUTE_CONFIG: AppRouteConfig = {
@@ -7,4 +7,4 @@ export const DRUNKARD_PAGE_ROUTE_CONFIG: AppRouteConfig = {
   exact: false,
   name: 'Drunkard',
   path: GAMES_CHILDREN_PATH.DRUNKARD,
-}
+};

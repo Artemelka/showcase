@@ -1,13 +1,12 @@
-import { getQueryString } from './getQueryString';
+import { getQueryString } from './get-query-string';
 import { request, METHOD } from './request';
-import {
-  RequestGetParams,
-  RequestPostParams,
-  ApiResponse,
-} from './types';
+import { RequestGetParams, RequestPostParams, ApiResponse } from './types';
 
 class Request {
-  get = <D>(url: string, params?: RequestGetParams): Promise<ApiResponse<D>> => {
+  get = <D>(
+    url: string,
+    params?: RequestGetParams,
+  ): Promise<ApiResponse<D>> => {
     const { queryParams, ...restParams } = params || {};
     const queryString = queryParams ? getQueryString(queryParams) : '';
     const fullUrl = `${url}${queryString}`;
@@ -16,15 +15,18 @@ class Request {
       ...restParams,
       method: METHOD.GET,
     });
-  }
+  };
 
-  post = <D>(url: string, { body, ...params }: RequestPostParams): Promise<ApiResponse<D>> => {
+  post = <D>(
+    url: string,
+    { body, ...params }: RequestPostParams,
+  ): Promise<ApiResponse<D>> => {
     return request(url, {
       ...params,
       method: METHOD.POST,
       body: JSON.stringify(body),
-    })
-  }
+    });
+  };
 }
 
 export const ApiRequest = new Request();

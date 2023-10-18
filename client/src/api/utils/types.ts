@@ -10,10 +10,10 @@ export type RequestGetParams = AppRequestParams & {
 
 export type RequestPostParams = AppRequestParams & {
   body: Record<string, any>;
-}
+};
 
-export type ApiResponse<D = {}> = {
+export type ApiResponse<D = unknown> = {
   isError: boolean;
   errorMessage: string;
-  data: D,
-}
+  data: D;
+};

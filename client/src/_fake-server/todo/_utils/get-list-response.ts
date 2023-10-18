@@ -1,6 +1,6 @@
+import { Response, TodoItem, TodoItemStatus } from '../types';
 import { getLimitedItems } from './get-limited-items';
 import { getFilteredItems } from './get-filtered-items';
-import { Response, TodoItem, TodoItemStatus } from '../types';
 
 type GetListResponseParams = {
   items: Array<TodoItem>;
@@ -18,10 +18,10 @@ export function getListResponse({
   const filteredList = getFilteredItems(items, statuses);
   const part = getLimitedItems(filteredList, limit, offset);
 
-  return ({
+  return {
     items: part,
     total: filteredList.length,
     limit,
     offset,
-  });
+  };
 }

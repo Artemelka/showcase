@@ -1,27 +1,27 @@
 .Card {
- border: none;
- margin: 0;
- padding: 0;
- background-color: transparent;
- width: 120px;
- transition: transform .3s;
- cursor: pointer;
-
- &:hover {
-  transform: translateY(-15px);
- }
-
- &--disable {
-  cursor: initial;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: transform .3s;
+  width: 120px;
 
   &:hover {
-   transform: none;
+    transform: translateY(-15px);
   }
- }
 
- &__img {
-  max-width: 100%;
-  height: auto;
-  display: block;
- }
+  &--disable {
+    cursor: initial;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  &__img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
 }

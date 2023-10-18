@@ -15,16 +15,13 @@ const todoItemReducerSlice = createSlice<TodoItemState, TodoItemReducerCase>({
     setLoadingStop: (state) => {
       state.isLoading = false;
     },
-  }
+  },
 });
 
-export const {
-  setItem,
-  setLoadingStart,
-  setLoadingStop,
-} = todoItemReducerSlice.actions;
+export const { setItem, setLoadingStart, setLoadingStop } =
+  todoItemReducerSlice.actions;
 
 export const TODO_ITEM_REDUCER_INJECT_CONFIG = {
   name: TODO_ITEM_REDUCER_NAME,
   reducer: todoItemReducerSlice.reducer,
-}
+};

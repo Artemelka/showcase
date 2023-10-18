@@ -2,7 +2,7 @@ import {
   CELL_QUANTITY,
   DEFAULT_SNAKE_BODY,
   DIRECTION,
-  SELECT_OPTIONS
+  SELECT_OPTIONS,
 } from '../constants';
 import { GameState } from '../types';
 import { getRandomApple } from './get-random-apple';

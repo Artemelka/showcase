@@ -4,6 +4,12 @@ type Params = {
   symbol: string;
 };
 
-export function getWinnerRows({ rows, state, symbol }: Params): Array<Array<number>> {
-  return rows.filter(row => row.every(index => Boolean(state[index]) && state[index] === symbol))
+export function getWinnerRows({
+  rows,
+  state,
+  symbol,
+}: Params): Array<Array<number>> {
+  return rows.filter((row) =>
+    row.every((index) => Boolean(state[index]) && state[index] === symbol),
+  );
 }

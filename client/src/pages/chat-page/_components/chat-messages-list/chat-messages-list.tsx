@@ -12,19 +12,21 @@ type ChatMessagesListProps = {
   userId: string;
 };
 
-export const ChatMessagesListComponent = ({ messages, userId }: ChatMessagesListProps) => {
+export const ChatMessagesListComponent = ({
+  messages,
+  userId,
+}: ChatMessagesListProps) => {
   return (
     <ul className={cn(CLASS_NAME)}>
       {messages.map((message) => (
         <li key={message.id} className={cn(`${CLASS_NAME}__item`)}>
-          { userId !== message.userId && (
-            <div className={cn(`${CLASS_NAME}__user`)}>
-              {`${message.user}`}
-            </div>
+          {userId !== message.userId && (
+            <div className={cn(`${CLASS_NAME}__user`)}>{`${message.user}`}</div>
           )}
           <div
             className={cn(`${CLASS_NAME}__message-container`, {
-              [`${CLASS_NAME}__message-container--self`]: userId === message.userId
+              [`${CLASS_NAME}__message-container--self`]:
+                userId === message.userId,
             })}
           >
             <div className={cn(`${CLASS_NAME}__message`)}>
@@ -32,8 +34,13 @@ export const ChatMessagesListComponent = ({ messages, userId }: ChatMessagesList
             </div>
             <div className={cn(`${CLASS_NAME}__time`)}>
               {message.time && (
-                <Text tagName="p" align="right">
-                  {`${new Date(message.time).toISOString().split('T')[1].split('Z')[0]}`}
+                <Text align="right" tagName="p">
+                  {`${
+                    new Date(message.time)
+                      .toISOString()
+                      .split('T')[1]
+                      .split('Z')[0]
+                  }`}
                 </Text>
               )}
             </div>

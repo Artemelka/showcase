@@ -9,11 +9,11 @@ const CLASS_NAME = 'Column-button';
 type BaseProps = {
   columnIndex: number;
   rowIndex: number;
-}
+};
 
 export type ClickParams = BaseProps & {
   digit: number;
-}
+};
 
 type ColumnButtonProps = BaseProps & {
   onClick: (params: ClickParams) => void;
@@ -37,9 +37,9 @@ export const ColumnButtonComponent = ({
   return (
     <button
       className={cn(CLASS_NAME)}
-      type="button"
       disabled={disabled || isHideContent}
       onClick={handleClick}
+      type="button"
     >
       {isHideContent ? '' : digit}
     </button>

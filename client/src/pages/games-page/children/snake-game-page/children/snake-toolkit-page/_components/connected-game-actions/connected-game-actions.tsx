@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
+import {
+  InputChangeEvent,
+  SelectChangeEvent,
+} from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import { GameActions } from '../../../../_components';
 import {
@@ -50,4 +53,5 @@ export const GameActionsWrapper: FC<GameActionsProps> = ({
   />
 );
 
-export const ConnectedGameActions = connect(mapStateToProps)(GameActionsWrapper);
+export const ConnectedGameActions =
+  connect(mapStateToProps)(GameActionsWrapper);

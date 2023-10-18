@@ -5,6 +5,6 @@ export type FormItem = {
   name: FieldNames;
   placeholder: string;
   type?: 'password';
-}
+};
 
 export type InputsState = Record<FieldNames, string>;

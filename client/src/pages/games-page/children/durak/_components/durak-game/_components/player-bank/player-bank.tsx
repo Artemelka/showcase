@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BaseAction } from '@/app';
+import { CardBank } from '@/pages/games-page/_components';
 import { CardParams } from '@/pages/games-page/types';
 import {
   playerBankSelector,
@@ -15,7 +16,6 @@ import {
 } from '../../redux';
 import { prepareCardsForStep } from '../../utils';
 import { DurakGameStore } from '../../types';
-import { CardBank } from '../card-bank';
 
 type Actions = {
   addPlayerPlace: (card: CardParams) => BaseAction<CardParams>;
@@ -23,7 +23,7 @@ type Actions = {
   toggleStep: () => void;
 };
 
-type StateProps =  {
+type StateProps = {
   cards: Array<CardParams>;
   enemyPlace: Array<CardParams>;
   isPlayerAttack: boolean;
@@ -36,13 +36,14 @@ type Props = Actions & StateProps;
 
 export class PlayerBankComponent extends Component<Props> {
   makeStep = (currentCard: CardParams, nextCards: Array<CardParams>) => {
-    this.props.setPlayerBank(nextCards)
+    this.props.setPlayerBank(nextCards);
     this.props.addPlayerPlace(currentCard);
     this.props.toggleStep();
-  }
+  };
 
   getAvailableCards = () => {
-    const { cards, enemyPlace, playerPlace, trumpCard, isPlayerAttack } = this.props;
+    const { cards, enemyPlace, playerPlace, trumpCard, isPlayerAttack } =
+      this.props;
     const attackCard = enemyPlace[enemyPlace.length - 1];
 
     if (!attackCard) {
@@ -52,34 +53,38 @@ export class PlayerBankComponent extends Component<Props> {
     if (isPlayerAttack) {
       const usedCards = [...enemyPlace, ...playerPlace];
 
-      return cards.filter(card => {
-        return usedCards.some(usedCard => {
+      return cards.filter((card) => {
+        return usedCards.some((usedCard) => {
           return card.rank === usedCard.rank;
-        })
-      })
+        });
+      });
     }
 
-    return cards.filter(card => {
-      const isBiggestCard = card.suit === attackCard.suit && card.rank > attackCard.rank;
-      const isTrumpCard = card.suit === trumpCard.suit && trumpCard.suit !== attackCard.suit;
+    return cards.filter((card) => {
+      const isBiggestCard =
+        card.suit === attackCard.suit && card.rank > attackCard.rank;
+      const isTrumpCard =
+        card.suit === trumpCard.suit && trumpCard.suit !== attackCard.suit;
 
       return isBiggestCard || isTrumpCard;
     });
-  }
+  };
 
   handleCardClick = (id: string) => {
     const { cards } = this.props;
 
     const availableCards = this.getAvailableCards();
-    const isValidCard = availableCards.filter(card => card.id === id).length;
+    const isValidCard = availableCards.filter((card) => card.id === id).length;
 
     if (isValidCard) {
       const { nextPlayerCards, currentCard } = prepareCardsForStep(cards, id);
 
       this.makeStep(currentCard, nextPlayerCards);
+
       return;
     }
 
+    /* eslint-disable no-console */
     console.log('=== invalid step ===');
   };
 
@@ -109,4 +114,7 @@ const mapDispatchToProps: Actions = {
   toggleStep,
 };
 
-export const PlayerBank = connect(mapStateToProps, mapDispatchToProps)(PlayerBankComponent);
+export const PlayerBank = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PlayerBankComponent);

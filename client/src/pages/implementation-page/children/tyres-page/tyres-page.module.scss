@@ -1,23 +1,23 @@
 .Tyres-page {
-  display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
+  display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
 
   &__item {
-    flex-grow: 1;
-    flex-basis: 33%;
-    padding: 15px 30px;
     box-sizing: border-box;
+    flex-basis: 33%;
+    flex-grow: 1;
     margin-top: 30px;
     min-width: 200px;
+    padding: 15px 30px;
   }
 
   &__actions {
-    flex-grow: 1;
-    flex-basis: 100%;
-    margin-top: 30px;
     display: flex;
+    flex-basis: 100%;
+    flex-grow: 1;
     justify-content: space-around;
+    margin-top: 30px;
   }
 }

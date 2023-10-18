@@ -1,6 +1,6 @@
 export function getEmptyCells(state: Array<string>): Array<number> {
   return state.reduce((acc: Array<number>, cellValue, index) => {
-    if (!Boolean(cellValue)) {
+    if (!cellValue) {
       acc.push(index);
     }
 

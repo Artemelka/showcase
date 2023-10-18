@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
+import {
+  InputChangeEvent,
+  SelectChangeEvent,
+} from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import { GameBox } from '../../../../_components';
 import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
@@ -56,17 +59,17 @@ export class GameContainer extends PureComponent<GameProps> {
 
     if (this.props.isStarted && isArrowKey && !isMirrorDirection) {
       event.preventDefault();
-      this.props.setDirection(DIRECTION[(keyCode as DirectionCode)])
+      this.props.setDirection(DIRECTION[keyCode as DirectionCode]);
     }
-  }
+  };
 
   handleGameSpeedChange = ({ items }: SelectChangeEvent) => {
     this.props.setGameSpeed(items);
-  }
+  };
 
   handleRefreshClick = () => {
     this.props.refreshGame(this.props.cells.length);
-  }
+  };
 
   handleStartClick = () => {
     if (this.props.isStarted) {
@@ -75,7 +78,7 @@ export class GameContainer extends PureComponent<GameProps> {
       this.props.setStartGame();
       this.props.gameStart();
     }
-  }
+  };
 
   render() {
     return (
@@ -88,9 +91,9 @@ export class GameContainer extends PureComponent<GameProps> {
             onStartClick={this.handleStartClick}
           />
         }
-        tableRowsElement={this.props.cells.map(y => (
+        tableRowsElement={this.props.cells.map((y) => (
           <tr key={`row${y}`}>
-            {this.props.cells.map(x => (
+            {this.props.cells.map((x) => (
               <ConnectedSnakeItem key={`cell${x}`} x={x} y={y} />
             ))}
           </tr>

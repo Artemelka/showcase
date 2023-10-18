@@ -1,5 +1,4 @@
 import { User } from '@/api';
-import { AuthState } from './types';
 
 export const AUTH_REDUCER_NAME = 'auth';
 
@@ -11,9 +10,9 @@ const GUEST: User = {
   role: 'guest',
 };
 
-export const INITIAL_STATE: AuthState = {
+export const INITIAL_STATE = {
   isLoading: true,
   isLoginLoading: false,
   isLogin: false,
   user: GUEST,
-};
+} as const;

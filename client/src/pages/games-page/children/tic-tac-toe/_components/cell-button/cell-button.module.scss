@@ -12,7 +12,7 @@
   width: 100%;
 
   &:hover {
-    background-color: rgba(0,0,0, 0.3);
+    background-color: rgba(0, 0, 0, .3);
   }
 
   &:disabled {
@@ -24,11 +24,11 @@
   }
 
   &--winner {
+    background-color: rgba(0, 0, 0, .3);
     color: darkred;
-    background-color: rgba(0,0,0, 0.3);
 
     &:disabled:hover {
-      background-color: rgba(0,0,0, 0.3);
+      background-color: rgba(0, 0, 0, .3);
     }
   }
 }

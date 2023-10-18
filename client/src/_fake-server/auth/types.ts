@@ -11,6 +11,6 @@ export type User = {
 export type Auth = {
   isLogin: boolean;
   user: User;
-}
+};
 
 export type AuthState = Array<Auth>;

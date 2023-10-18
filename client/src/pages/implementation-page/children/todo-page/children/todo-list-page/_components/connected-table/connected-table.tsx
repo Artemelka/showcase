@@ -35,48 +35,47 @@ const mapDispatchToProps = {
   getList: getListActionSaga,
 };
 
-type ConnectedTableProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type ConnectedTableProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
-export class ConnectedTableComponent extends Component<ConnectedTableProps> {
+export class ConnectedTableComponent extends Component<
+  ConnectedTableProps,
+  never
+> {
   handlePaginationChange = (offset: number) => {
-    const { getList, limit, setPagination, total } = this.props;
+    const { getList, limit, total } = this.props;
 
-    setPagination({
+    this.props.setPagination({
       limit: Number(limit[0].value),
       offset,
       total,
     });
 
     getList();
-  }
+  };
 
   handleRowClick = (item: TodoItem) => {
-    this.props.push(`${TODO_CHILDREN_PATH.ITEM}?id=${item.id}`)
-  }
+    this.props.push(`${TODO_CHILDREN_PATH.ITEM}?id=${item.id}`);
+  };
 
   render() {
     return (
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__content`)}>
-          {this.props.isLoading
-            ? (
-              <Overlay inContainer>
-                <WindowLoader />
-              </Overlay>
-            ) : (
-              <Table
-                items={this.props.list}
-                onRowClick={this.handleRowClick}
-              />
-            )
-          }
+          {this.props.isLoading ? (
+            <Overlay inContainer>
+              <WindowLoader />
+            </Overlay>
+          ) : (
+            <Table items={this.props.list} onRowClick={this.handleRowClick} />
+          )}
         </div>
         <div className={cn(`${CLASS_NAME}__footer`)}>
           <Pagination
-            total={this.props.total}
             limit={Number(this.props.limit[0].value)}
             offset={this.props.offset}
             onChange={this.handlePaginationChange}
+            total={this.props.total}
           />
         </div>
       </div>
@@ -84,4 +83,7 @@ export class ConnectedTableComponent extends Component<ConnectedTableProps> {
   }
 }
 
-export const ConnectedTable = connect(mapStateToProps, mapDispatchToProps)(ConnectedTableComponent);
+export const ConnectedTable = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ConnectedTableComponent);

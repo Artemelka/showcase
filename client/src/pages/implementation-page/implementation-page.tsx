@@ -1,13 +1,15 @@
-import React, { FC } from 'react';
+import React, { memo } from 'react';
 import { RoutesPage } from '@/components';
 import { IMPLEMENTATION_PAGE_PATH } from './constants';
 import { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
 
-const ImplementationPage: FC = () => (
+const ImplementationPage = () => (
   <RoutesPage
-    targetPath={IMPLEMENTATION_PAGE_PATH}
     routesConfig={IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG}
+    targetPath={IMPLEMENTATION_PAGE_PATH}
   />
 );
 
-export default ImplementationPage;
+export { IMPLEMENTATION_CHILDREN_PAGE_ROUTE_CONFIG } from './children';
+
+export default memo(ImplementationPage);

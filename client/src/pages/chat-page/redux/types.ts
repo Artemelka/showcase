@@ -1,16 +1,16 @@
-import { BaseAction } from '@/app';
-import { CHAT_REDUCER_NAME } from './constants';
+import { BaseAction, AppStore } from '@/types';
 
-type BaseMessage = {
-  timestamp: number,
-}
+// type BaseMessage = {
+//   timestamp: number;
+// };
+
 export type ChatMessage = {
-  id: string,
-  text: string,
-  time?: string,
-  user: string,
-  userId: string,
-}
+  id: string;
+  text: string;
+  time?: string;
+  user: string;
+  userId: string;
+};
 
 export type ChatUser = {
   name: string;
@@ -21,15 +21,15 @@ export type ChatUser = {
 export type ChatSetUser = {
   user: ChatUser;
   usersList: Array<ChatUser>;
-}
+};
 
 export type ChatUserLeft = {
   usersList: Array<ChatUser>;
-}
+};
 
 export type ChatState = {
   messages: Array<ChatMessage>;
-  user: ChatUser,
+  user: ChatUser;
   usersList: Array<ChatUser>;
 };
 
@@ -45,4 +45,4 @@ export type ChatReducerCase = {
   addInUserList: (state: ChatState, payload: SetUserAction) => void;
 };
 
-export type ChatStore = { [CHAT_REDUCER_NAME]: ChatState };
+export type ChatStore = AppStore & { chat: ChatState };

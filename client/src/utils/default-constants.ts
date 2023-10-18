@@ -1,3 +1,4 @@
-export const DEFAULT_HANDLER = () => undefined;
+/* eslint-disable no-undefined */
+export const DEFAULT_HANDLER = (): void => undefined;
 
-export const NOOP = () => undefined;
+export const NOOP = (): void => undefined;

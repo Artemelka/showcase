@@ -4,7 +4,7 @@ export {
   setGameSpeed,
   setStartGame,
   setStopGame,
-  GAME_REDUCER_INJECT_CONFIG
+  GAME_REDUCER_INJECT_CONFIG,
 } from './reducer';
 export {
   gameCellsSelector,

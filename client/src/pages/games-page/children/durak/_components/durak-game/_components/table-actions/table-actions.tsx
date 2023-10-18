@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
-import { BaseAction } from "@/app";
+import { BaseAction } from '@/app';
 import { CardParams } from '@/pages/games-page/types';
 import {
   enemyPlaceSelector,
@@ -12,7 +12,6 @@ import {
   playerPlaceSelector,
   setIsNeedUpdateCards,
   setPlayerBank,
-  toggleStep,
 } from '../../redux';
 import { DurakGameStore } from '../../types';
 import styles from './table-actions.module.scss';
@@ -23,7 +22,6 @@ const CLASS_NAME = 'Table-actions';
 type Actions = {
   setIsNeedUpdateCards: () => void;
   setPlayerBank: (cards: Array<CardParams>) => BaseAction<Array<CardParams>>;
-  toggleStep: () => void;
 };
 
 type StateProps = {
@@ -36,7 +34,7 @@ type StateProps = {
 
 type Props = StateProps & Actions;
 
-export class TableActionsComponent extends Component<Props> {
+export class TableActionsComponent extends Component<Props, never> {
   handlePickUpClick = () => {
     const { cards, enemyPlace, playerPlace } = this.props;
     const nextCards = [...cards, ...enemyPlace, ...playerPlace];
@@ -47,29 +45,28 @@ export class TableActionsComponent extends Component<Props> {
 
   handleEndClick = () => {
     this.props.setIsNeedUpdateCards();
-  }
+  };
 
   render() {
     return (
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__item`)}>
           <Button
+            disabled={!this.props.isPlayerAttack}
             onClick={this.handleEndClick}
             themeColor="secondary"
             value="end"
-            disabled={!this.props.isPlayerAttack}
           />
         </div>
         <div className={cn(`${CLASS_NAME}__item`)}>
           <Button
+            disabled={!this.props.isPlayerStep}
             onClick={this.handlePickUpClick}
             themeColor="error"
             value="pick Up"
-            disabled={!this.props.isPlayerStep}
           />
         </div>
       </div>
-
     );
   }
 }
@@ -85,7 +82,9 @@ const mapStateToProps = (state: DurakGameStore): StateProps => ({
 const mapDispatchToProps: Actions = {
   setIsNeedUpdateCards,
   setPlayerBank,
-  toggleStep,
 };
 
-export const TableActions = connect(mapStateToProps, mapDispatchToProps)(TableActionsComponent);
+export const TableActions = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TableActionsComponent);

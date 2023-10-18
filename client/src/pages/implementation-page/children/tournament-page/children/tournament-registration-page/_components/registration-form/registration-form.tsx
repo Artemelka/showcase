@@ -10,7 +10,9 @@ type RegistrationFormProps = {
   onSubmit: (name: string) => void;
 };
 
-export const RegistrationFormComponent = ({ onSubmit }: RegistrationFormProps) => {
+export const RegistrationFormComponent = ({
+  onSubmit,
+}: RegistrationFormProps) => {
   const [playerName, setPlayerName] = useState('');
 
   const handleInputChange = useCallback(({ value }: InputChangeEvent) => {
@@ -29,11 +31,15 @@ export const RegistrationFormComponent = ({ onSubmit }: RegistrationFormProps) =
         <Input
           name="player-name"
           onChange={handleInputChange}
-          value={playerName}
           placeholder="Please enter player name"
+          value={playerName}
         />
         <div className={cn(`${CLASS_NAME}__button`)}>
-          <Button disabled={playerName.length < 3} value="registration" type="submit" />
+          <Button
+            disabled={playerName.length < 3}
+            type="submit"
+            value="registration"
+          />
         </div>
       </form>
     </div>

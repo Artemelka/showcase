@@ -22,13 +22,13 @@ export const CardBankComponent: FC<CardBankProps> = ({
 }) => {
   return (
     <ul className={cn(CLASS_NAME)}>
-      {cards.map(card => (
-        <li className={cn(`${CLASS_NAME}__item`)} key={card.id}>
+      {cards.map((card) => (
+        <li key={card.id} className={cn(`${CLASS_NAME}__item`)}>
           <Card
             card={card}
-            onClick={onClick}
             disabled={isDisabledCard}
             isHidden={isHiddenCard}
+            onClick={onClick}
           />
         </li>
       ))}

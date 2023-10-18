@@ -17,7 +17,7 @@ export const SnakeItemComponent: FC<SnakeItemProps> = ({
   <td
     className={cn(CLASS_NAME, {
       [`${CLASS_NAME}--apple`]: isApple,
-      [`${CLASS_NAME}--filled`]: isSnakeItem
+      [`${CLASS_NAME}--filled`]: isSnakeItem,
     })}
   />
 );

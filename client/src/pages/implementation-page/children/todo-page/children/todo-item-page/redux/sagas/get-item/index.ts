@@ -13,5 +13,5 @@ function* getItemWatcherSaga() {
 
 export const GET_TODO_ITEM_SAGA_CONFIG = {
   name: GET_ITEM_WATCHER_SAGA_NAME,
-  saga: getItemWatcherSaga
-}
+  saga: getItemWatcherSaga,
+};

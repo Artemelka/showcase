@@ -16,7 +16,10 @@ export const ScreenRowComponent: FC<ScreenRowProps> = ({
   snakeBody,
   y,
 }) => {
-  const rowCells = useMemo(() => getRowCells(cells, snakeBody, y), [cells, snakeBody, y]);
+  const rowCells = useMemo(
+    () => getRowCells(cells, snakeBody, y),
+    [cells, snakeBody, y],
+  );
   const isAppleInRow = useMemo(() => appleItem.y === y, [appleItem, y]);
 
   return (

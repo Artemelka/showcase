@@ -1,6 +1,4 @@
-import {  } from './constants';
-import {  } from './types';
+import {} from './constants';
+import {} from './types';
 
-export class TimeApi {
-
-}
+export class TimeApi {}

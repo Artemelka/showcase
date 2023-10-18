@@ -29,9 +29,9 @@ export const ActionsButtonComponent = ({
         <div className={cn(`${CLASS_NAME}__reload`)}>
           <Button
             onClick={onClear}
-            value="New game"
             size="big"
             themeColor="error"
+            value="New game"
           />
         </div>
       ) : (
@@ -40,12 +40,12 @@ export const ActionsButtonComponent = ({
           <div className={cn(`${CLASS_NAME}__actions`)}>
             {SYMBOLS.map((symbol, index) => (
               <CellButton
-                isWinner={userSymbol === symbol}
                 key={`${index}`}
                 cellIndex={index}
+                disabled={disabled}
+                isWinner={userSymbol === symbol}
                 onClick={onSymbolClick}
                 value={symbol}
-                disabled={disabled}
               />
             ))}
           </div>

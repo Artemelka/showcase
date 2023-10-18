@@ -1,8 +1,5 @@
 import React, { FC, memo, useCallback } from 'react';
-import {
-  Button,
-  ButtonMouseEvent,
-} from '@artemelka/react-components';
+import { Button, ButtonMouseEvent } from '@artemelka/react-components';
 import Done from '@material-ui/icons/Done';
 import Clear from '@material-ui/icons/Clear';
 import { fastClassNames } from '@/utils';
@@ -20,26 +17,29 @@ const EditorButtonsGroupComponent: FC<EditorButtonsGroupProps> = ({
   isDisabledDone,
   onClick,
 }) => {
-  const handleClick = useCallback(({ id }: ButtonMouseEvent) => {
-    onClick(`${id}`);
-  }, [onClick]);
+  const handleClick = useCallback(
+    ({ id }: ButtonMouseEvent) => {
+      onClick(`${id}`);
+    },
+    [onClick],
+  );
 
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__item`)}>
         <Button
+          icon={<Clear fontSize="inherit" />}
           id="clear"
           onClick={handleClick}
-          icon={<Clear fontSize="inherit" />}
           themeColor="error"
         />
       </div>
       <div className={cn(`${CLASS_NAME}__item`)}>
         <Button
-          id="check"
           disabled={isDisabledDone}
-          onClick={handleClick}
           icon={<Done fontSize="inherit" />}
+          id="check"
+          onClick={handleClick}
           themeColor="success"
         />
       </div>

@@ -1,12 +1,11 @@
-import {
-  COLUMNS,
-  DIAGONALS,
-  ROWS
-} from '../constant';
+import { COLUMNS, DIAGONALS, ROWS } from '../constant';
 import { getWinnerRows } from './get-winner-rows';
 
-export function getWinnerCells(state: Array<string>, symbol: string): Array<number> {
-  if (!Boolean(symbol)) {
+export function getWinnerCells(
+  state: Array<string>,
+  symbol: string,
+): Array<number> {
+  if (!symbol) {
     return [];
   }
 

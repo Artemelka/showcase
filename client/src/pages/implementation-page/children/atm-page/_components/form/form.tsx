@@ -1,9 +1,4 @@
-import React, {
-  FormEvent,
-  memo,
-  useCallback,
-  useState,
-} from 'react';
+import React, { FormEvent, memo, useCallback, useState } from 'react';
 import {
   Button,
   Input,
@@ -26,27 +21,29 @@ export const FormComponent = ({ onSubmit }: FormPropsType) => {
   const [value, setValue] = useState('');
   const [isError, setError] = useState(false);
 
-  const handleChange = useCallback(({ value }: InputChangeEvent) => {
+  const handleChange = useCallback(({ value: sum }: InputChangeEvent) => {
     setError(false);
-    setValue(value)
+    setValue(sum);
   }, []);
 
-  const handleSubmit = useCallback((event: FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
 
-    if(+value % 10 !== 0) {
-      setError(true);
-      return;
-    }
+      if (+value % 10 !== 0) {
+        setError(true);
 
-    onSubmit(value);
-  }, [onSubmit, value]);
+        return;
+      }
+
+      onSubmit(value);
+    },
+    [onSubmit, value],
+  );
 
   return (
     <form className={cn(CLASS_NAME)} onSubmit={handleSubmit}>
-      <Label htmlFor={INPUT_ID}>
-        Please enter amount
-      </Label>
+      <Label htmlFor={INPUT_ID}>Please enter amount</Label>
       <Label size="small" themeColor="secondary">
         (* must be a multiple of 10)
       </Label>
@@ -65,7 +62,7 @@ export const FormComponent = ({ onSubmit }: FormPropsType) => {
           </span>
         )}
       </div>
-      <Button type="submit" value="Submit" themeColor="primary"/>
+      <Button themeColor="primary" type="submit" value="Submit" />
     </form>
   );
 };

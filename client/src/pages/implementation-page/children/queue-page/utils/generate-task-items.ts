@@ -1,10 +1,13 @@
 import { v4 as getId } from 'uuid';
 import { TaskItem, Tasks } from '../redux';
 
-export const generateTaskItems = (quantity: number, startIndex: number): Tasks => {
+export const generateTaskItems = (
+  quantity: number,
+  startIndex: number,
+): Tasks => {
   const tasks: Tasks = {};
 
-  for (let i = 0; i <= quantity; i++) {
+  for (let iterator = 0; iterator <= quantity; iterator + 1) {
     const randomId = getId();
     const task: TaskItem = {
       id: randomId,
@@ -16,4 +19,4 @@ export const generateTaskItems = (quantity: number, startIndex: number): Tasks =
   }
 
   return tasks;
-}
+};

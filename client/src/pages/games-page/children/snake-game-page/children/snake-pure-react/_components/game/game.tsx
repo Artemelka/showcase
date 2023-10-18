@@ -1,20 +1,19 @@
 import React, { PureComponent } from 'react';
-import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
-import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
 import {
-  checkFail,
-  getInitialState,
-  getRandomApple,
-} from '../../../../utils';
+  InputChangeEvent,
+  SelectChangeEvent,
+} from '@artemelka/react-components';
+import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
+import { checkFail, getInitialState, getRandomApple } from '../../../../utils';
 import { SnakeBodyItem, DirectionCode, GameState } from '../../../../types';
 import { GameActions, GameBox, ScreenRow } from '../../../../_components';
 
-type GameProps = {};
+type Props = Record<string, never>;
 
-export class Game extends PureComponent<GameProps, GameState> {
+export class Game extends PureComponent<Props, GameState> {
   intervalId: NodeJS.Timeout | undefined;
 
-  constructor(props: GameProps) {
+  constructor(props: Props) {
     super(props);
 
     this.state = getInitialState();
@@ -33,21 +32,21 @@ export class Game extends PureComponent<GameProps, GameState> {
     this.updateScore();
     this.setState({
       appleItem: getRandomApple(this.state.snakeBody, this.state.cells.length),
-      snakeBody: [head, ...this.state.snakeBody]
+      snakeBody: [head, ...this.state.snakeBody],
     });
-  }
+  };
 
   getFail = () => {
     this.stopGame();
     this.setState({ isFail: true });
-  }
+  };
 
   handleCellsChange = ({ value }: InputChangeEvent) => {
     const numberValue = Number(value);
     const nextCells = [...Array(numberValue)].map((_, index) => index);
 
-    this.setState({...getInitialState(nextCells.length), cells: nextCells });
-  }
+    this.setState({ ...getInitialState(nextCells.length), cells: nextCells });
+  };
 
   handleDirectionChange = (event: KeyboardEvent) => {
     const { keyCode } = event;
@@ -56,35 +55,38 @@ export class Game extends PureComponent<GameProps, GameState> {
 
     if (this.state.isStarted && isArrowKey && !isMirrorDirection) {
       event.preventDefault();
-      this.setState({ direction: DIRECTION[(keyCode as DirectionCode)] });
+      this.setState({ direction: DIRECTION[keyCode as DirectionCode] });
     }
-  }
+  };
 
   handleGameSpeedChange = ({ items }: SelectChangeEvent) => {
     this.setState({ gameSpeed: items });
-  }
+  };
 
   handleStartClick = () => {
     if (this.state.isStarted) {
       this.stopGame();
     } else {
-      this.intervalId = setInterval(this.snakeStep, this.state.gameSpeed[0].extraData.delay);
+      this.intervalId = setInterval(
+        this.snakeStep,
+        this.state.gameSpeed[0].extraData.delay,
+      );
       this.setState({ isStarted: true });
     }
-  }
+  };
 
   refreshGame = () => {
     const defaultState = getInitialState();
 
     this.setState(defaultState);
-  }
+  };
 
   stopGame = () => {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
     this.setState({ isStarted: false });
-  }
+  };
 
   snakeStep = () => {
     const { appleItem, direction, snakeBody: body } = this.state;
@@ -95,20 +97,22 @@ export class Game extends PureComponent<GameProps, GameState> {
 
     if (checkFail({ body, head, length: this.state.cells.length })) {
       this.getFail();
+
       return;
     }
 
     if (appleItem.x === head.x && appleItem.y === head.y) {
-      this.eatApple(head)
+      this.eatApple(head);
+
       return;
     }
 
     this.setState({ snakeBody: [head, ...body.slice(0, -1)] });
-  }
+  };
 
   updateScore = () => {
     this.setState(({ score }) => ({ score: score + 1 }));
-  }
+  };
 
   render() {
     return (
@@ -126,7 +130,7 @@ export class Game extends PureComponent<GameProps, GameState> {
             score={`${this.state.score}`}
           />
         }
-        tableRowsElement={this.state.cells.map(y => (
+        tableRowsElement={this.state.cells.map((y) => (
           <ScreenRow
             key={`row${y}`}
             appleItem={this.state.appleItem}

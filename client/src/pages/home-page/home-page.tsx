@@ -12,16 +12,17 @@ const HomePage = () => {
   return (
     <Page title="Home">
       <div className={cn(CLASS_NAME)}>
-        <Logo className={cn(`${CLASS_NAME}__logo`)}/>
+        <Logo className={cn(`${CLASS_NAME}__logo`)} />
         <Text tagName="p">
           Edit <code>src/App.tsx</code> and save to reload.
         </Text>
         <div className={cn(`${CLASS_NAME}__link`)}>
-          <Anchor href="https://reactjs.org" themeColor="primary">Learn React</Anchor>
+          <Anchor href="https://reactjs.org" themeColor="primary">
+            Learn React
+          </Anchor>
         </div>
       </div>
     </Page>
-
   );
 };
 

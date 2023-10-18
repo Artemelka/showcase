@@ -17,7 +17,7 @@ const mapStateToProps = (state: AppStore) => ({
 });
 
 const mapDispatchToProps = {
-  push
+  push,
 };
 
 type Props = {
@@ -25,7 +25,9 @@ type Props = {
   title: string;
 };
 
-type SidebarProps = Props & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type SidebarProps = Props &
+  ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
 export class SidebarContainer extends Component<SidebarProps, never> {
   handleClick = (path: string) => {
@@ -36,7 +38,7 @@ export class SidebarContainer extends Component<SidebarProps, never> {
     return (
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__inner`)}>
-          <Text tagName="h5" align="center" fontWeight="semi-bold">
+          <Text align="center" fontWeight="semi-bold" tagName="h5">
             {this.props.title} menu
           </Text>
           <div className={cn(`${CLASS_NAME}__navigation`)}>
@@ -52,4 +54,7 @@ export class SidebarContainer extends Component<SidebarProps, never> {
   }
 }
 
-export const Sidebar = connect(mapStateToProps, mapDispatchToProps)(SidebarContainer);
+export const Sidebar = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SidebarContainer);

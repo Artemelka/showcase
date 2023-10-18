@@ -1,6 +1,6 @@
 import React, { FC, memo, ReactNode } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
-import { NotFoundPage } from '@/pages';
+import { NotFoundPage } from '../not-found-page';
 
 type AppRouterSwitchProps = {
   children: ReactNode;
@@ -16,8 +16,8 @@ export const AppRouterSwitchComponent: FC<AppRouterSwitchProps> = ({
   return (
     <Switch>
       {children}
-      {pathToRedirect && <Redirect to={pathToRedirect}/>}
-      {withNotFoundPage && (<Route component={NotFoundPage}/>)}
+      {pathToRedirect && <Redirect to={pathToRedirect} />}
+      {withNotFoundPage && <Route component={NotFoundPage} />}
     </Switch>
   );
 };

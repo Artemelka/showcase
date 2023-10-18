@@ -8,9 +8,14 @@ type Params = {
   symbols: Symbols;
   targetSymbol: string;
   level: string;
-}
+};
 
-export function getNextIndex({ level, state, symbols, targetSymbol }: Params): number {
+export function getNextIndex({
+  level,
+  state,
+  symbols,
+  targetSymbol,
+}: Params): number {
   if (level === GAME_LEVEL_OPTIONS[0].value) {
     return easyBot(state, symbols);
   }

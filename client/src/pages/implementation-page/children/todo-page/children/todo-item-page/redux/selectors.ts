@@ -8,10 +8,10 @@ const TodoItemStateSelector = (state: TodoItemStore): TodoItemState =>
 
 export const todoItemSelector = createSelector(
   [TodoItemStateSelector],
-  (state): TodoItem => state.item
+  (state): TodoItem => state.item,
 );
 
 export const todoItemIsLoadingSelector = createSelector(
   [TodoItemStateSelector],
-  (state): boolean => state.isLoading
+  (state): boolean => state.isLoading,
 );

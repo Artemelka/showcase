@@ -14,26 +14,31 @@ type TimeZoneListProps = {
   onSelect: (timeZone: string) => void;
 };
 
-export const TimeZoneListComponent = ({ items, isGoBackDisabled, onGoBack, onSelect }: TimeZoneListProps) => {
+export const TimeZoneListComponent = ({
+  items,
+  isGoBackDisabled,
+  onGoBack,
+  onSelect,
+}: TimeZoneListProps) => {
   return (
     <section className={cn(CLASS_NAME)}>
       <header className={cn(`${CLASS_NAME}__header`)}>
-        <Button value="go back" onClick={onGoBack} disabled={isGoBackDisabled}/>
+        <Button
+          disabled={isGoBackDisabled}
+          onClick={onGoBack}
+          value="go back"
+        />
       </header>
       <main className={cn(`${CLASS_NAME}__content`)}>
         <ul className={cn(`${CLASS_NAME}__zone-list`)}>
           {items.map((item, index) => (
-            <li className={cn(`${CLASS_NAME}__zone-item`)} key={item + index}>
-              <TimeZoneListItem
-                item={item}
-                onClick={onSelect}
-              />
+            <li key={item + index} className={cn(`${CLASS_NAME}__zone-item`)}>
+              <TimeZoneListItem item={item} onClick={onSelect} />
             </li>
           ))}
         </ul>
       </main>
     </section>
-
   );
 };
 

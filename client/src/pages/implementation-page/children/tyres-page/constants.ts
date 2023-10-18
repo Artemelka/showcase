@@ -10,16 +10,7 @@ export const TYRE_WIDTHS = [
   '285',
 ];
 
-export const ASPECT_RATIOS = [
-  '30',
-  '35',
-  '40',
-  '45',
-  '50',
-  '55',
-  '60',
-  '65',
-];
+export const ASPECT_RATIOS = ['30', '35', '40', '45', '50', '55', '60', '65'];
 
 // const front = '245/40 = 98'
 // const back = '275/35 = 96'

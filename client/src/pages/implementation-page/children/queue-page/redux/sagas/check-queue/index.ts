@@ -12,4 +12,4 @@ function* checkQueueWatcherSaga() {
 export const CHECK_QUEUE_INJECT_SAGA_CONFIG = {
   name: 'CHECK_QUEUE_WATCHER_SAGA',
   saga: checkQueueWatcherSaga,
-}
+};

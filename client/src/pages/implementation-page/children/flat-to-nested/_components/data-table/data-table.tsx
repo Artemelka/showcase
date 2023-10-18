@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import { fastClassNames } from '@/utils';
 import { FlatItemData } from '../../types';
 import style from './data-table.module.scss';
@@ -22,7 +22,7 @@ export const DataTableComponent = ({ items }: DataTableProps) => {
       </thead>
       <tbody className={cn(`${CLASS_NAME}__body`)}>
         {items.map(({ id, name, parentId }) => (
-          <tr className={cn(`${CLASS_NAME}__row`)} key={id}>
+          <tr key={id} className={cn(`${CLASS_NAME}__row`)}>
             <td className={cn(`${CLASS_NAME}__cell`)}>{id}</td>
             <td className={cn(`${CLASS_NAME}__cell`)}>{name}</td>
             <td className={cn(`${CLASS_NAME}__cell`)}>{parentId}</td>

@@ -1,8 +1,18 @@
 import React, { PureComponent, SyntheticEvent } from 'react';
-import { Button, Input, InputChangeEvent, Text } from '@artemelka/react-components';
+import {
+  Button,
+  Input,
+  InputChangeEvent,
+  Text,
+} from '@artemelka/react-components';
 import { API } from '@/api';
+import { appLogger } from '@/services/app-logger';
 import { fastClassNames } from '@/utils';
-import { signUpSuccess, WithContextProps, withContextState } from '../../context';
+import {
+  signUpSuccess,
+  WithContextProps,
+  withContextState,
+} from '../../context';
 import {
   FORM_ITEMS,
   INITIAL_INPUTS_STATE,
@@ -20,8 +30,7 @@ type State = {
   errors: Partial<InputsState>;
 };
 
-type FormBaseProps = {};
-type FormProps = FormBaseProps & WithContextProps;
+type FormProps = WithContextProps;
 
 export class FormComponent extends PureComponent<FormProps, State> {
   constructor(props: FormProps) {
@@ -47,21 +56,20 @@ export class FormComponent extends PureComponent<FormProps, State> {
       this.props.dispatch(signUpSuccess(response.data.name));
       this.setState({ inputs: INITIAL_INPUTS_STATE });
     } catch (error) {
-      console.log('ERROR in signUp', error);
+      appLogger.log('ERROR in signUp', error);
 
       if (error.isError) {
         this.setState({ errors: error.additionalErrors[0] });
-        return;
       }
     }
-  }
+  };
 
   handleChange = ({ value, name }: InputChangeEvent): void => {
     this.setState((prevState) => ({
       inputs: {
         ...prevState.inputs,
         [name]: value,
-      }
+      },
     }));
   };
 
@@ -75,14 +83,14 @@ export class FormComponent extends PureComponent<FormProps, State> {
     }
 
     this.setState({ errors });
-  }
+  };
 
   render() {
     return (
       <form className={cn(CLASS_NAME)} onSubmit={this.handleSubmit}>
         <Text tagName="h3">Form</Text>
-        {FORM_ITEMS.map((({ id, name, placeholder, type}) => (
-          <div className={cn(`${CLASS_NAME}__input`)} key={id}>
+        {FORM_ITEMS.map(({ id, name, placeholder, type }) => (
+          <div key={id} className={cn(`${CLASS_NAME}__input`)}>
             <Input
               id={id}
               isError={Boolean(this.state.errors[name])}
@@ -98,13 +106,13 @@ export class FormComponent extends PureComponent<FormProps, State> {
               </span>
             )}
           </div>
-        )))}
+        ))}
         <div className={cn(`${CLASS_NAME}__action`)}>
-          <Button value="submit" type="submit"/>
+          <Button type="submit" value="submit" />
         </div>
       </form>
     );
   }
 }
 
-export const Form = withContextState<FormBaseProps>(FormComponent);
+export const Form = withContextState<Record<string, never>>(FormComponent);

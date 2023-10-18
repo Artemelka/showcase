@@ -29,14 +29,15 @@ const CLASS_NAME = 'Tic-tac-toe-page';
 type Winner = {
   message: string;
   winnerCells: Array<number>;
-}
+};
 
 export const TicTacToePageComponent = () => {
   const [state, setState] = useState(INITIAL_STATE);
   const [symbols, setSymbols] = useState(INITIAL_SYMBOLS);
   const [level, setLevel] = useState<Array<DropdownItemParams>>(INITIAL_LEVEL);
   const [isUserStep, setIsUserStep] = useState(false);
-  const [{ message, winnerCells }, setWinner] = useState<Winner>(INITIAL_WINNER);
+  const [{ message, winnerCells }, setWinner] =
+    useState<Winner>(INITIAL_WINNER);
 
   const aiStep = useCallback(() => {
     const cellIndex = getNextIndex({
@@ -46,14 +47,14 @@ export const TicTacToePageComponent = () => {
       targetSymbol: symbols.ai,
     });
 
-    if (isNaN(cellIndex)) {
+    if (Number.isNaN(cellIndex)) {
       throw Error('cellIndex is undefined');
     }
 
     const config = {
       cellIndex,
       symbol: symbols.ai,
-    }
+    };
 
     setState((prevState) => getUpdatedState(prevState, config));
     setIsUserStep(true);
@@ -64,13 +65,14 @@ export const TicTacToePageComponent = () => {
       return;
     }
 
-    const message = getEndGameMessage(state, symbols);
+    const endGameMessage = getEndGameMessage(state, symbols);
 
-    if (message) {
+    if (endGameMessage) {
       const winnerSymbol = isUserStep ? symbols.ai : symbols.user;
       const cells = getWinnerCells(state, winnerSymbol);
 
-      setWinner({ message, winnerCells: cells });
+      setWinner({ message: endGameMessage, winnerCells: cells });
+
       return;
     }
 
@@ -86,17 +88,20 @@ export const TicTacToePageComponent = () => {
     setLevel(INITIAL_LEVEL);
   }, []);
 
-  const handleClick = useCallback((cellIndex: number) => {
-    const config = {
-      cellIndex,
-      symbol: symbols.user,
-    }
+  const handleClick = useCallback(
+    (cellIndex: number) => {
+      const config = {
+        cellIndex,
+        symbol: symbols.user,
+      };
 
-    setState((prevState) => getUpdatedState(prevState, config));
-    setIsUserStep(false);
-  }, [symbols]);
+      setState((prevState) => getUpdatedState(prevState, config));
+      setIsUserStep(false);
+    },
+    [symbols],
+  );
 
-  const handleSymbolClick = useCallback((_, symbol: string) => {
+  const handleSymbolClick = useCallback((_e, symbol: string) => {
     const nextSymbols = getSymbols(symbol);
 
     setSymbols(nextSymbols);
@@ -110,42 +115,47 @@ export const TicTacToePageComponent = () => {
   return (
     <Page headTitle="Tic tac toe" title="Tic tac toe game">
       <div className={cn(CLASS_NAME)}>
-        <div className={cn(`${CLASS_NAME}__message`)}>
-          {message}
-        </div>
+        <div className={cn(`${CLASS_NAME}__message`)}>{message}</div>
 
-        {Boolean(symbols.user) ? (
+        {symbols.user ? (
           <ul className={cn(`${CLASS_NAME}__container`)}>
             {state.map((value, cellIndex) => (
-              <li className={cn(`${CLASS_NAME}__cell`)} key={`${cellIndex}`}>
+              <li key={`${cellIndex}`} className={cn(`${CLASS_NAME}__cell`)}>
                 <CellButton
-                  isWinner={winnerCells.includes(cellIndex)}
                   cellIndex={cellIndex}
+                  disabled={
+                    Boolean(value) ||
+                    !symbols.user ||
+                    !isUserStep ||
+                    Boolean(message)
+                  }
+                  isWinner={winnerCells.includes(cellIndex)}
                   onClick={handleClick}
                   value={value}
-                  disabled={Boolean(value) || !Boolean(symbols.user) || !isUserStep || Boolean(message)}
                 />
               </li>
             ))}
           </ul>
         ) : (
           <FilterSelect
-            onChange={handleLevel}
-            name="level"
-            values={level}
-            options={GAME_LEVEL_OPTIONS}
             id="level"
             label="Choose level"
+            name="level"
+            onChange={handleLevel}
+            options={GAME_LEVEL_OPTIONS}
             size="big"
+            values={level}
           />
         )}
 
         {Boolean(level.length) && (
           <ActionsButtons
-            isNewGameButton={Boolean(winnerCells.length) || message === 'No winners!'}
+            disabled={Boolean(symbols.user)}
+            isNewGameButton={
+              Boolean(winnerCells.length) || message === 'No winners!'
+            }
             onClear={clearGame}
             onSymbolClick={handleSymbolClick}
-            disabled={Boolean(symbols.user)}
             userSymbol={symbols.user}
           />
         )}

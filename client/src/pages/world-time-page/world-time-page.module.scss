@@ -1,9 +1,9 @@
 .world-time-page {
-  display: flex;
   align-items: flex-start;
+  display: flex;
   justify-content: center;
-  max-width: 500px;
   margin: 0 auto;
+  max-width: 500px;
 
   &__clock {
     margin-top: 30px;

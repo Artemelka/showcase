@@ -2,23 +2,15 @@
   border: 1px solid var(--baseTextColor);
   border-collapse: collapse;
 
-  &__header {
-
-  }
-
-  &__row {
-
-  }
-
   &__cell {
-    padding: 10px;
-    min-width: 50px;
     border: 1px solid var(--baseTextColor);
+    min-width: 50px;
+    padding: 10px;
 
     &:first-child {
       min-width: 20px;
     }
-    
+
     &:last-child {
       text-align: right;
     }

@@ -1,9 +1,8 @@
-import { getGameDeck } from '../utils';
-import { DurakState } from '../types';
+import { CARD_DECK } from '@/pages/games-page/_constants/cards';
 
 export const DURAK_REDUCER_NAME = 'durak-game';
 
-export const INITIAL_STATE: DurakState = {
+export const INITIAL_STATE = {
   deck: [],
   enemyBank: [],
   isGetCard: false,
@@ -12,5 +11,5 @@ export const INITIAL_STATE: DurakState = {
   playerBank: [],
   tableEnemyPlace: [],
   tablePlayerPlace: [],
-  trumpCard: getGameDeck()[0],
-}
+  trumpCard: [...CARD_DECK][0],
+};

@@ -18,7 +18,6 @@ export function* sendTaskSaga() {
       const response = yield call(API.QUEUE_TASK.sendTask, currentTask);
       yield put(updateTasks([response]));
       yield put(getResolvedTaskActionSaga());
-
     } catch (error) {
       console.error('=== Error sendTaskWorkerSaga ===');
     } finally {

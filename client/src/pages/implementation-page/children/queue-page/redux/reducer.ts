@@ -7,7 +7,7 @@ const queueReducerSlice = createSlice<QueueState, QueueReducerCase>({
   initialState: INITIAL_STATE,
   reducers: {
     addTasks: (state, { payload }) => {
-      state.tasks = {...state.tasks , ...payload};
+      state.tasks = { ...state.tasks, ...payload };
     },
     changeCreateTaskQuantity: (state, { payload }) => {
       state.createTaskQuantity = payload;
@@ -30,6 +30,7 @@ const queueReducerSlice = createSlice<QueueState, QueueReducerCase>({
     updateTasks: (state, { payload }) => {
       state.tasks = payload.reduce((acc, task) => {
         acc[task.id] = task;
+
         return acc;
       }, state.tasks);
     },

@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '../../../../types';
+import type { AppRouteConfig } from '@/types';
 import { SNAKE_HOME_PAGE_ROUTE_CONFIG } from './snake-home-page';
 import { SNAKE_PURE_REACT_PAGE_ROUTE_CONFIG } from './snake-pure-react';
 import { SNAKE_REDUX_PAGE_ROUTE_CONFIG } from './snake-redux-page';

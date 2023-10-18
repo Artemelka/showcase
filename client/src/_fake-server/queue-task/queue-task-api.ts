@@ -6,36 +6,38 @@ const getRandomTimeout = (): number => {
 };
 
 const getResponse = (item: TaskItem): TaskItem => {
-  return ({
+  return {
     ...item,
     result: item.index * item.index,
     status: Math.random() < 0.8 ? 'done' : 'error',
-  });
-}
+  };
+};
 
 const setSendingStatus = (item: TaskItem): TaskItem => {
-  return ({
+  return {
     ...item,
     status: 'sending',
-  });
-}
+  };
+};
 
 type State = {
-  progressTask: Array<TaskItem>,
-}
+  progressTask: Array<TaskItem>;
+};
 
 export class QueueTaskApi {
   state: State = {
-    progressTask: []
-  }
+    progressTask: [],
+  };
 
   setTask = (task: TaskItem) => {
     this.state.progressTask = [...this.state.progressTask, task];
-  }
+  };
 
   removeTask = (task: TaskItem) => {
-    this.state.progressTask = this.state.progressTask.filter(item => item.id !== task.id);
-  }
+    this.state.progressTask = this.state.progressTask.filter(
+      (item) => item.id !== task.id,
+    );
+  };
 
   checkTask = (task: TaskItem) => {
     const randomTimeout = getRandomTimeout();
@@ -44,7 +46,7 @@ export class QueueTaskApi {
     setTimeout(() => {
       this.setTask(item);
     }, randomTimeout);
-  }
+  };
 
   postTask = (item: TaskItem) => {
     return new Promise((resolve) => {
@@ -52,14 +54,15 @@ export class QueueTaskApi {
 
       this.checkTask(response);
 
-      setTimeout(() => resolve(response), getRandomTimeout())
-      ;
+      setTimeout(() => resolve(response), getRandomTimeout());
     });
-  }
+  };
 
   getResolvedTask = (tasks: Array<TaskItem>) => {
     const result = tasks.reduce((acc: Array<TaskItem>, task) => {
-      const resolvedTasks = this.state.progressTask.filter(item => item.id === task.id);
+      const resolvedTasks = this.state.progressTask.filter(
+        (item) => item.id === task.id,
+      );
 
       if (resolvedTasks.length) {
         acc.push(resolvedTasks[0]);
@@ -72,5 +75,5 @@ export class QueueTaskApi {
     return new Promise((resolve) => {
       setTimeout(() => resolve(result), 500);
     });
-  }
+  };
 }

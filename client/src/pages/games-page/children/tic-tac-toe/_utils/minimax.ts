@@ -1,8 +1,43 @@
-import { Move, Symbols } from '../types';
+import type { Move, Symbols } from '../types';
 import { checkWinner } from './check-winner';
 import { getEmptyCells } from './get-empty-cells';
-import { getPossibleMoves } from './get-possible-moves';
 import { getBestMove } from './get-best-move';
+import { getUpdatedState } from './get-updated-state';
+
+type GetPossibleMovesParams = {
+  emptyCells: Array<number>;
+  state: Array<string>;
+  symbols: Symbols;
+  targetSymbol: string;
+};
+
+function getPossibleMoves({
+  emptyCells,
+  state,
+  symbols,
+  targetSymbol,
+}: GetPossibleMovesParams): Array<Move> {
+  return emptyCells.reduce((res: Array<Move>, cellIndex) => {
+    const nextSymbol =
+      targetSymbol === symbols.user ? symbols.ai : symbols.user;
+    const nextState = getUpdatedState(state, {
+      cellIndex,
+      symbol: targetSymbol,
+    });
+    const { score } = minimax({
+      state: nextState,
+      symbols,
+      targetSymbol: nextSymbol,
+    });
+
+    res.push({
+      cellIndex,
+      score,
+    });
+
+    return res;
+  }, []);
+}
 
 type Params = {
   state: Array<string>;

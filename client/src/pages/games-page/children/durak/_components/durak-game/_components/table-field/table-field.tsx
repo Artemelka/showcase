@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { fastClassNames } from '@/utils';
+import { CardBank } from '@/pages/games-page/_components';
 import { CardParams } from '@/pages/games-page/types';
 import {
   enemyPlaceSelector,
@@ -8,7 +9,6 @@ import {
   isPlayerStepSelector,
 } from '../../redux';
 import { DurakGameStore } from '../../types';
-import { CardBank } from '../card-bank';
 import styles from './table-field.module.scss';
 
 const cn = fastClassNames(styles);
@@ -20,7 +20,11 @@ type StateProps = {
   playerCards: Array<CardParams>;
 };
 
-export const TableFieldComponent: FC<StateProps> = ({ enemyCards, isPlayerStep, playerCards }) => {
+export const TableFieldComponent: FC<StateProps> = ({
+  enemyCards,
+  isPlayerStep,
+  playerCards,
+}) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div

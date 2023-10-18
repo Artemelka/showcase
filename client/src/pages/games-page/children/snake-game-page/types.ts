@@ -1,6 +1,9 @@
 import { DropdownItemParams } from '@artemelka/react-components';
 import { BaseAction } from '@/app';
-import { GAME_PURE_REDUX_REDUCER_NAME, GAME_TOOLKIT_REDUCER_NAME } from './constants';
+import {
+  GAME_PURE_REDUX_REDUCER_NAME,
+  GAME_TOOLKIT_REDUCER_NAME,
+} from './constants';
 
 export type GameState = {
   appleItem: SnakeBodyItem;
@@ -11,7 +14,7 @@ export type GameState = {
   isStarted: boolean;
   score: number;
   snakeBody: Array<SnakeBodyItem>;
-}
+};
 
 export type RefreshGameAction = BaseAction<number>;
 export type SetAppleItemAction = BaseAction<SnakeBodyItem>;
@@ -30,7 +33,7 @@ export type GameReducerCase = {
   setStopGame: (state: GameState) => void;
   updateScore: (state: GameState) => void;
   updateSnakeBody: (state: GameState, action: UpdateSnakeBodyAction) => void;
-}
+};
 
 export type GameReduxStore = { [GAME_PURE_REDUX_REDUCER_NAME]: GameState };
 export type GameToolkitStore = { [GAME_TOOLKIT_REDUCER_NAME]: GameState };
@@ -47,15 +50,15 @@ export type DirectionItem = {
   mirror: DirectionCode;
   x: number;
   y: number;
-}
+};
 
 export type CheckStopGameParams = {
   body: Array<SnakeBodyItem>;
   head: SnakeBodyItem;
-  length: number,
-}
+  length: number;
+};
 
 export type RowCells = {
   x: number;
   isSnakeItem: boolean;
-}
+};

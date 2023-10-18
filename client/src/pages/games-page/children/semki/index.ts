@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import { GAMES_CHILDREN_PATH } from '../../constants';
 
 export const SEMKI_PAGE_ROUTE_CONFIG: AppRouteConfig = {

@@ -26,19 +26,18 @@ export const AccessGuardRouteComponent: FC<AccessGuardRouteProps> = ({
   path,
   userRole,
 }: AccessGuardRouteProps) => {
-
-  const hasAccess = useMemo(() => accessTypes.includes(userRole), [accessTypes, userRole]);
+  const hasAccess = useMemo(
+    () => accessTypes.includes(userRole),
+    [accessTypes, userRole],
+  );
 
   return hasAccess ? (
-    <Route
-      component={component}
-      exact={exact}
-      key={`${path}`}
-      path={path}
-    />
+    <Route key={`${path}`} component={component} exact={exact} path={path} />
   ) : (
-    <Redirect to={accessRedirectPath}/>
+    <Redirect to={accessRedirectPath} />
   );
 };
 
-export const AccessGuardRoute = connect(mapStateToProps)(AccessGuardRouteComponent);
+export const AccessGuardRoute = connect(mapStateToProps)(
+  AccessGuardRouteComponent,
+);

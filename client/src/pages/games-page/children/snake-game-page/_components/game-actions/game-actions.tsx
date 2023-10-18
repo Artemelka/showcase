@@ -43,12 +43,14 @@ export const GameActionsComponent: FC<GameActionsProps> = ({
   onGameSpeedChange,
   onRefresh,
   onStartClick,
-  score
+  score,
 }) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__input`)}>
-        <Label htmlFor={SELECT_ID} size="small" position="left">Level:</Label>
+        <Label htmlFor={SELECT_ID} position="left" size="small">
+          Level:
+        </Label>
         <Select
           disabled={isStarted}
           iconConfig={SELECT_ICON_CONFIG}
@@ -63,7 +65,9 @@ export const GameActionsComponent: FC<GameActionsProps> = ({
         />
       </div>
       <div className={cn(`${CLASS_NAME}__input`)}>
-        <Label htmlFor={INPUT_ID} size="small" position="left">Cells:</Label>
+        <Label htmlFor={INPUT_ID} position="left" size="small">
+          Cells:
+        </Label>
         <Input
           disabled={isStarted}
           id={INPUT_ID}

@@ -13,7 +13,7 @@ const ChatLoginPage = () => {
     <Page headTitle="Chat" title="Chat">
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__header`)}>
-          <Text tagName="h2" align="center">
+          <Text align="center" tagName="h2">
             You need enter name!
           </Text>
         </div>

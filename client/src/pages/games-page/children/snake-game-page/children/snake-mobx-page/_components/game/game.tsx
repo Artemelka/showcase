@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { InputChangeEvent, SelectChangeEvent } from '@artemelka/react-components';
+import {
+  InputChangeEvent,
+  SelectChangeEvent,
+} from '@artemelka/react-components';
 import { GameActions, GameBox, ScreenRow } from '../../../../_components';
 import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
 import { DirectionCode } from '../../../../types';
@@ -14,7 +17,7 @@ export const Game = observer(function GameComponent() {
 
     if (gameStore.isStarted && isArrowKey && !isMirrorDirection) {
       event.preventDefault();
-      gameStore.setDirection(DIRECTION[(keyCode as DirectionCode)]);
+      gameStore.setDirection(DIRECTION[keyCode as DirectionCode]);
     }
   }, []);
 
@@ -23,7 +26,7 @@ export const Game = observer(function GameComponent() {
 
     return () => {
       document.removeEventListener('keydown', handleDirectionChange);
-    }
+    };
   }, [handleDirectionChange]);
 
   const handleCellsChange = useCallback(({ value }: InputChangeEvent) => {
@@ -61,7 +64,7 @@ export const Game = observer(function GameComponent() {
           score={`${gameStore.score}`}
         />
       }
-      tableRowsElement={gameStore.cells.map(y => (
+      tableRowsElement={gameStore.cells.map((y) => (
         <ScreenRow
           key={`row${y}`}
           appleItem={gameStore.appleItem}

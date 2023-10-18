@@ -1,13 +1,13 @@
 type Values = {
   userName: string;
   password: string;
-}
+};
 
 export type SignUpResponse = {
   data: { name: string };
   isError: boolean;
   additionalErrors: Array<{ userName: string }>;
-}
+};
 
 export class SignUpApi {
   counter = 0;
@@ -24,6 +24,7 @@ export class SignUpApi {
             additionalErrors: [],
           });
         } else {
+          /* eslint-disable prefer-promise-reject-errors */
           reject({
             data: { name: values.userName },
             isError: true,
@@ -31,6 +32,6 @@ export class SignUpApi {
           });
         }
       }, 2000);
-    })
-  }
+    });
+  };
 }

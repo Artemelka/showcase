@@ -1,10 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { API } from '@/api';
-import {
-  setStartAuthInit,
-  setStopAuthInit,
-  authInit,
-} from '../../reducer';
+import { setStartAuthInit, setStopAuthInit, authInit } from '../../reducer';
 
 export function* authInitWorkerSaga() {
   yield put(setStartAuthInit());
@@ -12,7 +8,7 @@ export function* authInitWorkerSaga() {
   try {
     const { user } = yield call(API.AUTH.INIT);
 
-    yield put(authInit(user))
+    yield put(authInit(user));
   } catch (error) {
     console.error('=== Error authInitWorkerSaga ===', error);
   } finally {

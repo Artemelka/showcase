@@ -1,6 +1,6 @@
 .Semki-page {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 
   &__container {
@@ -9,9 +9,9 @@
   }
 
   &__actions {
-    margin-top: 30px;
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
+    margin-top: 30px;
   }
 }

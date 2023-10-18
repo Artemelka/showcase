@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import {
   StoreInjectorConsumer,
   AsyncReducerItem,
-  AsyncSagaItem
+  AsyncSagaItem,
 } from '@artemelka/redux-store-injector';
 import { Layout } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import type { AppStore, AppRouteConfig } from '@/types';
 import { AsyncRoutes } from '@/app/router';
 import { PageLoader } from '@/components';
-import { AppRouteConfig } from '@/pages/types';
 import {
   AUTH_REDUCER_INJECT_CONFIG,
   AUTH_INIT_INJECT_SAGA_CONFIG,
@@ -28,16 +27,17 @@ const asyncSagas: Array<AsyncSagaItem> = [
 ];
 
 const mapDispatchToProps = {
-  authInit: authInitActionSaga
+  authInit: authInitActionSaga,
 };
 
 const mapStateToProps = (state: AppStore) => ({
-  isLoading: authIsLoadingSelector(state)
+  isLoading: authIsLoadingSelector(state),
 });
 
-type AppLayoutProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & {
-  routesConfig: Array<AppRouteConfig>;
-};
+type AppLayoutProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps & {
+    routesConfig: Array<AppRouteConfig>;
+  };
 
 export class AppLayoutComponent extends Component<AppLayoutProps, never> {
   componentDidMount() {
@@ -46,21 +46,23 @@ export class AppLayoutComponent extends Component<AppLayoutProps, never> {
 
   render() {
     return (
-      <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas}>
-        {this.props.isLoading
-          ? ( <PageLoader/> )
-          : (
-            <Layout
-              disabledScroll
-              headerElement={<AppHeader/>}
-            >
-              <AsyncRoutes routesConfig={this.props.routesConfig}/>
-            </Layout>
-          )
-        }
+      <StoreInjectorConsumer
+        asyncReducers={asyncReducers}
+        asyncSagas={asyncSagas}
+      >
+        {this.props.isLoading ? (
+          <PageLoader />
+        ) : (
+          <Layout disabledScroll headerElement={<AppHeader />}>
+            <AsyncRoutes routesConfig={this.props.routesConfig} />
+          </Layout>
+        )}
       </StoreInjectorConsumer>
     );
   }
 }
 
-export const AppLayout = connect(mapStateToProps, mapDispatchToProps)(AppLayoutComponent);
+export const AppLayout = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AppLayoutComponent);

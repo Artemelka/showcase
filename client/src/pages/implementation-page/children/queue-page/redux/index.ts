@@ -15,7 +15,7 @@ export {
   updateTasks,
 } from './reducer';
 export { CHECK_QUEUE_INJECT_SAGA_CONFIG } from './sagas/check-queue';
-export { GET_RESOLVED_TASK_INJECT_SAGA_CONFIG, } from './sagas/get-resolved-task';
+export { GET_RESOLVED_TASK_INJECT_SAGA_CONFIG } from './sagas/get-resolved-task';
 export { SEND_TASK_INJECT_SAGA_CONFIG } from './sagas/send-task';
 export {
   queueCreatedTasksSelector,
@@ -34,9 +34,4 @@ export {
 } from './selectors';
 export { QUEUE_REDUCER_NAME } from './constants';
 
-export type {
-  QueueStore,
-  QueueState,
-  TaskItem,
-  Tasks,
-} from './types';
+export type { QueueStore, QueueState, TaskItem, Tasks } from './types';

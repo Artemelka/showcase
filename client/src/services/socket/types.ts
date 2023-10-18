@@ -15,11 +15,13 @@ export type SocketMessage<T> = {
   payload: T;
 };
 export type SocketMessageListener = (message: SocketMessage<any>) => void;
-export type ListenersMap = Partial<Record<MESSAGE_TYPE, Array<SocketMessageListener>>>;
+export type ListenersMap = Partial<
+  Record<MESSAGE_TYPE, Array<SocketMessageListener>>
+>;
 export type WebSocketRequest = <M>(message: SocketMessage<M>) => void;
 
 export type SocketListener = {
-  messageType: MESSAGE_TYPE,
+  messageType: MESSAGE_TYPE;
   action: (socketMessage: SocketMessage<any>) => void;
 };
 
@@ -27,6 +29,5 @@ export type SocketListeners = Array<SocketListener>;
 
 export type SocketHocProps = {
   addSocketListeners: (listeners: SocketListeners) => void;
-  webSocketRequest: WebSocketRequest
+  webSocketRequest: WebSocketRequest;
 };
-

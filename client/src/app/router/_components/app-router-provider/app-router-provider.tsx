@@ -1,13 +1,11 @@
-import React, { FC, memo, PropsWithChildren } from 'react';
+import React, { FC, memo, ReactNode } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../../history';
 
-export const AppRouterProviderComponent: FC<PropsWithChildren<{}>> = ({ children }) => {
-  return (
-    <ConnectedRouter history={history}>
-      {children}
-    </ConnectedRouter>
-  );
+type Props = { children: ReactNode };
+
+export const AppRouterProviderComponent: FC<Props> = ({ children }) => {
+  return <ConnectedRouter history={history}>{children}</ConnectedRouter>;
 };
 
-export const AppRouterProvider = memo(AppRouterProviderComponent);
+export const AppRouterProvider = memo<Props>(AppRouterProviderComponent);

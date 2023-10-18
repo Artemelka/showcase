@@ -1,6 +1,6 @@
 // import { AuthApi } from '@/_fake-server';
-import { ApiRequest } from '../utils';
 import { User } from '@/_fake-server';
+import { ApiRequest } from '../utils';
 
 // const authApi = new AuthApi();
 

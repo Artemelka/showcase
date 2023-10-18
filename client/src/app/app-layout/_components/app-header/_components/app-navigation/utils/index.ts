@@ -1,2 +1,2 @@
-export { findActiveRoute } from './findActiveRoute';
-export { getRoutes } from './getRoutes';
+export { findActiveRoute } from './find-active-route';
+export { getRoutes } from './get-routes';

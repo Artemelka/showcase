@@ -27,7 +27,7 @@ type FilterSelectProps = {
   placeholder?: string;
   size?: 'small' | 'medium' | 'big';
   values: Array<DropdownItemParams>;
-}
+};
 
 export const FilterSelectComponent = ({
   id,
@@ -43,7 +43,9 @@ export const FilterSelectComponent = ({
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__label`)}>
-        <Label htmlFor={id} size="small">{label}</Label>
+        <Label htmlFor={id} size="small">
+          {label}
+        </Label>
       </div>
       <div className={cn(`${CLASS_NAME}__input`)}>
         <Select

@@ -9,7 +9,7 @@ const CLASS_NAME = 'Page-loader';
 export const PageLoader = memo(() => (
   <div className={cn(CLASS_NAME)}>
     <Overlay inContainer>
-      <WindowLoader themeColor="primary"/>
+      <WindowLoader themeColor="primary" />
     </Overlay>
   </div>
 ));

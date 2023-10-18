@@ -6,146 +6,153 @@ import React, {
   useState,
 } from 'react';
 import { Page } from '@/components';
+import { appLogger } from '@/services/app-logger';
 
 type Props = {
-    value: string
+  value: string;
 };
 
 const ChildMemoComponent = memo(({ value }: Props) => {
-    console.log('=== render memoChild ===');
+  appLogger.log('=== render memoChild ===');
 
-    return <p>memoChild: {value}</p>;
+  return <p>memoChild: {value}</p>;
 });
 
 const ChildComponent = ({ value }: Props) => {
-    console.log('=== render child ===');
+  appLogger.log('=== render child ===');
 
-    return <p>child: {value}</p>;
+  return <p>child: {value}</p>;
 };
 
 class ClassPureComponent extends PureComponent<Props> {
-    render() {
-        console.log('=== render PureClass ===');
-        return <p>PureClass: {this.props.value}</p>;
-    }
+  render() {
+    appLogger.log('=== render PureClass ===');
+
+    return <p>PureClass: {this.props.value}</p>;
+  }
 }
 
-class ClassComponent extends Component<Props> {
-    render() {
-        console.log('=== render class ===');
-        return <p>class: {this.props.value}</p>;
-    }
+class ClassComponent extends Component<Props, { num: 0 }> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      num: 0,
+    };
+  }
+
+  render() {
+    appLogger.log('=== render class ===', this.state.num);
+
+    return <p>class: {this.props.value}</p>;
+  }
 }
 
 type ParentProps = {
-    counterValue: number;
-}
+  counterValue: number;
+};
 
 const ParentMemoComponent = memo(({ counterValue }: ParentProps) => {
+  let memoChild = <ChildMemoComponent value="one" />;
+  let child = <ChildComponent value="one" />;
+  let pureClassChild = <ClassPureComponent value="one" />;
+  let classChild = <ClassComponent value="one" />;
 
-    let memoChild = <ChildMemoComponent value="one"/>;
-    let child = <ChildComponent value="one" />;
-    let pureClassChild = <ClassPureComponent value="one"/>;
-    let classChild = <ClassComponent value="one" />;
+  if (counterValue < 3) {
+    memoChild = <ChildMemoComponent value="two" />;
+    child = <ChildComponent value="two" />;
+    pureClassChild = <ClassPureComponent value="two" />;
+    classChild = <ClassComponent value="two" />;
+  }
 
-    if (counterValue < 3) {
-        memoChild = <ChildMemoComponent value="two"/>;
-        child = <ChildComponent value="two" />;
-        pureClassChild = <ClassPureComponent value="two"/>;
-        classChild = <ClassComponent value="two" />;
-    }
+  appLogger.log('=== render memo parent ===');
 
-    console.log('=== render memo parent ===');
-
-    return (
-        <div>
-            <h2>memo parent: {counterValue}</h2>
-            <div>{memoChild}</div>
-            <div>{child}</div>
-            <div>{pureClassChild}</div>
-            <div>{classChild}</div>
-        </div>
-    );
+  return (
+    <div>
+      <h2>memo parent: {counterValue}</h2>
+      <div>{memoChild}</div>
+      <div>{child}</div>
+      <div>{pureClassChild}</div>
+      <div>{classChild}</div>
+    </div>
+  );
 });
 
 const ParentComponent = ({ counterValue }: ParentProps) => {
+  let memoChild = <ChildMemoComponent value="one" />;
+  let child = <ChildComponent value="one" />;
+  let pureClassChild = <ClassPureComponent value="one" />;
+  let classChild = <ClassComponent value="one" />;
 
-    let memoChild = <ChildMemoComponent value="one"/>;
-    let child = <ChildComponent value="one" />;
-    let pureClassChild = <ClassPureComponent value="one"/>;
-    let classChild = <ClassComponent value="one" />;
+  if (counterValue < 3) {
+    memoChild = <ChildMemoComponent value="two" />;
+    child = <ChildComponent value="two" />;
+    pureClassChild = <ClassPureComponent value="two" />;
+    classChild = <ClassComponent value="two" />;
+  }
 
-    if (counterValue < 3) {
-        memoChild = <ChildMemoComponent value="two"/>;
-        child = <ChildComponent value="two" />;
-        pureClassChild = <ClassPureComponent value="two"/>;
-        classChild = <ClassComponent value="two" />;
-    }
+  appLogger.log('=== render parent ===');
 
-    console.log('=== render parent ===');
-
-    return (
-      <div>
-          <h2>parent: {counterValue}</h2>
-          <div>{memoChild}</div>
-          <div>{child}</div>
-          <div>{pureClassChild}</div>
-          <div>{classChild}</div>
-      </div>
-    );
+  return (
+    <div>
+      <h2>parent: {counterValue}</h2>
+      <div>{memoChild}</div>
+      <div>{child}</div>
+      <div>{pureClassChild}</div>
+      <div>{classChild}</div>
+    </div>
+  );
 };
 
 const Parent2MemoComponent = memo(({ counterValue }: ParentProps) => {
+  appLogger.log('=== render memo parent 2 ===');
 
-    console.log('=== render memo parent 2 ===');
+  const oneOrTwo = counterValue < 3 ? 'two' : 'one';
 
-    const oneOrTwo = counterValue < 3 ? 'two' : 'one';
-
-    return (
+  return (
+    <div>
+      <h2>memo parent 2: {counterValue}</h2>
       <div>
-          <h2>memo parent 2: {counterValue}</h2>
-          <div>
-              <ChildMemoComponent value={oneOrTwo}/>
-          </div>
-          <div>
-              <ChildComponent value={oneOrTwo} />
-          </div>
-          <div>
-              <ClassPureComponent value={oneOrTwo}/>
-          </div>
-          <div>
-              <ClassComponent value={oneOrTwo} />
-          </div>
+        <ChildMemoComponent value={oneOrTwo} />
       </div>
-    );
+      <div>
+        <ChildComponent value={oneOrTwo} />
+      </div>
+      <div>
+        <ClassPureComponent value={oneOrTwo} />
+      </div>
+      <div>
+        <ClassComponent value={oneOrTwo} />
+      </div>
+    </div>
+  );
 });
 
 export const BadPracticesPage = () => {
-    const [counterValue, setCounterValue] = useState(0);
+  const [counterValue, setCounterValue] = useState(0);
 
-    const handleClick = useCallback(() => {
-        setCounterValue(counterValue + 1);
-    }, [counterValue]);
+  const handleClick = useCallback(() => {
+    setCounterValue(counterValue + 1);
+  }, [counterValue]);
 
-    return (
-        <Page
-          headTitle="Bad-practices"
-          title="Bad-practices"
-        >
-            <div>
-                <button onClick={handleClick} type="button">increment</button>
-            </div>
-            <br/>
-            <br/>
-            <ParentMemoComponent counterValue={counterValue}/>
-            <br/>
-            <br/>
-            <ParentComponent counterValue={counterValue}/>
-            <br/>
-            <br/>
-            <Parent2MemoComponent counterValue={counterValue}/>
-        </Page>
-    );
+  return (
+    <Page headTitle="Bad-practices" title="Bad-practices">
+      <div>
+        <button onClick={handleClick} type="button">
+          increment
+        </button>
+      </div>
+      <br />
+      <br />
+      <ParentMemoComponent counterValue={counterValue} />
+      <br />
+      <br />
+      <ParentComponent counterValue={counterValue} />
+      <br />
+      <br />
+      <Parent2MemoComponent counterValue={counterValue} />
+    </Page>
+  );
 };
 
 export default memo(BadPracticesPage);

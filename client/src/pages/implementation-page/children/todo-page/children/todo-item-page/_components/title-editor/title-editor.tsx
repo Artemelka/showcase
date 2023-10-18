@@ -4,7 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useRef,
-  useState
+  useState,
 } from 'react';
 import {
   Button,
@@ -23,12 +23,9 @@ const CLASS_NAME = 'Title-editor';
 type TitleRedactorProps = {
   onChange: (title: string) => void;
   value: string;
-}
+};
 
-const TitleEditorComponent: FC<TitleRedactorProps> = ({
-  onChange,
-  value,
-}) => {
+const TitleEditorComponent: FC<TitleRedactorProps> = ({ onChange, value }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState(value);
   const [isEditing, setIsEditing] = useState(false);
@@ -40,9 +37,12 @@ const TitleEditorComponent: FC<TitleRedactorProps> = ({
     setIsEditing(false);
   }, [inputValue, onChange]);
 
-  const handleChange = useCallback(({ value: changedValue }: InputChangeEvent) => {
-    setInputValue(changedValue);
-  }, []);
+  const handleChange = useCallback(
+    ({ value: changedValue }: InputChangeEvent) => {
+      setInputValue(changedValue);
+    },
+    [],
+  );
 
   const handleRedactingClick = useCallback(() => {
     setIsEditing(true);
@@ -52,37 +52,40 @@ const TitleEditorComponent: FC<TitleRedactorProps> = ({
     }
   }, []);
 
-  const handleActionsClick = useCallback((id: string) => {
-    if (id === 'check') {
-      updateItem();
-    }
+  const handleActionsClick = useCallback(
+    (id: string) => {
+      if (id === 'check') {
+        updateItem();
+      }
 
-    if (id === 'clear') {
-      setInputValue(value);
-      setIsEditing(false);
-    }
-  }, [value, updateItem]);
+      if (id === 'clear') {
+        setInputValue(value);
+        setIsEditing(false);
+      }
+    },
+    [value, updateItem],
+  );
 
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__text`)}>
         <span
           className={cn(`${CLASS_NAME}__text-wrapper`, {
-            [`${CLASS_NAME}__text-wrapper--hidden`]: isEditing
+            [`${CLASS_NAME}__text-wrapper--hidden`]: isEditing,
           })}
         >
           <Text fontWeight="regular">{value}</Text>
         </span>
         <span className={cn(`${CLASS_NAME}__button`)}>
-            <Button
-              icon={<Create fontSize="inherit" />}
-              onClick={handleRedactingClick}
-            />
-          </span>
+          <Button
+            icon={<Create fontSize="inherit" />}
+            onClick={handleRedactingClick}
+          />
+        </span>
       </div>
       <div
         className={cn(`${CLASS_NAME}__input`, {
-          [`${CLASS_NAME}__input--hidden`]: !isEditing
+          [`${CLASS_NAME}__input--hidden`]: !isEditing,
         })}
       >
         <Input
@@ -97,7 +100,7 @@ const TitleEditorComponent: FC<TitleRedactorProps> = ({
             isDisabledDone={inputValue === value}
             onClick={handleActionsClick}
           />
-          </span>
+        </span>
       </div>
     </div>
   );

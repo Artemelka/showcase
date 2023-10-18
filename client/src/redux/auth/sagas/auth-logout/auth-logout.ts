@@ -1,10 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { API } from '@/api';
-import {
-  authInit,
-  setStartAuthLogin,
-  setStopAuthLogin,
-} from '../../reducer';
+import { authInit, setStartAuthLogin, setStopAuthLogin } from '../../reducer';
 
 export function* authLogoutWorkerSaga() {
   yield put(setStartAuthLogin());

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectChangeEvent } from '@artemelka/react-components';
 import { AppStore } from '@/app';
@@ -18,7 +18,8 @@ const mapDispatchToProps = {
   setLimit,
 };
 
-type ConnectedRowSelectProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type ConnectedRowSelectProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
 export class ConnectedRowSelectContainer extends Component<ConnectedRowSelectProps> {
   handleRowCountChange = ({ items }: SelectChangeEvent) => {
@@ -41,4 +42,7 @@ export class ConnectedRowSelectContainer extends Component<ConnectedRowSelectPro
   }
 }
 
-export const ConnectedRowSelect = connect(mapStateToProps, mapDispatchToProps)(ConnectedRowSelectContainer);
+export const ConnectedRowSelect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ConnectedRowSelectContainer);

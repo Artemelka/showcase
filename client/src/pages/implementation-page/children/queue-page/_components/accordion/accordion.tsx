@@ -14,37 +14,35 @@ const THEME_COLOR_MAP = {
   pending: 'secondary',
   progress: 'base',
   sending: 'primary',
-};
+} as const;
 
 type AccordionProps = {
   items: Array<TaskItem>;
 };
 
-export const AccordionComponent: FC<AccordionProps> = ({
-  items
-}) => {
+export const AccordionComponent: FC<AccordionProps> = ({ items }) => {
   const [openId, setOpenId] = useState('');
 
-  const handleClick = useCallback((id?: string | number) => {
-    setOpenId(`${id}` === openId ? '' :`${id}`);
-  }, [openId]);
+  const handleClick = useCallback(
+    (id?: string | number) => {
+      setOpenId(`${id}` === openId ? '' : `${id}`);
+    },
+    [openId],
+  );
 
   return (
     <ul className={cn(CLASS_NAME)}>
-      {items.map(({ index, status, result}) => (
-        <li className={cn(`${CLASS_NAME}__item`)} key={index}>
+      {items.map(({ index, status, result }) => (
+        <li key={index} className={cn(`${CLASS_NAME}__item`)}>
           <CollapsePanel
+            id={index}
             isOpen={openId === `${index}`}
             onClick={handleClick}
-            id={index}
             panelTitle={`Task ${index + 1} - status: ${status}`}
-            // @ts-ignore
             themeColor={THEME_COLOR_MAP[status]}
           >
             <p>{status}</p>
-            {result !== undefined && (
-              <p>{result}</p>
-            )}
+            {(Boolean(result) || result >= 0) && <p>{result}</p>}
           </CollapsePanel>
         </li>
       ))}

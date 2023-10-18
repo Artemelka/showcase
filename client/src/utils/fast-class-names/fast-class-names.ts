@@ -6,11 +6,12 @@ export function fastClassNames(styles: StylesMap): GetClassName {
     const baseName = styles[name] || name;
 
     if (names) {
-      let resArr = [baseName];
+      const resArr = [baseName];
 
-      for (let key in names) {
+      /* eslint-disable no-restricted-syntax */
+      for (const key in names) {
         if (names[key]) {
-          resArr.push(styles[key] || key)
+          resArr.push(styles[key] || key);
         }
       }
 
@@ -18,5 +19,5 @@ export function fastClassNames(styles: StylesMap): GetClassName {
     }
 
     return baseName;
-  }
+  };
 }

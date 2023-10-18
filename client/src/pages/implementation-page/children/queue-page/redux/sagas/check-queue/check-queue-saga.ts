@@ -9,7 +9,7 @@ export function* checkQueueSaga() {
   const requestCount = yield select(queueRequestCountSelector);
   const maxRequestCount = yield select(queueMaxRequestCountSelector);
 
-  if(requestCount < maxRequestCount) {
+  if (requestCount < maxRequestCount) {
     yield put(queueSendTaskActionSaga());
   }
 }

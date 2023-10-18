@@ -1,0 +1,10 @@
+.Drunkard-home-page {
+  text-align: left;
+
+  &__card {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 20px 40px;
+    width: 420px;
+  }
+}

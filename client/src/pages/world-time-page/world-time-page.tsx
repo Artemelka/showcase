@@ -14,21 +14,33 @@ const CLASS_NAME = 'world-time-page';
 const REGIONS = Object.keys(CLOCK_TIME_ZONES);
 
 export const WorldTimePageComponent = () => {
-  const [timeZoneOption, setTimeZone] = useState<DropdownItemParams>({id: 'Europe/Moscow', value: 'Europe/Moscow'});
+  const [timeZoneOption, setTimeZone] = useState<DropdownItemParams>({
+    id: 'Europe/Moscow',
+    value: 'Europe/Moscow',
+  });
   const [regionOption, setRegion] = useState<DropdownItemParams | null>(null);
+
+  /* eslint-disable no-console */
   console.log('=== CLOCK_TIME_ZONES ===', CLOCK_TIME_ZONES);
-  const setTime = useCallback((cityOption: DropdownItemParams) => {
-    const timeZone = `${regionOption?.value}/${cityOption.value}`;
 
-    setTimeZone({ id: timeZone, value: timeZone });
-  }, [regionOption]);
+  const setTime = useCallback(
+    (cityOption: DropdownItemParams) => {
+      const timeZone = `${regionOption?.value}/${cityOption.value}`;
 
-  const handleSelect = useCallback((name: string) => {
-    const option = { id: name, value: name };
-    const method = regionOption ? setTime : setRegion;
+      setTimeZone({ id: timeZone, value: timeZone });
+    },
+    [regionOption],
+  );
 
-    method(option);
-  }, [regionOption, setTime]);
+  const handleSelect = useCallback(
+    (name: string) => {
+      const option = { id: name, value: name };
+      const method = regionOption ? setTime : setRegion;
+
+      method(option);
+    },
+    [regionOption, setTime],
+  );
 
   const handleGoBack = useCallback(() => setRegion(null), []);
 
@@ -36,22 +48,25 @@ export const WorldTimePageComponent = () => {
     <Page title="World time">
       <div className={cn(CLASS_NAME)}>
         <div className={cn(`${CLASS_NAME}__time`)}>
-          <Text tagName="p" align="center">{timeZoneOption.value}</Text>
+          <Text align="center" tagName="p">
+            {timeZoneOption.value}
+          </Text>
           <div className={cn(`${CLASS_NAME}__clock`)}>
-              {/*<Clock timeZone={timeZoneOption.value} />*/}
+            {/* <Clock timeZone={timeZoneOption.value} /> */}
           </div>
         </div>
         <div className={cn(`${CLASS_NAME}__countries`)}>
           <TimeZoneList
             isGoBackDisabled={!regionOption}
-            items={regionOption ? CLOCK_TIME_ZONES[regionOption?.value] : REGIONS}
+            items={
+              regionOption ? CLOCK_TIME_ZONES[regionOption?.value] : REGIONS
+            }
             onGoBack={handleGoBack}
             onSelect={handleSelect}
           />
         </div>
       </div>
     </Page>
-
   );
 };
 

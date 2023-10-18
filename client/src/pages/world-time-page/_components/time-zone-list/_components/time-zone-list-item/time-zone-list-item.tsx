@@ -10,17 +10,16 @@ type TimeZoneListItemProps = {
   onClick: (id: string) => void;
 };
 
-export const TimeZoneListItemComponent = ({ item, onClick }: TimeZoneListItemProps) => {
+export const TimeZoneListItemComponent = ({
+  item,
+  onClick,
+}: TimeZoneListItemProps) => {
   const handleClick = useCallback(() => {
     onClick(item);
   }, [item, onClick]);
 
   return (
-    <button
-      className={cn(CLASS_NAME)}
-      onClick={handleClick}
-      type="button"
-    >
+    <button className={cn(CLASS_NAME)} onClick={handleClick} type="button">
       {item}
     </button>
   );

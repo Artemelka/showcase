@@ -43,39 +43,25 @@ export const TodoItemPageViewComponent: FC<TodoItemViewProps> = ({
           />
         </div>
         <div className={cn(`${CLASS_NAME}__id`)}>
-          <Text
-            tagName="p"
-            align="right"
-            fontWeight="light"
-          >
+          <Text align="right" fontWeight="light" tagName="p">
             Task ID: {id}
           </Text>
         </div>
       </header>
       <main className={cn(`${CLASS_NAME}__main`)}>
         <div className={cn(`${CLASS_NAME}__item`)}>
-          <span className={cn(`${CLASS_NAME}__title`)}>
-            Title:
-          </span>
-          <TitleEditor
-            value={title}
-            onChange={onTitleChange}
-          />
-
+          <span className={cn(`${CLASS_NAME}__title`)}>Title:</span>
+          <TitleEditor onChange={onTitleChange} value={title} />
         </div>
         <div className={cn(`${CLASS_NAME}__item`)}>
-          <span className={cn(`${CLASS_NAME}__title`)}>
-            Status:
-          </span>
-          <Text fontWeight="semi-bold">
-            {status}
-          </Text>
+          <span className={cn(`${CLASS_NAME}__title`)}>Status:</span>
+          <Text fontWeight="semi-bold">{status}</Text>
         </div>
       </main>
 
       {isLoading && (
         <Overlay inContainer>
-          <WindowLoader/>
+          <WindowLoader />
         </Overlay>
       )}
     </section>

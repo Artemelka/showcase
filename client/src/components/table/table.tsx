@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
+import { Text } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
 import { TableRow } from './_components';
 import style from './table.module.scss';
-import {Text} from "@artemelka/react-components";
 
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Table';
@@ -18,28 +18,25 @@ type TableProps = {
   onRowClick?: (item: any) => void;
 };
 
-export const TableComponent = ({
-  items,
-  onRowClick,
-}: TableProps) => {
+export const TableComponent = ({ items, onRowClick }: TableProps) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__header`)}>
         <span className={cn(`${CLASS_NAME}__header-category`)}>
-        <Text>category</Text>
-      </span>
+          <Text>category</Text>
+        </span>
         <span className={cn(`${CLASS_NAME}__header-title`)}>
-        <Text>title</Text>
-      </span>
+          <Text>title</Text>
+        </span>
         <span className={cn(`${CLASS_NAME}__header-status`)}>
-        <Text>status</Text>
-      </span>
+          <Text>status</Text>
+        </span>
       </div>
       <div className={cn(`${CLASS_NAME}__content`)}>
         <ul className={cn(`${CLASS_NAME}__list`)}>
           {items.map((item, index) => (
             <li key={item.id} className={cn(`${CLASS_NAME}__item`)}>
-              <TableRow index={index + 1} item={item} onClick={onRowClick}/>
+              <TableRow index={index + 1} item={item} onClick={onRowClick} />
             </li>
           ))}
         </ul>

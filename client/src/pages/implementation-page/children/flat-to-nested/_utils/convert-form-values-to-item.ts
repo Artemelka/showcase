@@ -6,7 +6,9 @@ import {
 } from '../constants';
 import { FlatItemData } from '../types';
 
-export function convertFormValuesToItem(values: typeof INITIAL_VALUES): FlatItemData {
+export function convertFormValuesToItem(
+  values: typeof INITIAL_VALUES,
+): FlatItemData {
   const parentId = values[FLAT_ITEM_PARENT]
     ? { parentId: Number(values[FLAT_ITEM_PARENT]) }
     : {};

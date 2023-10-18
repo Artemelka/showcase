@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import {
   StoreInjectorConsumer,
   AsyncReducerItem,
-  AsyncSagaItem
+  AsyncSagaItem,
 } from '@artemelka/redux-store-injector';
 import { AppRoute, AppRouterSwitch } from '@/app/router';
 import { Page } from '@/components';
@@ -13,19 +13,23 @@ const asyncSagas: Array<AsyncSagaItem> = [];
 
 export const TournamentPageComponent = () => {
   return (
-    <Page
-      headTitle="Tournament"
-      title="An example of tournament grid"
-    >
+    <Page headTitle="Tournament" title="An example of tournament grid">
       <StoreInjectorConsumer
         asyncReducers={asyncReducers}
         asyncSagas={asyncSagas}
         withEjectReducers
       >
         <AppRouterSwitch>
-          {TOURNAMENT_CHILDREN_ROUTE_CONFIG.map(({ component, exact, path }) => (
-            <AppRoute component={component} path={path} key={path} exact={exact}/>
-          ))}
+          {TOURNAMENT_CHILDREN_ROUTE_CONFIG.map(
+            ({ component, exact, path }) => (
+              <AppRoute
+                key={path}
+                component={component}
+                exact={exact}
+                path={path}
+              />
+            ),
+          )}
         </AppRouterSwitch>
       </StoreInjectorConsumer>
     </Page>

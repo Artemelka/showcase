@@ -1,6 +1,6 @@
 import { lazy } from 'react';
+import type { AppRouteConfig } from '@/app/router';
 import { WORLD_TIME_PAGE_PATH } from './constants';
-import { AppRouteConfig } from '../types';
 
 export { WORLD_TIME_PAGE_PATH } from './constants';
 
@@ -9,4 +9,4 @@ export const WORLD_TIME_PAGE_CONFIG: AppRouteConfig = {
   exact: true,
   name: 'world-time',
   path: WORLD_TIME_PAGE_PATH,
-}
+};

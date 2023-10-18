@@ -13,7 +13,13 @@ type CellButtonProps = {
   disabled: boolean;
 };
 
-export const CellButtonComponent = ({ isWinner, cellIndex, disabled, onClick, value }: CellButtonProps) => {
+export const CellButtonComponent = ({
+  isWinner,
+  cellIndex,
+  disabled,
+  onClick,
+  value,
+}: CellButtonProps) => {
   const handleClick = useCallback(() => {
     onClick(cellIndex, value);
   }, [cellIndex, onClick, value]);
@@ -21,7 +27,7 @@ export const CellButtonComponent = ({ isWinner, cellIndex, disabled, onClick, va
   return (
     <button
       className={cn(CLASS_NAME, {
-        [`${CLASS_NAME}--winner`]: isWinner
+        [`${CLASS_NAME}--winner`]: isWinner,
       })}
       disabled={disabled || isWinner}
       onClick={handleClick}

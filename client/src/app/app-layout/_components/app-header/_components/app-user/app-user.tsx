@@ -5,7 +5,7 @@ import {
   ButtonMouseEvent,
   DropdownList,
   DropdownItemParams,
-} from "@artemelka/react-components";
+} from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import {
   authLoginActionSaga,
@@ -37,11 +37,12 @@ const mapDispatchToProps = {
   logout: authLogoutActionSaga,
 };
 
-type AppUserProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type AppUserProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
 type State = {
   isOpen: boolean;
-}
+};
 
 export class AppUserContainer extends Component<AppUserProps, State> {
   constructor(props: AppUserProps) {
@@ -57,24 +58,25 @@ export class AppUserContainer extends Component<AppUserProps, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.handleCloseDropdown)
+    window.removeEventListener('click', this.handleCloseDropdown);
   }
 
   handleCloseDropdown = () => {
     if (this.state.isOpen) {
       this.setState({ isOpen: false });
     }
-  }
+  };
 
   handleListClick = () => {
     this.props.logout();
-  }
+  };
 
   handleButtonClick = ({ event }: ButtonMouseEvent) => {
     event.stopPropagation();
 
     if (this.props.isLogin) {
       this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
+
       return;
     }
 
@@ -85,9 +87,9 @@ export class AppUserContainer extends Component<AppUserProps, State> {
     return (
       <div className={cn(CLASS_NAME)}>
         <Button
+          disabled={this.props.isLoginLoading}
           onClick={this.handleButtonClick}
           value={this.props.user.name || 'login'}
-          disabled={this.props.isLoginLoading}
         />
         {this.state.isOpen && this.props.isLogin && (
           <div className={cn(`${CLASS_NAME}__dropdown`)}>
@@ -103,4 +105,7 @@ export class AppUserContainer extends Component<AppUserProps, State> {
   }
 }
 
-export const AppUser = connect(mapStateToProps, mapDispatchToProps)(AppUserContainer);
+export const AppUser = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AppUserContainer);

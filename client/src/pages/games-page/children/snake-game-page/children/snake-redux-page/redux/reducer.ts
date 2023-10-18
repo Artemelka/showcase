@@ -1,5 +1,6 @@
 import { GAME_PURE_REDUX_REDUCER_NAME } from '../../../constants';
 import { getInitialState } from '../../../utils';
+import { GameState } from '../../../types';
 import {
   REFRESH_GAME,
   SET_APPLE_ITEM,
@@ -11,9 +12,11 @@ import {
   UPDATE_SCORE,
   UPDATE_SNAKE_BODY,
 } from './actions';
-import { GameState } from '../../../types';
 
-const gameReducer = (state: GameState = getInitialState(), { type, payload }: any) => {
+const gameReducer = (
+  state: GameState = getInitialState(),
+  { type, payload }: any,
+) => {
   switch (type) {
     case REFRESH_GAME:
       return getInitialState(payload);
@@ -40,31 +43,31 @@ const gameReducer = (state: GameState = getInitialState(), { type, payload }: an
       return {
         ...state,
         isFail: true,
-      }
+      };
 
     case SET_START_GAME:
       return {
         ...state,
         isStarted: true,
-      }
+      };
 
     case SET_STOP_GAME:
       return {
         ...state,
         isStarted: false,
-      }
+      };
 
     case UPDATE_SCORE:
       return {
         ...state,
         score: state.score + 1,
-      }
+      };
 
     case UPDATE_SNAKE_BODY:
       return {
         ...state,
         snakeBody: payload,
-      }
+      };
 
     default:
       return state;

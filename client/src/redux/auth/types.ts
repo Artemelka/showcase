@@ -1,6 +1,6 @@
 import { CaseReducer } from '@reduxjs/toolkit';
 import { User, Auth } from '@/api';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import { AUTH_REDUCER_NAME } from './constants';
 
 export type AuthState = Auth & {

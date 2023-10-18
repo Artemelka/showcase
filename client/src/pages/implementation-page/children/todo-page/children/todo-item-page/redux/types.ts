@@ -6,7 +6,7 @@ import { TODO_ITEM_REDUCER_NAME } from './constants';
 export type TodoItemState = {
   item: TodoItem;
   isLoading: boolean;
-}
+};
 
 export type SetItemAction = BaseAction<TodoItem>;
 

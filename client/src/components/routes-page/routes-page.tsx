@@ -4,8 +4,8 @@ import { replace, Replace } from 'connected-react-router';
 import { Layout } from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import { locationPathNameSelector } from '@/app/router';
+import type { AppRouteConfig } from '@/app/router';
 import { AsyncRoutes, Sidebar } from '@/components';
-import { AppRouteConfig } from '@/pages';
 
 type MapStateToProps = {
   pathname: string;
@@ -17,7 +17,7 @@ type MapDispatchToProps = {
 type Props = {
   targetPath: string;
   routesConfig: Array<AppRouteConfig>;
-}
+};
 
 type GamesPageProps = Props & MapStateToProps & MapDispatchToProps;
 
@@ -37,23 +37,26 @@ export class RoutesPageComponent extends Component<GamesPageProps, never> {
       <Layout
         asideElement={
           <Sidebar
-            title={targetPath.replace('/', '')}
             navigationItems={routesConfig}
+            title={targetPath.replace('/', '')}
           />
         }
         isAsideSticky
       >
-        <AsyncRoutes routesConfig={routesConfig}/>
+        <AsyncRoutes routesConfig={routesConfig} />
       </Layout>
     );
   }
 }
 
 const mapStateToProps = (state: AppStore): MapStateToProps => ({
-  pathname: locationPathNameSelector(state)
+  pathname: locationPathNameSelector(state),
 });
 const mapDispatchToProps: MapDispatchToProps = {
   redirect: replace,
 };
 
-export const RoutesPage = connect(mapStateToProps, mapDispatchToProps)(RoutesPageComponent);
+export const RoutesPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RoutesPageComponent);

@@ -6,4 +6,4 @@ export const GAMES_CHILDREN_PATH = {
   SNAKE_GAME: `${GAMES_PAGE_PATH}/snake-game`,
   TIC_TAC_TOE: `${GAMES_PAGE_PATH}/tic-tac-toe`,
   DRUNKARD: `${GAMES_PAGE_PATH}/drunkard`,
-}
+};

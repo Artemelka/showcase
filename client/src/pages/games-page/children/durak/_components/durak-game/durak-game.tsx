@@ -19,22 +19,22 @@ export const DurakGameComponent: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(startGame(getStartGameData()))
+    dispatch(startGame(getStartGameData()));
   }, [dispatch]);
 
   return (
     <div className={cn(CLASS_NAME)}>
-      <EnemyBank/>
+      <EnemyBank />
       <div className={cn(`${CLASS_NAME}__table`)}>
         <div className={cn(`${CLASS_NAME}__table-left`)}>
-          <TableField/>
+          <TableField />
         </div>
         <div className={cn(`${CLASS_NAME}__table-right`)}>
-          <TableBank/>
-          <TableActions/>
+          <TableBank />
+          <TableActions />
         </div>
       </div>
-      <PlayerBank/>
+      <PlayerBank />
     </div>
   );
 };

@@ -6,4 +6,4 @@ export type Collection = Array<{
 export type Item = {
   columnNumber: number;
   rowNumber: number;
-}
+};

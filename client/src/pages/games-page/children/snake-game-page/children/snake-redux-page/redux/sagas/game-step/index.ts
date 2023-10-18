@@ -14,4 +14,4 @@ function* gameStepWatcherSaga() {
 export const GAME_STEP_INJECT_SAGA_CONFIG = {
   name: GAME_STEP_WATCHER_SAGA_NAME,
   saga: gameStepWatcherSaga,
-}
+};

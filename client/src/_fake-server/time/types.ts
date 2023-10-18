@@ -1,3 +1,1 @@
-export type TimeZones = {
-
-};
+export type TimeZones = Record<string, never>;

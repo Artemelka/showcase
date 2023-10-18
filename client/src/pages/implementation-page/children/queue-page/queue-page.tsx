@@ -10,7 +10,7 @@ import {
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
 import {
@@ -41,10 +41,12 @@ import style from './queue-page.module.scss';
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Queue-page';
 
-const asyncReducers: Array<AsyncReducerItem> = [{
-  name: QUEUE_REDUCER_NAME,
-  reducer: queueReducer,
-}];
+const asyncReducers: Array<AsyncReducerItem> = [
+  {
+    name: QUEUE_REDUCER_NAME,
+    reducer: queueReducer,
+  },
+];
 const asyncSagas: Array<AsyncSagaItem> = [
   CHECK_QUEUE_INJECT_SAGA_CONFIG,
   SEND_TASK_INJECT_SAGA_CONFIG,
@@ -68,59 +70,68 @@ const mapDispatchToProps = {
   checkQueue: checkQueueActionSaga,
   sendTask: queueSendTaskActionSaga,
   updateTasks,
-}
+};
 
-type QueuePageProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type QueuePageProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps;
 
-export class QueuePage extends Component<QueuePageProps>{
+export class QueuePage extends Component<QueuePageProps> {
   handleClear = () => {
     this.props.changeCounter(0);
     this.props.changeQuantity(0);
-  }
+  };
 
   handleCountChange = ({ value }: InputChangeEvent) => {
     this.props.changeCounter(Number(value));
-  }
+  };
 
   handleCreateTasks = () => {
     const startIndex = this.props.allTasks.length - 1;
     const list = generateTaskItems(this.props.createTaskQuantity, startIndex);
 
     this.props.addTasks(list);
-  }
+  };
 
   handleFilterChange = ({ items }: SelectChangeEvent) => {
     this.props.changeFilter(items[0]);
-  }
+  };
 
   handleQuantityChange = ({ value }: InputChangeEvent) => {
     this.props.changeQuantity(Number(value));
-  }
+  };
 
   handleRunTasks = () => {
-    const pendingList: Array<TaskItem> = setPendingStatus(this.props.createdTasks);
+    const pendingList: Array<TaskItem> = setPendingStatus(
+      this.props.createdTasks,
+    );
 
     this.props.updateTasks(pendingList);
     this.props.checkQueue();
-  }
+  };
 
   render() {
     return (
-      <StoreInjectorConsumer asyncReducers={asyncReducers} asyncSagas={asyncSagas} withEjectReducers>
+      <StoreInjectorConsumer
+        asyncReducers={asyncReducers}
+        asyncSagas={asyncSagas}
+        withEjectReducers
+      >
         <Page headTitle="Queue" title="Queue">
           <div className={cn(CLASS_NAME)}>
             <Form
-              onQuantityChange={this.handleQuantityChange}
-              onCountChange={this.handleCountChange}
               createTaskQuantity={`${this.props.createTaskQuantity}`}
-              maxRequestCount={`${this.props.maxRequestCount}`}
-              onCreateTasks={this.handleCreateTasks}
-              onClearForm={this.handleClear}
-              onRunTasks={this.handleRunTasks}
-              onFilterChange={this.handleFilterChange}
               filterValue={[this.props.filterValue]}
+              maxRequestCount={`${this.props.maxRequestCount}`}
+              onClearForm={this.handleClear}
+              onCountChange={this.handleCountChange}
+              onCreateTasks={this.handleCreateTasks}
+              onFilterChange={this.handleFilterChange}
+              onQuantityChange={this.handleQuantityChange}
+              onRunTasks={this.handleRunTasks}
             />
-            <Text align="center" fontWeight="bold" tagName="h3">Tasks</Text>
+            <Text align="center" fontWeight="bold" tagName="h3">
+              Tasks
+            </Text>
             <Accordion items={this.props.filteredTasks} />
           </div>
         </Page>

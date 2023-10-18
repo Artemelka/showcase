@@ -1,3 +1,3 @@
 export type SendMessageFormValues = {
-  message: string
+  message: string;
 };

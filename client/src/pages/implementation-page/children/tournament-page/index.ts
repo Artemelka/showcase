@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import { IMPLEMENTATION_CHILDREN_PATH } from '../../constants';
 import { TOURNAMENT_CHILDREN_ROUTE_CONFIG } from './children';
 

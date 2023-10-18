@@ -18,19 +18,22 @@ export const useRequest = <P, R, E>({
 }: Params<P, R, E>): ReturnValue<P> => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendRequest = useCallback( async (params) => {
-    setIsLoading(true);
+  const sendRequest = useCallback(
+    async (params) => {
+      setIsLoading(true);
 
-    try {
-      const response = await request(params);
+      try {
+        const response = await request(params);
 
-      onSuccess(response);
-    } catch (error) {
-      onError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [onError, onSuccess, request]);
+        onSuccess(response);
+      } catch (error) {
+        onError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [onError, onSuccess, request],
+  );
 
   return { isLoading, sendRequest };
 };

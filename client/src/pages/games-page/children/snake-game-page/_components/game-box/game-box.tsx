@@ -10,15 +10,16 @@ type GameBoxProps = {
   tableRowsElement: ReactNode;
 };
 
-export const GameBoxComponent: FC<GameBoxProps> = ({ actionsElement, tableRowsElement }) => {
+export const GameBoxComponent: FC<GameBoxProps> = ({
+  actionsElement,
+  tableRowsElement,
+}) => {
   return (
     <div className={cn(CLASS_NAME)}>
       <div className={cn(`${CLASS_NAME}__container`)}>
         {actionsElement}
         <table className={cn(`${CLASS_NAME}__table`)}>
-          <tbody>
-            {tableRowsElement}
-          </tbody>
+          <tbody>{tableRowsElement}</tbody>
         </table>
       </div>
     </div>

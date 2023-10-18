@@ -2,38 +2,34 @@
   cities: [],
   flagUrl: '',
 */
-
+/* eslint-disable max-lines */
 export const TIME_ZONES = {
   Africa: {
     "Cote d'Ivoire": {
-      cities: [
-        'Abidjan'
-      ],
-      flagUrl: '',
-    } ,
-    "Ghana": {
-      cities: [
-        'Accra'
-      ],
+      cities: ['Abidjan'],
       flagUrl: '',
     },
-    "Algeria": {
+    Ghana: {
+      cities: ['Accra'],
+      flagUrl: '',
+    },
+    Algeria: {
       cities: ['Algiers'],
       flagUrl: '',
     },
-    "Guinea-Bissau": {
+    'Guinea-Bissau': {
       cities: ['Bissau'],
       flagUrl: '',
     },
-    "Egypt": {
+    Egypt: {
       cities: ['Cairo'],
       flagUrl: '',
     },
-    "Morocco": {
+    Morocco: {
       cities: ['Casablanca'],
       flagUrl: '',
     },
-    "Spain": {
+    Spain: {
       cities: ['Ceuta'],
       flagUrl: '',
     },
@@ -52,7 +48,7 @@ export const TIME_ZONES = {
       'Africa/Tripoli',
       'Africa/Tunis',
       'Africa/Windhoek',
-    ]
+    ],
   },
   America: {
     all: [
@@ -186,7 +182,7 @@ export const TIME_ZONES = {
       'America/Winnipeg',
       'America/Yakutat',
       'America/Yellowknife',
-    ]
+    ],
   },
   Australia: {
     all: [
@@ -202,7 +198,7 @@ export const TIME_ZONES = {
       'Australia/Melbourne',
       'Australia/Perth',
       'Australia/Sydney',
-    ]
+    ],
   },
   Europe: {
     all: [
@@ -252,7 +248,7 @@ export const TIME_ZONES = {
       'Europe/Warsaw',
       'Europe/Zaporozhye',
       'Europe/Zurich',
-    ]
+    ],
   },
   Asia: {
     all: [
@@ -333,7 +329,7 @@ export const TIME_ZONES = {
       'Asia/Yangon',
       'Asia/Yekaterinburg',
       'Asia/Yerevan',
-    ]
+    ],
   },
 
   Indian: {
@@ -346,7 +342,7 @@ export const TIME_ZONES = {
       'Indian/Maldives',
       'Indian/Mauritius',
       'Indian/Reunion',
-    ]
+    ],
   },
   Antarctica: {
     all: [
@@ -360,7 +356,7 @@ export const TIME_ZONES = {
       'Antarctica/Syowa',
       'Antarctica/Troll',
       'Antarctica/Vostok',
-    ]
+    ],
   },
   Atlantic: {
     all: [
@@ -373,7 +369,7 @@ export const TIME_ZONES = {
       'Atlantic/Reykjavik',
       'Atlantic/South_Georgia',
       'Atlantic/Stanley',
-    ]
+    ],
   },
   Pacific: {
     all: [
@@ -413,6 +409,6 @@ export const TIME_ZONES = {
       'Pacific/Tongatapu',
       'Pacific/Wake',
       'Pacific/Wallis',
-    ]
-  }
+    ],
+  },
 };

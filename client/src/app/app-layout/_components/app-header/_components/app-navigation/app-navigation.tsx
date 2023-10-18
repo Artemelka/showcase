@@ -4,20 +4,17 @@ import { push } from 'connected-react-router';
 import { Anchor, AnchorMouseEvent } from '@artemelka/react-components';
 import { AppStore } from '@/app';
 import { locationPathNameSelector } from '@/app/router';
-import { AppRouteConfig } from '@/pages/types';
+import type { AppRouteConfig } from '@/app/router';
 import { authUserRoleSelector } from '@/redux';
 import { fastClassNames } from '@/utils';
-import {
-  findActiveRoute,
-  getRoutes,
-} from './utils';
+import { findActiveRoute, getRoutes } from './utils';
 import style from './app-navigation.module.scss';
 
 const cn = fastClassNames(style);
 const CLASS_NAME = 'App-navigation';
 
 const mapDispatchToProps = {
-  push
+  push,
 };
 
 const mapStateToProps = (state: AppStore) => ({
@@ -25,17 +22,24 @@ const mapStateToProps = (state: AppStore) => ({
   userRole: authUserRoleSelector(state),
 });
 
-type AppNavigationProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & {
-  items: Array<AppRouteConfig>;
-};
+type AppNavigationProps = ReturnType<typeof mapStateToProps> &
+  typeof mapDispatchToProps & {
+    items: Array<AppRouteConfig>;
+  };
 
 type State = {
   activeRoute: string;
   routes: Array<AppRouteConfig>;
 };
 
-export class AppNavigationContainer extends Component<AppNavigationProps, State> {
-  static getDerivedStateFromProps(nextProps: AppNavigationProps, prevState: State) {
+export class AppNavigationContainer extends Component<
+  AppNavigationProps,
+  State
+> {
+  static getDerivedStateFromProps(
+    nextProps: AppNavigationProps,
+    prevState: State,
+  ) {
     const nextRoute = findActiveRoute(nextProps.pathname, nextProps.items);
     const routes = getRoutes(nextProps.items, nextProps.userRole);
 
@@ -55,7 +59,7 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
     this.state = {
       activeRoute: '',
       routes: [],
-    }
+    };
   }
 
   handleClick = ({ href }: AnchorMouseEvent) => {
@@ -63,12 +67,11 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
   };
 
   render() {
-
     return (
       <nav className={cn(CLASS_NAME)}>
         <ul className={cn(`${CLASS_NAME}__list`)}>
-          {this.state.routes.map((item, index) => (
-            <li className={cn(`${CLASS_NAME}__item`)} key={item.path}>
+          {this.state.routes.map((item) => (
+            <li key={item.path} className={cn(`${CLASS_NAME}__item`)}>
               <Anchor
                 active={this.state.activeRoute === item.path}
                 href={item.path}
@@ -84,4 +87,7 @@ export class AppNavigationContainer extends Component<AppNavigationProps, State>
   }
 }
 
-export const AppNavigation = connect(mapStateToProps, mapDispatchToProps)(AppNavigationContainer);
+export const AppNavigation = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AppNavigationContainer);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BaseAction } from "@/app";
+import { BaseAction } from '@/app';
+import { CardBank } from '@/pages/games-page/_components';
 import { CardParams } from '@/pages/games-page/types';
 import {
   addEnemyPlace,
@@ -16,7 +17,6 @@ import {
 } from '../../redux';
 import { findCurrentCard, getNextCards } from '../../utils';
 import { DurakGameStore } from '../../types';
-import { CardBank } from '../card-bank';
 
 type Actions = {
   addEnemyPlace: (card: CardParams) => BaseAction<CardParams>;
@@ -46,6 +46,7 @@ export class EnemyBankComponent extends Component<Props> {
 
     if (isEnemyAttack) {
       this.attackStep();
+
       return;
     }
 
@@ -53,28 +54,30 @@ export class EnemyBankComponent extends Component<Props> {
   }
 
   finish = () => {
+    /* eslint-disable no-console */
     console.log('=== finish ===');
-  }
+  };
 
   firstAttack = () => {
     const { cards, trumpCard } = this.props;
-    const { card, trump } = getNextCards(cards, trumpCard)
+    const { card, trump } = getNextCards(cards, trumpCard);
     const currentCard = card || trump;
 
     if (currentCard) {
       this.makeStep(currentCard);
+
       return;
     }
 
     console.error('ERROR in enemy firstAttack: should be attack card');
-  }
+  };
 
   nextAttack = () => {
     const { cards, enemyPlace, playerPlace, trumpCard } = this.props;
     const usedCards = [...enemyPlace, ...playerPlace];
 
-    const availableCards = cards.filter(card => {
-      return usedCards.some(usedCard => {
+    const availableCards = cards.filter((card) => {
+      return usedCards.some((usedCard) => {
         return card.rank === usedCard.rank;
       });
     });
@@ -84,27 +87,30 @@ export class EnemyBankComponent extends Component<Props> {
 
     if (currentCard) {
       this.makeStep(currentCard);
+
       return;
     }
 
     this.props.setIsNeedUpdateCards();
-  }
+  };
 
   attackStep = () => {
     const { cards, enemyPlace } = this.props;
 
     if (!cards.length) {
       this.finish();
+
       return;
     }
 
     if (!enemyPlace.length) {
       this.firstAttack();
+
       return;
     }
 
     this.nextAttack();
-  }
+  };
 
   pickUpCards = () => {
     const { cards, enemyPlace, playerPlace } = this.props;
@@ -112,37 +118,36 @@ export class EnemyBankComponent extends Component<Props> {
 
     this.props.setEnemyBank(nextCards);
     this.props.setIsNeedUpdateCards();
-  }
+  };
 
   protectionStep = () => {
     const { cards, playerPlace, trumpCard } = this.props;
-    const { currentCard } = findCurrentCard(cards, playerPlace[playerPlace.length - 1], trumpCard);
+    const { currentCard } = findCurrentCard(
+      cards,
+      playerPlace[playerPlace.length - 1],
+      trumpCard,
+    );
 
     if (currentCard) {
       this.makeStep(currentCard);
+
       return;
     }
 
     this.pickUpCards();
-  }
+  };
 
   makeStep = (currentCard: CardParams) => {
     const { cards } = this.props;
-    const nextCards = cards.filter(card => card.id !== currentCard.id);
+    const nextCards = cards.filter((card) => card.id !== currentCard.id);
 
     this.props.setEnemyBank(nextCards);
     this.props.addEnemyPlace(currentCard);
     this.props.toggleStep();
-  }
+  };
 
   render() {
-    return (
-      <CardBank
-        cards={this.props.cards}
-        isDisabledCard
-        isHiddenCard
-      />
-    );
+    return <CardBank cards={this.props.cards} isDisabledCard isHiddenCard />;
   }
 }
 
@@ -160,6 +165,9 @@ const mapDispatchToProps: Actions = {
   setEnemyBank,
   setIsNeedUpdateCards,
   toggleStep,
-}
+};
 
-export const EnemyBank = connect(mapStateToProps, mapDispatchToProps)(EnemyBankComponent);
+export const EnemyBank = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EnemyBankComponent);
