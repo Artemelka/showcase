@@ -6,4 +6,4 @@ export {
 } from './_components';
 export * from './selectors';
 export { appRouterMiddleware } from './middleware';
-export type { AppRouterProps, RouterStore, AppRouteConfig } from './types';
+export type { RouterStore } from './types';

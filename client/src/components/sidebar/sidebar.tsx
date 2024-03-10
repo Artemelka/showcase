@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Text } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import { locationPathNameSelector } from '@/app/router';
 import { SidebarNavigation } from '@/components';
-import { AppRouteConfig } from '@/pages';
+import { AppStore, AppRouteConfig } from '@/types';
 import { fastClassNames } from '@/utils';
 import style from './sidebar.module.scss';
 

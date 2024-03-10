@@ -4,7 +4,7 @@ import {
   InputChangeEvent,
   SelectChangeEvent,
 } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import { GameActions } from '../../../../_components';
 import {
   gameCellsSelector,

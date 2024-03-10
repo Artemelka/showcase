@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { TodoItem } from '@/api';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import { TODO_ITEM_REDUCER_NAME } from './constants';
 
 export type TodoItemState = {

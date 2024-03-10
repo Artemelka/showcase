@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import { Route } from 'react-router';
-import { AppRouterProps } from '@/app/router';
+import { AppRouterProps } from '@/types';
 import { AccessGuardRoute } from '../access-guard-route';
 
 export const AppRouteComponent: FC<Omit<AppRouterProps, 'name'>> = ({

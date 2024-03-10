@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { replace, Replace } from 'connected-react-router';
 import { Layout } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import { locationPathNameSelector } from '@/app/router';
-import type { AppRouteConfig } from '@/app/router';
+import type { AppStore, AppRouteConfig } from '@/types';
 import { AsyncRoutes, Sidebar } from '@/components';
 
 type MapStateToProps = {

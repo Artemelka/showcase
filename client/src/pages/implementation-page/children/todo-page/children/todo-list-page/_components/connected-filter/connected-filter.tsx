@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectChangeEvent } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import { TodoItemStatus } from '@/api';
 import { FilterSelect } from '@/components';
 import {
   changeFilter,
   getListActionSaga,
   todoFilterSelector,
+  TodoStore,
 } from '../../redux';
 import { FILTER_OPTIONS } from '../../../../constants';
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: TodoStore) => ({
   filter: todoFilterSelector(state),
 });
 const mapDispatchToProps = {

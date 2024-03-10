@@ -4,7 +4,6 @@ import {
   InputChangeEvent,
   SelectChangeEvent,
 } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import { GameActions } from '../../../../_components';
 import {
   gameCellsSelector,
@@ -13,8 +12,9 @@ import {
   gameSpeedSelector,
   gameScoreSelector,
 } from '../../redux';
+import { GameToolkitStore } from '../../../../types';
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: GameToolkitStore) => ({
   cells: gameCellsSelector(state),
   gameSpeed: gameSpeedSelector(state),
   isStarted: gameIsStartedSelector(state),

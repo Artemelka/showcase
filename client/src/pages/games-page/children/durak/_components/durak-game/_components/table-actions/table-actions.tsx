@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import { CardParams } from '@/pages/games-page/types';
 import {
   enemyPlaceSelector,

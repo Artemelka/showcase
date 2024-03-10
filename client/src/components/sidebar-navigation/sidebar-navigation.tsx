@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback } from 'react';
 import { Button, ButtonMouseEvent } from '@artemelka/react-components';
 import { fastClassNames } from '@/utils';
-import { AppRouteConfig } from '@/pages';
+import type { AppRouteConfig } from '@/types';
 import style from './sidebar-navigation.module.scss';
 
 const cn = fastClassNames(style);

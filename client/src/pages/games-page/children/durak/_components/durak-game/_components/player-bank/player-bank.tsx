@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import { CardBank } from '@/pages/games-page/_components';
 import { CardParams } from '@/pages/games-page/types';
 import {

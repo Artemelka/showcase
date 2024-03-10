@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import type { AppRouteConfig } from '@/app/router';
+import type { AppRouteConfig } from '@/types';
 import { WORLD_TIME_PAGE_PATH } from './constants';
 
 export { WORLD_TIME_PAGE_PATH } from './constants';

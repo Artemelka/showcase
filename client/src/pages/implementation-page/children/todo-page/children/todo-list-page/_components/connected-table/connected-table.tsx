@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { Overlay, WindowLoader } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import { TodoItem } from '@/api';
 import { Pagination, Table } from '@/components';
 import { fastClassNames } from '@/utils';
@@ -14,6 +13,7 @@ import {
   todoPaginationTotalSelector,
   setPagination,
   getListActionSaga,
+  TodoStore,
 } from '../../redux';
 import { TODO_CHILDREN_PATH } from '../../../../constants';
 import style from './connected-table.module.scss';
@@ -21,7 +21,7 @@ import style from './connected-table.module.scss';
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Connected-table';
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: TodoStore) => ({
   isLoading: todoIsLoadingSelector(state),
   limit: todoPaginationLimitSelector(state),
   list: todoListSelector(state),

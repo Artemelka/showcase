@@ -1,8 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
-import { AppStore } from '@/app';
-import { AppRouterProps } from '@/app/router';
+import { AppStore, AppRouterProps } from '@/types';
 import { UserRole } from '@/api';
 import { authUserRoleSelector } from '@/redux';
 

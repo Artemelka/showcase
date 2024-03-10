@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ButtonGroup, ButtonMouseEvent } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import {
   getListActionSaga,
   resetPagination,
   setCategory,
   todoActiveCategorySelector,
+  TodoStore,
 } from '../../redux';
 import { BUTTONS } from '../../../../constants';
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: TodoStore) => ({
   activeCategory: todoActiveCategorySelector(state),
 });
 

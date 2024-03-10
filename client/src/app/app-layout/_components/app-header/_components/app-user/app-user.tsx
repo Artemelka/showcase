@@ -6,7 +6,7 @@ import {
   DropdownList,
   DropdownItemParams,
 } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import {
   authLoginActionSaga,
   authLogoutActionSaga,

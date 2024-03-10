@@ -1,5 +1,5 @@
 import { TodoItem, TodoItemStatus } from '@/api';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import { TODO_REDUCER_NAME } from './constants';
 
 export type FilterState = {

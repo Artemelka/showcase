@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fastClassNames, NOOP } from '@/utils';
 import { Card } from '@/pages/games-page/_components';
 import { CardParams } from '@/pages/games-page/types';
-import { BaseAction } from '@/app';
+import { BaseAction } from '@/types';
 import {
   clearPlaces,
   deckBankSelector,

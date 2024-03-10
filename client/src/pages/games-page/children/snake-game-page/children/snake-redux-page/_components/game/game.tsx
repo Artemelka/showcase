@@ -4,7 +4,7 @@ import {
   InputChangeEvent,
   SelectChangeEvent,
 } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import { GameBox } from '../../../../_components';
 import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
 import { DirectionCode } from '../../../../types';

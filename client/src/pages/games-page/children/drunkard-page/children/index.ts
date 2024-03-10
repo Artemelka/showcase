@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '@/app/router';
+import { AppRouteConfig } from '@/types';
 import { DRUNKARD_HOME_PAGE_ROUTE_CONFIG } from './drunkard-home-page';
 import { DRUNKARD_FC_PAGE_ROUTE_CONFIG } from './drunkard-fc-page';
 import { DRUNKARD_CL_PAGE_ROUTE_CONFIG } from './drunkard-cl-page';

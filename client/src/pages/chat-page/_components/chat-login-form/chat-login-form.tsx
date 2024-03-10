@@ -4,7 +4,7 @@ import { v4 as getId } from 'uuid';
 import { push } from 'connected-react-router';
 import { Redirect } from 'react-router';
 import { Button, Input, InputChangeEvent } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import { MESSAGE_TYPE, socketConnect, SocketHocProps } from '@/services/socket';
 import { fastClassNames } from '@/utils';
 import {

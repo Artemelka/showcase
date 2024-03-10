@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import { SnakeItem } from '../../../../_components';
 import { gameIsAppleItemSelector, gameIsSnakeItemSelector } from '../../redux';
 

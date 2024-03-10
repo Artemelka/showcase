@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Text } from '@artemelka/react-components';
-import { AppStore } from '@/app';
+import { AppStore } from '@/types';
 import { fastClassNames } from '@/utils';
 import { usersListSelector, userSelector } from '../../redux';
 import style from './chat-users-list.module.scss';

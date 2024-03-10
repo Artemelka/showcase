@@ -1,4 +1,4 @@
-import type { AppRouteConfig } from '@/app/router';
+import type { AppRouteConfig } from '@/types';
 
 const checkActiveChildren = (
   children: Array<AppRouteConfig>,

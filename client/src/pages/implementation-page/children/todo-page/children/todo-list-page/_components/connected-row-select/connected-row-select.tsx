@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SelectChangeEvent } from '@artemelka/react-components';
-import { AppStore } from '@/app';
 import { FilterSelect } from '@/components';
 import {
   getListActionSaga,
   setLimit,
   todoPaginationLimitSelector,
+  TodoStore,
 } from '../../redux';
 import { ROWS_OPTIONS } from '../../../../constants';
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: TodoStore) => ({
   limit: todoPaginationLimitSelector(state),
 });
 const mapDispatchToProps = {

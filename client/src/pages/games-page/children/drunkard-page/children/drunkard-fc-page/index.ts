@@ -1,4 +1,4 @@
-import { AppRouteConfig } from '@/app/router';
+import { AppRouteConfig } from '@/types';
 import { DRUNKARD_CHILDREN_PATH } from '../../constants';
 import { DrunkardFcPage } from './drunkard-fc-page';
 
