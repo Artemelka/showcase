@@ -120,7 +120,10 @@ export const TicTacToePageComponent = () => {
         {symbols.user ? (
           <ul className={cn(`${CLASS_NAME}__container`)}>
             {state.map((value, cellIndex) => (
-              <li key={`${cellIndex}`} className={cn(`${CLASS_NAME}__cell`)}>
+              <li
+                key={`${value + cellIndex}`}
+                className={cn(`${CLASS_NAME}__cell`)}
+              >
                 <CellButton
                   cellIndex={cellIndex}
                   disabled={

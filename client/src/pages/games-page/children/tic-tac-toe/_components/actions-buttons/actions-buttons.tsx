@@ -40,7 +40,7 @@ export const ActionsButtonComponent = ({
           <div className={cn(`${CLASS_NAME}__actions`)}>
             {SYMBOLS.map((symbol, index) => (
               <CellButton
-                key={`${index}`}
+                key={`${symbol}`}
                 cellIndex={index}
                 disabled={disabled}
                 isWinner={userSymbol === symbol}

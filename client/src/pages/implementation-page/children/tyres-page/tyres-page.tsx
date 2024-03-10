@@ -49,11 +49,8 @@ export const TyresPage = () => {
             variant="filled"
           />
         </div>
-        {[...new Array(count)].map((_num, index) => (
-          <div
-            key={`${keyIndex}_${index}`}
-            className={cn(`${CLASS_NAME}__item`)}
-          >
+        {[...new Array(count)].map((num, index) => (
+          <div key={`${keyIndex}_${num}`} className={cn(`${CLASS_NAME}__item`)}>
             <TyresCalculator index={index} />
           </div>
         ))}

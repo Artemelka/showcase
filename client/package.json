@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "ESLINT_NO_DEV_ERRORS=true react-app-rewired start",
-    "start-mock": "REACT_APP_MOCK=true react-app-rewired start",
+    "start-mock": "REACT_APP_MOCK=true ESLINT_NO_DEV_ERRORS=true react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "check": "prettier . --check",
@@ -60,7 +60,9 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "@wildberries",
+      "prettier"
     ]
   },
   "browserslist": {

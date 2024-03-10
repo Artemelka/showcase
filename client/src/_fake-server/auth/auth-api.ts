@@ -32,7 +32,7 @@ export class AuthApi implements IAuthApi {
     };
   };
 
-  public init = ({ userId = '' }): Promise<Auth> => {
+  public init = ({ userId = '' } = {}): Promise<Auth> => {
     const targetUser = this.state.find((auth) => auth.user.id === userId);
 
     if (targetUser) {

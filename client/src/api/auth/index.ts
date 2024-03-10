@@ -1,14 +1,13 @@
-// import { AuthApi } from '@/_fake-server';
-import { User } from '@/_fake-server';
+import { User, AuthApi } from '@/_fake-server';
 import { ApiRequest } from '../utils';
 
-// const authApi = new AuthApi();
+const authApi = new AuthApi();
 
-// const FAKE_AUTH = {
-//   INIT: authApi.init,
-//   LOGOUT: authApi.logOut,
-//   LOGIN: authApi.logIn,
-// };
+const FAKE_AUTH = {
+  INIT: authApi.init,
+  LOGOUT: authApi.logOut,
+  LOGIN: authApi.logIn,
+};
 
 const TRUE_AUTH = {
   INIT: (params?: { userId: string }) => {
@@ -22,6 +21,6 @@ const TRUE_AUTH = {
   },
 };
 
-export const AUTH = TRUE_AUTH;
+export const AUTH = process.env.REACT_APP_MOCK ? FAKE_AUTH : TRUE_AUTH;
 
 export type { Auth, User, UserRole } from '@/_fake-server';

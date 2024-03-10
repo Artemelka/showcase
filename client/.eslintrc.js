@@ -18,7 +18,7 @@ module.exports = {
     camelcase: 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/no-access-state-in-setstate': 'off',
-    'react/no-array-index-key': 'off',
+    'react/no-array-index-key': 'error',
     'react/no-danger': 'off',
     'no-plusplus': 'off',
     'id-length': 'off',
