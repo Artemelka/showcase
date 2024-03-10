@@ -12,4 +12,4 @@ export const INITIAL_STATE = {
   items: [],
   isLoading: true,
   paginationConfig: DEFAULT_PAGINATION_CONFIG,
-} as const;
+};

@@ -5,4 +5,4 @@ export {
   withContextState,
 } from './context';
 export { signUpStart, signUpStop, signUpSuccess } from './actions';
-export type { State, Action, WithContextProps } from './types';
+export type { State, WithContextProps } from './types';

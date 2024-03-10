@@ -73,4 +73,4 @@ export const DIRECTION = {
     x: 0,
     y: 1,
   },
-};
+} as const;

@@ -42,7 +42,7 @@ export const AccordionComponent: FC<AccordionProps> = ({ items }) => {
             themeColor={THEME_COLOR_MAP[status]}
           >
             <p>{status}</p>
-            {(Boolean(result) || result >= 0) && <p>{result}</p>}
+            {Number.isInteger(result) && <p>{result}</p>}
           </CollapsePanel>
         </li>
       ))}

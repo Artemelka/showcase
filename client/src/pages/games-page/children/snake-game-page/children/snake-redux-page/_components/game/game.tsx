@@ -4,10 +4,9 @@ import {
   InputChangeEvent,
   SelectChangeEvent,
 } from '@artemelka/react-components';
-import { AppStore } from '@/types';
 import { GameBox } from '../../../../_components';
 import { DIRECTION_KEYS_CODE, DIRECTION } from '../../../../constants';
-import { DirectionCode } from '../../../../types';
+import { DirectionCode, GameReduxStore } from '../../../../types';
 import {
   gameCellsSelector,
   gameDirectionSelector,
@@ -22,7 +21,7 @@ import {
 import { ConnectedGameActions } from '../connected-game-actions';
 import { ConnectedSnakeItem } from '../connected-snake-item';
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: GameReduxStore) => ({
   cells: gameCellsSelector(state),
   direction: gameDirectionSelector(state),
   isStarted: gameIsStartedSelector(state),

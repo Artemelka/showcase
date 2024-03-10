@@ -34,9 +34,9 @@ export const TableComponent = ({ items, onRowClick }: TableProps) => {
       </div>
       <div className={cn(`${CLASS_NAME}__content`)}>
         <ul className={cn(`${CLASS_NAME}__list`)}>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <li key={item.id} className={cn(`${CLASS_NAME}__item`)}>
-              <TableRow index={index + 1} item={item} onClick={onRowClick} />
+              <TableRow item={item} onClick={onRowClick} />
             </li>
           ))}
         </ul>

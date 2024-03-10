@@ -11,7 +11,7 @@ export const generateTaskItems = (
     const randomId = getId();
     const task: TaskItem = {
       id: randomId,
-      index: startIndex + (i + 1),
+      index: startIndex + (iterator + 1),
       status: 'create',
     };
 

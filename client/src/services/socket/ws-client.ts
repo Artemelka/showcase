@@ -36,7 +36,7 @@ export class WsClient {
 
   public readonly url: string;
 
-  public readonly logger: typeof console;
+  public readonly logger: typeof appLogger;
 
   private createMessage = (message: string) => {
     return `=== WebSocket ${message} ===`;

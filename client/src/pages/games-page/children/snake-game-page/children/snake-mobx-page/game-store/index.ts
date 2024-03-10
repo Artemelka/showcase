@@ -14,7 +14,7 @@ class SnakeGameStore {
 
   cells = [...Array(CELL_QUANTITY)].map((_, index) => index);
 
-  direction = DIRECTION[38];
+  direction: DirectionItem = DIRECTION[38];
 
   gameSpeed = [SELECT_OPTIONS[1]];
 

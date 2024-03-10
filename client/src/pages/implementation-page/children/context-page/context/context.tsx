@@ -4,19 +4,16 @@ import React, {
   useContext,
   useReducer,
   JSXElementConstructor,
-  Reducer,
 } from 'react';
 import { reducer, initialState } from './reducer';
-import type { State, Action, WithContextProps } from './types';
+import type { State, WithContextProps } from './types';
 
 type ContextValue = [State, (a: any) => void];
 
 export const Context = createContext<ContextValue>([initialState, () => false]);
 
 export const ContextProvider: FC = ({ children }) => (
-  <Context.Provider
-    value={useReducer<Reducer<State, Action<string>>>(reducer, initialState)}
-  >
+  <Context.Provider value={useReducer(reducer, initialState)}>
     {children}
   </Context.Provider>
 );

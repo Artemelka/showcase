@@ -10,7 +10,6 @@ import {
   SelectChangeEvent,
   Text,
 } from '@artemelka/react-components';
-import { AppStore } from '@/types';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
 import {
@@ -33,6 +32,7 @@ import {
   SEND_TASK_INJECT_SAGA_CONFIG,
   TaskItem,
   updateTasks,
+  QueueStore,
 } from './redux';
 import { Accordion, Form } from './_components';
 import { generateTaskItems, setPendingStatus } from './utils';
@@ -53,7 +53,7 @@ const asyncSagas: Array<AsyncSagaItem> = [
   GET_RESOLVED_TASK_INJECT_SAGA_CONFIG,
 ];
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: QueueStore) => ({
   allTasks: queueTasksArraySelector(state),
   createdTasks: queueCreatedTasksSelector(state),
   createTaskQuantity: queueCreateTasksQuantitySelector(state),

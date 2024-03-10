@@ -1,12 +1,12 @@
-import { SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_STOP } from './actions';
-import { Action, State } from './types';
+import { SIGNUP_START, SIGNUP_SUCCESS, SIGNUP_STOP, Actions } from './actions';
+import { State } from './types';
 
 export const initialState: State = {
   isLoading: false,
   userName: 'Guest',
 };
 
-export function reducer(state = initialState, action: Action<string>): State {
+export function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case SIGNUP_START:
       return {

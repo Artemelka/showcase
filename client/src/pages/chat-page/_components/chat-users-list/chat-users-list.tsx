@@ -1,15 +1,14 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Text } from '@artemelka/react-components';
-import { AppStore } from '@/types';
 import { fastClassNames } from '@/utils';
-import { usersListSelector, userSelector } from '../../redux';
+import { usersListSelector, userSelector, ChatStore } from '../../redux';
 import style from './chat-users-list.module.scss';
 
 const cn = fastClassNames(style);
 const CLASS_NAME = 'Chat-users-list';
 
-const mapStateToProps = (store: AppStore) => ({
+const mapStateToProps = (store: ChatStore) => ({
   user: userSelector(store),
   usersList: usersListSelector(store),
 });

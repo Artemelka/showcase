@@ -4,7 +4,6 @@ import { v4 as getId } from 'uuid';
 import { push } from 'connected-react-router';
 import { Redirect } from 'react-router';
 import { Button, Input, InputChangeEvent } from '@artemelka/react-components';
-import { AppStore } from '@/types';
 import { MESSAGE_TYPE, socketConnect, SocketHocProps } from '@/services/socket';
 import { fastClassNames } from '@/utils';
 import {
@@ -13,6 +12,7 @@ import {
   setUser,
   setUsersList,
   userSelector,
+  ChatStore,
 } from '../../redux';
 import { CHAT_PAGE_CHILDREN_PATH } from '../../constants';
 import style from './chat-login-form.module.scss';
@@ -26,7 +26,7 @@ const mapDispatchToProps = {
   setUser,
 };
 
-const mapStateToProps = (state: AppStore) => ({
+const mapStateToProps = (state: ChatStore) => ({
   user: userSelector(state),
 });
 
