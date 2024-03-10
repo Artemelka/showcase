@@ -10,7 +10,7 @@ export function* authInitWorkerSaga() {
 
     yield put(authInit(user));
   } catch (error) {
-    console.error('=== Error authInitWorkerSaga ===', error);
+    // console.error('=== Error authInitWorkerSaga ===', error);
   } finally {
     yield put(setStopAuthInit());
   }

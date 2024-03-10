@@ -2,7 +2,12 @@ export type RequestMethod = 'GET' | 'POST';
 
 export type QueryParams = Record<string, string>;
 
-type AppRequestParams = Partial<Omit<RequestInit, 'body' | 'method'>>;
+type CustomRequestParams = {
+  isFullUrl?: boolean;
+};
+
+type AppRequestParams = CustomRequestParams &
+  Partial<Omit<RequestInit, 'body' | 'method'>>;
 
 export type RequestGetParams = AppRequestParams & {
   queryParams?: QueryParams;
@@ -17,3 +22,6 @@ export type ApiResponse<D = unknown> = {
   errorMessage: string;
   data: D;
 };
+
+export type RequestParams = RequestInit &
+  CustomRequestParams & { method: RequestMethod };

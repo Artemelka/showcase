@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { Anchor, Text } from '@artemelka/react-components';
 import { Page } from '@/components';
 import { fastClassNames } from '@/utils';
@@ -9,15 +9,6 @@ const cn = fastClassNames(style);
 const CLASS_NAME = 'Home-page';
 
 const HomePage = () => {
-  useEffect(() => {
-    // fetch('https://jsonplaceholder.typicode.com/usersss')
-    //   .then((response) => {
-    //     console.log('=== response ===', response);
-    //     response.json();
-    //   })
-    //   .catch((error) => console.log('=== catch ===', error));
-  }, []);
-
   return (
     <Page title="Home">
       <div className={cn(CLASS_NAME)}>

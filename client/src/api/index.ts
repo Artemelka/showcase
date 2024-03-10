@@ -2,6 +2,7 @@ import { TODO } from './todo';
 import { QUEUE_TASK } from './queue-task';
 import { AUTH } from './auth';
 import { SIGN_UP } from './sign-up';
+import { TEST } from './test';
 
 export type {
   GetCategoryParams,
@@ -18,4 +19,5 @@ export const API = {
   QUEUE_TASK,
   AUTH,
   SIGN_UP,
+  TEST,
 };
